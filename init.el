@@ -67,7 +67,6 @@
 ;;;
 (global-unset-key "\C-q")
 (global-unset-key "\C-w")
-(global-unset-key "\C-wc")
 (global-set-key "\C-q\C-q" 'quoted-insert)
 (global-set-key "\C-q\C-j" 'join-line)
 (global-set-key "\C-ql" 'recenter)

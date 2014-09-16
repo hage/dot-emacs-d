@@ -57,6 +57,12 @@
 (modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
 
+;; 本当に終わってもいいの? と聞くようにする
+(add-hook 'kill-emacs-query-functions
+	  (function
+	   (lambda ()
+	     (y-or-n-p "Really quit Emacs? "))))
+
 ;;;
 ;;; isearch
 ;;;

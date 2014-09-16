@@ -9,6 +9,21 @@
 (set-default-coding-systems 'utf-8-unix)
 
 ;;;
+;;; ユーティリティ関数とマクロ
+;;;
+(defmacro exec-if-bound (sexplist)
+  "関数が存在する時だけ実行する"
+  `(if (fboundp (car ',sexplist))
+       ,sexplist))
+
+;; メニューバーやスクロールバーなど余計なものを消す
+(setq inhibit-startup-message t)
+(exec-if-bound (scroll-bar-mode -1))
+(exec-if-bound (tool-bar-mode -1))
+(if (not window-system)
+    (exec-if-bound (menu-bar-mode -1)))
+
+;;;
 ;;; キー・バインドの変更、新規割当
 ;;;
 ;; C-q 及び C-w でキーバインドを拡張する

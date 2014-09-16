@@ -23,10 +23,11 @@
 (if (not window-system)
     (exec-if-bound (menu-bar-mode -1)))
 
+
+
 ;;;
 ;;; キー・バインドの変更、新規割当
 ;;;
-;; C-q 及び C-w でキーバインドを拡張する
 (global-unset-key "\C-q")
 (global-unset-key "\C-w")
 (global-unset-key "\C-wc")

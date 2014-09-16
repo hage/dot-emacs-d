@@ -16,6 +16,10 @@
   `(if (fboundp (car ',sexplist))
        ,sexplist))
 
+;;;
+;;; いろいろ設定
+;;;
+
 ;; メニューバーやスクロールバーなど余計なものを消す
 (setq inhibit-startup-message t)
 (exec-if-bound (scroll-bar-mode -1))
@@ -23,7 +27,40 @@
 (if (not window-system)
     (exec-if-bound (menu-bar-mode -1)))
 
+;; mode-line
+(line-number-mode t)			; 行番号を表示
+(column-number-mode t)			; 列番号を表示
 
+;; 余計な警告を出さないように
+(put 'narrow-to-region 'disabled nil)
+
+;; スクロール、カーソル移動
+(setq scroll-conservatively 1		; 一行だけスクロール
+      scroll-step 2)
+(setq next-line-add-newlines nil)	; バッファの最後の行で next-line しても新しい行を作らない
+(defun previous-line (arg)		; beginning-of-bufferと怒られないようにする
+  (interactive "p")
+  (if (interactive-p)
+      (condition-case nil
+	  (line-move (- arg))
+	((beginning-of-buffer end-of-buffer)))
+    (line-move (- arg)))
+  nil)
+
+
+;; その他
+(setq-default dabbrev-case-fold-search t) ; caseの区別なく探してきて、caseを保持したまま補完
+(setq kill-whole-line t)		  ; C-k(kill-line) で行末の改行も含めて kill する
+(setq comment-fill-column 1000)		  ; 行末コメントの位置が揃うように
+(setq completion-ignore-case t)		  ; ファイルの補完をするときに case の区別をしない
+(setq auto-coding-functions nil)	  ; セーブ時に勝手に文字コードを変更させない
+(modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
+(modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
+
+;;;
+;;; isearch
+;;;
+(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 
 ;;;
 ;;; キー・バインドの変更、新規割当

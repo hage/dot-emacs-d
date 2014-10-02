@@ -47,6 +47,10 @@
     (line-move (- arg)))
   nil)
 
+;; バックアップ・自動保存
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+(setq vc-make-backup-files nil)
 
 ;; その他
 (setq-default dabbrev-case-fold-search t) ; caseの区別なく探してきて、caseを保持したまま補完

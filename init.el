@@ -17,6 +17,21 @@
        ,sexplist))
 
 ;;;
+;;; MELPA & Cask & Pallet
+;;; http://melpa.milkbox.net
+;;; http://cask.github.io
+;;; http://qiita.com/kametaro/items/2a0197c74cfd38fddb6b
+;;;
+(when (and (<= 24 emacs-major-version)
+	   (require 'package))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (package-initialize)
+  (when (require 'cask)
+    (cask-initialize)
+    (require 'pallet)))
+
+;;;
 ;;; いろいろ設定
 ;;;
 

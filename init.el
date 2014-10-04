@@ -27,9 +27,9 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (package-initialize)
-  (when (require 'cask)
+  (when (require 'cask nil t)
     (cask-initialize)
-    (require 'pallet)))
+    (require 'pallet nil t)))
 
 ;;;
 ;;; いろいろ設定
@@ -96,15 +96,17 @@
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)
-  (helm-mode 1)
   (global-set-key "\C-\M-o" 'helm-mini)
   (global-set-key "\M-x" 'helm-M-x)
   (global-set-key "\C-xb" 'helm-buffers-list)
   (global-set-key "\C-x\C-f" 'helm-find-files)
 
-  (define-key helm-map (kbd "C-h") 'delete-backward-char)
-  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+  (eval-after-load "helm"
+    (function (define-key helm-map (kbd "C-h") 'delete-backward-char)))
+  (eval-after-load "helm-files"
+    (function (progn
+		(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+		(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action))))
 
   ;; Emulate `kill-line' in helm minibuffer
   (setq helm-delete-minibuffer-contents-from-point t)

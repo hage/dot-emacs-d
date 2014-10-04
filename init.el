@@ -92,6 +92,7 @@
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)
+  (helm-mode 1)
   (global-set-key "\C-\M-o" 'helm-mini)
   (global-set-key "\M-x" 'helm-M-x)
   (global-set-key "\C-xb" 'helm-buffers-list)

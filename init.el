@@ -88,6 +88,13 @@
 (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 
 ;;;
+;;; Helm
+;;;
+(when (require 'helm-config nil t)
+  (global-set-key "\C-\M-o" 'helm-mini))
+
+
+;;;
 ;;; キー・バインドの変更、新規割当
 ;;;
 (global-unset-key "\C-q")

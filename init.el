@@ -67,6 +67,10 @@
 (setq make-backup-files nil)
 (setq vc-make-backup-files nil)
 
+;; show-paren-mode
+(setq show-paren-delay 0.3)
+(exec-if-bound (show-paren-mode t))
+
 ;; その他
 (setq-default dabbrev-case-fold-search t) ; caseの区別なく探してきて、caseを保持したまま補完
 (setq kill-whole-line t)		  ; C-k(kill-line) で行末の改行も含めて kill する

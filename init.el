@@ -177,3 +177,5 @@
 (global-set-key "\M-H" 'backward-kill-word)
 (global-set-key "\M-/" 'find-tag-other-window)
 (global-set-key "\C-xj" 'goto-line)
+
+(if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))

@@ -138,21 +138,21 @@
     (setq helm-samewindow nil)
     (setq display-buffer-function 'popwin:display-buffer)
     (setq popwin:special-display-config '(("*compilatoin*" :noselect t)
-					  ("helm" :regexp t :height 0.4)))
-    ;; フレームのサイズに応じてpopwinの出現位置を決める
-    (defun popwin-auto-set-popup-window-position ()
-      (interactive)
-      (let ((w (frame-width))
-	    (h (frame-height)))
-	(if (and (< 200 w)				      ; フレームの幅が200桁より大きくて
-		 (< h w))				      ; 横長の時に
-	    (progn (setq popwin:popup-window-position 'right) ; 右へ出す
-		   (setq popwin:popup-window-width (/ w 2)))
-	  (setq popwin:popup-window-position 'bottom)))) ; そうじゃないときは下へ出す
+					  ("helm" :regexp t :height 0.4))))
+  ;; フレームのサイズに応じてpopwinの出現位置を決める
+  (defun popwin-auto-set-popup-window-position ()
+    (interactive)
+    (let ((w (frame-width))
+	  (h (frame-height)))
+      (if (and (< 200 w)				      ; フレームの幅が200桁より大きくて
+	       (< h w))					      ; 横長の時に
+	  (progn (setq popwin:popup-window-position 'right)   ; 右へ出す
+		 (setq popwin:popup-window-width (/ w 2)))
+	(setq popwin:popup-window-position 'bottom)))) ; そうじゃないときは下へ出す
 
-    ;; popwin表示時にフレームサイズに応じた表示位置にする
-    (defadvice  popwin:display-buffer (before popwin-auto-window-position activate)
-      (popwin-auto-set-popup-window-position)))
+  ;; popwin表示時にフレームサイズに応じた表示位置にする
+  (defadvice  popwin:display-buffer (before popwin-auto-window-position activate)
+    (popwin-auto-set-popup-window-position))
   )
 
 

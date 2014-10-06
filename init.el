@@ -157,6 +157,18 @@
 
 
 ;;;
+;;; auto-complete
+;;;
+(when (require 'auto-complete-config nil t)
+  (ac-config-default)
+  (global-auto-complete-mode t)
+  (setq ac-auto-start t
+        ac-ignore-case t
+	ac-delay 0.3
+        ac-auto-start 4
+	ac-use-menu-map t)
+  )
+;;;
 ;;; migemo
 ;;;
 (setq migemo-command

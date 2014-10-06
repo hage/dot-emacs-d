@@ -178,4 +178,16 @@
 (global-set-key "\M-/" 'find-tag-other-window)
 (global-set-key "\C-xj" 'goto-line)
 
+;; 簡易ブックマーク
+(defun simple-bookmark-set ()
+  (interactive)
+  (progn
+    (bookmark-set "simple-bookmark")
+    (princ "bookmark-set simple-bookmark")))
+(defun simple-bookmark-jump ()
+  (interactive)
+  (bookmark-jump "simple-bookmark"))
+(global-set-key "\C-q " 'simple-bookmark-set)
+(global-set-key "\C-qb" 'simple-bookmark-jump)
+
 (if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))

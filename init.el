@@ -169,7 +169,8 @@
 	migemo-isearch-enable-p t
 	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
 	migemo-coding-system 'utf-8
-	migemo-options '("-q" "--emacs" "-i" "\g")))
+	migemo-options '("-q" "--emacs" "-i" "\g"))
+  (migemo-init))
 
 
 ;;;

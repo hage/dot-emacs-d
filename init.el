@@ -157,6 +157,22 @@
 
 
 ;;;
+;;; migemo
+;;;
+(setq migemo-command
+      (cond
+       ((eq (shell-command "which cmigemo") 0) "cmigemo")
+       ((eq (shell-command "which migemo") 0) "migemo")
+       (t nil)))
+(when (and migemo-command (require 'migemo nil t))
+  (setq migemo-accept-process-output-timeout-msec 20
+	migemo-isearch-enable-p t
+	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
+	migemo-coding-system 'utf-8
+	migemo-options '("-q" "--emacs" "-i" "\g")))
+
+
+;;;
 ;;; キー・バインドの変更、新規割当
 ;;;
 (global-unset-key "\C-q")

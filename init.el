@@ -190,4 +190,5 @@
 (global-set-key "\C-q " 'simple-bookmark-set)
 (global-set-key "\C-qb" 'simple-bookmark-jump)
 
+;; その他モジュールの読み込みが成功している場合のキーバインド
 (if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))

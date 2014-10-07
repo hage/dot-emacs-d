@@ -1,6 +1,7 @@
 (source gnu)
 (source melpa)
 
+(depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "helm")
 (depends-on "migemo")

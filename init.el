@@ -173,7 +173,6 @@
 ;;;
 ;;; yasnippet
 ;;;
-
 (when (require 'yasnippet nil t)
   (if (require 'dropdown-list nil t)
       (setq yas/prompt-functions '(yas/dropdown-prompt

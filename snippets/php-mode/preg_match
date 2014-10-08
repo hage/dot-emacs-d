@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: preg_match
+# key: pm
+# --
+preg_match('/$1/', ${0:string})

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: initialize
+# key: init
+# --
+def initialize$0
+end

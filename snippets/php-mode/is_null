@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: is_null
+# key: in
+# --
+is_null($0)

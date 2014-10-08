@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: each
+# key: each
+# --
+each do |$0|
+end

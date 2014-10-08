@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: foreach
+# key: fo
+# --
+foreach ($${1:array} as $${2:name} => $${3:value}) {
+}

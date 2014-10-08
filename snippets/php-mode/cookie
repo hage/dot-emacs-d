@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cookie
+# key: cookie
+# --
+$_COOKIE[$0]

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: html-tag
+# key: html
+# binding: direct-keybinding
+# type: command
+# --
+<html>
+	$0
+</html>

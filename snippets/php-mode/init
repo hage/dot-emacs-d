@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: init
+# key: init
+# --
+function __construct($1) {
+         $0
+}

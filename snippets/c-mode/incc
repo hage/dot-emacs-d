@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: incc
+# key: incc
+# --
+#include <$0.h>

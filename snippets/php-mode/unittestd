@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: unittestd
+# key: unittestd
+# --
+class $0Test extends PHPUnit_Extensions_Database_TestCase {
+  function test_imcomplete() {
+    $this->assertTrue(true, 'This test will be passed.');
+    $this->markTestIncomplete('This test is not yet implemented.');
+  }
+
+  ////////////////////////////////////////////////////////////////
+  function setUp() {
+    parent::setUp();
+  }
+  function getDataSet() {
+    return new PHPUnit_Extensions_Database_DataSet_YamlDataSet(dirname(__FILE__)."/_files/fixture.yml");
+  }
+  function getConnection() {
+    $pdo = new PDO('mysql:dbname=testdb;host=localhost', 'user, 'password');
+    return $this->createDefaultDBConnection($pdo);
+  }
+}

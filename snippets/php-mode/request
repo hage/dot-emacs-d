@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: request
+# key: req
+# --
+$_REQUEST

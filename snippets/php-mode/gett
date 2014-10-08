@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gett
+# key: gett
+# --
+$_GET

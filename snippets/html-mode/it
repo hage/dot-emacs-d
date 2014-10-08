@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: it
+# key: it
+# --
+<?php echo $info->form->f_$0->input_tag(); ?>

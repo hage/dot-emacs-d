@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: unittest
+# key: unittest
+# --
+class $0Test extends PHPUnit_Framework_TestCase {
+  function test_imcomplete() {
+    $this->assertTrue(true, 'This test will be passed.');
+    $this->markTestIncomplete('This test is not yet implemented.');
+  }
+
+  ////////////////////////////////////////////////////////////////
+  function setUp() {
+    parent::setUp();
+  }
+}

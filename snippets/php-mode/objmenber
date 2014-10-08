@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: objmenber
+# key: ll
+# --
+\$$1->$0

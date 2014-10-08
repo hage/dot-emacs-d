@@ -7,3 +7,4 @@
 (depends-on "migemo")
 (depends-on "pallet")
 (depends-on "popwin")
+(depends-on "yasnippet")

@@ -171,6 +171,23 @@
 
 
 ;;;
+;;; yasnippet
+;;;
+
+(when (require 'yasnippet nil t)
+  (if (require 'dropdown-list nil t)
+      (setq yas/prompt-functions '(yas/dropdown-prompt
+				   yas/ido-prompt
+				   yas/completing-prompt)))
+  (yas-global-mode 1)
+  (global-set-key "\C-l" 'yas-expand-from-trigger-key)
+  (global-set-key "\M-l" 'yas-insert-snippet)
+
+  ;; snippet-mode for *.yasnippet files
+  (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))
+
+
+;;;
 ;;; migemo
 ;;;
 (setq migemo-command

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test_exception
+# key: teste
+# --
+  /**
+   * @expectedException RuntimeException
+   * @expectedExceptionCode 501
+   */

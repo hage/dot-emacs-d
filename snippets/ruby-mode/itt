@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: itt
+# key: itt
+# --
+it { should$0 }

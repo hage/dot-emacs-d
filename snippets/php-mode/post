@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: post
+# key: post
+# --
+$_POST

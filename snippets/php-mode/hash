@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hash
+# key: hash
+# --
+$$1['$0']

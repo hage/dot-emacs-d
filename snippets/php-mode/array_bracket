@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: array_bracket
+# key: ar
+# --
+$$1['$0']

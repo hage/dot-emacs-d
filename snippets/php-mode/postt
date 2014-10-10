@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: postt
+# key: postt
+# --
+$_POST['$0']

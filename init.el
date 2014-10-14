@@ -4,7 +4,7 @@
 (global-set-key "\C-h" 'backward-delete-char-untabify)
 
 ;; 文字コード
-(set-language-environment 'utf-8)
+(set-language-environment 'japanese)
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8-unix)
 
@@ -15,6 +15,14 @@
   "関数が存在する時だけ実行する"
   `(if (fboundp (car ',sexplist))
        ,sexplist))
+
+(defun add-to-load-path-if-found (path)
+  (let ((epath (expand-file-name path)))
+    (if (file-exists-p epath)
+      (progn
+        (setq load-path (cons epath load-path))
+        t)
+      nil)))
 
 ;;;
 ;;; MELPA & Cask & Pallet
@@ -204,6 +212,97 @@
 
 
 ;;;
+;;; howm
+;;;
+(when (add-to-load-path-if-found "~/.emacs.d/free/howm")
+  (setq howm-menu-lang 'ja)
+  (setq howm-prefix "\C-q,")
+  (setq howm-process-coding-system 'euc-jp-unix)
+  (mapc
+   (lambda (f)
+     (autoload f
+       "howm" "Hitori Otegaru Wiki Modoki" t))
+   '(howm-menu
+     howm-create
+     howm-list-grep-fixed
+     howm-list-all
+     howm-list-recent
+     howm-list-grep
+     howm-keyword-to-kill-ring))
+
+  (eval-after-load "howm"
+    '(progn
+       (define-key howm-mode-map [tab] 'action-lock-goto-next-link)
+       (define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)))
+  ;; 「最近のメモ」一覧時にタイトル表示
+  (setq howm-list-recent-title t)
+  ;; 全メモ一覧時にタイトル表示
+  (setq howm-list-all-title t)
+  ;; メニューを 2 時間キャッシュ
+  (setq howm-menu-expiry-hours 2)
+  ;; メニューを自動更新しない
+  (setq howm-refesh-after-save nil)
+  ;; 下線を引き直さない
+  (setq howm-refresh-afgter-save nil)
+
+  ;; howm の時は auto-fill なしで
+  (add-hook 'howm-mode-on-hook (function (lambda () (auto-fill-mode -1))))
+
+  ;; RET でファイルを開く際, 一覧バッファを消す
+  ;; C-u RET なら残る
+  (setq howm-view-summary-persistent nil)
+
+  ;; メニューの予定表の表示範囲
+  ;; 10 日前から
+  (setq howm-menu-schedule-days-before 10)
+  ;; 3 日後まで
+  (setq howm-menu-schedule-days 3)
+
+  ;; howm のファイル名
+  (setq howm-file-name-format "%Y/%m/%Y%m%d-%H%M%S.txt")
+
+  (setq howm-view-grep-parse-line
+	"^\\(\\([a-zA-Z]:/\\)?[^:]*\\.howm\\):\\([0-9]*\\):\\(.*\\)$")
+  ;; 検索しないファイルの正規表現
+  (setq
+   howm-excluded-file-regexp
+   "/\\.#\\|[~#]$\\|\\.bak$\\|/CVS/\\|\\.doc$\\|\\.pdf$\\|\\.ppt$\\|\\.xls$\\|git")
+
+  ;; Macの場合、Dropboxにメモを置く
+  (if (and (equal system-type 'darwin) (file-directory-p "~/Dropbox/howm"))
+      (setq howm-directory "~/Dropbox/howm/"))
+
+  ;; いちいち消すのも面倒なので
+  ;; 内容が 0 ならファイルごと削除する
+  (if (not (memq 'delete-file-if-no-contents after-save-hook))
+      (setq after-save-hook
+	    (cons 'delete-file-if-no-contents after-save-hook)))
+  (defun delete-file-if-no-contents ()
+    (when (and
+	   (buffer-file-name (current-buffer))
+	   (string-match "\\.howm" (buffer-file-name (current-buffer)))
+	   (= (point-min) (point-max)))
+      (delete-file
+       (buffer-file-name (current-buffer)))))
+
+  ;; http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?SaveAndKillBuffer
+  ;; C-cC-c で保存してバッファをキルする
+  (defun my-save-and-kill-buffer ()
+    (interactive)
+    (when (and
+	   (buffer-file-name)
+	   (string-match "\\.howm"
+			 (buffer-file-name)))
+      (save-buffer)
+      (kill-buffer nil)))
+  (eval-after-load "howm-mode"
+    '(progn
+       (define-key howm-mode-map
+	 "\C-c\C-c" 'my-save-and-kill-buffer)))
+  )
+
+
+;;;
 ;;; キー・バインドの変更、新規割当
 ;;;
 (global-unset-key "\C-q")
@@ -224,6 +323,11 @@
 (global-set-key "\M-H" 'backward-kill-word)
 (global-set-key "\M-/" 'find-tag-other-window)
 (global-set-key "\C-xj" 'goto-line)
+
+(when (boundp 'howm-menu-lang)
+  (global-set-key "\C-q,," 'howm-menu)
+  (global-set-key "\C-q,c" 'howm-create)
+  (global-set-key "\C-q,s" 'howm-list-grep-fixed))
 
 ;; 簡易ブックマーク
 (defun simple-bookmark-set ()

@@ -3,6 +3,7 @@
 
 (depends-on "auto-complete")
 (depends-on "cask")
+(depends-on "expand-region")
 (depends-on "helm")
 (depends-on "migemo")
 (depends-on "pallet")

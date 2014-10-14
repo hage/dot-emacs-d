@@ -195,6 +195,13 @@
 
 
 ;;;
+;;; expand-region
+;;;
+(when (require 'expand-region nil t)
+  (global-set-key "\C-@" 'er/expand-region))
+
+
+;;;
 ;;; migemo
 ;;;
 (setq migemo-command

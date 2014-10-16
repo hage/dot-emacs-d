@@ -355,3 +355,5 @@
   (global-set-key "\C-q,," 'howm-menu)
   (global-set-key "\C-q,c" 'howm-create)
   (global-set-key "\C-q,s" 'howm-list-grep-fixed))
+(when (featurep 'magit)
+  (global-set-key "\C-qg" 'magit-status))

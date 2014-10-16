@@ -331,11 +331,6 @@
 (global-set-key "\M-/" 'find-tag-other-window)
 (global-set-key "\C-xj" 'goto-line)
 
-(when (boundp 'howm-menu-lang)
-  (global-set-key "\C-q,," 'howm-menu)
-  (global-set-key "\C-q,c" 'howm-create)
-  (global-set-key "\C-q,s" 'howm-list-grep-fixed))
-
 ;; 簡易ブックマーク
 (defun simple-bookmark-set ()
   (interactive)
@@ -350,3 +345,7 @@
 
 ;; その他モジュールの読み込みが成功している場合のキーバインド
 (if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))
+(when (boundp 'howm-menu-lang)
+  (global-set-key "\C-q,," 'howm-menu)
+  (global-set-key "\C-q,c" 'howm-create)
+  (global-set-key "\C-q,s" 'howm-list-grep-fixed))

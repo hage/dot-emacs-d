@@ -219,6 +219,12 @@
 
 
 ;;;
+;;; magit
+;;;
+(require 'magit)
+
+
+;;;
 ;;; howm
 ;;;
 (when (add-to-load-path-if-found "~/.emacs.d/free/howm")

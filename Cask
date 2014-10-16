@@ -5,6 +5,7 @@
 (depends-on "cask")
 (depends-on "expand-region")
 (depends-on "helm")
+(depends-on "magit")
 (depends-on "migemo")
 (depends-on "pallet")
 (depends-on "popwin")

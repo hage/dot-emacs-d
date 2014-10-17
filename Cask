@@ -8,6 +8,7 @@
 (depends-on "helm-ls-git")
 (depends-on "magit")
 (depends-on "migemo")
+(depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "popwin")
 (depends-on "yasnippet")

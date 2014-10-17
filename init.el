@@ -212,6 +212,12 @@
 (when (require 'expand-region nil t)
   (global-set-key "\C-@" 'er/expand-region))
 
+;;;
+;;; multiple-cursors
+;;;
+(when (require 'multiple-cursors nil t)
+  (global-set-key (kbd "M-RET") 'mc/mark-all-like-this)
+  )
 
 ;;;
 ;;; migemo

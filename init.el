@@ -153,10 +153,12 @@
 ;;;
 (when (require 'popwin nil t)
   (popwin-mode 1)
+
   (when (featurep 'helm-config)
     (setq helm-samewindow nil)
-    (setq popwin:special-display-config '(("*compilatoin*" :noselect t)
-					  ("helm" :regexp t :height 0.4))))
+    (push '("*compilatoin*" :noselect t) popwin:special-display-config)
+    (push '("helm" :regexp t :height 0.4) popwin:special-display-config))
+
   ;; フレームのサイズに応じてpopwinの出現位置を決める
   (defun popwin-auto-set-popup-window-position ()
     (interactive)

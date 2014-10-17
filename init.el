@@ -109,7 +109,7 @@
   (global-set-key "\C-xb" 'helm-buffers-list)
   (global-set-key "\C-x\C-f" 'helm-find-files)
 
-  (if (not (boundp 'helm-source-ls-git))
+  (if (not (require 'helm-ls-git nil t))
       (setq helm-source-ls-git nil))
   (custom-set-variables
    '(helm-mini-default-sources '(helm-source-buffers-list

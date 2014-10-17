@@ -87,6 +87,7 @@
 (setq auto-coding-functions nil)	  ; セーブ時に勝手に文字コードを変更させない
 (modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
+(setq indent-tabs-mode nil)		  ; インデントにTABを使わない
 
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions

@@ -430,3 +430,13 @@
   (global-set-key "\C-q,s" 'howm-list-grep-fixed))
 (when (featurep 'magit)
   (global-set-key "\C-qg" 'magit-status))
+
+
+;;;
+;;; faces
+;;;
+(set-face-foreground 'mode-line "greenyellow")
+(set-face-background 'mode-line "gray25")
+(set-face-foreground 'mode-line-inactive "gray30")
+(set-face-background 'mode-line-inactive "gray10")
+(set-face-foreground 'font-lock-comment-face "#662222")

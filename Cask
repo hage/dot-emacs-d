@@ -10,5 +10,6 @@
 (depends-on "migemo")
 (depends-on "multiple-cursors")
 (depends-on "pallet")
+(depends-on "php-mode")
 (depends-on "popwin")
 (depends-on "yasnippet")

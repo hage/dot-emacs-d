@@ -24,6 +24,13 @@
         t)
       nil)))
 
+(defun autoload-if-found (function file &optional docstring interactive type)
+  "set autoload iff. FILE has found."
+  (let ((file-exist (locate-library file)))
+    (and file-exist
+         (autoload function file docstring interactive type))
+    file-exist))
+
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
 
@@ -335,6 +342,15 @@
     '(progn
        (define-key howm-mode-map
 	 "\C-c\C-c" 'my-save-and-kill-buffer)))
+  )
+
+
+;;;
+;;; ruby-mode
+;;;
+(when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+  (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+  (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   )
 
 

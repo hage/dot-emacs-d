@@ -288,13 +288,13 @@
 ;;;
 ;;; expand-region
 ;;;
-(when (require 'expand-region nil t)
+(when (autoload-if-found 'er/expand-region "expand-region" nil t)
   (global-set-key (kbd "M-SPC") 'er/expand-region))
 
 ;;;
 ;;; multiple-cursors
 ;;;
-(when (require 'multiple-cursors nil t)
+(when (autoload-if-found 'mc/mark-all-like-this "multiple-cursors" nil t)
   (global-set-key (kbd "M-RET") 'mc/mark-all-like-this)
   )
 

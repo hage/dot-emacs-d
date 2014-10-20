@@ -117,11 +117,12 @@
   (if (not (require 'helm-ls-git nil t))
       (setq helm-source-ls-git nil))
   (custom-set-variables
-   '(helm-mini-default-sources '(helm-source-buffers-list
+   '(helm-mini-default-sources `(helm-source-buffers-list
                                  helm-source-recentf
 				 helm-source-ls-git
 				 helm-source-findutils
-                                 helm-source-locate)))
+				 ,(if osxp helm-source-mac-spotlight helm-source-locate)
+				 )))
 
   (eval-after-load "helm"
     (function (define-key helm-map (kbd "C-h") 'delete-backward-char)))

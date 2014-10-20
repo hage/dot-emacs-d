@@ -405,6 +405,23 @@
   (next-line 1))
 (define-key global-map "\M-n" 'indent-and-next-line)
 
+;; 大文字・小文字の変更
+(defun changecase-word (cnt)
+  "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
+  (interactive "p")
+  (if (not (eq last-command 'changecase-word))
+       (setq changecase-word-type 0))
+  (cond ((= changecase-word-type 0)
+           (upcase-word (- cnt))
+             (setq changecase-word-type 1))
+         ((= changecase-word-type 1)
+            (capitalize-word (- cnt))
+              (setq changecase-word-type 2))
+          (t
+             (downcase-word (- cnt))
+               (setq changecase-word-type 0))))
+(global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
+
 ;; その他モジュールの読み込みが成功している場合のキーバインド
 (if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))
 (when (boundp 'howm-menu-lang)

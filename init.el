@@ -388,6 +388,13 @@
 (global-set-key "\C-q " 'simple-bookmark-set)
 (global-set-key "\C-qb" 'simple-bookmark-jump)
 
+;; インデントして次の行に移動する
+(defun indent-and-next-line ()
+  (interactive)
+  (indent-according-to-mode)
+  (next-line 1))
+(define-key global-map "\M-n" 'indent-and-next-line)
+
 ;; その他モジュールの読み込みが成功している場合のキーバインド
 (if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))
 (when (boundp 'howm-menu-lang)

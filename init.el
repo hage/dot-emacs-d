@@ -215,7 +215,7 @@
 ;;; expand-region
 ;;;
 (when (require 'expand-region nil t)
-  (global-set-key "\C-@" 'er/expand-region))
+  (global-set-key (kbd "M-SPC") 'er/expand-region))
 
 ;;;
 ;;; multiple-cursors

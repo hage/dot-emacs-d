@@ -355,6 +355,12 @@
 
 
 ;;;
+;;; php-mode
+;;;
+(autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
+
+
+;;;
 ;;; Emacs-Lisp-mode
 ;;;
 

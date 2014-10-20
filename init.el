@@ -166,6 +166,8 @@
 (when (require 'popwin nil t)
   (popwin-mode 1)
 
+  (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
+
   (when (featurep 'helm-config)
     (setq helm-samewindow nil)
     (push '("*compilatoin*" :noselect t) popwin:special-display-config)

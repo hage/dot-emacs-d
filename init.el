@@ -355,6 +355,16 @@
 
 
 ;;;
+;;; Emacs-Lisp-mode
+;;;
+
+;; 自動的に elisp リファレンスを mini-buffer に表示
+(when (autoload-if-found 'turn-on-eldoc-mode "eldoc" "eldoc" t)
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode))
+
+
+;;;
 ;;; キー・バインドの変更、新規割当
 ;;;
 (global-unset-key "\C-q")

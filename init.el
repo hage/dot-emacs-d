@@ -318,8 +318,14 @@
 ;;;
 ;;; magit
 ;;;
-(when (require 'magit nil t)
-  (global-set-key "\C-qg" 'magit-status))
+(when (autoload-if-found 'magit-status "magit" "magit: Show Git status" t)
+  (autoload 'magit-diff-unstaged "magit" "magit: Show unstaged diff" t)
+  (autoload 'magit-log "magit" "magit: Show Log" t)
+
+  (global-set-key "\C-qgg" 'magit-status)
+  (global-set-key "\C-qgd" 'magit-diff-unstaged)
+  (global-set-key "\C-qgl" 'magit-log)
+  )
 
 
 ;;;

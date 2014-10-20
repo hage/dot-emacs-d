@@ -24,6 +24,10 @@
         t)
       nil)))
 
+;; 機種判別
+(setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
+
+
 ;;;
 ;;; MELPA & Cask & Pallet
 ;;; http://melpa.milkbox.net

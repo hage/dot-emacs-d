@@ -106,6 +106,70 @@
 	   (lambda ()
 	     (y-or-n-p "Really quit Emacs? "))))
 
+
+;;;
+;;; キー・バインドの変更、新規割当
+;;;
+(global-unset-key "\C-q")
+(global-unset-key "\C-w")
+(global-set-key "\C-q\C-q" 'quoted-insert)
+(global-set-key "\C-q\C-j" 'join-line)
+(global-set-key "\C-ql" 'recenter)
+(global-set-key "\C-qk" 'kill-region)
+(global-set-key "\C-xh" 'help-command)
+(global-set-key "\C-o" 'dabbrev-expand)
+(global-set-key "\C-q\C-a" 'mark-whole-buffer)
+(global-set-key "\M-&" 'replace-regexp)
+(global-set-key "\M-_" 'next-error)
+(global-set-key "\C-q\C-f" 'find-function)
+(global-set-key "\M-~" 'call-last-kbd-macro)
+(global-set-key "\C-q\C-r" 'revert-buffer)
+(global-set-key "\M-\C-_" 'indent-region)
+(global-set-key "\M-H" 'backward-kill-word)
+(global-set-key "\M-/" 'find-tag-other-window)
+(global-set-key "\C-xj" 'goto-line)
+
+
+;;;
+;;; ちょっとした関数とそのキーバインド
+;;;
+;; 簡易ブックマーク
+(defun simple-bookmark-set ()
+  (interactive)
+  (progn
+    (bookmark-set "simple-bookmark")
+    (princ "bookmark-set simple-bookmark")))
+(defun simple-bookmark-jump ()
+  (interactive)
+  (bookmark-jump "simple-bookmark"))
+(global-set-key "\C-q " 'simple-bookmark-set)
+(global-set-key "\C-qb" 'simple-bookmark-jump)
+
+;; インデントして次の行に移動する
+(defun indent-and-next-line ()
+  (interactive)
+  (indent-according-to-mode)
+  (next-line 1))
+(define-key global-map "\M-n" 'indent-and-next-line)
+
+;; 大文字・小文字の変更
+(defun changecase-word (cnt)
+  "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
+  (interactive "p")
+  (if (not (eq last-command 'changecase-word))
+       (setq changecase-word-type 0))
+  (cond ((= changecase-word-type 0)
+           (upcase-word (- cnt))
+             (setq changecase-word-type 1))
+         ((= changecase-word-type 1)
+            (capitalize-word (- cnt))
+              (setq changecase-word-type 2))
+          (t
+             (downcase-word (- cnt))
+               (setq changecase-word-type 0))))
+(global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
+
+
 ;;;
 ;;; isearch
 ;;;
@@ -120,6 +184,7 @@
   (global-set-key "\M-x" 'helm-M-x)
   (global-set-key "\C-xb" 'helm-buffers-list)
   (global-set-key "\C-x\C-f" 'helm-find-files)
+  (global-set-key "\C-xha" 'helm-apropos)
 
   (if (not (require 'helm-ls-git nil t))
       (setq helm-source-ls-git nil))
@@ -253,7 +318,8 @@
 ;;;
 ;;; magit
 ;;;
-(require 'magit)
+(when (require 'magit nil t)
+  (global-set-key "\C-qg" 'magit-status))
 
 
 ;;;
@@ -261,12 +327,16 @@
 ;;;
 (when (add-to-load-path-if-found "~/.emacs.d/free/howm")
   (setq howm-menu-lang 'ja)
-  (setq howm-prefix "\C-q,")
   (setq howm-process-coding-system 'euc-jp-unix)
+
+  (setq howm-prefix "\C-q,")
+  (global-set-key "\C-q,," 'howm-menu)
+  (global-set-key "\C-q,c" 'howm-create)
+  (global-set-key "\C-q,s" 'howm-list-grep-fixed)
+
   (mapc
    (lambda (f)
-     (autoload f
-       "howm" "Hitori Otegaru Wiki Modoki" t))
+     (autoload f "howm" "Hitori Otegaru Wiki Modoki" t))
    '(howm-menu
      howm-create
      howm-list-grep-fixed
@@ -370,74 +440,6 @@
 (when (autoload-if-found 'turn-on-eldoc-mode "eldoc" "eldoc" t)
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode))
-
-
-;;;
-;;; キー・バインドの変更、新規割当
-;;;
-(global-unset-key "\C-q")
-(global-unset-key "\C-w")
-(global-set-key "\C-q\C-q" 'quoted-insert)
-(global-set-key "\C-q\C-j" 'join-line)
-(global-set-key "\C-ql" 'recenter)
-(global-set-key "\C-qk" 'kill-region)
-(global-set-key "\C-xh" 'help-command)
-(global-set-key "\C-o" 'dabbrev-expand)
-(global-set-key "\C-q\C-a" 'mark-whole-buffer)
-(global-set-key "\M-&" 'replace-regexp)
-(global-set-key "\M-_" 'next-error)
-(global-set-key "\C-q\C-f" 'find-function)
-(global-set-key "\M-~" 'call-last-kbd-macro)
-(global-set-key "\C-q\C-r" 'revert-buffer)
-(global-set-key "\M-\C-_" 'indent-region)
-(global-set-key "\M-H" 'backward-kill-word)
-(global-set-key "\M-/" 'find-tag-other-window)
-(global-set-key "\C-xj" 'goto-line)
-
-;; 簡易ブックマーク
-(defun simple-bookmark-set ()
-  (interactive)
-  (progn
-    (bookmark-set "simple-bookmark")
-    (princ "bookmark-set simple-bookmark")))
-(defun simple-bookmark-jump ()
-  (interactive)
-  (bookmark-jump "simple-bookmark"))
-(global-set-key "\C-q " 'simple-bookmark-set)
-(global-set-key "\C-qb" 'simple-bookmark-jump)
-
-;; インデントして次の行に移動する
-(defun indent-and-next-line ()
-  (interactive)
-  (indent-according-to-mode)
-  (next-line 1))
-(define-key global-map "\M-n" 'indent-and-next-line)
-
-;; 大文字・小文字の変更
-(defun changecase-word (cnt)
-  "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
-  (interactive "p")
-  (if (not (eq last-command 'changecase-word))
-       (setq changecase-word-type 0))
-  (cond ((= changecase-word-type 0)
-           (upcase-word (- cnt))
-             (setq changecase-word-type 1))
-         ((= changecase-word-type 1)
-            (capitalize-word (- cnt))
-              (setq changecase-word-type 2))
-          (t
-             (downcase-word (- cnt))
-               (setq changecase-word-type 0))))
-(global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
-
-;; その他モジュールの読み込みが成功している場合のキーバインド
-(if (featurep 'helm-config) (global-set-key "\C-xha" 'helm-apropos))
-(when (boundp 'howm-menu-lang)
-  (global-set-key "\C-q,," 'howm-menu)
-  (global-set-key "\C-q,c" 'howm-create)
-  (global-set-key "\C-q,s" 'howm-list-grep-fixed))
-(when (featurep 'magit)
-  (global-set-key "\C-qg" 'magit-status))
 
 
 ;;;

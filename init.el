@@ -264,7 +264,7 @@
   (setq ac-auto-start t
         ac-ignore-case t
 	ac-delay 0.3
-        ac-auto-start 4
+        ac-auto-start 3
 	ac-use-menu-map t)
   )
 

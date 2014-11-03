@@ -99,8 +99,8 @@
 (modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
 (setq indent-tabs-mode nil)		  ; インデントにTABを使わない
-(global-hl-line-mode t)
-(set-face-background 'hl-line "gray20")
+(global-hl-line-mode t)			  ; hl-line-modeを有効に
+(set-face-background 'hl-line "gray10")
 
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions

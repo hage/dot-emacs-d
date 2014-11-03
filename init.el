@@ -453,8 +453,8 @@
 ;;;
 ;;; faces
 ;;;
-(set-face-foreground 'mode-line "greenyellow")
-(set-face-background 'mode-line "gray25")
+(set-face-foreground 'mode-line "olivedrab3")
+(set-face-background 'mode-line "gray40")
 (set-face-foreground 'mode-line-inactive "gray30")
 (set-face-background 'mode-line-inactive "gray10")
 (set-face-foreground 'font-lock-comment-face "#662222")

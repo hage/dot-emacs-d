@@ -169,13 +169,6 @@
                (setq changecase-word-type 0))))
 (global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
 
-;;;
-;;; highlight-current-line
-;;;
-(when (require 'highlight-current-line nil t)
-  (highlight-current-line-set-bg-color "gray20")
-  (highlight-current-line-on t)
-  )
 
 ;;;
 ;;; isearch

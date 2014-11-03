@@ -12,4 +12,5 @@
 (depends-on "pallet")
 (depends-on "php-mode")
 (depends-on "popwin")
+(depends-on "web-mode")
 (depends-on "yasnippet")

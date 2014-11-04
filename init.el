@@ -334,7 +334,16 @@
   (global-set-key "\C-qgg" 'magit-status)
   (global-set-key "\C-qgd" 'magit-diff-unstaged)
   (global-set-key "\C-qgl" 'magit-log)
-  )
+  (eval-after-load "magit"
+    (function
+     (progn
+       (set-face-foreground 'magit-diff-add "green")
+       (set-face-background 'magit-diff-add "gray20")
+       (set-face-foreground 'magit-diff-del "red")
+       (set-face-background 'magit-diff-del "gray20")
+       (set-face-background 'magit-item-highlight "gray20")
+       ))
+    ))
 
 
 ;;;

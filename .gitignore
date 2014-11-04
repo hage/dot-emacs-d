@@ -2,3 +2,4 @@
 elpa
 .cask/
 ac-comphist.dat
+*.elc

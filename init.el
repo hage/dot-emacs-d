@@ -74,7 +74,7 @@
 (setq next-line-add-newlines nil)	; バッファの最後の行で next-line しても新しい行を作らない
 (defun previous-line (arg)		; beginning-of-bufferと怒られないようにする
   (interactive "p")
-  (if (interactive-p)
+  (if (called-interactively-p 'interactive)
       (condition-case nil
 	  (line-move (- arg))
 	((beginning-of-buffer end-of-buffer)))
@@ -151,10 +151,11 @@
 (defun indent-and-next-line ()
   (interactive)
   (indent-according-to-mode)
-  (next-line 1))
+  (forward-line 1))
 (define-key global-map "\M-n" 'indent-and-next-line)
 
 ;; 大文字・小文字の変更
+(defvar changecase-word-type 0)
 (defun changecase-word (cnt)
   "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
   (interactive "p")
@@ -199,7 +200,13 @@
 				 )))
 
   (eval-after-load "helm"
-    (function (define-key helm-map (kbd "C-h") 'delete-backward-char)))
+    (function
+     (progn
+       (define-key helm-map (kbd "C-h") 'delete-backward-char)
+       (set-face-background 'helm-selection "gray70")
+       (set-face-foreground 'helm-selection "black")
+       (set-face-background 'helm-source-header "gray20")
+       (set-face-foreground 'helm-source-header "skyblue"))))
   (eval-after-load "helm-files"
     (function (progn
 		(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
@@ -236,7 +243,7 @@
   (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
 
   (when (featurep 'helm-config)
-    (setq helm-samewindow nil)
+    (setq helm-full-frame nil)
     (push '("*compilatoin*" :noselect t) popwin:special-display-config)
     (push '("helm" :regexp t) popwin:special-display-config))
 
@@ -276,7 +283,7 @@
 ;;;
 (when (require 'yasnippet nil t)
   (if (require 'dropdown-list nil t)
-      (setq yas/prompt-functions '(yas/dropdown-prompt
+      (setq yas-prompt-functions '(yas/dropdown-prompt
 				   yas/ido-prompt
 				   yas/completing-prompt)))
   (yas-global-mode 1)
@@ -354,9 +361,10 @@
      howm-keyword-to-kill-ring))
 
   (eval-after-load "howm"
-    '(progn
+    (function
+     (progn
        (define-key howm-mode-map [tab] 'action-lock-goto-next-link)
-       (define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)))
+       (define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link))))
   ;; 「最近のメモ」一覧時にタイトル表示
   (setq howm-list-recent-title t)
   ;; 全メモ一覧時にタイトル表示

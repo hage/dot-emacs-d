@@ -307,6 +307,7 @@
 ;;; yasnippet
 ;;;
 (when (require 'yasnippet nil t)
+  (custom-set-variables '(yas-snippet-dirs "~/.emacs.d/snippets"))
   (if (require 'dropdown-list nil t)
       (setq yas-prompt-functions '(yas/dropdown-prompt
 				   yas/ido-prompt

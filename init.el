@@ -237,6 +237,28 @@
 		      (concat ".*" input-pattern))))))
   )
 
+
+;;;
+;;; zencoding-mode
+;;;
+(when (load "zencoding-mode-autoloads" t)
+  (defvar zencoding-mode-keymap nil
+    "Keymap for zencode minor mode.")
+  (setq zencoding-mode-keymap (make-sparse-keymap))
+  (define-key zencoding-mode-keymap (kbd "C-M-l") 'zencoding-expand-line)
+
+  (add-hook 'web-mode-hook
+	    (function
+	     (lambda ()
+	       (zencoding-mode t))))
+  (eval-after-load "zencoding-mode"
+    (function
+     (progn
+       (lambda ()
+	 (setq zencoding-indentation 2)))))
+  )
+
+
 ;;;
 ;;; popwin
 ;;;

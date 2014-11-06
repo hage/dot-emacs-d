@@ -540,3 +540,5 @@
 (set-face-foreground 'mode-line-inactive "gray30")
 (set-face-background 'mode-line-inactive "gray10")
 (set-face-foreground 'font-lock-comment-face "#662222")
+(set-face-foreground 'highlight nil)
+(set-face-background 'highlight "palegreen4")

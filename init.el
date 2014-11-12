@@ -107,9 +107,8 @@
 
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions
-	  (function
-	   (lambda ()
-	     (y-or-n-p "Really quit Emacs? "))))
+	  (lambda ()
+	     (y-or-n-p "Really quit Emacs? ")))
 
 
 ;;;

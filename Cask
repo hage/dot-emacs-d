@@ -1,6 +1,7 @@
 (source gnu)
 (source melpa)
 
+(depends-on "ac-helm")
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "e2wm")

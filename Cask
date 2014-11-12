@@ -3,6 +3,7 @@
 
 (depends-on "auto-complete")
 (depends-on "cask")
+(depends-on "e2wm")
 (depends-on "expand-region")
 (depends-on "helm")
 (depends-on "helm-ls-git")

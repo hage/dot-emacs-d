@@ -537,6 +537,13 @@
 
 
 ;;;
+;;; e2wm
+;;;
+(when (autoload-if-found 'e2wm:start-management "e2wm" nil t)
+  (global-set-key "\C-www" 'e2wm:start-management)
+  (setq e2wm:prefix-key (kbd "C-w w")))
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "olivedrab3")

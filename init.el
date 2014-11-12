@@ -360,19 +360,17 @@
   (global-set-key "\C-qgd" 'magit-diff-unstaged)
   (global-set-key "\C-qgl" 'magit-log)
   (eval-after-load "magit"
-    (function
-     (progn
-       (set-face-foreground 'magit-diff-add "green")
-       (set-face-background 'magit-diff-add "gray20")
-       (set-face-foreground 'magit-diff-del "red")
-       (set-face-background 'magit-diff-del "gray20")
-       (set-face-background 'magit-item-highlight "gray20")
-       (set-face-foreground 'magit-diff-hunk-header "royalblue4")
-       (set-face-foreground 'magit-log-head-label-bisect-bad "yellow")
-       (set-face-foreground 'magit-log-head-label-bisect-skip "gray30")
-       (set-face-foreground 'magit-branch "skyblue4")
-       ))
-    ))
+    #'(progn
+	(set-face-foreground 'magit-diff-add "green")
+	(set-face-background 'magit-diff-add "gray20")
+	(set-face-foreground 'magit-diff-del "red")
+	(set-face-background 'magit-diff-del "gray20")
+	(set-face-background 'magit-item-highlight "gray20")
+	(set-face-foreground 'magit-diff-hunk-header "royalblue4")
+	(set-face-foreground 'magit-log-head-label-bisect-bad "yellow")
+	(set-face-foreground 'magit-log-head-label-bisect-skip "gray30")
+	(set-face-foreground 'magit-branch "skyblue4")))
+  )
 
 
 ;;;

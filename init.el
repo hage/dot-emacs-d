@@ -505,28 +505,27 @@
   (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
 
   (eval-after-load "web-mode"
-    (function
-     (lambda ()
-       (defun web-mode-hook ()
-	 "Hooks for Web mode."
-	 ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
-	 ;; バッティングするため C-c t X に換える
-	 (define-key web-mode-map (kbd "C-c t a") 'web-mode-tag-attributes-sort)
-	 (define-key web-mode-map (kbd "C-c t b") 'web-mode-tag-beginning)
-	 (define-key web-mode-map (kbd "C-c t e") 'web-mode-tag-end)
-	 (define-key web-mode-map (kbd "C-c t m") 'web-mode-tag-match)
-	 (define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
-	 (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
-	 (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
+    #'(progn
+	(defun web-mode-hook ()
+	  "Hooks for Web mode."
+	  ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
+	  ;; バッティングするため C-c t X に換える
+	  (define-key web-mode-map (kbd "C-c t a") 'web-mode-tag-attributes-sort)
+	  (define-key web-mode-map (kbd "C-c t b") 'web-mode-tag-beginning)
+	  (define-key web-mode-map (kbd "C-c t e") 'web-mode-tag-end)
+	  (define-key web-mode-map (kbd "C-c t m") 'web-mode-tag-match)
+	  (define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
+	  (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
+	  (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
 
-	 ;; インデント数
-	 (setq web-mode-html-offset   2)
-	 (setq web-mode-css-offset    2)
-	 (setq web-mode-script-offset 2)
-	 (setq web-mode-php-offset    2)
-	 (setq web-mode-java-offset   2)
-	 (setq web-mode-asp-offset    2))
-       (add-hook 'web-mode-hook 'web-mode-hook))))
+	  ;; インデント数
+	  (setq web-mode-html-offset   2)
+	  (setq web-mode-css-offset    2)
+	  (setq web-mode-script-offset 2)
+	  (setq web-mode-php-offset    2)
+	  (setq web-mode-java-offset   2)
+	  (setq web-mode-asp-offset    2))
+	(add-hook 'web-mode-hook 'web-mode-hook)))
   )
 
 

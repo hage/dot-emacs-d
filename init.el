@@ -397,10 +397,9 @@
      howm-keyword-to-kill-ring))
 
   (eval-after-load "howm"
-    (function
-     (progn
-       (define-key howm-mode-map [tab] 'action-lock-goto-next-link)
-       (define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link))))
+    #'(progn
+	(define-key howm-mode-map [tab] 'action-lock-goto-next-link)
+	(define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)))
   ;; 「最近のメモ」一覧時にタイトル表示
   (setq howm-list-recent-title t)
   ;; 全メモ一覧時にタイトル表示
@@ -413,7 +412,7 @@
   (setq howm-refresh-afgter-save nil)
 
   ;; howm の時は auto-fill なしで
-  (add-hook 'howm-mode-on-hook (function (lambda () (auto-fill-mode -1))))
+  (add-hook 'howm-mode-on-hook (lambda () (auto-fill-mode -1)))
 
   ;; RET でファイルを開く際, 一覧バッファを消す
   ;; C-u RET なら残る
@@ -463,9 +462,8 @@
       (save-buffer)
       (kill-buffer nil)))
   (eval-after-load "howm-mode"
-    '(progn
-       (define-key howm-mode-map
-	 "\C-c\C-c" 'my-save-and-kill-buffer)))
+    #'(define-key howm-mode-map
+	 "\C-c\C-c" 'my-save-and-kill-buffer))
   )
 
 

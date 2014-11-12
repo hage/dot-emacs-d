@@ -16,3 +16,4 @@
 (depends-on "popwin")
 (depends-on "web-mode")
 (depends-on "yasnippet")
+(depends-on "zencoding-mode")

@@ -206,6 +206,10 @@
   (eval-after-load "helm"
     (function
      (progn
+       (eval-after-load "auto-complete"
+	 #'(if (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
+	       (define-key ac-complete-mode-map (kbd "M-o") 'ac-complete-with-helm)))
+
        (define-key helm-map (kbd "C-h") 'delete-backward-char)
        (set-face-background 'helm-selection "gray70")
        (set-face-foreground 'helm-selection "black")

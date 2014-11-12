@@ -251,14 +251,10 @@
   (define-key zencoding-mode-keymap (kbd "C-M-l") 'zencoding-expand-line)
 
   (add-hook 'web-mode-hook
-	    (function
-	     (lambda ()
-	       (zencoding-mode t))))
+	    (lambda ()
+	      (zencoding-mode t)))
   (eval-after-load "zencoding-mode"
-    (function
-     (progn
-       (lambda ()
-	 (setq zencoding-indentation 2)))))
+    #'(setq zencoding-indentation 2))
   )
 
 

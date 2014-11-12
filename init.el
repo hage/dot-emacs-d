@@ -203,21 +203,20 @@
 				 )))
 
   (eval-after-load "helm"
-    (function
-     (progn
-       (eval-after-load "auto-complete"
-	 #'(if (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
-	       (define-key ac-complete-mode-map (kbd "M-o") 'ac-complete-with-helm)))
+    #'(progn
+	(eval-after-load "auto-complete"
+	  #'(if (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
+		(define-key ac-complete-mode-map (kbd "M-o") 'ac-complete-with-helm)))
 
-       (define-key helm-map (kbd "C-h") 'delete-backward-char)
-       (set-face-background 'helm-selection "gray70")
-       (set-face-foreground 'helm-selection "black")
-       (set-face-background 'helm-source-header "gray20")
-       (set-face-foreground 'helm-source-header "skyblue"))))
+	(define-key helm-map (kbd "C-h") 'delete-backward-char)
+	(set-face-background 'helm-selection "gray70")
+	(set-face-foreground 'helm-selection "black")
+	(set-face-background 'helm-source-header "gray20")
+	(set-face-foreground 'helm-source-header "skyblue")))
   (eval-after-load "helm-files"
-    (function (progn
-		(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-		(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action))))
+    #'(progn
+	(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 
   ;; Emulate `kill-line' in helm minibuffer
   (setq helm-delete-minibuffer-contents-from-point t)

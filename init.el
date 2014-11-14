@@ -547,7 +547,13 @@
 ;;;
 (when (autoload-if-found 'e2wm:start-management "e2wm" nil t)
   (global-set-key "\C-www" 'e2wm:start-management)
-  (setq e2wm:prefix-key (kbd "C-w w")))
+  (setq e2wm:prefix-key (kbd "C-w w"))
+  (if (<= 24 emacs-major-version)
+      (eval-after-load 'e2wm
+	#'(setq e2wm:c-document-buffer-p	;
+	    (lambda (buf)
+	      (string-match "\\*\\(Help\\|info\\|w3m\\|WoMan\\|eww\\)" (buffer-name buf))))))
+  )
 
 ;;;
 ;;; faces

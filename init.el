@@ -177,6 +177,12 @@
                (setq changecase-word-type 0))))
 (global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
 
+;; カーソル位置のフェースを調べる関数
+(defun describe-face-at-point ()
+  "Return face used at point."
+  (interactive)
+  (message "%s" (get-char-property (point) 'face)))
+
 
 ;;;
 ;;; isearch

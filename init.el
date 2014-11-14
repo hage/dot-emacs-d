@@ -478,6 +478,8 @@
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)))
   )
+(autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
+
 
 ;;;
 ;;; php-mode

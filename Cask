@@ -8,6 +8,7 @@
 (depends-on "expand-region")
 (depends-on "helm")
 (depends-on "helm-ls-git")
+(depends-on "inf-ruby")
 (depends-on "magit")
 (depends-on "migemo")
 (depends-on "multiple-cursors")

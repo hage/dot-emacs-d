@@ -476,7 +476,10 @@
   (eval-after-load "ruby-mode"
     #'(progn
 	(setq ruby-indent-level 2)
-	(setq ruby-indent-tabs-mode nil)))
+	(setq ruby-indent-tabs-mode nil)
+	(when (require 'rinari nil t)
+	  (global-rinari-mode t))
+	))
   )
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
   (eval-after-load 'auto-complete

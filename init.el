@@ -48,7 +48,9 @@
   (package-initialize)
   (when (require 'cask nil t)
     (cask-initialize)
-    (require 'pallet nil t)))
+    (when (require 'pallet nil t)
+      (pallet--on))
+    ))
 
 ;;;
 ;;; いろいろ設定

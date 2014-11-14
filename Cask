@@ -2,6 +2,7 @@
 (source melpa)
 
 (depends-on "ac-helm")
+(depends-on "ac-inf-ruby")
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "e2wm")

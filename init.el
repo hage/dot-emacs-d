@@ -478,7 +478,12 @@
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)))
   )
-(autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
+(when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
+  (eval-after-load 'auto-complete
+    #'(add-to-list 'ac-modes 'inf-ruby-mode))
+  (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
+  (eval-after-load 'inf-ruby '
+    '(define-key inf-ruby-mode-map (kbd "TAB") 'auto-complete)))
 
 
 ;;;

@@ -203,13 +203,14 @@
 				 helm-source-findutils
 				 ,(if osxp helm-source-mac-spotlight helm-source-locate)
 				 )))
-
   (eval-after-load "helm"
     #'(progn
 	(eval-after-load "auto-complete"
-	  #'(if (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
-		(define-key ac-complete-mode-map (kbd "M-o") 'ac-complete-with-helm)))
-
+	  #'(when (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
+	      (setq my-ac-helm-trigger-key (kbd "M-l"))
+	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
+	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
+	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 	(define-key helm-map (kbd "C-h") 'delete-backward-char)
 	(set-face-background 'helm-selection "gray70")
 	(set-face-foreground 'helm-selection "black")
@@ -315,7 +316,6 @@
 				   yas/completing-prompt)))
   (yas-global-mode 1)
   (global-set-key "\C-l" 'yas-expand-from-trigger-key)
-  (global-set-key "\M-l" 'yas-insert-snippet)
 
   ;; snippet-mode for *.yasnippet files
   (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))

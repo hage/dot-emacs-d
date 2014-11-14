@@ -573,3 +573,4 @@
 (set-face-foreground 'font-lock-comment-face "gray50")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
+(set-face-background 'region "navy")

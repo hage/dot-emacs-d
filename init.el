@@ -72,7 +72,7 @@
 
 ;; スクロール、カーソル移動
 (setq scroll-conservatively 1		; 一行だけスクロール
-      scroll-step 2)
+      scroll-step 1)
 (setq next-line-add-newlines nil)	; バッファの最後の行で next-line しても新しい行を作らない
 (defun previous-line (arg)		; beginning-of-bufferと怒られないようにする
   (interactive "p")

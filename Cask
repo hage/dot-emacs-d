@@ -17,6 +17,7 @@
 (depends-on "php-mode")
 (depends-on "popwin")
 (depends-on "rinari")
+(depends-on "robe")
 (depends-on "web-mode")
 (depends-on "yasnippet")
 (depends-on "zencoding-mode")

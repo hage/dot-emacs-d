@@ -218,10 +218,13 @@
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 	(define-key helm-map (kbd "C-h") 'delete-backward-char)
-	(set-face-background 'helm-selection "gray70")
-	(set-face-foreground 'helm-selection "black")
-	(set-face-background 'helm-source-header "gray20")
-	(set-face-foreground 'helm-source-header "skyblue")))
+	(set-face-background 'helm-selection "gray40")
+	(set-face-foreground 'helm-selection nil)
+	(set-face-underline 'helm-selection nil)
+	(set-face-background 'helm-source-header "gray10")
+	(set-face-foreground 'helm-source-header "yellowgreen")
+	(set-face-underline 'helm-source-header t)
+	))
   (eval-after-load "helm-files"
     #'(progn
 	(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)

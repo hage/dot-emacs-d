@@ -492,6 +492,22 @@
 	  (global-rinari-mode t))
 	))
   )
+;;   robeを使うには
+;;     Gemfileに 'pry' と記述しておいて M-x robe-start
+;;   Gemfileがないときは、gem install pry pry-docした後
+;;     M-x inf-ruby
+;;     M-x robe-start
+(when (autoload-if-found 'robe-mode "robe"
+			 "Robe is a code assistance tool that uses a Ruby REPL subprocess" t)
+  (autoload 'ac-robe-setup "ac-robe" "robe auto-complete" nil nil)
+  (eval-after-load 'ruby-mode
+    #'(add-hook 'ruby-mode-hook 'robe-mode))
+  (eval-after-load 'auto-complete
+    #'(add-hook 'robe-mode-hook 'ac-robe-setup))
+  )
+(when (autoload-if-found 'helm-robe-completing-read "helm-robe" "helm interface for robe" t)
+  (eval-after-load 'robe
+    #'(custom-set-variables '(robe-completing-read-func 'helm-robe-completing-read))))
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
   (eval-after-load 'auto-complete
     #'(add-to-list 'ac-modes 'inf-ruby-mode))

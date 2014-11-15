@@ -582,6 +582,15 @@
 	      (string-match "\\*\\(Help\\|info\\|w3m\\|WoMan\\|eww\\)" (buffer-name buf))))))
   )
 
+
+;;;
+;;; emacs server
+;;;
+(when (require 'server nil t)
+  (unless (server-running-p)
+    (server-start)))
+
+
 ;;;
 ;;; faces
 ;;;

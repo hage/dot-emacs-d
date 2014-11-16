@@ -199,6 +199,7 @@
   (global-set-key "\C-xb" 'helm-buffers-list)
   (global-set-key "\C-x\C-f" 'helm-find-files)
   (global-set-key "\C-xha" 'helm-apropos)
+  (global-set-key "\M-I" 'helm-imenu)
 
   (if (not (require 'helm-ls-git nil t))
       (setq helm-source-ls-git nil))

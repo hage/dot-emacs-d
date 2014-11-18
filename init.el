@@ -225,6 +225,7 @@
 	(set-face-background 'helm-source-header "gray10")
 	(set-face-foreground 'helm-source-header "yellowgreen")
 	(set-face-underline 'helm-source-header t)
+	(set-face-foreground 'helm-match "hotpink1")
 	))
   (eval-after-load "helm-files"
     #'(progn

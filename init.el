@@ -568,7 +568,9 @@
 	  (setq web-mode-php-offset    2)
 	  (setq web-mode-java-offset   2)
 	  (setq web-mode-asp-offset    2))
-	(add-hook 'web-mode-hook 'web-mode-hook)))
+	(add-hook 'web-mode-hook 'web-mode-hook)
+	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
+	))
   )
 
 

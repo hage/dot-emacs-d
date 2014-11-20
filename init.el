@@ -226,6 +226,7 @@
 	(set-face-foreground 'helm-source-header "yellowgreen")
 	(set-face-underline 'helm-source-header t)
 	(set-face-foreground 'helm-match "hotpink1")
+	(set-face-foreground 'helm-buffer-file "lime green")
 	))
   (eval-after-load "helm-files"
     #'(progn
@@ -570,7 +571,6 @@
 	  (setq web-mode-asp-offset    2))
 	(add-hook 'web-mode-hook 'web-mode-hook)
 	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
-	(set-face-foreground 'helm-buffer-file "lime green")
 	))
   )
 

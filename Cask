@@ -10,6 +10,7 @@
 (depends-on "helm")
 (depends-on "helm-ls-git")
 (depends-on "helm-robe")
+(depends-on "helm-swoop")
 (depends-on "inf-ruby")
 (depends-on "magit")
 (depends-on "migemo")

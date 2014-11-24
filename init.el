@@ -253,6 +253,10 @@
 			;; and not required because the directory name is prepended
 			(substring input-pattern 1)
 		      (concat ".*" input-pattern))))))
+
+  (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
+    (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
+    )
   )
 
 

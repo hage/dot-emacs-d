@@ -273,7 +273,13 @@
 	    (lambda ()
 	      (zencoding-mode t)))
   (eval-after-load "zencoding-mode"
-    #'(setq zencoding-indentation 2))
+    #'(progn
+	(setq zencoding-indentation 2)
+	(set-face-foreground 'zencoding-preview-input "snow")
+	(set-face-background 'zencoding-preview-input "yellow4")
+	(set-face-foreground 'zencoding-preview-output "skyblue")
+	(set-face-background 'zencoding-preview-output "gray30")
+	))
   )
 
 
@@ -611,4 +617,4 @@
 (set-face-foreground 'font-lock-comment-face "gray50")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
-(set-face-background 'region "navy")
+(set-face-background 'region "LightSteelBlue")

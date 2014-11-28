@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: javascript-include
+# key: jsi
+# --
+<script src="$0"></script>

@@ -200,13 +200,14 @@
   (global-set-key "\C-x\C-f" 'helm-find-files)
   (global-set-key "\C-xha" 'helm-apropos)
   (global-set-key "\M-I" 'helm-imenu)
+  (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 
   (if (not (require 'helm-ls-git nil t))
       (setq helm-source-ls-git nil))
   (custom-set-variables
    '(helm-mini-default-sources `(helm-source-buffers-list
-                                 helm-source-recentf
 				 helm-source-ls-git
+                                 helm-source-recentf
 				 helm-source-findutils
 				 ,(if osxp helm-source-mac-spotlight helm-source-locate)
 				 )))

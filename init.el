@@ -614,10 +614,10 @@
 ;;;
 ;;; faces
 ;;;
-(set-face-foreground 'mode-line "olivedrab3")
-(set-face-background 'mode-line "gray40")
-(set-face-foreground 'mode-line-inactive "gray30")
-(set-face-background 'mode-line-inactive "gray10")
+(set-face-foreground 'mode-line "chartreuse")
+(set-face-background 'mode-line "gray10")
+(set-face-foreground 'mode-line-inactive "lavenderblush2")
+(set-face-background 'mode-line-inactive "gray30")
 (set-face-foreground 'font-lock-comment-face "gray60")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")

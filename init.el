@@ -353,8 +353,10 @@
 ;;;
 ;;; multiple-cursors
 ;;;
-(when (autoload-if-found 'mc/mark-all-like-this "multiple-cursors" nil t)
-  (global-set-key (kbd "M-RET") 'mc/mark-all-like-this)
+(when (and (autoload-if-found 'mc/mark-all-dwim "multiple-cursors" nil t)
+	   (autoload-if-found 'mc/edit-lines "multiple-cursors" nil t))
+  (global-set-key (kbd "C-q C-SPC") 'mc/mark-all-dwim)
+  (global-set-key (kbd "C-x r t") 'mc/edit-lines)
   )
 
 ;;;

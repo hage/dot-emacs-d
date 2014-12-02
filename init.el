@@ -623,3 +623,5 @@
 (set-face-background 'highlight "palegreen4")
 (set-face-background 'region "LightSteelBlue")
 (set-face-foreground 'font-lock-string-face "tomato1")
+(set-face-foreground font-lock-builtin-face "CornflowerBlue")
+(set-face-bold font-lock-keyword-face t)

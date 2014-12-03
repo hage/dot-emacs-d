@@ -581,6 +581,7 @@
 	  (define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
 	  (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
 	  (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
+	  (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
 
 	  ;; インデント数
 	  (setq web-mode-markup-indent-offset 2)

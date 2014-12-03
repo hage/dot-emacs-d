@@ -9,6 +9,7 @@
 (depends-on "e2wm")
 (depends-on "expand-region")
 (depends-on "helm")
+(depends-on "helm-c-yasnippet")
 (depends-on "helm-ls-git")
 (depends-on "helm-robe")
 (depends-on "helm-swoop")

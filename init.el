@@ -333,6 +333,9 @@
 	ac-delay 0.3
         ac-auto-start 3
 	ac-use-menu-map t)
+  (eval-after-load "yasnippet"
+    #'(setq-default ac-sources
+		  (append '(ac-source-yasnippet) ac-sources)))
   )
 
 
@@ -348,7 +351,13 @@
 				   yas/ido-prompt
 				   yas/completing-prompt)))
   (yas-global-mode 1)
-  (global-set-key "\C-l" 'yas-expand-from-trigger-key)
+  (global-set-key (kbd "C-l")
+		  (if (and (fboundp 'helm-mini)
+			   (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
+		      (progn
+			(setq helm-yas-display-key-on-candidate t)
+			'helm-yas-complete)
+		    'yas-expand-from-trigger-key))
 
   ;; snippet-mode for *.yasnippet files
   (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))

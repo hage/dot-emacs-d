@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: rails_text_field
+# key: rtext
+# --
+<%= f.label :${1:name} %>
+<%= f.text_field :$1 %>

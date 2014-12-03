@@ -191,6 +191,13 @@
 
 
 ;;;
+;;; duplicate-thing
+;;;
+(when (autoload-if-found 'duplicate-thing "duplicate-thing" nil t)
+  (global-set-key (kbd "M-c") 'duplicate-thing))
+
+
+;;;
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)

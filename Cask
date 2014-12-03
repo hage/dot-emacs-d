@@ -5,6 +5,7 @@
 (depends-on "ac-inf-ruby")
 (depends-on "auto-complete")
 (depends-on "cask")
+(depends-on "duplicate-thing")
 (depends-on "e2wm")
 (depends-on "expand-region")
 (depends-on "helm")

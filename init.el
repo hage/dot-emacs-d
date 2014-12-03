@@ -341,6 +341,8 @@
 ;;;
 (when (require 'yasnippet nil t)
   (custom-set-variables '(yas-snippet-dirs "~/.emacs.d/snippets"))
+  (set-face-background 'yas-field-highlight-face "gray10")
+  (set-face-underline 'yas-field-highlight-face t)
   (if (require 'dropdown-list nil t)
       (setq yas-prompt-functions '(yas/dropdown-prompt
 				   yas/ido-prompt

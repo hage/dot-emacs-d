@@ -632,3 +632,4 @@
 (set-face-foreground 'font-lock-string-face "tomato1")
 (set-face-foreground font-lock-builtin-face "CornflowerBlue")
 (set-face-bold font-lock-keyword-face t)
+(set-face-foreground 'minibuffer-prompt "SlateBlue")

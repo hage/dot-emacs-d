@@ -538,7 +538,8 @@
   (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
   (eval-after-load 'inf-ruby
     #'(define-key inf-ruby-mode-map (kbd "TAB") 'auto-complete)))
-
+;; SCSSはRailsを使うときに現れるのでここで一緒に定義する
+(add-to-list 'auto-mode-alist '("\\.css\\.scss$" . css-mode))
 
 ;;;
 ;;; php-mode

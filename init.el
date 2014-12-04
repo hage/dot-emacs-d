@@ -351,14 +351,13 @@
 				   yas/ido-prompt
 				   yas/completing-prompt)))
   (yas-global-mode 1)
-  (global-set-key (kbd "C-l")
-		  (if (and (fboundp 'helm-mini)
-			   (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
-		      (progn
-			(setq helm-yas-display-key-on-candidate t)
-			'helm-yas-complete)
-		    'yas-expand-from-trigger-key))
-
+  (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
+  (if (and (fboundp 'helm-mini)
+           (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
+      (progn
+	(autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
+	(global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
+	(global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
   ;; snippet-mode for *.yasnippet files
   (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))
 

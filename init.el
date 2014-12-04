@@ -100,7 +100,7 @@
 (setq auto-coding-functions nil)	  ; セーブ時に勝手に文字コードを変更させない
 (modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
-(setq indent-tabs-mode nil)		  ; インデントにTABを使わない
+(setq-default indent-tabs-mode nil)	  ; インデントにTABを使わない
 
 ;; hl-line-modeを有効に
 (when (fboundp 'global-hl-line-mode)

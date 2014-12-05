@@ -101,6 +101,7 @@
 (modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
 (setq-default indent-tabs-mode nil)	  ; インデントにTABを使わない
+(setq recenter-positions '(bottom top middle)) ; move-to-window-line-top-bottomの順番
 
 ;; hl-line-modeを有効に
 (when (fboundp 'global-hl-line-mode)

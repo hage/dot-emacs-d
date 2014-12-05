@@ -213,8 +213,12 @@
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 
-  (if (not (require 'helm-ls-git nil t))
-      (setq helm-source-ls-git nil))
+  (if (require 'helm-ls-git nil t)
+      (progn
+        (set-face-foreground 'helm-ls-git-conflict-face "red")
+        (set-face-foreground 'helm-ls-git-untracked-face "plum1"))
+    (setq helm-source-ls-git nil))
+
   (custom-set-variables
    '(helm-mini-default-sources `(helm-source-buffers-list
 				 helm-source-ls-git

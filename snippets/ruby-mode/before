@@ -2,4 +2,4 @@
 # name: before
 # key: before
 # --
-before { ${1:visit} $0 }
+before { ${1:visit} }

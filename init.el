@@ -93,7 +93,8 @@
 (exec-if-bound (show-paren-mode t))
 
 ;; その他
-(setq-default dabbrev-case-fold-search t) ; caseの区別なく探してきて、caseを保持したまま補完
+(setq-default dabbrev-case-fold-search t) ; caseの区別なく探す
+(setq-default case-replace nil)           ; 入力したcaseに関係なくオリジナルをコピーする
 (setq kill-whole-line t)		  ; C-k(kill-line) で行末の改行も含めて kill する
 (setq comment-fill-column 1000)		  ; 行末コメントの位置が揃うように
 (setq completion-ignore-case t)		  ; ファイルの補完をするときに case の区別をしない

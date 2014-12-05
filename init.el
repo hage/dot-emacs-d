@@ -280,25 +280,27 @@
 
 
 ;;;
-;;; zencoding-mode
+;;; emmet-mode
 ;;;
-(when (load "zencoding-mode-autoloads" t)
-  (defvar zencoding-mode-keymap nil
-    "Keymap for zencode minor mode.")
-  (setq zencoding-mode-keymap (make-sparse-keymap))
-  (define-key zencoding-mode-keymap (kbd "C-M-l") 'zencoding-expand-line)
-
-  (add-hook 'web-mode-hook
-	    (lambda ()
-	      (zencoding-mode t)))
-  (eval-after-load "zencoding-mode"
+(when (autoload-if-found 'emmet-mode "emmet-mode" nil t)
+  (add-hook 'web-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook 'emmet-mode)
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'html-mode-hook 'emmet-mode)
+  (eval-after-load "emmet-mode"
     #'(progn
-	(setq zencoding-indentation 2)
-	(set-face-foreground 'zencoding-preview-input "snow")
-	(set-face-background 'zencoding-preview-input "yellow4")
-	(set-face-foreground 'zencoding-preview-output "skyblue")
-	(set-face-background 'zencoding-preview-output "gray30")
-	))
+        (setq emmet-preview-default t)
+        (setq emmet-indentation 2)
+        (set-face-foreground 'emmet-preview-input "snow")
+        (set-face-background 'emmet-preview-input "yellow4")
+        (set-face-foreground 'emmet-preview-output "skyblue")
+        (set-face-background 'emmet-preview-output "gray30")
+        (define-key emmet-mode-keymap (kbd "C-j") nil)
+        (define-key emmet-mode-keymap (kbd "C-M-l") 'emmet-expand-line)
+        (define-key emmet-mode-keymap (kbd "M-F") 'emmet-next-edit-point)
+        (define-key emmet-mode-keymap (kbd "M-B") 'emmet-prev-edit-point)
+        (define-key emmet-mode-keymap (kbd "C-c w") 'emmet-wrap-with-markup)
+        ))
   )
 
 

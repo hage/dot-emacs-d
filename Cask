@@ -7,6 +7,7 @@
 (depends-on "cask")
 (depends-on "duplicate-thing")
 (depends-on "e2wm")
+(depends-on "emmet-mode")
 (depends-on "expand-region")
 (depends-on "helm")
 (depends-on "helm-c-yasnippet")
@@ -24,4 +25,3 @@
 (depends-on "robe")
 (depends-on "web-mode")
 (depends-on "yasnippet")
-(depends-on "zencoding-mode")

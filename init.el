@@ -112,6 +112,10 @@
 	  (lambda ()
 	     (y-or-n-p "Really quit Emacs? ")))
 
+;; 保存時に余計な行末のスペースやファイル末尾の改行を削除する
+(setq delete-trailing-lines t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 
 ;;;
 ;;; キー・バインドの変更、新規割当

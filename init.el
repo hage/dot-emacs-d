@@ -303,6 +303,7 @@
   (popwin-mode 1)
 
   (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
+  (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
 
   (when (featurep 'helm-config)
     (setq helm-full-frame nil)

@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: before
+# key: before
+# --
+before { ${1:visit} $0 }

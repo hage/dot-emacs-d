@@ -215,9 +215,6 @@
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 
-  (define-key helm-map (kbd "C-M-n") 'helm-next-source)
-  (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
 
@@ -236,13 +233,15 @@
 				 )))
   (eval-after-load "helm"
     #'(progn
-	(eval-after-load "auto-complete"
+        (eval-after-load "auto-complete"
 	  #'(when (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
 	      (setq my-ac-helm-trigger-key (kbd "M-l"))
 	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 	(define-key helm-map (kbd "C-h") 'delete-backward-char)
+        (define-key helm-map (kbd "C-M-n") 'helm-next-source)
+        (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
 	(set-face-background 'helm-selection "gray40")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)

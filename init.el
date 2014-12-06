@@ -311,6 +311,7 @@
 ;;;
 (when (require 'popwin nil t)
   (popwin-mode 1)
+  (setq popwin:popup-window-height .43)
 
   (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
@@ -319,21 +320,6 @@
     (setq helm-full-frame nil)
     (push '("*compilatoin*" :noselect t) popwin:special-display-config)
     (push '("helm" :regexp t) popwin:special-display-config))
-
-  ;; フレームのサイズに応じてpopwinの出現位置を決める
-  (defun popwin-auto-set-popup-window-position ()
-    (interactive)
-    (let ((w (frame-width))
-	  (h (frame-height)))
-      (if (and (< 200 w)				      ; フレームの幅が200桁より大きくて
-	       (< h w))					      ; 横長の時に
-	  (progn (setq popwin:popup-window-position 'right)   ; 右へ出す
-		 (setq popwin:popup-window-width (/ w 2)))
-	(setq popwin:popup-window-position 'bottom)))) ; そうじゃないときは下へ出す
-
-  ;; popwin表示時にフレームサイズに応じた表示位置にする
-  (defadvice  popwin:display-buffer (before popwin-auto-window-position activate)
-    (popwin-auto-set-popup-window-position))
   )
 
 

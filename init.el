@@ -214,6 +214,8 @@
   (global-set-key "\C-xha" 'helm-apropos)
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
+  (setq helm-case-fold-search t)
+  (setq helm-M-x-fuzzy-match nil)
 
   (if (require 'helm-ls-git nil t)
       (progn

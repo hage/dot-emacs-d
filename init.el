@@ -214,6 +214,10 @@
   (global-set-key "\C-xha" 'helm-apropos)
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
+
+  (define-key helm-map (kbd "C-M-n") 'helm-next-source)
+  (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
 

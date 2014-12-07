@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: expect
+# key: expect
+# --
+expect { $2 }.${1:$$(yas-choose-value '("to" "not_to"))} $0

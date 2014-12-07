@@ -191,6 +191,13 @@
 
 
 ;;;
+;;; smartprens
+;;;
+(when (require 'smartparens-config nil t)
+  (smartparens-global-mode))
+
+
+;;;
 ;;; isearch
 ;;;
 (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)

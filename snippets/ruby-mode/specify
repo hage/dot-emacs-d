@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: specify
+# key: specify
+# --
+specify { expect(${1:response}).$2to $0 }

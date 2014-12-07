@@ -535,6 +535,7 @@
     #'(progn
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)
+        (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(when (require 'rinari nil t)
 	  (global-rinari-mode t))
 	))

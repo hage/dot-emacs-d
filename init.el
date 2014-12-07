@@ -251,6 +251,8 @@
 	(set-face-underline 'helm-source-header t)
 	(set-face-foreground 'helm-match "hotpink1")
 	(set-face-foreground 'helm-buffer-file "lime green")
+        (set-face-background 'helm-selection-line "gray20")
+        (set-face-underline 'helm-selection-line nil)
 	))
   (eval-after-load "helm-files"
     #'(progn

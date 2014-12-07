@@ -692,3 +692,4 @@
 (set-face-bold font-lock-keyword-face t)
 (set-face-foreground 'minibuffer-prompt "SlateBlue")
 (set-face-foreground 'font-lock-constant-face "gold3")
+(set-face-foreground 'default "linen")

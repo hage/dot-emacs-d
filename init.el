@@ -189,6 +189,11 @@
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
 
+(defun move-end-of-line-and-newline-and-indent ()
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+(global-set-key (kbd "C-j") 'move-end-of-line-and-newline-and-indent)
 
 ;;;
 ;;; smartprens

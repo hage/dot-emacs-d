@@ -705,6 +705,15 @@
                          ("C-n" . (lambda ()
                                     (scroll-up-1)
                                     (next-line 1)))))
+  (smartrep-define-key
+      global-map "C-q" '(("n" . (lambda () (scroll-other-window)))
+                         ("p" . (lambda () (scroll-other-window-down)))
+                         ("N" . (lambda () (scroll-other-window 1)))
+                         ("P" . (lambda () (scroll-other-window-down 1)))
+                         ("<" . (lambda () (beginning-of-buffer-other-window 0)))
+                         (">" . (lambda () (end-of-buffer-other-window 0)))
+                         ))
+
   )
 
 

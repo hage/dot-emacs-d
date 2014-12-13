@@ -243,7 +243,6 @@
 				 helm-source-ls-git
                                  helm-source-recentf
 				 helm-source-findutils
-                                 helm-source-locate
 				 ,(if osxp helm-source-mac-spotlight)
 				 )))
   (eval-after-load "helm"

@@ -678,6 +678,13 @@
 
 
 ;;;
+;;; smooth-scroll
+;;;
+(when (require 'smooth-scroll nil t)
+  (smooth-scroll-mode t))
+
+
+;;;
 ;;; emacs server
 ;;;
 (when (require 'server nil t)

@@ -24,6 +24,7 @@
 (depends-on "rinari")
 (depends-on "robe")
 (depends-on "smartparens")
+(depends-on "smooth-scroll")
 (depends-on "volatile-highlights")
 (depends-on "web-mode")
 (depends-on "yasnippet")

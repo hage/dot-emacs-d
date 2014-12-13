@@ -693,6 +693,25 @@
 
 
 ;;;
+;;; smartrep
+;;;
+(when (require 'smartrep nil t)
+  (smartrep-define-key
+      global-map "C-x" '(("o" . (lambda () (other-window 1)))
+                         ("p" . (lambda () (other-window -1)))))
+  (smartrep-define-key
+      global-map "C-q" '(("C-p" . (lambda ()
+                                    (scroll-down-1)
+                                    (previous-line 1)))
+                         ("C-n" . (lambda ()
+                                    (scroll-up-1)
+                                    (next-line 1)))))
+  )
+
+
+
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse")

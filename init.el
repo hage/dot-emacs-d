@@ -228,6 +228,7 @@
   (global-set-key "\C-xha" 'helm-apropos)
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
+  (global-set-key (kbd "C-q C-y") 'helm-show-kill-ring)
 
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)

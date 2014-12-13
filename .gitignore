@@ -5,3 +5,4 @@ ac-comphist.dat
 *.elc
 /url/
 /.mc-lists.el
+/tramp

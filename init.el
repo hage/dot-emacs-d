@@ -193,7 +193,7 @@
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
-(global-set-key (kbd "C-j") 'move-end-of-line-and-newline-and-indent)
+(global-set-key (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
 
 ;;;
 ;;; smartprens

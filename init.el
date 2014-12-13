@@ -231,6 +231,7 @@
 
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
+  (setq helm-buffer-max-length nil)
 
   (if (require 'helm-ls-git nil t)
       (progn

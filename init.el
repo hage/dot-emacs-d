@@ -599,7 +599,11 @@
 ;;;
 ;;; php-mode
 ;;;
-(autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
+(when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
+  (add-hook 'php-mode-hook
+            (lambda ()
+              (setq-local c-basic-offset 2)))
+ )
 
 
 ;;;

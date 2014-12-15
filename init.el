@@ -41,6 +41,8 @@
 ;;; http://cask.github.io
 ;;; http://qiita.com/kametaro/items/2a0197c74cfd38fddb6b
 ;;;
+;;; to update packages: M-x pallet-update
+;;;
 (when (and (<= 24 emacs-major-version)
 	   (require 'package))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)

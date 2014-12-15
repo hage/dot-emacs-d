@@ -686,6 +686,7 @@
 ;;; smooth-scroll
 ;;;
 (when (require 'smooth-scroll nil t)
+  (setq smooth-scroll/vscroll-step-size 3)
   (smooth-scroll-mode t))
 
 

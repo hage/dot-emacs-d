@@ -143,6 +143,7 @@
 (global-set-key "\M-/" 'find-tag-other-window)
 (global-set-key "\C-xj" 'goto-line)
 (global-set-key "\C-j" 'newline-and-indent)
+(global-set-key (kbd "C-q a") 'align)
 
 
 ;;;

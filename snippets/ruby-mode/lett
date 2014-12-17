@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lett
+# key: lett
+# --
+let!(:$1) { $0 }

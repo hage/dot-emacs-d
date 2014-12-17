@@ -198,6 +198,15 @@
   (newline-and-indent))
 (global-set-key (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
 
+(defun narrow-to-sexp ()
+  "Make text outside current sexp invisible."
+  (interactive)
+  (mark-sexp)
+  (narrow-to-region (region-beginning) (region-end))
+  (setq mark-active nil))
+(global-set-key (kbd "C-x n s") 'narrow-to-sexp)
+
+
 ;;;
 ;;; smartprens
 ;;;
@@ -236,7 +245,6 @@
 
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
-  (setq helm-buffer-max-length nil)
   (setq helm-dabbrev-cycle-thresold 3)
 
   (if (require 'helm-ls-git nil t)
@@ -260,6 +268,7 @@
 	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
+        (setq helm-buffer-max-length nil)
 	(define-key helm-map (kbd "C-h") 'delete-backward-char)
         (define-key helm-map (kbd "C-M-n") 'helm-next-source)
         (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
@@ -341,6 +350,7 @@
 
   (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
+  (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
 
   (when (featurep 'helm-config)
     (setq helm-full-frame nil)

@@ -3,6 +3,7 @@
 
 (depends-on "ac-helm")
 (depends-on "ac-inf-ruby")
+(depends-on "async")
 (depends-on "auto-complete")
 (depends-on "cask")
 (depends-on "dash")
@@ -19,6 +20,7 @@
 (depends-on "magit")
 (depends-on "migemo")
 (depends-on "multiple-cursors")
+(depends-on "package-build")
 (depends-on "pallet")
 (depends-on "php-mode")
 (depends-on "popup")

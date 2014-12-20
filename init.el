@@ -268,7 +268,6 @@
 	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
-        (setq helm-buffer-max-length nil)
 	(define-key helm-map (kbd "C-h") 'delete-backward-char)
         (define-key helm-map (kbd "C-M-n") 'helm-next-source)
         (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
@@ -286,6 +285,7 @@
 	))
   (eval-after-load "helm-files"
     #'(progn
+        (setq helm-buffer-max-length nil)
 	(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 

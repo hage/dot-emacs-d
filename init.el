@@ -246,6 +246,7 @@
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
   (setq helm-dabbrev-cycle-thresold 3)
+  (setq helm-buffer-max-length 40)
 
   (if (require 'helm-ls-git nil t)
       (progn
@@ -285,7 +286,6 @@
 	))
   (eval-after-load "helm-files"
     #'(progn
-        (setq helm-buffer-max-length nil)
 	(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 
@@ -735,9 +735,7 @@
                          ("<" . (lambda () (beginning-of-buffer-other-window 0)))
                          (">" . (lambda () (end-of-buffer-other-window 0)))
                          ))
-
   )
-
 
 
 

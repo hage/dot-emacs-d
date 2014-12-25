@@ -31,6 +31,18 @@
          (autoload function file docstring interactive type))
     file-exist))
 
+(defun add-load-path-recurcive-if-found (my-elisp-directory)
+  (interactive)
+  (dolist (dir (let ((dir (expand-file-name my-elisp-directory)))
+                 (list dir (format "%s%d" dir emacs-major-version))))
+    (when (and (stringp dir) (file-directory-p dir))
+      (let ((default-directory dir))
+        (setq load-path (cons default-directory load-path))
+        (normal-top-level-add-subdirs-to-load-path)))))
+
+(add-load-path-recurcive-if-found "~/.emacs.d/free")
+
+
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
 
@@ -712,6 +724,16 @@
   (unless (server-running-p)
     (server-start)))
 
+
+
+
+;;;
+;;; hiwin
+;;;
+
+(when (require 'hiwin nil t)
+  (hiwin-activate)
+  (set-face-background 'hiwin-face "gray15"))
 
 ;;;
 ;;; smartrep

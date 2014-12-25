@@ -450,9 +450,11 @@
   (autoload 'magit-diff-unstaged "magit" "magit: Show unstaged diff" t)
   (autoload 'magit-log "magit" "magit: Show Log" t)
 
-  (global-set-key "\C-qgg" 'magit-status)
-  (global-set-key "\C-qgd" 'magit-diff-unstaged)
-  (global-set-key "\C-qgl" 'magit-log)
+  (global-set-key (kbd "C-q g g") 'magit-status)
+  (global-set-key (kbd "C-q g d") 'magit-diff-unstaged)
+  (global-set-key (kbd "C-q g l") 'magit-log)
+  (global-set-key (kbd "C-q g c") 'magit-create-branch)
+  (global-set-key (kbd "C-q g b") 'magit-checkout)
   (eval-after-load "magit"
     #'(progn
 	(set-face-foreground 'magit-diff-add "green")

@@ -79,7 +79,7 @@
 
 ;; mode-line
 (line-number-mode t)			; 行番号を表示
-(column-number-mode t)			; 列番号を表示
+(setq column-number-mode nil)           ; 列番号は表示しない
 
 ;; 余計な警告を出さないように
 (put 'narrow-to-region 'disabled nil)

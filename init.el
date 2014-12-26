@@ -455,6 +455,8 @@
   (global-set-key (kbd "C-q g l") 'magit-log)
   (global-set-key (kbd "C-q g c") 'magit-create-branch)
   (global-set-key (kbd "C-q g b") 'magit-checkout)
+  (global-set-key (kbd "C-q g v") 'vc-revert)
+
   (eval-after-load "magit"
     #'(progn
 	(set-face-foreground 'magit-diff-add "green")

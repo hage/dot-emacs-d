@@ -11,6 +11,7 @@
 (depends-on "e2wm")
 (depends-on "emmet-mode")
 (depends-on "expand-region")
+(depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-c-yasnippet")
 (depends-on "helm-ls-git")

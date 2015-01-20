@@ -747,9 +747,9 @@
 ;;; hiwin
 ;;;
 
-(when (require 'hiwin nil t)
-  (hiwin-activate)
-  (set-face-background 'hiwin-face "gray15"))
+;; (when (require 'hiwin nil t)
+;;   (hiwin-activate)
+;;   (set-face-background 'hiwin-face "gray15"))
 
 ;;;
 ;;; smartrep

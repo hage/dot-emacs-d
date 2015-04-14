@@ -450,6 +450,8 @@
 ;;; magit
 ;;;
 (when (autoload-if-found 'magit-status "magit" "magit: Show Git status" t)
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  (setq magit-auto-revert-mode t)
   (autoload 'magit-diff-unstaged "magit" "magit: Show unstaged diff" t)
   (autoload 'magit-log "magit" "magit: Show Log" t)
 

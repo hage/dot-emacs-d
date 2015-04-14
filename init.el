@@ -40,6 +40,14 @@
         (setq load-path (cons default-directory load-path))
         (normal-top-level-add-subdirs-to-load-path)))))
 
+(defun load-safe (loadlib)
+  "安全な load。読み込みに失敗してもそこで止まらない。"
+  ;; missing-ok で読んでみて、ダメならこっそり message でも出しておく
+  (let ((load-status (load loadlib t)))
+    (or load-status
+        (message (format "[load-safe] failed %s" loadlib)))
+    load-status))
+
 (add-load-path-recurcive-if-found "~/.emacs.d/free")
 
 
@@ -775,7 +783,11 @@
                          ))
   )
 
-
+;;;
+;;; yatex
+;;;
+;(load-safe "my-yatex.el")
+(load-safe "~/.emacs.d/my-yatex")
 
 ;;;
 ;;; faces

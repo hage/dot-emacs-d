@@ -6,3 +6,5 @@ ac-comphist.dat
 /url/
 /.mc-lists.el
 /tramp
+/.DS_Store
+/kkcrc

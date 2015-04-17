@@ -728,7 +728,7 @@
 ;;;
 ;;; volatile-highlights
 ;;;
-(when (require 'volatile-highlights)
+(when (require 'volatile-highlights nil t)
   (volatile-highlights-mode t)
   (set-face-background 'vhl/default-face "thistle4")
   (set-face-foreground 'vhl/default-face "olivedrab1")

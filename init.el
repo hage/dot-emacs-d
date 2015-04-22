@@ -786,6 +786,27 @@
   )
 
 ;;;
+;;; elscreen
+;;;
+(when (require 'elscreen nil t)
+  (setq elscreen-prefix-key (kbd "C-w C-w"))
+  (elscreen-start)
+  (global-set-key (kbd "C-w C-w C-w") 'elscreen-toggle)
+  (global-set-key (kbd "C-w C-w l") 'helm-elscreen)
+  ;; タブの先頭に[X]を表示しない
+  (setq elscreen-tab-display-kill-screen nil)
+  ;; header-lineの先頭に[<->]を表示しない
+  (setq elscreen-tab-display-control nil)
+
+  (set-face-foreground 'elscreen-tab-other-screen-face "#000")
+  (set-face-background 'elscreen-tab-other-screen-face "#777")
+
+  (set-face-foreground 'elscreen-tab-current-screen-face "#fff")
+  (set-face-background 'elscreen-tab-current-screen-face "#555")
+  )
+
+
+;;;
 ;;; yatex
 ;;;
 ;(load-safe "my-yatex.el")

@@ -9,6 +9,7 @@
 (depends-on "dash")
 (depends-on "duplicate-thing")
 (depends-on "e2wm")
+(depends-on "elscreen")
 (depends-on "emmet-mode")
 (depends-on "epl")
 (depends-on "expand-region")

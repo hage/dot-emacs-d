@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: regexp
+# key: reg
+# binding: direct-keybinding
+# --
+%r${1:|}$0$1

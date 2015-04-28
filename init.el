@@ -159,6 +159,7 @@
 (global-set-key "\C-xj" 'goto-line)
 (global-set-key "\C-j" 'newline-and-indent)
 (global-set-key (kbd "C-q a") 'align)
+(global-set-key (kbd "C-w C-SPC") 'mark-sexp)
 
 
 ;;;

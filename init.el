@@ -817,6 +817,7 @@
 ;;;
 (set-face-foreground 'mode-line "chartreuse")
 (set-face-background 'mode-line "gray10")
+(set-face-underline 'mode-line t)
 (set-face-foreground 'mode-line-inactive "lavenderblush2")
 (set-face-background 'mode-line-inactive "gray30")
 (set-face-foreground 'font-lock-comment-face "gray60")

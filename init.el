@@ -579,9 +579,21 @@
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (eval-after-load "ruby-mode"
     #'(progn
+        (defun ruby-mode-insert-braces ()
+          (interactive)
+          (if (memq 'font-lock-string-face (text-properties-at (point)))
+              (progn
+                (insert "#{}")
+                (backward-char))
+            (progn
+              (insert "{|| }")
+              (backward-char)
+              (backward-char)
+              (backward-char))))
+        (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
+        (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)
-        (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(when (require 'rinari nil t)
 	  (global-rinari-mode t))
 	))

@@ -811,11 +811,11 @@
   ;; header-lineの先頭に[<->]を表示しない
   (setq elscreen-tab-display-control nil)
 
-  (set-face-foreground 'elscreen-tab-other-screen-face "#000")
-  (set-face-background 'elscreen-tab-other-screen-face "#777")
+  (set-face-foreground 'elscreen-tab-other-screen-face "#999")
+  (set-face-background 'elscreen-tab-other-screen-face "#444")
 
   (set-face-foreground 'elscreen-tab-current-screen-face "#fff")
-  (set-face-background 'elscreen-tab-current-screen-face "#555")
+  (set-face-background 'elscreen-tab-current-screen-face "#666")
   )
 
 

@@ -288,7 +288,7 @@
 	(define-key helm-map (kbd "C-h") 'delete-backward-char)
         (define-key helm-map (kbd "C-M-n") 'helm-next-source)
         (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-	(set-face-background 'helm-selection "gray40")
+	(set-face-background 'helm-selection "gray20")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
 	(set-face-background 'helm-source-header "gray10")

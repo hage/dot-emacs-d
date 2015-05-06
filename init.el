@@ -764,6 +764,7 @@
 ;;; smartrep
 ;;;
 (when (require 'smartrep nil t)
+  (setq smartrep-mode-line-active-bg "green")
   (smartrep-define-key
       global-map "C-x" '(("o" . (lambda () (other-window 1)))
                          ("p" . (lambda () (other-window -1)))))

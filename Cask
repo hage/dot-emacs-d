@@ -23,6 +23,7 @@
 (depends-on "helm-swoop")
 (depends-on "inf-ruby")
 (depends-on "magit")
+(depends-on "markdown-mode")
 (depends-on "migemo")
 (depends-on "multiple-cursors")
 (depends-on "package-build")

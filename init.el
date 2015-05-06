@@ -725,6 +725,39 @@
 
 
 ;;;
+;;; markdown-mode
+;;;
+(when (autoload-if-found 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+  (eval-after-load "markdown-mode"
+    (lambda ()
+      ;; デフォルトでキーシーケンスにC-tが入っているコマンド群はtmuxに当たるので C-t -> t に変更
+      (define-key markdown-mode-map "\C-cth" 'markdown-insert-header-dwim)
+      (define-key markdown-mode-map "\C-ctH" 'markdown-insert-header-setext-dwim)
+      (define-key markdown-mode-map "\C-ct1" 'markdown-insert-header-atx-1)
+      (define-key markdown-mode-map "\C-ct2" 'markdown-insert-header-atx-2)
+      (define-key markdown-mode-map "\C-ct3" 'markdown-insert-header-atx-3)
+      (define-key markdown-mode-map "\C-ct4" 'markdown-insert-header-atx-4)
+      (define-key markdown-mode-map "\C-ct5" 'markdown-insert-header-atx-5)
+      (define-key markdown-mode-map "\C-ct6" 'markdown-insert-header-atx-6)
+      (define-key markdown-mode-map "\C-ct!" 'markdown-insert-header-setext-1)
+      (define-key markdown-mode-map "\C-ct@" 'markdown-insert-header-setext-2)
+      (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-1)
+      (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
+
+      (set-face-foreground 'markdown-header-face-1 "SkyBlue3")
+      (set-face-foreground 'markdown-header-face-2 "SkyBlue3")
+      (set-face-foreground 'markdown-header-face-3 "SkyBlue3")
+      (set-face-foreground 'markdown-header-face-4 "SkyBlue3")
+      (set-face-foreground 'markdown-header-face-5 "SkyBlue3")
+      (set-face-foreground 'markdown-header-face-6 "SkyBlue3")
+      )
+    )
+  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+  )
+
+;;;
 ;;; volatile-highlights
 ;;;
 (when (require 'volatile-highlights nil t)

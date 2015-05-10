@@ -161,6 +161,8 @@
 (global-set-key (kbd "C-q a") 'align)
 (global-set-key (kbd "C-w C-SPC") 'mark-sexp)
 
+(setq ctl-q-map (key-binding (kbd "C-q")))
+(setq ctl-w-map (key-binding (kbd "C-w")))
 
 ;;;
 ;;; ちょっとした関数とそのキーバインド
@@ -465,6 +467,7 @@
 
   (eval-after-load "magit"
     #'(progn
+        (define-key magit-mode-map (kbd "C-w") ctl-q-map)
 	(set-face-foreground 'magit-diff-add "green")
 	(set-face-background 'magit-diff-add "gray20")
 	(set-face-foreground 'magit-diff-del "red")

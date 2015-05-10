@@ -257,7 +257,7 @@
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
   (global-set-key (kbd "C-q C-y") 'helm-show-kill-ring)
-  (global-set-key (kbd "C-o") 'helm-dabbrev)
+  ; (global-set-key (kbd "C-o") 'helm-dabbrev)
 
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)

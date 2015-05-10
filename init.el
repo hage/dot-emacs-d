@@ -136,6 +136,11 @@
 	  (lambda ()
 	     (y-or-n-p "Really quit Emacs? ")))
 
+;; ファイルのセーブ前にそのバッファの末尾スペースを取り除く
+(add-hook 'before-save-hook
+          (lambda ()
+            (delete-trailing-whitespace)))
+
 ;;;
 ;;; キー・バインドの変更、新規割当
 ;;;

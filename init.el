@@ -473,6 +473,8 @@
   (eval-after-load "magit"
     #'(progn
         (define-key magit-mode-map (kbd "C-w") ctl-q-map)
+        (set-face-foreground 'magit-log-sha1 "coral")
+        (set-face-background 'magit-log-sha1 "gray10")
 	(set-face-foreground 'magit-diff-add "green")
 	(set-face-background 'magit-diff-add "gray20")
 	(set-face-foreground 'magit-diff-del "red")
@@ -481,7 +483,9 @@
 	(set-face-foreground 'magit-diff-hunk-header "royalblue4")
 	(set-face-foreground 'magit-log-head-label-bisect-bad "yellow")
 	(set-face-foreground 'magit-log-head-label-bisect-skip "gray30")
-	(set-face-foreground 'magit-branch "skyblue4")))
+	(set-face-foreground 'magit-branch "skyblue1")
+	(set-face-background 'magit-branch "gray20")
+        ))
   )
 
 

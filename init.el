@@ -599,9 +599,7 @@
                 (backward-char))
             (progn
               (insert "{|| }")
-              (backward-char)
-              (backward-char)
-              (backward-char))))
+              (backward-char 3))))
         (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
         (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(setq ruby-indent-level 2)

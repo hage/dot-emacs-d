@@ -48,6 +48,10 @@
         (message (format "[load-safe] failed %s" loadlib)))
     load-status))
 
+(defun string-strip (str)
+  "文字列頭と末尾のホワイトスペース及び改行文字を削除する"
+  (replace-regexp-in-string "^[ \n]*\\(.*\\)[ \n]*" "\\1" str))
+
 (add-load-path-recurcive-if-found "~/.emacs.d/free")
 
 
@@ -591,6 +595,11 @@
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (eval-after-load "ruby-mode"
     #'(progn
+        (defun ruby-interpreter ()
+          (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))
+            (if (file-exists-p shims-ruby)
+                shims-ruby
+              (string-strip (shell-command-to-string "which ruby")))))
         (defun ruby-mode-insert-braces ()
           (interactive)
           (if (memq 'font-lock-string-face (text-properties-at (point)))
@@ -600,6 +609,22 @@
             (progn
               (insert "{|| }")
               (backward-char 3))))
+        (defun eww-open-ruby-reference ()
+          (interactive)
+          (let ((ruby-version
+                 (replace-regexp-in-string "ruby \\([0-9]+\\.[0-9]+\\.\\).*\n" "\\1"
+                                           (shell-command-to-string
+                                            (concat (ruby-interpreter) " --version")))))
+            (eww (concat
+                  "http://docs.ruby-lang.org/ja/"
+                  ruby-version
+                  (cond ((eq ruby-version "1.8") "7")
+                        ((eq ruby-version "1.9") "3")
+                        (t "0"))
+                  "/doc/"))
+            )
+          )
+        (define-key ruby-mode-map (kbd "C-q m") 'eww-open-ruby-reference)
         (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
         (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(setq ruby-indent-level 2)

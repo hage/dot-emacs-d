@@ -911,3 +911,5 @@
 (set-face-foreground 'minibuffer-prompt "SlateBlue")
 (set-face-foreground 'font-lock-constant-face "gold3")
 (set-face-foreground 'default "linen")
+(set-face-foreground 'match "black")
+(set-face-background 'match "yellow1")

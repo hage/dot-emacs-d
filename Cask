@@ -13,6 +13,7 @@
 (depends-on "epl")
 (depends-on "expand-region")
 (depends-on "f")
+(depends-on "foreign-regexp")
 (depends-on "git-commit-mode")
 (depends-on "git-rebase-mode")
 (depends-on "haskell-mode")

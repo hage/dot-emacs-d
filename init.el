@@ -275,21 +275,19 @@
   (setq helm-dabbrev-cycle-thresold 3)
   (setq helm-buffer-max-length 40)
 
-  (if (require 'helm-ls-git nil t)
-      (progn
-        (set-face-foreground 'helm-ls-git-conflict-face "red")
-        (set-face-foreground 'helm-ls-git-untracked-face "plum1"))
-    (setq helm-source-ls-git nil))
-
-  (custom-set-variables
-   '(helm-mini-default-sources `(helm-source-buffers-list
-				 helm-source-ls-git
-                                 helm-source-recentf
-				 helm-source-findutils
-				 ,(if osxp helm-source-mac-spotlight)
-				 )))
   (eval-after-load "helm"
     #'(progn
+        (if (require 'helm-ls-git nil t)
+            (progn
+              (set-face-foreground 'helm-ff-file "aquamarine1")
+              (set-face-foreground 'helm-buffer-file "lime green")
+              (set-face-background 'helm-selection-line "gray20")
+              (set-face-underline 'helm-selection-line nil)
+              (set-face-foreground 'helm-ls-git-conflict-face "#f77")
+              (set-face-background 'helm-ls-git-conflict-face "red3")
+              (set-face-foreground 'helm-ls-git-untracked-face "plum1"))
+          (setq helm-source-ls-git nil))
+
         (eval-after-load "auto-complete"
 	  #'(when (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
 	      (setq my-ac-helm-trigger-key (kbd "M-l"))
@@ -304,12 +302,16 @@
 	(set-face-underline 'helm-selection nil)
 	(set-face-background 'helm-source-header "gray10")
 	(set-face-foreground 'helm-source-header "yellowgreen")
-	(set-face-foreground 'helm-ff-file "aquamarine1")
 	(set-face-underline 'helm-source-header t)
 	(set-face-foreground 'helm-match "hotpink1")
-	(set-face-foreground 'helm-buffer-file "lime green")
-        (set-face-background 'helm-selection-line "gray20")
-        (set-face-underline 'helm-selection-line nil)
+
+        (custom-set-variables
+         '(helm-mini-default-sources `(helm-source-buffers-list
+                                       helm-source-ls-git
+                                       helm-source-recentf
+                                       helm-source-findutils
+                                       ,(if osxp 'helm-source-mac-spotlight)
+                                       )))
 	))
   (eval-after-load "helm-files"
     #'(progn

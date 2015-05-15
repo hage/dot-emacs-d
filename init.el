@@ -131,9 +131,18 @@
 (setq recenter-positions '(bottom top middle)) ; move-to-window-line-top-bottomの順番
 
 ;; hl-line-modeを有効に
-(when (fboundp 'global-hl-line-mode)
-  (global-hl-line-mode t)
-  (set-face-background 'hl-line "gray10"))
+(when (require 'hl-line nil t)
+  ;; http://rubikitch.com/2015/05/14/global-hl-line-mode-timer/
+  ;; 軽いhl-line
+  (defun global-hl-line-timer-function ()
+    (global-hl-line-unhighlight-all)
+    (let ((global-hl-line-mode t))
+      (global-hl-line-highlight)))
+  (setq global-hl-line-timer
+        (run-with-idle-timer 0.2 t 'global-hl-line-timer-function))
+  ;; (cancel-timer global-hl-line-timer)
+  (set-face-background 'hl-line "gray10")
+)
 
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions

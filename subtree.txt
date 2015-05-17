@@ -1,0 +1,5 @@
+* development/modeline-git-branch
+  remote repository: git@github.com:hage/modeline-git-branch.git
+  branch: develop
+
+  git subtree push --prefix development/modeline-git-branch --squash development/modeline-git-branch develop

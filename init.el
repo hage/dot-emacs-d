@@ -273,6 +273,14 @@
 
 
 ;;;
+;;; modeline-git-branch
+;;;
+(when (and (add-to-load-path-if-found "~/.emacs.d/develop/modeline-git-branch")
+           (require 'modeline-git-branch nil t))
+  (modeline-git-branch-mode 1))
+
+
+;;;
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)

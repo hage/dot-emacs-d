@@ -921,6 +921,14 @@
 (load-safe "~/.emacs.d/my-yatex")
 
 ;;;
+;;; smart-newline-mode
+;;;
+(when (autoload-if-found 'smart-newline-mode "smart-newline" t)
+  (add-hook 'ruby-mode-hook
+            (lambda () (smart-newline-mode t)))
+  )
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse")

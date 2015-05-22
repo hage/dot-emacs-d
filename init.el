@@ -503,6 +503,8 @@
   (eval-after-load "magit"
     #'(progn
         (define-key magit-mode-map (kbd "C-w") ctl-q-map)
+        (set-face-foreground 'magit-section-title "LimeGreen")
+        (set-face-background 'magit-section-title "DarkGreen")
         (set-face-foreground 'magit-log-sha1 "coral")
         (set-face-background 'magit-log-sha1 "gray10")
 	(set-face-foreground 'magit-diff-add "green")

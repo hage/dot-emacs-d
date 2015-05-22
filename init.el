@@ -928,6 +928,16 @@
             (lambda () (smart-newline-mode t)))
   )
 
+
+;;;
+;;; smart-compile
+;;;
+(when (autoload-if-found 'smart-compile "smart-compile" t)
+  (eval-after-load "ruby-mode"
+    #'(progn
+        (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
+        (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m")))))
+
 ;;;
 ;;; faces
 ;;;

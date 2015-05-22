@@ -33,6 +33,7 @@
 (depends-on "popwin")
 (depends-on "rinari")
 (depends-on "robe")
+(depends-on "smart-compile")
 (depends-on "smart-newline")
 (depends-on "smartparens")
 (depends-on "smartrep")

@@ -263,6 +263,10 @@
 ;;; isearch
 ;;;
 (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
+(set-face-foreground 'isearch-lazy-highlight-face "#fff")
+(set-face-background 'isearch-lazy-highlight-face "gray55")
+(set-face-foreground 'isearch "#fff")
+(set-face-background 'isearch "tomato")
 
 
 ;;;

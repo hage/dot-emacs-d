@@ -826,6 +826,12 @@
   (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
   )
 
+
+;;;
+;;; elixir-mode
+;;;
+;; nothng to do.
+
 ;;;
 ;;; volatile-highlights
 ;;;

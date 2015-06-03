@@ -8,6 +8,7 @@
 (depends-on "cask")
 (depends-on "dash")
 (depends-on "duplicate-thing")
+(depends-on "elixir-mode")
 (depends-on "elscreen")
 (depends-on "emmet-mode")
 (depends-on "epl")

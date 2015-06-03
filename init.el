@@ -623,6 +623,12 @@
 ;;;
 ;;; ruby-mode
 ;;;
+
+;; zshからemacsを起動した時にrspec-modeが上手く動かない場合は ~/.zshenv に
+;;   if which rbenv > /dev/null; then eval "$(rbenv init --no-rehash - zsh)" ; fi
+;; を加える
+;; cf. http://qiita.com/nysalor/items/59060cc16f2d636c24b3
+
 (when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
@@ -665,6 +671,12 @@
 	(when (require 'rinari nil t)
 	  (global-rinari-mode t))
 	))
+  (when (fboundp 'global-rbenv-mode)
+    (global-rbenv-mode)
+    (add-hook 'ruby-mode-hook
+              (lambda ()
+                (rbenv-use-corresponding)))
+    )
   ;; align
   (eval-after-load "align"
     #'(progn
@@ -710,6 +722,7 @@
     #'(define-key inf-ruby-mode-map (kbd "TAB") 'auto-complete)))
 ;; SCSSはRailsを使うときに現れるのでここで一緒に定義する
 (add-to-list 'auto-mode-alist '("\\.css\\.scss$" . css-mode))
+
 
 ;;;
 ;;; php-mode

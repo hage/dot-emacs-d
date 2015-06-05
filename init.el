@@ -82,16 +82,32 @@
 ;;; いろいろ設定
 ;;;
 
+;; mode-line
+(line-number-mode t)			; 行番号を表示
+(setq column-number-mode nil)           ; 列番号は表示しない
+(setq-default mode-line-format
+              '("%e"
+                mode-line-front-space
+                mode-line-mule-info
+                mode-line-client
+                mode-line-modified
+                mode-line-remote
+                (window-system mode-line-frame-identification)
+                "|"
+                mode-line-buffer-identification
+                "|"
+                mode-line-position
+                (vc-mode vc-mode)
+                mode-line-modes
+                mode-line-misc-info
+                mode-line-end-spaces))
+
 ;; メニューバーやスクロールバーなど余計なものを消す
 (setq inhibit-startup-message t)
 (exec-if-bound (scroll-bar-mode -1))
 (exec-if-bound (tool-bar-mode -1))
 (if (not window-system)
     (exec-if-bound (menu-bar-mode -1)))
-
-;; mode-line
-(line-number-mode t)			; 行番号を表示
-(setq column-number-mode nil)           ; 列番号は表示しない
 
 ;; 余計な警告を出さないように
 (put 'narrow-to-region 'disabled nil)

@@ -101,6 +101,37 @@
                 mode-line-modes
                 mode-line-misc-info
                 mode-line-end-spaces))
+(defvar mode-line-cleaner-alist
+  '( ;; For minor-mode, first char is 'space'
+    (yas-minor-mode . "")
+    (paredit-mode . " Pe")
+    (eldoc-mode . " Ed")
+    (abbrev-mode . "")
+    (helm-mode . "")
+    (undo-tree-mode . " Ut")
+    (flymake-mode . " Fm")
+    (magit-auto-revert-mode . "")       ; MRev
+    (smooth-scroll-mode . "")           ; SScr
+    (volatile-highlights-mode . "")     ; VHl
+    (emmet-mode . " Emt")
+    (robe-mode . " R")
+    ;; Major modes
+    (lisp-interaction-mode . "iLisp")
+    (python-mode . "Py")
+    (ruby-mode   . "Ruby")
+    (emacs-lisp-mode . "Elisp")
+    (markdown-mode . "Md")))
+(defun clean-mode-line ()
+  (interactive)
+  (loop for (mode . mode-str) in mode-line-cleaner-alist
+        do
+        (let ((old-mode-str (cdr (assq mode minor-mode-alist))))
+          (when old-mode-str
+            (setcar old-mode-str mode-str))
+          ;; major mode
+          (when (eq mode major-mode)
+            (setq mode-name mode-str)))))
+(add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 ;; メニューバーやスクロールバーなど余計なものを消す
 (setq inhibit-startup-message t)

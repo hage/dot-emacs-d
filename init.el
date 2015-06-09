@@ -1031,7 +1031,3 @@
 (set-face-foreground 'default "linen")
 (set-face-foreground 'match "black")
 (set-face-background 'match "yellow1")
-
-
-(find-file "~/.emacs.d/init.el")
-(alchemist-iex-run)

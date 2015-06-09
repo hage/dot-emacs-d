@@ -3,6 +3,7 @@
 
 (depends-on "ac-helm")
 (depends-on "ac-inf-ruby")
+(depends-on "alchemist")
 (depends-on "async")
 (depends-on "auto-complete")
 (depends-on "cask")

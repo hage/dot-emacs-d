@@ -328,6 +328,7 @@
 ;;;
 (when (and (add-to-load-path-if-found "~/.emacs.d/develop/modeline-git-branch")
            (require 'modeline-git-branch nil t))
+  (setq modeline-git-branch-wait-time 0.2)
   (modeline-git-branch-mode 1))
 
 

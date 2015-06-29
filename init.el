@@ -803,6 +803,10 @@
 ;; SCSSはRailsを使うときに現れるのでここで一緒に定義する
 (add-to-list 'auto-mode-alist '("\\.css\\.scss$" . css-mode))
 
+(when (fboundp 'yaml-mode)
+  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+  )
+
 
 ;;;
 ;;; php-mode
@@ -924,6 +928,7 @@
 ;;; elixir-mode
 ;;;
 ;; nothng to do.
+
 
 ;;;
 ;;; volatile-highlights

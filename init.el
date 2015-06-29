@@ -927,7 +927,7 @@
 ;;;
 ;;; elixir-mode
 ;;;
-;; nothng to do.
+(setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
 
 
 ;;;

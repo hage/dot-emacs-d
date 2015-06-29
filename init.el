@@ -333,6 +333,34 @@
 
 
 ;;;
+;;; eww
+;;;
+(eval-after-load "eww"
+  #'(progn
+      ;; ewwのサーチエンジンをgoogleに
+      (setq eww-search-prefix "https://www.google.co.jp/search?q=")
+
+      ;; http://rubikitch.com/2014/11/19/eww-nocolor/
+      ;; [2014-11-17 Mon]背景・文字色を無効化する
+      (defvar eww-disable-colorize t)
+      (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
+        (unless eww-disable-colorize
+          (funcall orig start end fg)))
+      (advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
+      (advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
+      (defun eww-disable-color ()
+        "ewwで文字色を反映させない"
+        (interactive)
+        (setq-local eww-disable-colorize t)
+        (eww-reload))
+      (defun eww-enable-color ()
+        "ewwで文字色を反映させる"
+        (interactive)
+        (setq-local eww-disable-colorize nil)
+        (eww-reload))
+      ))
+
+;;;
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)
@@ -457,6 +485,7 @@
   (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
+  (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
 
   (when (featurep 'helm-config)
     (setq helm-full-frame nil)

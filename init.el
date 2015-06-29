@@ -1060,6 +1060,7 @@
 (set-face-background 'region "LightSteelBlue4")
 (set-face-foreground 'font-lock-string-face "tomato1")
 (set-face-foreground font-lock-builtin-face "CornflowerBlue")
+(set-face-foreground font-lock-keyword-face "DeepSkyBlue")
 (set-face-bold font-lock-keyword-face t)
 (set-face-foreground 'minibuffer-prompt "SlateBlue")
 (set-face-foreground 'font-lock-constant-face "gold3")

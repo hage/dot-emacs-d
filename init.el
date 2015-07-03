@@ -85,6 +85,11 @@
 ;; mode-line
 (line-number-mode t)			; 行番号を表示
 (setq column-number-mode nil)           ; 列番号は表示しない
+
+(setq-default
+ mode-line-buffer-identification
+ `(,(propertize " %b " 'face '(:foreground "orange" :background "gray20" :weight bold))))
+
 (setq-default mode-line-format
               '("%e"
                 mode-line-front-space
@@ -92,15 +97,15 @@
                 mode-line-client
                 mode-line-modified
                 mode-line-remote
-                (window-system mode-line-frame-identification)
-                "|"
-                mode-line-buffer-identification
-                "|"
+                " "
+                (window-system mode-line-frame-identification mode-line-buffer-identification)
+                " "
                 mode-line-position
                 (vc-mode vc-mode)
                 mode-line-modes
                 mode-line-misc-info
-                mode-line-end-spaces))
+                ;mode-line-end-spaces
+                ))
 (defvar mode-line-cleaner-alist
   '( ;; For minor-mode, first char is 'space'
     (yas-minor-mode . "")
@@ -1049,11 +1054,11 @@
 ;;;
 ;;; faces
 ;;;
-(set-face-foreground 'mode-line "chartreuse")
-(set-face-background 'mode-line "gray10")
-(set-face-underline 'mode-line t)
-(set-face-foreground 'mode-line-inactive "lavenderblush2")
-(set-face-background 'mode-line-inactive "gray30")
+(set-face-foreground 'mode-line "chartreuse1")
+(set-face-background 'mode-line "gray40")
+(set-face-underline 'mode-line nil)
+(set-face-foreground 'mode-line-inactive "gray40")
+(set-face-background 'mode-line-inactive "gray10")
 (set-face-foreground 'font-lock-comment-face "gray60")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")

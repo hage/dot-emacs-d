@@ -1072,3 +1072,5 @@
 (set-face-foreground 'default "linen")
 (set-face-foreground 'match "black")
 (set-face-background 'match "yellow1")
+(set-face-foreground 'show-paren-match "white")
+(set-face-background 'show-paren-match "limegreen")

@@ -575,7 +575,6 @@
 ;;; magit
 ;;;
 (when (autoload-if-found 'magit-status "magit" "magit: Show Git status" t)
-  (setq magit-last-seen-setup-instructions "1.4.0")
   (setq magit-auto-revert-mode t)
   (autoload 'magit-diff-unstaged "magit" "magit: Show unstaged diff" t)
   (autoload 'magit-log "magit" "magit: Show Log" t)
@@ -590,20 +589,27 @@
   (eval-after-load "magit"
     #'(progn
         (define-key magit-mode-map (kbd "C-w") ctl-q-map)
-        (set-face-foreground 'magit-section-title "LimeGreen")
-        (set-face-background 'magit-section-title "DarkGreen")
-        (set-face-foreground 'magit-log-sha1 "coral")
-        (set-face-background 'magit-log-sha1 "gray10")
-	(set-face-foreground 'magit-diff-add "green")
-	(set-face-background 'magit-diff-add "gray20")
-	(set-face-foreground 'magit-diff-del "red")
-	(set-face-background 'magit-diff-del "gray20")
-	(set-face-background 'magit-item-highlight "gray20")
-	(set-face-foreground 'magit-diff-hunk-header "royalblue4")
-	(set-face-foreground 'magit-log-head-label-bisect-bad "yellow")
-	(set-face-foreground 'magit-log-head-label-bisect-skip "gray30")
-	(set-face-foreground 'magit-branch "skyblue1")
-	(set-face-background 'magit-branch "gray20")
+        (set-face-background 'magit-section-highlight "gray20")
+
+        (set-face-foreground 'magit-diff-added "#55aa55")
+        (set-face-background 'magit-diff-added nil)
+        (set-face-foreground 'magit-diff-added-highlight "#00ff00")
+        (set-face-background 'magit-diff-added-highlight "gray20")
+
+        (set-face-foreground 'magit-diff-removed "#aa5555")
+        (set-face-background 'magit-diff-removed nil)
+        (set-face-foreground 'magit-diff-removed-highlight "#ff0000")
+        (set-face-background 'magit-diff-removed-highlight "gray20")
+
+        (set-face-foreground 'magit-diff-hunk-heading "gray30")
+        ;; (set-face-background 'magit-diff-hunk-heading "gray60")
+        (set-face-foreground 'magit-diff-hunk-heading-highlight "#ffffff")
+        ;; (set-face-background 'magit-diff-hunk-heading-highlight "gray60")
+
+        (set-face-foreground 'magit-diff-context "gray50")
+        (set-face-background 'magit-diff-context nil)
+        (set-face-foreground 'magit-diff-context-highlight "white")
+        (set-face-background 'magit-diff-context-highlight "gray20")
         ))
   )
 

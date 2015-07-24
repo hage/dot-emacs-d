@@ -196,6 +196,14 @@
   (set-face-background 'hl-line "gray10")
 )
 
+;; recentf
+(when (featurep 'recentf)
+  (setq recentf-max-saved-items 2048)
+  (setq recentf-auto-cleanup 10)
+  (setq recentf-auto-save-timer
+        (run-with-idle-timer 30 t 'recentf-save-list))
+  )
+
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions
 	  (lambda ()

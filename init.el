@@ -120,11 +120,14 @@
     (volatile-highlights-mode . "")     ; VHl
     (emmet-mode . " Emt")
     (robe-mode . " R")
+    (company-mode . " cp")
+    (alchemist-mode . " Alc")
     ;; Major modes
     (lisp-interaction-mode . "iLisp")
     (python-mode . "Py")
     (ruby-mode   . "Ruby")
     (emacs-lisp-mode . "Elisp")
+    (elixir-mode . "Elixir")
     (markdown-mode . "Md")))
 (defun clean-mode-line ()
   (interactive)
@@ -508,7 +511,24 @@
 
 
 ;;;
-;;; auto-complete
+;;; company-mode
+;;;
+(eval-after-load "company"
+  #'(progn
+      (setq company-idle-delay .3
+            company-minimum-prefix-length 3
+            company-selection-wrap-around t
+            )
+      (define-key company-active-map (kbd "M-n") nil)
+      (define-key company-active-map (kbd "M-p") nil)
+      (define-key company-active-map (kbd "C-n") 'company-select-next)
+      (define-key company-active-map (kbd "C-p") 'company-select-previous)
+      (define-key company-active-map (kbd "C-h") nil)
+      ))
+
+
+;;;
+;;; auto-complete-mode
 ;;;
 (when (require 'auto-complete-config nil t)
   (ac-config-default)
@@ -947,6 +967,8 @@
 ;;; elixir-mode
 ;;;
 (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
+(add-hook 'elixir-mode-hook 'alchemist-mode)
+(add-hook 'elixir-mode-hook 'company-mode)
 (eval-after-load "alchemist"
   #'(progn
       (eval-after-load "elixir-mode"

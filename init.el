@@ -810,7 +810,10 @@
 	(when (require 'rinari nil t)
 	  (global-rinari-mode t))
 	))
+
+  ;; rbenv
   (when (fboundp 'global-rbenv-mode)
+    (setq rbenv-show-active-ruby-in-modeline nil)
     (global-rbenv-mode)
     (set-face-foreground 'rbenv-active-ruby-face "green1")
     (set-face-background 'rbenv-active-ruby-face nil)
@@ -819,6 +822,7 @@
               (lambda ()
                 (rbenv-use-corresponding)))
     )
+
   ;; align
   (eval-after-load "align"
     #'(progn

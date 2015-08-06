@@ -312,6 +312,22 @@
   (setq mark-active nil))
 (global-set-key (kbd "C-x n s") 'narrow-to-sexp)
 
+;; バッファ全体をインデント
+(defun my-indent-whole-buffer ()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max))))
+
+(defun my-electric-indent ()
+  "Indent specified region.
+When resion is active, indent region.
+Otherwise indent whole buffer."
+  (interactive)
+  (if (use-region-p)
+      (indent-region (region-beginning) (region-end))
+    (my-indent-whole-buffer)))
+
+(global-set-key (kbd "C-M-\\") 'my-electric-indent)
 
 ;;;
 ;;; smartprens

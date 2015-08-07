@@ -1016,6 +1016,7 @@ Otherwise indent whole buffer."
   #'(progn
       (eval-after-load "elixir-mode"
         #'(progn
+            (set-face-foreground 'elixir-atom-face "Gold3")
             (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
 
             (defun my-alchemist-iex-electric-send-thing (uarg)
@@ -1180,3 +1181,4 @@ Otherwise sends the current line."
 (set-face-background 'match "yellow1")
 (set-face-foreground 'show-paren-match "white")
 (set-face-background 'show-paren-match "limegreen")
+(set-face-foreground 'font-lock-type-face "LimeGreen")

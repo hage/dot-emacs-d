@@ -19,9 +19,9 @@
 (defun add-to-load-path-if-found (path)
   (let ((epath (expand-file-name path)))
     (if (file-exists-p epath)
-      (progn
-        (setq load-path (cons epath load-path))
-        t)
+        (progn
+          (setq load-path (cons epath load-path))
+          t)
       nil)))
 
 (defun autoload-if-found (function file &optional docstring interactive type)
@@ -104,7 +104,7 @@
                 (vc-mode vc-mode)
                 mode-line-modes
                 mode-line-misc-info
-                ;mode-line-end-spaces
+                ;;mode-line-end-spaces
                 ))
 (defvar mode-line-cleaner-alist
   '( ;; For minor-mode, first char is 'space'
@@ -197,7 +197,7 @@
         (run-with-idle-timer 0.2 t 'global-hl-line-timer-function))
   ;; (cancel-timer global-hl-line-timer)
   (set-face-background 'hl-line "gray10")
-)
+  )
 
 ;; recentf
 (when (featurep 'recentf)
@@ -210,7 +210,7 @@
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions
 	  (lambda ()
-	     (y-or-n-p "Really quit Emacs? ")))
+            (y-or-n-p "Really quit Emacs? ")))
 
 ;; ファイルのセーブ前にそのバッファの末尾スペースを取り除く
 (add-hook 'before-save-hook
@@ -280,16 +280,16 @@
   "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
   (interactive "p")
   (if (not (eq last-command 'changecase-word))
-       (setq changecase-word-type 0))
+      (setq changecase-word-type 0))
   (cond ((= changecase-word-type 0)
-           (upcase-word (- cnt))
-             (setq changecase-word-type 1))
-         ((= changecase-word-type 1)
-            (capitalize-word (- cnt))
-              (setq changecase-word-type 2))
-          (t
-             (downcase-word (- cnt))
-               (setq changecase-word-type 0))))
+         (upcase-word (- cnt))
+         (setq changecase-word-type 1))
+        ((= changecase-word-type 1)
+         (capitalize-word (- cnt))
+         (setq changecase-word-type 2))
+        (t
+         (downcase-word (- cnt))
+         (setq changecase-word-type 0))))
 (global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
 
 ;; カーソル位置のフェースを調べる関数
@@ -404,7 +404,7 @@ Otherwise indent whole buffer."
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
   (global-set-key (kbd "C-q C-y") 'helm-show-kill-ring)
-  ; (global-set-key (kbd "C-o") 'helm-dabbrev)
+                                        ; (global-set-key (kbd "C-o") 'helm-dabbrev)
 
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
@@ -574,7 +574,7 @@ Otherwise indent whole buffer."
 	ac-use-menu-map t)
   (eval-after-load "yasnippet"
     #'(setq-default ac-sources
-		  (append '(ac-source-yasnippet) ac-sources)))
+                    (append '(ac-source-yasnippet) ac-sources)))
   )
 
 
@@ -766,7 +766,7 @@ Otherwise indent whole buffer."
       (kill-buffer nil)))
   (eval-after-load "howm-mode"
     #'(define-key howm-mode-map
-	 "\C-c\C-c" 'my-save-and-kill-buffer))
+        "\C-c\C-c" 'my-save-and-kill-buffer))
   )
 
 
@@ -892,7 +892,7 @@ Otherwise indent whole buffer."
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)))
- )
+  )
 
 
 ;;;
@@ -1132,7 +1132,6 @@ Otherwise sends the current line."
 ;;;
 ;;; yatex
 ;;;
-;(load-safe "my-yatex.el")
 (load-safe "~/.emacs.d/my-yatex")
 
 ;;;

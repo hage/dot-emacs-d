@@ -518,11 +518,6 @@ Otherwise indent whole buffer."
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
-
-  (when (featurep 'helm-config)
-    (setq helm-full-frame nil)
-    (push '("*compilatoin*" :noselect t) popwin:special-display-config)
-    (push '("helm" :regexp t) popwin:special-display-config))
   )
 
 

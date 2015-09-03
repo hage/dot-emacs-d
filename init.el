@@ -513,8 +513,6 @@ Otherwise indent whole buffer."
 (when (require 'popwin nil t)
   (popwin-mode 1)
   (setq popwin:popup-window-height .43)
-
-  (push '("\\*magit-.*\\*" :regexp t) popwin:special-display-config)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)

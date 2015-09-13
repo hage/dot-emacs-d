@@ -524,6 +524,10 @@ Otherwise indent whole buffer."
 ;;;
 ;;; elixir-mode では company-mode しか受け付けないようなのでしかたなしに設定する
 ;;; cf. http://qiita.com/sune2/items/b73037f9e85962f5afb7
+;;;
+;;; 追記: ac-alchemist なるものができたので elixir-mode において auto-complete が
+;;; 使えるようになったが、この設定は残しておく。
+
 (eval-after-load "company"
   #'(progn
       (setq company-idle-delay .3
@@ -1002,13 +1006,13 @@ Otherwise indent whole buffer."
 ;;;
 ;;; elixir-mode
 ;;;
-(setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
-(add-hook 'elixir-mode-hook 'alchemist-mode)
-(add-hook 'elixir-mode-hook 'company-mode)
-(eval-after-load "alchemist"
+(eval-after-load "elixir-mode"
   #'(progn
-      (eval-after-load "elixir-mode"
+      (add-hook 'elixir-mode-hook 'alchemist-mode)
+      (eval-after-load "alchemist"
         #'(progn
+            (add-hook 'alchemist-mode-hook 'ac-alchemist-setup)
+            (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
             (set-face-foreground 'elixir-atom-face "Gold3")
             (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
 

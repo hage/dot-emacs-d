@@ -646,7 +646,7 @@ Otherwise indent whole buffer."
   (global-set-key (kbd "C-q g g") 'magit-status)
   (global-set-key (kbd "C-q g d") 'magit-diff-unstaged)
   (global-set-key (kbd "C-q g l") 'magit-log)
-  (global-set-key (kbd "C-q g c") 'magit-create-branch)
+  (global-set-key (kbd "C-q g c") 'magit-branch-and-checkout)
   (global-set-key (kbd "C-q g b") 'magit-checkout)
   (global-set-key (kbd "C-q g v") 'vc-revert)
 

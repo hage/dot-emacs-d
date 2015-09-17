@@ -49,6 +49,7 @@
 (depends-on "smooth-scroll")
 (depends-on "volatile-highlights")
 (depends-on "web-mode")
+(depends-on "which-key")
 (depends-on "with-editor")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")

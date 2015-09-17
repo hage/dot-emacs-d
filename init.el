@@ -1163,6 +1163,13 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; which-key
+;;;
+(when (require 'which-key nil t)
+  (which-key-setup-side-window-right)
+  (which-key-mode 1))
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

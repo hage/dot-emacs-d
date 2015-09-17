@@ -11,6 +11,7 @@
 (depends-on "company")
 (depends-on "dash")
 (depends-on "duplicate-thing")
+(depends-on "easy-kill")
 (depends-on "elixir-mode")
 (depends-on "elscreen")
 (depends-on "emmet-mode")

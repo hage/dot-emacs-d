@@ -1154,6 +1154,14 @@ Otherwise sends the current line."
         (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
         (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m")))))
 
+
+;;;
+;;; easy-kill
+;;;
+(when (require 'easy-kill nil t)
+  (global-set-key (kbd "M-w") 'easy-kill))
+
+
 ;;;
 ;;; faces
 ;;;
@@ -1178,3 +1186,4 @@ Otherwise sends the current line."
 (set-face-foreground 'show-paren-match "white")
 (set-face-background 'show-paren-match "limegreen")
 (set-face-foreground 'font-lock-type-face "LimeGreen")
+(set-face-background 'secondary-selection "MediumPurple4")

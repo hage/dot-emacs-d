@@ -194,7 +194,7 @@
     (let ((global-hl-line-mode t))
       (global-hl-line-highlight)))
   (setq global-hl-line-timer
-        (run-with-idle-timer 0.2 t 'global-hl-line-timer-function))
+        (run-with-idle-timer 0.1 t 'global-hl-line-timer-function))
   ;; (cancel-timer global-hl-line-timer)
   (set-face-background 'hl-line "gray10")
   )

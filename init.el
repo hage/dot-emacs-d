@@ -1169,6 +1169,14 @@ Otherwise sends the current line."
   (which-key-setup-side-window-right)
   (which-key-mode 1))
 
+
+;;;
+;;; persistent-scratch-buffer
+;;;
+(when (fboundp 'persistent-scratch-setup-default)
+  (persistent-scratch-setup-default))
+
+
 ;;;
 ;;; faces
 ;;;

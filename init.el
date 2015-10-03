@@ -516,6 +516,7 @@ Otherwise indent whole buffer."
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
+  (push '("\\*alchemist test report\\*" :regexp nil :stick t) popwin:special-display-config)
   )
 
 

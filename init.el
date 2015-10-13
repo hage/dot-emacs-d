@@ -329,6 +329,24 @@ Otherwise indent whole buffer."
 
 (global-set-key (kbd "C-M-\\") 'my-electric-indent)
 
+;; バッファのファイル名をリネーム
+;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "FMove to: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not filename)
+        (message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file name new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
+(global-set-key (kbd "C-x w") 'rename-file-and-buffer)
+
 ;;;
 ;;; smartprens
 ;;;
@@ -640,7 +658,8 @@ Otherwise indent whole buffer."
 ;;; magit
 ;;;
 (when (autoload-if-found 'magit-status "magit" "magit: Show Git status" t)
-  (setq magit-auto-revert-mode t)
+  (setq magit-revert-buffers t)
+
   (autoload 'magit-diff-unstaged "magit" "magit: Show unstaged diff" t)
   (autoload 'magit-log "magit" "magit: Show Log" t)
 

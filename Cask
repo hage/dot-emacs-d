@@ -21,7 +21,6 @@
 (depends-on "f")
 (depends-on "foreign-regexp")
 (depends-on "git-commit")
-(depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-c-yasnippet")
 (depends-on "helm-core")

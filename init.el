@@ -1,5 +1,15 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
+
+;; init.elのロード時間を視覚化する
+;; http://qiita.com/yuttie/items/0f38870817c11b2166bd
+;;
+;; 以下のコードを有効にしてEmacsを起動し、起動後 M-x initchart-visualize-init-sequence
+;; (load "~/.emacs.d/initchart")
+;; (initchart-record-execution-time-of load file)
+;; (initchart-record-execution-time-of require feature)
+
+
 ;; 非常に重要な設定
 (global-set-key "\C-h" 'backward-delete-char-untabify)
 

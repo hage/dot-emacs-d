@@ -704,6 +704,9 @@ Otherwise indent whole buffer."
         (set-face-background 'magit-diff-context nil)
         (set-face-foreground 'magit-diff-context-highlight "white")
         (set-face-background 'magit-diff-context-highlight "gray20")
+
+        (set-face-foreground 'magit-branch-local "skyblue")
+        (set-face-foreground 'magit-branch-remote "green")
         ))
   )
 

@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: author
+# key: author
+# --
+#+TITLE: $0
+#+AUTHOR: URA, Takefumi
+#+LANGUAGE: ja
+#+EMAIL: ura.takefumi@gmail.com

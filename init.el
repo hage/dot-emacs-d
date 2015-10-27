@@ -712,6 +712,13 @@ Otherwise indent whole buffer."
 
 
 ;;;
+;;; org-mode
+;;;
+(when (featurep 'org)
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode)))
+
+
+;;;
 ;;; howm
 ;;;
 (when (add-to-load-path-if-found "~/.emacs.d/free/howm")
@@ -738,6 +745,9 @@ Otherwise indent whole buffer."
     #'(progn
 	(define-key howm-mode-map [tab] 'action-lock-goto-next-link)
 	(define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)))
+
+  ;; 新しくメモを作る時は、先頭の「=タイトル」だけ挿入。
+  (setq howm-template "= %title%cursor")
   ;; 「最近のメモ」一覧時にタイトル表示
   (setq howm-list-recent-title t)
   ;; 全メモ一覧時にタイトル表示
@@ -763,7 +773,10 @@ Otherwise indent whole buffer."
   (setq howm-menu-schedule-days 3)
 
   ;; howm のファイル名
-  (setq howm-file-name-format "%Y/%m/%Y%m%d-%H%M%S.txt")
+  (setq howm-file-name-format
+        (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'org-mode)
+                                           "org"
+                                         "howm")))
 
   (setq howm-view-grep-parse-line
 	"^\\(\\([a-zA-Z]:/\\)?[^:]*\\.howm\\):\\([0-9]*\\):\\(.*\\)$")
@@ -772,20 +785,23 @@ Otherwise indent whole buffer."
    howm-excluded-file-regexp
    "/\\.#\\|[~#]$\\|\\.bak$\\|/CVS/\\|\\.doc$\\|\\.pdf$\\|\\.ppt$\\|\\.xls$\\|git")
 
-  ;; Macの場合、Dropboxにメモを置く
-  (if (and (equal system-type 'darwin) (file-directory-p "~/Dropbox/howm"))
-      (setq howm-directory "~/Dropbox/howm/"))
+  ;; howmの置き場所
+  (setq howm-directory "~/Documents/howm/")
+
+  ;; カレントバッファがhowm管理下にあるかどうか判定する
+  (defun my-howm-current-buffer-under-controlled-p ()
+    (and (buffer-file-name (current-buffer))
+         (string-match "/howm/" (buffer-file-name (current-buffer)))))
 
   ;; いちいち消すのも面倒なので
   ;; 内容が 0 ならファイルごと削除する
-  (if (not (memq 'delete-file-if-no-contents after-save-hook))
+  (if (not (memq 'my-howm-delete-file-if-no-contents after-save-hook))
       (setq after-save-hook
-	    (cons 'delete-file-if-no-contents after-save-hook)))
-  (defun delete-file-if-no-contents ()
-    (when (and
-	   (buffer-file-name (current-buffer))
-	   (string-match "\\.howm" (buffer-file-name (current-buffer)))
-	   (= (point-min) (point-max)))
+	    (cons 'my-howm-delete-file-if-no-contents after-save-hook)))
+  ;; howmディレクトリ以下のファイルをセーブしたとき内容がなければ削除する
+  (defun my-howm-delete-file-if-no-contents ()
+    (when (and (my-howm-current-buffer-under-controlled-p)
+               (= (point-min) (point-max)))
       (delete-file
        (buffer-file-name (current-buffer)))))
 
@@ -793,10 +809,7 @@ Otherwise indent whole buffer."
   ;; C-cC-c で保存してバッファをキルする
   (defun my-save-and-kill-buffer ()
     (interactive)
-    (when (and
-	   (buffer-file-name)
-	   (string-match "\\.howm"
-			 (buffer-file-name)))
+    (when (my-howm-current-buffer-under-controlled-p)
       (save-buffer)
       (kill-buffer nil)))
   (eval-after-load "howm-mode"

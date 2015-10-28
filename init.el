@@ -1015,7 +1015,7 @@ Otherwise indent whole buffer."
       (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
 
       (progn
-        (setq markdown-common-header-face-foreground "SlateBlue4")
+        (setq markdown-common-header-face-foreground "LightSlateBlue")
         (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-2 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-3 markdown-common-header-face-foreground)

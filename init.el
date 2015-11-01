@@ -58,6 +58,12 @@
         (message (format "[load-safe] failed %s" loadlib)))
     load-status))
 
+(defmacro global-set-key-if-bound (key-bind fun)
+  "関数が存在したらキーを割り当てる"
+  `(when (fboundp ,fun)
+     (global-set-key ,key-bind ,fun))
+  )
+
 (defun string-strip (str)
   "文字列頭と末尾のホワイトスペース及び改行文字を削除する"
   (replace-regexp-in-string "^[ \n]*\\(.*\\)[ \n]*" "\\1" str))

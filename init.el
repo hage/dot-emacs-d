@@ -1069,6 +1069,13 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; js2-mode
+;;;
+(when (functionp 'js2-mode)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  )
+
+;;;
 ;;; volatile-highlights
 ;;;
 (when (require 'volatile-highlights nil t)

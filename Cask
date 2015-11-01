@@ -27,6 +27,7 @@
 (depends-on "helm-ls-git")
 (depends-on "helm-swoop")
 (depends-on "inf-ruby")
+(depends-on "js2-mode")
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "markdown-mode")

@@ -721,7 +721,10 @@ Otherwise indent whole buffer."
 ;;; org-mode
 ;;;
 (when (featurep 'org)
-  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode)))
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+  (set-face-foreground 'org-document-title "skyblue3")
+  (set-face-foreground 'org-document-info "skyblue3")
+  )
 
 
 ;;;

@@ -1143,6 +1143,16 @@ Otherwise sends the current line."
                          ))
   )
 
+
+;;;
+;;; point-undo
+;;;
+(when (require 'point-undo nil t)
+  (global-set-key-if-bound (kbd "M-g M-b") 'point-undo)
+  (global-set-key-if-bound (kbd "M-g M-f") 'point-redo)
+  )
+
+
 ;;;
 ;;; elscreen
 ;;;

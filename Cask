@@ -40,6 +40,7 @@
 (depends-on "popup")
 (depends-on "popwin")
 (depends-on "rbenv")
+(depends-on "recentf-ext")
 (depends-on "rinari")
 (depends-on "robe")
 (depends-on "rspec-mode")

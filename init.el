@@ -221,6 +221,9 @@
   (setq recentf-auto-cleanup 10)
   (setq recentf-auto-save-timer
         (run-with-idle-timer 30 t 'recentf-save-list))
+  (eval-after-load "recentf"
+    #'(progn
+        (require 'recentf-ext)))
   )
 
 ;; 本当に終わってもいいの? と聞くようにする

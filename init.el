@@ -1235,6 +1235,11 @@ Otherwise sends the current line."
 (when (fboundp 'persistent-scratch-setup-default)
   (persistent-scratch-setup-default))
 
+;;;
+;;; elscreen-separate-buffer-list
+;;;
+(when (require 'elscreen-separate-buffer-list)
+  (elscreen-separate-buffer-list-mode))
 
 ;;;
 ;;; faces

@@ -887,7 +887,7 @@ Otherwise indent whole buffer."
     (global-rbenv-mode)
     (set-face-foreground 'rbenv-active-ruby-face "green1")
     (set-face-background 'rbenv-active-ruby-face nil)
-    (set-face-bold-p 'rbenv-active-ruby-face nil)
+    (set-face-bold 'rbenv-active-ruby-face nil)
     (add-hook 'ruby-mode-hook
               (lambda ()
                 (rbenv-use-corresponding)))

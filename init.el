@@ -696,12 +696,12 @@ Otherwise indent whole buffer."
         (set-face-foreground 'magit-diff-added "#55aa55")
         (set-face-background 'magit-diff-added nil)
         (set-face-foreground 'magit-diff-added-highlight "#00ff00")
-        (set-face-background 'magit-diff-added-highlight "gray20")
+        (set-face-background 'magit-diff-added-highlight "gray10")
 
         (set-face-foreground 'magit-diff-removed "#aa5555")
         (set-face-background 'magit-diff-removed nil)
         (set-face-foreground 'magit-diff-removed-highlight "#ff0000")
-        (set-face-background 'magit-diff-removed-highlight "gray20")
+        (set-face-background 'magit-diff-removed-highlight "gray10")
 
         (set-face-foreground 'magit-diff-hunk-heading "gray30")
         ;; (set-face-background 'magit-diff-hunk-heading "gray60")
@@ -711,7 +711,7 @@ Otherwise indent whole buffer."
         (set-face-foreground 'magit-diff-context "gray50")
         (set-face-background 'magit-diff-context nil)
         (set-face-foreground 'magit-diff-context-highlight "white")
-        (set-face-background 'magit-diff-context-highlight "gray20")
+        (set-face-background 'magit-diff-context-highlight "gray10")
 
         (set-face-foreground 'magit-branch-local "skyblue")
         (set-face-foreground 'magit-branch-remote "green")

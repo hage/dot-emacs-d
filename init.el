@@ -1172,11 +1172,11 @@ Otherwise sends the current line."
   ;; header-lineの先頭に[<->]を表示しない
   (setq elscreen-tab-display-control nil)
 
-  (set-face-foreground 'elscreen-tab-other-screen-face "#999")
+  (set-face-foreground 'elscreen-tab-other-screen-face "#888")
   (set-face-background 'elscreen-tab-other-screen-face "#444")
 
-  (set-face-foreground 'elscreen-tab-current-screen-face "#fff")
-  (set-face-background 'elscreen-tab-current-screen-face "#666")
+  (set-face-foreground 'elscreen-tab-current-screen-face "#fc0")
+  (set-face-background 'elscreen-tab-current-screen-face "gray50")
   )
 
 ;;;

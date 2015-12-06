@@ -515,8 +515,9 @@ Otherwise indent whole buffer."
   (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
     )
+  (exec-if-bound (helm-migemo-mode t))
+  (global-set-key-if-bound (kbd "C-s") 'helm-swoop)
   )
-
 
 ;;;
 ;;; emmet-mode

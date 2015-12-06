@@ -26,6 +26,7 @@
 (depends-on "helm-c-yasnippet")
 (depends-on "helm-core")
 (depends-on "helm-ls-git")
+(depends-on "helm-migemo")
 (depends-on "helm-swoop")
 (depends-on "inf-ruby")
 (depends-on "js2-mode")

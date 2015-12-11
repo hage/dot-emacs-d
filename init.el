@@ -450,6 +450,7 @@ Otherwise indent whole buffer."
   (eval-after-load "helm"
     #'(progn
         (helm-mode 1)
+        (global-set-key-if-bound (kbd "M-s g") 'helm-git-grep)
         (if (require 'helm-ls-git nil t)
             (progn
               (set-face-foreground 'helm-ff-file "aquamarine1")

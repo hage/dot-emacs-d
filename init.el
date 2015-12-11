@@ -931,6 +931,10 @@ Otherwise indent whole buffer."
     #'(add-hook 'robe-mode-hook 'ac-robe-setup))
   )
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
+  (setq inf-ruby-default-implementation "pry")
+  (setq inf-ruby-eval-binding "Pry.toplevel_binding")
+  ;; riなどのエスケープシーケンスを処理し、色付けする
+  (add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
   (eval-after-load 'auto-complete
     #'(add-to-list 'ac-modes 'inf-ruby-mode))
   (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)

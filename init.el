@@ -1246,6 +1246,12 @@ Otherwise sends the current line."
   (elscreen-separate-buffer-list-mode))
 
 ;;;
+;;; auto-highlight-symbol
+;;;
+(when (require 'auto-highlight-symbol)
+  (global-auto-highlight-symbol-mode t))
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

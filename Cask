@@ -8,6 +8,7 @@
 (depends-on "alchemist")
 (depends-on "async")
 (depends-on "auto-complete")
+(depends-on "auto-highlight-symbol")
 (depends-on "cask")
 (depends-on "company")
 (depends-on "dash")

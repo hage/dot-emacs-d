@@ -1053,6 +1053,16 @@ Otherwise indent whole buffer."
 ;;;
 (eval-after-load "elixir-mode"
   #'(progn
+      (when (featurep 'smartparens)
+        (sp-with-modes '(elixir-mode)
+          (sp-local-pair "fn" "end"
+                         :when '(("SPC" "RET"))
+                         :actions '(insert navigate))
+          (sp-local-pair "do" "end"
+                         :when '(("SPC" "RET"))
+                         :post-handlers '(sp-ruby-def-post-handler)
+                         :actions '(insert navigate))))
+
       (add-hook 'elixir-mode-hook 'alchemist-mode)
       (eval-after-load "alchemist"
         #'(progn

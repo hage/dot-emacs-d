@@ -11,6 +11,7 @@
 (depends-on "auto-highlight-symbol")
 (depends-on "cask")
 (depends-on "company")
+(depends-on "csv-mode")
 (depends-on "dash")
 (depends-on "duplicate-thing")
 (depends-on "easy-kill")

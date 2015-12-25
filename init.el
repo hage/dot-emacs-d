@@ -927,7 +927,33 @@ Otherwise indent whole buffer."
 			 "Robe is a code assistance tool that uses a Ruby REPL subprocess" t)
   (autoload 'ac-robe-setup "ac-robe" "robe auto-complete" nil nil)
   (eval-after-load 'ruby-mode
-    #'(add-hook 'ruby-mode-hook 'robe-mode))
+    #'(progn
+        (add-hook 'ruby-mode-hook 'robe-mode)
+        (eval-after-load 'inf-ruby
+          #'(progn
+              (defun my-ruby-send-thing-dwim (uarg)
+                "Sends the code fragment to the inferior Ruby process.
+If universal argument (C-u) is given, jump to the inf-ruby buffer.
+when region is active, sends the marked region.
+Otherwise sends the whole buffer."
+                (interactive "P")
+                (cond
+                 ;; regionがアクティブかつC-uが押されている
+                 ((and uarg (use-region-p))
+                  (ruby-send-region-and-go (point) (mark)))
+                 ;; regionがアクティブ
+                 ((and (not uarg) (use-region-p))
+                  (ruby-send-region (point) (mark)))
+                 ;; regionなし、かつC-uが押されている
+                 ((and uarg (not (use-region-p)))
+                  (ruby-send-region-and-go (point-min) (point-max)))
+                 ;; なんにもなし
+                 ((and (not uarg) (not (use-region-p)))
+                  (ruby-send-region (point-min) (point-max)))))
+
+              (define-key inf-ruby-minor-mode-map
+                (kbd "C-c C-r") 'my-ruby-send-thing-dwim)))))
+
   (eval-after-load 'auto-complete
     #'(add-hook 'robe-mode-hook 'ac-robe-setup))
   )

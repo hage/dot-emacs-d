@@ -1275,11 +1275,6 @@ Otherwise sends the current line."
 (when (fboundp 'persistent-scratch-setup-default)
   (persistent-scratch-setup-default))
 
-;;;
-;;; elscreen-separate-buffer-list
-;;;
-(when (require 'elscreen-separate-buffer-list nil t)
-  (elscreen-separate-buffer-list-mode))
 
 ;;;
 ;;; auto-highlight-symbol

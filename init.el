@@ -553,6 +553,7 @@ Otherwise indent whole buffer."
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
+  (push '("*compilation*" :position right :noselect t :width .5) popwin:special-display-config)
   (push '("\\*alchemist test report\\*" :regexp nil :stick t) popwin:special-display-config)
   )
 
@@ -878,6 +879,12 @@ Otherwise indent whole buffer."
         (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)
+        (when (functionp 'ruby-test-mode)
+          (add-hook 'ruby-mode-hook 'ruby-test-mode))
+        (eval-after-load "ruby-test-mode"
+          #'(progn
+              (define-key ruby-mode-map (kbd "C-c C-_") 'ruby-test-run)
+              (define-key ruby-mode-map (kbd "C-c C-/") 'ruby-test-run-at-point)))
 	(when (require 'rinari nil t)
 	  (global-rinari-mode t))
 	))

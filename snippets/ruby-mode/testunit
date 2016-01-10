@@ -1,0 +1,31 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: testunit
+# key: testunit
+# --
+# coding: utf-8
+require 'test/unit'
+
+class ${1:TestSample} < Test::Unit::TestCase
+  class << self
+    def startup
+      # テスト群の実行前に呼ばれる
+    end
+    def shutdown
+      # テスト群の実行後に呼ばれる
+    end
+  end
+  def setup
+    # 毎回テスト実行前に呼ばれる
+  end
+  def cleanup
+    # テストがpassedになっているときテスト実行後teardownの前に呼ばれる
+  end
+  def teardown
+    # 毎回テスト実行後に呼ばれる
+  end
+
+  ################ Test Cases
+  def test_foo
+    $0assert_true(1 == 1)
+  end
+end

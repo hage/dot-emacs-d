@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: forin
+# key: forin
+# --
+for (${1:key} in ${2:object}) {
+    $0
+}

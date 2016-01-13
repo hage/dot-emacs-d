@@ -1134,6 +1134,13 @@ Otherwise sends the current line."
 ;;;
 (when (functionp 'js2-mode)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+  (eval-after-load "js2-mode"
+    #'((add-to-list 'align-rules-list
+                    '(javascript-object-notation
+                      (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
+                      (tab-stop . t)              ; タブ位置でそろえる
+                      (modes    . '(js2-mode))))))
   )
 
 ;;;

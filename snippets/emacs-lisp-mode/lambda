@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: lambda
+# key: lambda
+# binding: direct-keybinding
+# --
+(add-hook '$1
+        (lambda ()
+                $0
+))

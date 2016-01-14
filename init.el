@@ -1150,7 +1150,16 @@ Otherwise sends the current line."
                      '(javascript-object-notation
                        (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
                        (tab-stop . t)              ; タブ位置でそろえる
-                       (modes    . '(js2-mode))))))
+                       (modes    . '(js2-mode))))
+        (eval-after-load "auto-highlight-symbol"
+          #'(progn
+              (push 'js2-mode ahs-modes)))
+        (add-hook 'js2-mode-hook
+                  (lambda ()
+                    (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
+                    (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
+                    ))
+        ))
   )
 
 ;;;

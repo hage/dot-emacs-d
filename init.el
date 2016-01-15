@@ -21,6 +21,7 @@
 ;;;
 ;;; ユーティリティ関数とマクロ
 ;;;
+(require 'cl)
 (defmacro exec-if-bound (sexplist)
   "関数が存在する時だけ実行する"
   `(if (fboundp (car ',sexplist))

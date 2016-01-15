@@ -242,7 +242,10 @@
 (remove-hook 'find-file-hook 'vc-find-file-hook)
 (remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
 
-;;;
+;; tramp -- zshだとハングアップすることが多いため
+(eval-after-load 'tramp #'(setenv "SHELL" "/bin/bash"))
+
+
 ;;; キー・バインドの変更、新規割当
 ;;;
 (global-unset-key "\C-q")

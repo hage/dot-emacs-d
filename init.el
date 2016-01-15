@@ -1330,6 +1330,13 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; elscreen-separate-buffer-list
+;;;
+(when (require 'elscreen-separate-buffer-list nil t)
+  (elscreen-separate-buffer-list-mode))
+
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

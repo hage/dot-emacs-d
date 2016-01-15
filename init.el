@@ -1317,7 +1317,7 @@ Otherwise sends the current line."
 ;;;
 ;;; auto-highlight-symbol
 ;;;
-(when (require 'auto-highlight-symbol)
+(when (require 'auto-highlight-symbol nil t)
   (global-auto-highlight-symbol-mode t))
 
 

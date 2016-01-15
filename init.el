@@ -1320,6 +1320,14 @@ Otherwise sends the current line."
 (when (require 'auto-highlight-symbol)
   (global-auto-highlight-symbol-mode t))
 
+
+;;;
+;;; pbcopy
+;;;
+(when (and osxp (require 'pbcopy nil t))
+  (turn-on-pbcopy))
+
+
 ;;;
 ;;; faces
 ;;;

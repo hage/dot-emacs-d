@@ -369,6 +369,27 @@ Otherwise indent whole buffer."
           (set-buffer-modified-p nil))))))
 (global-set-key (kbd "C-x w") 'rename-file-and-buffer)
 
+
+;;;
+;;; cde用 -- カレントバッファのディレクトリを返す
+;;;
+(defun return-current-working-directory-to-shell ()
+  (expand-file-name
+   (with-current-buffer
+       (if (featurep 'elscreen)
+           (let* ((frame-confs (elscreen-get-frame-confs (selected-frame)))
+                  (num (nth 1 (assoc 'screen-history frame-confs)))
+                  (cur-window-conf
+                   (assoc 'window-configuration
+                          (assoc num (assoc 'screen-property frame-confs))))
+                  (marker (nth 2 cur-window-conf)))
+             (marker-buffer marker))
+         (nth 1
+              (assoc 'buffer-list
+                     (nth 1 (nth 1 (current-frame-configuration))))))
+     default-directory)))
+
+
 ;;;
 ;;; smartprens
 ;;;

@@ -44,6 +44,7 @@
 (depends-on "pbcopy")
 (depends-on "persistent-scratch")
 (depends-on "php-mode")
+(depends-on "point-undo")
 (depends-on "popup")
 (depends-on "popwin")
 (depends-on "rbenv")

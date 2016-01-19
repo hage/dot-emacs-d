@@ -219,8 +219,9 @@
 ;; recentf
 (when (featurep 'recentf)
   (setq recentf-max-saved-items 4096)
-  (setq recentf-auto-cleanup 3600)
-  (run-with-idle-timer 60 t 'recentf-save-list)
+  (setq recentf-auto-cleanup 10)
+  (setq recentf-exclude '(".recentf"))
+  (run-with-idle-timer 30 t 'recentf-save-list)
   (eval-after-load "recentf"
     #'(progn
         (require 'recentf-ext)))

@@ -126,7 +126,7 @@
 (defvar mode-line-cleaner-alist
   '( ;; For minor-mode, first char is 'space'
     (yas-minor-mode . "")
-    (paredit-mode . " Pe")
+    (paredit-mode . " ()e")
     (eldoc-mode . " Ed")
     (abbrev-mode . "")
     (helm-mode . "")
@@ -139,6 +139,7 @@
     (robe-mode . " R")
     (company-mode . " cp")
     (alchemist-mode . " Alc")
+    (ruby-test-mode . " rtest")
     ;; Major modes
     (lisp-interaction-mode . "iLisp")
     (python-mode . "Py")

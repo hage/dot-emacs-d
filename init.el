@@ -1383,3 +1383,4 @@ Otherwise sends the current line."
 (set-face-background 'show-paren-match "limegreen")
 (set-face-foreground 'font-lock-type-face "LimeGreen")
 (set-face-background 'secondary-selection "MediumPurple4")
+(set-face-foreground 'font-lock-function-name-face "MediumTurquoise")

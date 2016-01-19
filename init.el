@@ -550,7 +550,8 @@ Otherwise indent whole buffer."
 
 
     )
-  (exec-if-bound (helm-migemo-mode t))
+  (when (require 'helm-migemo nil t)
+    (helm-migemo-mode t))
   )
 
 ;;;

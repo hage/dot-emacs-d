@@ -1371,11 +1371,10 @@ Otherwise sends the current line."
             (smartrep-define-key
                 global-map "C-q" '(("(" . 'paredit-wrap-round)
                                    ("9" . 'paredit-forward-barf-sexp)
-                                   ("0" . 'paredit-forward-slurp-sexp)))
-            ))
-
-      ))
-
+                                   ("0" . 'paredit-forward-slurp-sexp)))))))
+(when (fboundp 'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 ;;;
 ;;; faces

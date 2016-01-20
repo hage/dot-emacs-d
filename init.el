@@ -1360,6 +1360,24 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; paredit
+;;;
+(eval-after-load 'paredit
+  #'(progn
+      (define-key paredit-mode-map (kbd "M-s") nil)
+      (define-key paredit-mode-map (kbd "C-M-s") 'paredit-splice-sexp)
+      (eval-after-load 'smartrep
+        #'(progn
+            (smartrep-define-key
+                global-map "C-q" '(("(" . 'paredit-wrap-round)
+                                   ("9" . 'paredit-forward-barf-sexp)
+                                   ("0" . 'paredit-forward-slurp-sexp)))
+            ))
+
+      ))
+
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

@@ -41,6 +41,7 @@
 (depends-on "multiple-cursors")
 (depends-on "package-build")
 (depends-on "pallet")
+(depends-on "paredit")
 (depends-on "pbcopy")
 (depends-on "persistent-scratch")
 (depends-on "php-mode")

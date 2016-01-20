@@ -1360,6 +1360,16 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; paredit
+;;;
+(eval-after-load 'paredit
+  #'(progn
+      (define-key paredit-mode-map (kbd "M-s") nil)
+      (define-key paredit-mode-map (kbd "C-M-s") 'paredit-splice-sexp)
+      ))
+
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

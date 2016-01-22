@@ -34,6 +34,7 @@
 (depends-on "helm-swoop")
 (depends-on "inf-ruby")
 (depends-on "js2-mode")
+(depends-on "json-mode")
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "markdown-mode")

@@ -1376,6 +1376,14 @@ Otherwise sends the current line."
   (add-hook 'lisp-mode-hook 'enable-paredit-mode)
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
+
+;;;
+;;; plogic
+;;;
+(when (fboundp 'json-mode)
+  (add-to-list 'auto-mode-alist '("\\.plogic\\'" . json-mode)))
+
+
 ;;;
 ;;; faces
 ;;;
@@ -1392,7 +1400,7 @@ Otherwise sends the current line."
 (set-face-foreground font-lock-builtin-face "CornflowerBlue")
 (set-face-foreground font-lock-keyword-face "DeepSkyBlue")
 (set-face-bold font-lock-keyword-face t)
-(set-face-foreground 'minibuffer-prompt "SlateBlue")
+(set-face-foreground 'minibuffer-prompt "LawnGreen")
 (set-face-foreground 'font-lock-constant-face "gold3")
 (set-face-foreground 'default "linen")
 (set-face-foreground 'match "black")

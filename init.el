@@ -1266,10 +1266,11 @@ Otherwise sends the current line."
 ;;; elscreen
 ;;;
 (when (require 'elscreen nil t)
-  (setq elscreen-prefix-key (kbd "C-w C-w"))
+  (global-unset-key (kbd "M-t"))
+  (setq elscreen-prefix-key (kbd "M-t"))
   (elscreen-start)
-  (global-set-key (kbd "C-w C-w C-w") 'elscreen-toggle)
-  (global-set-key (kbd "C-w C-w l") 'helm-elscreen)
+  (global-set-key (kbd "M-t M-t") 'elscreen-toggle)
+  (global-set-key (kbd "M-t l") 'helm-elscreen)
   ;; タブの先頭に[X]を表示しない
   (setq elscreen-tab-display-kill-screen nil)
   ;; header-lineの先頭に[<->]を表示しない

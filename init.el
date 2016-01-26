@@ -1380,8 +1380,8 @@ Otherwise sends the current line."
 ;;;
 ;;; plogic
 ;;;
-(when (fboundp 'json-mode)
-  (add-to-list 'auto-mode-alist '("\\.plogic\\'" . json-mode)))
+(when (fboundp 'css-mode)
+  (add-to-list 'auto-mode-alist '("\\.plogic\\'" . css-mode)))
 
 
 ;;;

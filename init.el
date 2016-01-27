@@ -516,8 +516,9 @@ Otherwise indent whole buffer."
 
         (custom-set-variables
          '(helm-mini-default-sources `(helm-source-buffers-list
-                                       helm-source-ls-git
                                        helm-source-recentf
+                                       helm-source-ls-git
+                                       helm-source-findutils
                                        helm-source-locate
                                        )))
 	))

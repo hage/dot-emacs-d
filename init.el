@@ -11,7 +11,7 @@
 
 
 ;; 非常に重要な設定
-(global-set-key "\C-h" 'backward-delete-char-untabify)
+(global-set-key "\C-h" 'delete-backward-char)
 
 ;; 文字コード
 (set-language-environment 'japanese)

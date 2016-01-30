@@ -62,7 +62,6 @@
 (depends-on "smartparens")
 (depends-on "smartrep")
 (depends-on "smooth-scroll")
-(depends-on "tagedit")
 (depends-on "volatile-highlights")
 (depends-on "web-mode")
 (depends-on "which-key")

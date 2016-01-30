@@ -1089,6 +1089,8 @@ Otherwise sends the whole buffer."
 	))
   )
 
+;;; tagedit は不安定すぎるので Cask から消すことによって一度外す
+;;; 以下のコードは残す
 (when (autoload-if-found 'tagedit-mode "tagedit" "tagedit" t)
   (eval-after-load 'web-mode
     #'(progn

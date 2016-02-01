@@ -982,7 +982,13 @@ Otherwise indent whole buffer."
   (autoload 'ac-robe-setup "ac-robe" "robe auto-complete" nil nil)
   (eval-after-load 'ruby-mode
     #'(progn
-        (add-hook 'ruby-mode-hook 'robe-mode)
+        (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+        (autoload 'inf-ruby-minor-mode "inf-ruby" "" t)
+        (add-hook 'ruby-mode-hook
+                  (lambda ()
+                    (robe-mode)
+                    (robe-ac-setup)
+                    (inf-ruby-minor-mode)))
         (eval-after-load 'inf-ruby
           #'(progn
               (defun my-ruby-send-thing-dwim (uarg)

@@ -1427,6 +1427,16 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; csv-mode
+;;;
+(eval-after-load 'csv-mode
+  #'(progn
+      (define-key csv-mode-map (kbd "C-M-f") 'csv-forward-field)
+      (define-key csv-mode-map (kbd "C-M-b") 'csv-backward-field)
+      ))
+
+
+;;;
 ;;; plogic
 ;;;
 (when (fboundp 'css-mode)

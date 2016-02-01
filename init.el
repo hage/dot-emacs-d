@@ -595,12 +595,14 @@ Otherwise indent whole buffer."
 ;;;
 (when (require 'popwin nil t)
   (popwin-mode 1)
+  (setq popwin:adjust-other-windows t)
   (setq popwin:popup-window-height .43)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("*Backtrace*") popwin:special-display-config)
-  (push '("*compilation*" :position right :noselect t :width .5) popwin:special-display-config)
+  (push '("*compilation*" :height .6) popwin:special-display-config)
+  (push '("*pry*" :height .4 :width .5 :stick t) popwin:special-display-config)
   (push '("\\*alchemist test report\\*" :regexp nil :stick t) popwin:special-display-config)
   )
 

@@ -3,4 +3,4 @@
 # key: reg
 # binding: direct-keybinding
 # --
-%r${1:|}$0$1
+%r{$0}

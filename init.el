@@ -1319,6 +1319,10 @@ Otherwise sends the current line."
 
   (set-face-foreground 'elscreen-tab-current-screen-face "#fc0")
   (set-face-background 'elscreen-tab-current-screen-face "gray50")
+  (when (require 'elscreen-persist nil t)
+    (elscreen-persist-mode 1)
+    (global-set-key (kbd "M-t S" ) 'elscreen-persist-store)
+    (global-set-key (kbd "M-t L" ) 'elscreen-persist-restore))
   )
 
 ;;;

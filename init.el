@@ -218,15 +218,15 @@
   )
 
 ;; recentf
-(when (featurep 'recentf)
-  (setq recentf-max-saved-items 4096)
-  (setq recentf-auto-cleanup 'never)
-  (setq recentf-exclude '(".recentf"))
-  (run-with-idle-timer 30 t 'recentf-save-list)
-  (eval-after-load "recentf"
-    #'(progn
-        (require 'recentf-ext)))
-  )
+(eval-after-load 'recentf
+  #'(progn
+      (setq recentf-max-saved-items 4096)
+      (setq recentf-auto-cleanup 3600)
+      (setq recentf-exclude '(".recentf"))
+      (run-with-idle-timer 30 t 'recentf-save-list)
+      (require 'recentf-ext nil t)
+      ))
+
 
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions

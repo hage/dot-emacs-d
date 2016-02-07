@@ -1467,6 +1467,13 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; eshell
+;;;
+(when (featurep 'eshell)
+  (global-set-key (kbd "C-w C-w") 'eshell)
+  )
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

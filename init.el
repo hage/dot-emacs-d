@@ -1469,7 +1469,7 @@ Otherwise sends the current line."
 ;;;
 ;;; eshell
 ;;;
-(when (featurep 'eshell)
+(when (fboundp 'eshell)
   (global-set-key (kbd "C-w C-w") 'eshell)
   )
 

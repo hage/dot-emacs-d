@@ -57,6 +57,7 @@
 (depends-on "rspec-mode")
 (depends-on "ruby-compilation")
 (depends-on "ruby-test-mode")
+(depends-on "ruby-tools")
 (depends-on "s")
 (depends-on "smart-compile")
 (depends-on "smart-newline")

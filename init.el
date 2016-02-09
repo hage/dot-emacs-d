@@ -911,6 +911,14 @@ Otherwise indent whole buffer."
 ;; cf. http://qiita.com/nysalor/items/59060cc16f2d636c24b3
 
 (when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+  (when  (require 'ruby-tools nil t)
+    (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
+    (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
+    (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
+    (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
+    (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate)
+    )
+
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (eval-after-load "ruby-mode"

@@ -572,6 +572,7 @@ Otherwise indent whole buffer."
 
   (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
+    (global-set-key (kbd "M-s s") 'helm-swoop)
 
     (defun my-helm-swoop-symbol-at-point ()
       "list all lines another buffer that is includes symbol at point."
@@ -579,8 +580,6 @@ Otherwise indent whole buffer."
       (isearch-forward-symbol-at-point)
       (helm-swoop))
     (global-set-key (kbd "M-s l") 'my-helm-swoop-symbol-at-point)
-
-
     )
   (when (require 'helm-migemo nil t)
     (helm-migemo-mode t))

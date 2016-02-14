@@ -685,6 +685,16 @@ Otherwise indent whole buffer."
   (eval-after-load "yasnippet"
     #'(setq-default ac-sources
                     (append '(ac-source-yasnippet) ac-sources)))
+  ;; ac-etags
+  (custom-set-variables
+   '(ac-etags-requires 1))
+  (eval-after-load "etags"
+    '(progn
+       (ac-etags-setup)))
+  (defun my/prog-mode-common-hook ()
+    (add-to-list 'ac-sources 'ac-source-etags))
+  (add-hook 'c-mode-common-hook 'my/prog-mode-common-hook)
+  (add-hook 'ruby-mode-hook 'my/prog-mode-common-hook)
   )
 
 

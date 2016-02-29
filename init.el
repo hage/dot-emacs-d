@@ -506,6 +506,12 @@ Otherwise indent whole buffer."
               (set-face-foreground 'helm-buffer-file "lime green")
               (set-face-background 'helm-selection-line "gray20")
               (set-face-underline 'helm-selection-line nil)
+
+              (set-face-foreground 'helm-header "#aaa")
+              (set-face-background 'helm-header "#111")
+              (set-face-underline 'helm-header nil)
+              (set-face-background 'helm-source-header "#000")
+
               (set-face-foreground 'helm-ls-git-conflict-face "#f77")
               (set-face-background 'helm-ls-git-conflict-face "red3")
               (set-face-foreground 'helm-ls-git-untracked-face "plum1"))

@@ -1268,6 +1268,7 @@ Otherwise sends the current line."
               (push 'js2-mode ahs-modes)))
         (add-hook 'js2-mode-hook
                   (lambda ()
+                    (setq js2-basic-offset 2)
                     (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
                     (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
                     ))

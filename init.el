@@ -623,6 +623,7 @@ Otherwise indent whole buffer."
   (push '("*Backtrace*") popwin:special-display-config)
   (push '("*compilation*" :height .6) popwin:special-display-config)
   (push '("*pry*" :height .4 :width .5 :stick t) popwin:special-display-config)
+  (push '("*rake*") popwin:special-display-config)
   (push '("\\*alchemist test report\\*" :regexp nil :stick t) popwin:special-display-config)
   )
 

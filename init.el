@@ -1254,7 +1254,16 @@ Otherwise sends the current line."
                ((and (not uarg) (not (use-region-p)))
                 (alchemist-iex-send-current-line))))
 
-            (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)))))
+            (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
+
+            (defun my-alchemist-newline-and-insert-pipe ()
+              (interactive)
+              (move-end-of-line 1)
+              (newline-and-indent)
+              (insert "|> "))
+            (define-key alchemist-mode-map (kbd "M-J") 'my-alchemist-newline-and-insert-pipe)
+
+            ))))
 
 
 ;;;

@@ -1215,6 +1215,15 @@ Otherwise sends the whole buffer."
 ;;;
 (eval-after-load "elixir-mode"
   #'(progn
+
+      ;; 改行して行頭に |> をつける
+      (defun my-elixir-newline-and-insert-pipe ()
+        (interactive)
+        (move-end-of-line 1)
+        (newline-and-indent)
+        (insert "|> "))
+      (define-key elixir-mode-map (kbd "M-J") 'my-elixir-newline-and-insert-pipe)
+
       (when (featurep 'smartparens)
         (sp-with-modes '(elixir-mode)
           (sp-local-pair "fn" "end"
@@ -1255,13 +1264,6 @@ Otherwise sends the current line."
                 (alchemist-iex-send-current-line))))
 
             (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
-
-            (defun my-alchemist-newline-and-insert-pipe ()
-              (interactive)
-              (move-end-of-line 1)
-              (newline-and-indent)
-              (insert "|> "))
-            (define-key alchemist-mode-map (kbd "M-J") 'my-alchemist-newline-and-insert-pipe)
 
             ))))
 

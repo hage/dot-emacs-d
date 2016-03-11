@@ -4,5 +4,5 @@
 # expand-env: ((yas-indent-line 'fixed))
 # --
 @doc """
-$0
+     $0
 """

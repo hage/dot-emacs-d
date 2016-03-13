@@ -372,6 +372,21 @@ Otherwise indent whole buffer."
 (global-set-key (kbd "C-x w") 'rename-file-and-buffer)
 
 
+;; 閉じカッコの上にカーソルがあった時はブロックを開いて、そうじゃないときは newline-and-indent
+(defun my-open-block-or-newline-and-indent ()
+  (interactive)
+  (let ((ch (char-to-string (following-char))))
+    (if (string-match "[])}>]" ch)
+        (progn
+          (newline-and-indent)
+          (previous-line 1)
+          (move-end-of-line 1)
+          (newline-and-indent))
+      (newline-and-indent))
+    ))
+(global-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)
+
+
 ;;;
 ;;; cde用 -- カレントバッファのディレクトリを返す
 ;;;

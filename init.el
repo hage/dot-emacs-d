@@ -1298,6 +1298,7 @@ Otherwise sends the current line."
                        (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
                        (tab-stop . t)              ; タブ位置でそろえる
                        (modes    . '(js2-mode))))
+        (custom-set-variables '(js2-strict-missing-semi-warning nil))
         (eval-after-load "auto-highlight-symbol"
           #'(progn
               (push 'js2-mode ahs-modes)))

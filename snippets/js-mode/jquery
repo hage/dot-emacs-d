@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jquery
+# key: jq
+# --
+$($0)

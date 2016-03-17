@@ -71,6 +71,8 @@
 
 (add-load-path-recurcive-if-found "~/.emacs.d/free")
 
+(defun string-currentline ()
+  (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
 
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
@@ -386,6 +388,19 @@ Otherwise indent whole buffer."
     ))
 (global-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)
 
+;; 行末に移動して
+;;   セミコロンだったら → そのまま改行
+;;   コメントだったら → indent-new-comment-line
+;;   どれでもないとき → セミコロンをつけて改行
+(defun my-electric-semicolon-or-new-comment-ine ()
+  (interactive)
+  (move-end-of-line 1)
+  (if (memq 'font-lock-comment-face (text-properties-at (point)))
+      (indent-new-comment-line)
+    (progn
+      (if (not (string-match ";[ 	]*$" (string-currentline)))
+          (insert ";"))
+      (newline-and-indent))))
 
 ;;;
 ;;; cde用 -- カレントバッファのディレクトリを返す
@@ -1307,6 +1322,7 @@ Otherwise sends the current line."
                     (setq js2-basic-offset 2)
                     (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
                     (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
+                    (define-key js2-mode-map (kbd "C-M-j") 'my-electric-semicolon-or-new-comment-ine)
                     ))
         ))
   )

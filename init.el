@@ -148,6 +148,7 @@
     (ruby-mode   . "Ruby")
     (emacs-lisp-mode . "Elisp")
     (elixir-mode . "Elixir")
+    (js2-mode . "Js2")
     (markdown-mode . "Md")))
 (defun clean-mode-line ()
   (interactive)

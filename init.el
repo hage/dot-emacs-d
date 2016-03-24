@@ -464,6 +464,23 @@ Otherwise indent whole buffer."
 
 
 ;;;
+;;; migemo
+;;;
+(setq migemo-command
+      (cond
+       ((eq (shell-command "which cmigemo") 0) "cmigemo")
+       ((eq (shell-command "which migemo") 0) "migemo")
+       (t nil)))
+(when (and migemo-command (require 'migemo nil t))
+  (setq migemo-accept-process-output-timeout-msec 20
+	migemo-isearch-enable-p t
+	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
+	migemo-coding-system 'utf-8
+	migemo-options '("-q" "--emacs" "-i" "\g"))
+  (migemo-init))
+
+
+;;;
 ;;; duplicate-thing
 ;;;
 (when (autoload-if-found 'duplicate-thing "duplicate-thing" nil t)
@@ -618,7 +635,7 @@ Otherwise indent whole buffer."
       (helm-swoop))
     (global-set-key (kbd "M-s l") 'my-helm-swoop-symbol-at-point)
     )
-  (when (require 'helm-migemo nil t)
+  (when (and migemo-command (require 'helm-migemo nil t))
     (helm-migemo-mode t))
   )
 
@@ -773,23 +790,6 @@ Otherwise indent whole buffer."
   (global-set-key (kbd "C-q C-SPC") 'mc/mark-all-dwim)
   (global-set-key (kbd "C-x r t") 'mc/edit-lines)
   )
-
-;;;
-;;; migemo
-;;;
-(setq migemo-command
-      (cond
-       ((eq (shell-command "which cmigemo") 0) "cmigemo")
-       ((eq (shell-command "which migemo") 0) "migemo")
-       (t nil)))
-(when (and migemo-command (require 'migemo nil t))
-  (setq migemo-accept-process-output-timeout-msec 20
-	migemo-isearch-enable-p t
-	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
-	migemo-coding-system 'utf-8
-	migemo-options '("-q" "--emacs" "-i" "\g"))
-  (migemo-init))
-
 
 ;;;
 ;;; magit

@@ -970,6 +970,8 @@ Otherwise indent whole buffer."
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (eval-after-load "ruby-mode"
     #'(progn
+        (autoload-if-found 'realgud:byebug "realgud-byebug" "Ruby Debugger" t)
+
         (defun ruby-interpreter ()
           (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))
             (if (file-exists-p shims-ruby)

@@ -140,7 +140,7 @@
     (emmet-mode . " Emt")
     (robe-mode . " R")
     (company-mode . " cp")
-    (alchemist-mode . " Alc")
+    (alchemist-mode . " Alchemist")
     (ruby-test-mode . " rtest")
     ;; Major modes
     (lisp-interaction-mode . "iLisp")

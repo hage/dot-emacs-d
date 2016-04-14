@@ -1580,6 +1580,8 @@ Otherwise sends the current line."
 (set-face-foreground 'font-lock-type-face "LimeGreen")
 (set-face-background 'secondary-selection "MediumPurple4")
 (set-face-foreground 'font-lock-function-name-face "MediumTurquoise")
-(set-face-foreground 'diff-removed "black")
-(set-face-foreground 'diff-added "black")
-(set-face-foreground 'diff-context "gray60")
+(eval-after-load 'diff-mode
+  #'(progn
+      (set-face-foreground 'diff-removed "black")
+      (set-face-foreground 'diff-added "black")
+      (set-face-foreground 'diff-context "gray60")))

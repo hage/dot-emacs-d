@@ -6,6 +6,7 @@
 (depends-on "ac-etags")
 (depends-on "ac-helm")
 (depends-on "ac-inf-ruby")
+(depends-on "ac-mozc")
 (depends-on "alchemist")
 (depends-on "async")
 (depends-on "auto-complete")

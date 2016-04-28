@@ -737,7 +737,7 @@ Otherwise indent whole buffer."
         ac-ignore-case t
 	ac-delay 0.1
         ac-auto-start 3
-	ac-use-menu-map t)
+        ac-use-menu-map t)
   (eval-after-load "yasnippet"
     #'(setq-default ac-sources
                     (append '(ac-source-yasnippet) ac-sources)))
@@ -751,6 +751,16 @@ Otherwise indent whole buffer."
     (add-to-list 'ac-sources 'ac-source-etags))
   (add-hook 'c-mode-common-hook 'my/prog-mode-common-hook)
   (add-hook 'ruby-mode-hook 'my/prog-mode-common-hook)
+
+  ;; ac-mozc
+  (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))
+  (when mozc-helper-program-name
+    (require 'ac-mozc nil t)
+    (define-key ac-mode-map (kbd "C-c C-SPC") 'ac-complete-mozc)
+    (add-to-list 'ac-sources 'ac-source-mozc)
+    (setq ac-auto-show-menu 0.2
+          ac-mozc-remove-space nil)
+    )
   )
 
 

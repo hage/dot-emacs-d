@@ -759,7 +759,8 @@ Otherwise indent whole buffer."
     (define-key ac-mode-map (kbd "C-c C-SPC") 'ac-complete-mozc)
     (add-to-list 'ac-sources 'ac-source-mozc)
     (setq ac-auto-show-menu 0.2
-          ac-mozc-remove-space nil)
+          ac-mozc-remove-space nil
+          ac-disable-faces nil)
     )
   )
 

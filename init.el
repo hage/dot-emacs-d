@@ -761,6 +761,7 @@ Otherwise indent whole buffer."
     (setq ac-auto-show-menu 0.2
           ac-mozc-remove-space nil
           ac-disable-faces nil)
+    (push 'text-mode ac-modes)
     )
   )
 
@@ -916,8 +917,8 @@ Otherwise indent whole buffer."
 
   ;; howm のファイル名
   (setq howm-file-name-format
-        (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'org-mode)
-                                           "org"
+        (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'markdown-mode)
+                                           "md"
                                          "howm")))
 
   (setq howm-view-grep-parse-line

@@ -828,7 +828,7 @@ Otherwise indent whole buffer."
 
         (set-face-foreground 'magit-diff-added "#55aa55")
         (set-face-background 'magit-diff-added nil)
-        (set-face-foreground 'magit-diff-added-highlight "#00ff00")
+        (set-face-foreground 'magit-diff-added-highlight "#44ff44")
         (set-face-background 'magit-diff-added-highlight "gray10")
 
         (set-face-foreground 'magit-diff-removed "#aa5555")

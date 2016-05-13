@@ -762,6 +762,7 @@ Otherwise indent whole buffer."
           ac-mozc-remove-space nil
           ac-disable-faces nil)
     (push 'text-mode ac-modes)
+    (push 'markdown-mode ac-modes)
     )
   )
 

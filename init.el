@@ -207,7 +207,9 @@
 (setq recenter-positions '(bottom top middle)) ; move-to-window-line-top-bottomの順番
 
 ;; hl-line-modeを有効に
-(when (require 'hl-line nil t)
+(when (and
+       (not (equal (getenv "TERM_PROGRAM") "iTerm.app")) ; iTermのときはそちらにある同等機能を使うからこちらは無効に
+       (require 'hl-line nil t))
   ;; http://rubikitch.com/2015/05/14/global-hl-line-mode-timer/
   ;; 軽いhl-line
   (defun global-hl-line-timer-function ()

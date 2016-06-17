@@ -1128,6 +1128,7 @@ Otherwise sends the whole buffer."
 
 (when (fboundp 'yaml-mode)
   (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+  (define-key yaml-mode-map (kbd "C-h") 'yaml-electric-backspace)
   )
 
 

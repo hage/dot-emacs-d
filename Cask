@@ -1,5 +1,5 @@
 (source gnu)
-(source marmalade)
+;(source marmalade)
 (source melpa)
 
 (depends-on "ac-alchemist")

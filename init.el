@@ -756,6 +756,7 @@ Otherwise indent whole buffer."
 
   (push 'text-mode ac-modes)
   (push 'markdown-mode ac-modes)
+  (push 'yaml-mode ac-modes)
 
   ;; ac-mozc
   (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))

@@ -754,6 +754,9 @@ Otherwise indent whole buffer."
   (add-hook 'c-mode-common-hook 'my/prog-mode-common-hook)
   (add-hook 'ruby-mode-hook 'my/prog-mode-common-hook)
 
+  (push 'text-mode ac-modes)
+  (push 'markdown-mode ac-modes)
+
   ;; ac-mozc
   (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))
   (when mozc-helper-program-name
@@ -763,8 +766,6 @@ Otherwise indent whole buffer."
     (setq ac-auto-show-menu 0.2
           ac-mozc-remove-space nil
           ac-disable-faces nil)
-    (push 'text-mode ac-modes)
-    (push 'markdown-mode ac-modes)
     )
   )
 

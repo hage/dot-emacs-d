@@ -1132,8 +1132,12 @@ Otherwise sends the whole buffer."
   (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
   (eval-after-load 'yaml-mode
     #'(define-key yaml-mode-map (kbd "C-h") 'yaml-electric-backspace))
+  (when (fboundp 'ansible)
+    (add-hook 'yaml-mode-hook 'ansible))
   )
 
+(when (fboundp 'jinja2-mode)
+  (add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode)))
 
 ;;;
 ;;; php-mode

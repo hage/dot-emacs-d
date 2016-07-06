@@ -1420,7 +1420,7 @@ Otherwise sends the current line."
                          ("<" . (lambda () (beginning-of-buffer-other-window 0)))
                          (">" . (lambda () (end-of-buffer-other-window 0)))
                          ))
-  (when (featurep 'multiple-cursors)
+  (when (functionp 'mc/mark-next-like-this)
     (smartrep-define-key
         global-map "C-w" '(("w" . 'mc/mark-next-like-this)
                            ("n" . 'mc/mark-next-like-this)

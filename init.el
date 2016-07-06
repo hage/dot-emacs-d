@@ -1253,13 +1253,17 @@ Otherwise sends the whole buffer."
       (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
 
       (progn
-        (setq markdown-common-header-face-foreground "LightSlateBlue")
+        (setq markdown-common-header-face-foreground "CornflowerBlue")
         (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-2 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-3 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-4 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-5 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-6 markdown-common-header-face-foreground)
+
+        (setq markdown-common-delimiter-face-foreground "moccasin")
+        (set-face-foreground 'markdown-header-delimiter-face markdown-common-delimiter-face-foreground)
+        (set-face-foreground 'markdown-list-face markdown-common-delimiter-face-foreground)
         )
       )
     )

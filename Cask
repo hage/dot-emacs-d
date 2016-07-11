@@ -29,6 +29,7 @@
 (depends-on "foreign-regexp")
 (depends-on "git-commit")
 (depends-on "helm")
+(depends-on "helm-ag")
 (depends-on "helm-c-yasnippet")
 (depends-on "helm-core")
 (depends-on "helm-git-grep")

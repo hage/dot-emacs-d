@@ -640,6 +640,7 @@ Otherwise indent whole buffer."
     )
   (when (and migemo-command (require 'helm-migemo nil t))
     (helm-migemo-mode t))
+  (global-set-key-if-bound (kbd "M-s M-a") #'helm-ag)
   )
 
 ;;;

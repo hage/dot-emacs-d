@@ -1585,6 +1585,13 @@ Otherwise sends the current line."
   (global-set-key (kbd "C-w C-w") 'eshell)
   )
 
+
+;;;
+;;; ace-search
+;;;
+(global-set-key-if-bound (kbd "M-C-r") 'ace-jump-mode)
+
+
 ;;;
 ;;; faces
 ;;;

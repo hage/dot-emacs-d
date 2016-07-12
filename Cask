@@ -6,6 +6,7 @@
 (depends-on "ac-helm")
 (depends-on "ac-inf-ruby")
 (depends-on "ac-mozc")
+(depends-on "ace-jump-mode")
 (depends-on "alchemist")
 (depends-on "ansible")
 (depends-on "async")

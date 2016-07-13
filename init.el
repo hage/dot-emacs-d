@@ -1581,9 +1581,8 @@ Otherwise sends the current line."
 ;;;
 ;;; eshell
 ;;;
-(when (fboundp 'eshell)
-  (global-set-key (kbd "C-w C-w") 'eshell)
-  )
+(global-set-key-if-bound (kbd "C-w C-w") 'eshell)
+
 
 
 ;;;

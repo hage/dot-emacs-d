@@ -9,6 +9,7 @@
 (depends-on "ace-jump-mode")
 (depends-on "alchemist")
 (depends-on "ansible")
+(depends-on "apache-mode")
 (depends-on "async")
 (depends-on "auto-complete")
 (depends-on "auto-highlight-symbol")

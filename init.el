@@ -11,7 +11,7 @@
 
 
 ;; 非常に重要な設定
-(global-set-key "\C-h" 'backward-delete-char-untabify)
+(global-set-key "\C-h" 'delete-backward-char)
 
 ;; 文字コード
 (set-language-environment 'japanese)
@@ -21,6 +21,7 @@
 ;;;
 ;;; ユーティリティ関数とマクロ
 ;;;
+(require 'cl)
 (defmacro exec-if-bound (sexplist)
   "関数が存在する時だけ実行する"
   `(if (fboundp (car ',sexplist))
@@ -70,6 +71,8 @@
 
 (add-load-path-recurcive-if-found "~/.emacs.d/free")
 
+(defun string-currentline ()
+  (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
 
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
@@ -125,7 +128,7 @@
 (defvar mode-line-cleaner-alist
   '( ;; For minor-mode, first char is 'space'
     (yas-minor-mode . "")
-    (paredit-mode . " Pe")
+    (paredit-mode . " ()e")
     (eldoc-mode . " Ed")
     (abbrev-mode . "")
     (helm-mode . "")
@@ -137,13 +140,15 @@
     (emmet-mode . " Emt")
     (robe-mode . " R")
     (company-mode . " cp")
-    (alchemist-mode . " Alc")
+    (alchemist-mode . " Alchemist")
+    (ruby-test-mode . " rtest")
     ;; Major modes
     (lisp-interaction-mode . "iLisp")
     (python-mode . "Py")
     (ruby-mode   . "Ruby")
     (emacs-lisp-mode . "Elisp")
     (elixir-mode . "Elixir")
+    (js2-mode . "Js2")
     (markdown-mode . "Md")))
 (defun clean-mode-line ()
   (interactive)
@@ -202,7 +207,9 @@
 (setq recenter-positions '(bottom top middle)) ; move-to-window-line-top-bottomの順番
 
 ;; hl-line-modeを有効に
-(when (require 'hl-line nil t)
+(when (and
+       (not (equal (getenv "TERM_PROGRAM") "iTerm.app")) ; iTermのときはそちらにある同等機能を使うからこちらは無効に
+       (require 'hl-line nil t))
   ;; http://rubikitch.com/2015/05/14/global-hl-line-mode-timer/
   ;; 軽いhl-line
   (defun global-hl-line-timer-function ()
@@ -216,14 +223,15 @@
   )
 
 ;; recentf
-(when (featurep 'recentf)
-  (setq recentf-max-saved-items 2048)
-  (setq recentf-auto-cleanup 10)
-  (run-with-idle-timer 30 t 'recentf-save-list)
-  (eval-after-load "recentf"
-    #'(progn
-        (require 'recentf-ext)))
-  )
+(eval-after-load 'recentf
+  #'(progn
+      (setq recentf-max-saved-items 4096)
+      (setq recentf-auto-cleanup 3600)
+      (setq recentf-exclude '(".recentf"))
+      (run-with-idle-timer 30 t 'recentf-save-list)
+      (require 'recentf-ext nil t)
+      ))
+
 
 ;; 本当に終わってもいいの? と聞くようにする
 (add-hook 'kill-emacs-query-functions
@@ -242,7 +250,10 @@
 (remove-hook 'find-file-hook 'vc-find-file-hook)
 (remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
 
-;;;
+;; tramp -- zshだとハングアップすることが多いため
+(eval-after-load 'tramp #'(setenv "SHELL" "/bin/bash"))
+
+
 ;;; キー・バインドの変更、新規割当
 ;;;
 (global-unset-key "\C-q")
@@ -365,6 +376,76 @@ Otherwise indent whole buffer."
           (set-buffer-modified-p nil))))))
 (global-set-key (kbd "C-x w") 'rename-file-and-buffer)
 
+
+;; 閉じカッコの上にカーソルがあった時はブロックを開いて、そうじゃないときは newline-and-indent
+(defun my-open-block-or-newline-and-indent ()
+  (interactive)
+  (let ((ch (char-to-string (following-char))))
+    (if (string-match "[])}>]" ch)
+        (progn
+          (newline-and-indent)
+          (previous-line 1)
+          (move-end-of-line 1)
+          (newline-and-indent))
+      (newline-and-indent))
+    ))
+(global-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)
+
+;; 行末に移動して
+;;   セミコロンだったら → そのまま改行
+;;   コメントだったら → indent-new-comment-line
+;;   どれでもないとき → セミコロンをつけて改行
+(defun my-electric-semicolon-or-new-comment-ine ()
+  (interactive)
+  (move-end-of-line 1)
+  (if (memq 'font-lock-comment-face (text-properties-at (point)))
+      (indent-new-comment-line)
+    (progn
+      (if (not (string-match ";[ 	]*$" (string-currentline)))
+          (insert ";"))
+      (newline-and-indent))))
+
+;;;
+;;; cde用 -- カレントバッファのディレクトリを返す
+;;;
+(defun return-current-working-directory-to-shell ()
+  (expand-file-name
+   (with-current-buffer
+       (if (featurep 'elscreen)
+           (let* ((frame-confs (elscreen-get-frame-confs (selected-frame)))
+                  (num (nth 1 (assoc 'screen-history frame-confs)))
+                  (cur-window-conf
+                   (assoc 'window-configuration
+                          (assoc num (assoc 'screen-property frame-confs))))
+                  (marker (nth 2 cur-window-conf)))
+             (marker-buffer marker))
+         (nth 1
+              (assoc 'buffer-list
+                     (nth 1 (nth 1 (current-frame-configuration))))))
+     default-directory)))
+
+
+;;;
+;;; http://masutaka.net/chalow/2011-05-19-1.html
+;;;
+(defun window-toggle-division ()
+  "ウィンドウ 2 分割時に、縦分割<->横分割"
+  (interactive)
+  (unless (= (count-windows 1) 2)
+    (error "ウィンドウが 2 分割されていません。"))
+  (let ((before-height)
+        (other-buf (window-buffer (next-window))))
+    (setq before-height (window-height))
+    (delete-other-windows)
+    (if (= (window-height) before-height)
+        (split-window-vertically)
+      (split-window-horizontally))
+    (other-window 1)
+    (switch-to-buffer other-buf)
+    (other-window -1)))
+(global-set-key (kbd "C-w '") 'window-toggle-division)
+
+
 ;;;
 ;;; smartprens
 ;;;
@@ -382,6 +463,23 @@ Otherwise indent whole buffer."
 (set-face-background 'isearch-lazy-highlight-face "gray55")
 (set-face-foreground 'isearch "#fff")
 (set-face-background 'isearch "tomato")
+
+
+;;;
+;;; migemo
+;;;
+(setq migemo-command
+      (cond
+       ((eq (shell-command "which cmigemo") 0) "cmigemo")
+       ((eq (shell-command "which migemo") 0) "migemo")
+       (t nil)))
+(when (and migemo-command (require 'migemo nil t))
+  (setq migemo-accept-process-output-timeout-msec 20
+	migemo-isearch-enable-p t
+	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
+	migemo-coding-system 'utf-8
+	migemo-options '("-q" "--emacs" "-i" "\g"))
+  (migemo-init))
 
 
 ;;;
@@ -444,18 +542,26 @@ Otherwise indent whole buffer."
 
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
+  (setq helm-M-x-always-save-history t)
   (setq helm-dabbrev-cycle-thresold 3)
   (setq helm-buffer-max-length 40)
 
   (eval-after-load "helm"
     #'(progn
         (helm-mode 1)
+        (global-set-key-if-bound (kbd "M-s g") 'helm-git-grep)
         (if (require 'helm-ls-git nil t)
             (progn
               (set-face-foreground 'helm-ff-file "aquamarine1")
               (set-face-foreground 'helm-buffer-file "lime green")
               (set-face-background 'helm-selection-line "gray20")
               (set-face-underline 'helm-selection-line nil)
+
+              (set-face-foreground 'helm-header "#aaa")
+              (set-face-background 'helm-header "#111")
+              (set-face-underline 'helm-header nil)
+              (set-face-background 'helm-source-header "#000")
+
               (set-face-foreground 'helm-ls-git-conflict-face "#f77")
               (set-face-background 'helm-ls-git-conflict-face "red3")
               (set-face-foreground 'helm-ls-git-untracked-face "plum1"))
@@ -477,13 +583,21 @@ Otherwise indent whole buffer."
 	(set-face-foreground 'helm-source-header "yellowgreen")
 	(set-face-underline 'helm-source-header t)
 	(set-face-foreground 'helm-match "hotpink1")
+        (setq helm-locate-command
+              (case system-type
+                ('gnu/linux "locate -i -r %s")
+                ('berkeley-unix "locate -i %s")
+                ('windows-nt "es %s")
+                ('darwin "mdfind -name %s %s")
+                (t "locate %s"))
+              )
 
         (custom-set-variables
          '(helm-mini-default-sources `(helm-source-buffers-list
                                        helm-source-ls-git
                                        helm-source-recentf
                                        helm-source-findutils
-                                       ,(if osxp 'helm-source-mac-spotlight)
+                                       helm-source-locate
                                        )))
 	))
   (eval-after-load "helm-files"
@@ -514,9 +628,20 @@ Otherwise indent whole buffer."
 
   (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
-    )
-  )
+    (global-set-key (kbd "M-s s") 'isearch-forward)
+    (global-set-key (kbd "C-s") 'helm-swoop)
 
+    (defun my-helm-swoop-symbol-at-point ()
+      "list all lines another buffer that is includes symbol at point."
+      (interactive)
+      (isearch-forward-symbol-at-point)
+      (helm-swoop))
+    (global-set-key (kbd "M-s l") 'my-helm-swoop-symbol-at-point)
+    )
+  (when (and migemo-command (require 'helm-migemo nil t))
+    (helm-migemo-mode t))
+  (global-set-key-if-bound (kbd "M-s M-a") #'helm-ag)
+  )
 
 ;;;
 ;;; emmet-mode
@@ -548,10 +673,16 @@ Otherwise indent whole buffer."
 ;;;
 (when (require 'popwin nil t)
   (popwin-mode 1)
+  (setq popwin:adjust-other-windows t)
   (setq popwin:popup-window-height .43)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
+  (push '("*Backtrace*") popwin:special-display-config)
+  (push '("*compilation*" :height .6) popwin:special-display-config)
+  (push '("*pry*" :height .4 :width .5 :stick t) popwin:special-display-config)
+  (push '("*rake*") popwin:special-display-config)
+  (push '("*Diff*") popwin:special-display-config)
   (push '("\\*alchemist test report\\*" :regexp nil :stick t) popwin:special-display-config)
   )
 
@@ -610,10 +741,37 @@ Otherwise indent whole buffer."
         ac-ignore-case t
 	ac-delay 0.1
         ac-auto-start 3
-	ac-use-menu-map t)
+        ac-use-menu-map t)
   (eval-after-load "yasnippet"
     #'(setq-default ac-sources
                     (append '(ac-source-yasnippet) ac-sources)))
+  ;; ac-etags
+  (custom-set-variables
+   '(ac-etags-requires 1))
+  (eval-after-load "etags"
+    '(progn
+       (ac-etags-setup)))
+  (defun my/prog-mode-common-hook ()
+    (add-to-list 'ac-sources 'ac-source-etags))
+  (add-hook 'c-mode-common-hook 'my/prog-mode-common-hook)
+  (add-hook 'ruby-mode-hook 'my/prog-mode-common-hook)
+
+  (push 'text-mode ac-modes)
+  (push 'markdown-mode ac-modes)
+  (push 'yaml-mode ac-modes)
+  (push 'markdown-mode ac-modes)
+  (push 'gfm-mode ac-modes)
+
+  ;; ac-mozc
+  (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))
+  (when mozc-helper-program-name
+    (require 'ac-mozc nil t)
+    (define-key ac-mode-map (kbd "C-c C-SPC") 'ac-complete-mozc)
+    (setq ac-sources (append ac-sources '(ac-source-mozc)))
+    (setq ac-auto-show-menu 0.2
+          ac-mozc-remove-space nil
+          ac-disable-faces nil)
+    )
   )
 
 
@@ -656,23 +814,6 @@ Otherwise indent whole buffer."
   )
 
 ;;;
-;;; migemo
-;;;
-(setq migemo-command
-      (cond
-       ((eq (shell-command "which cmigemo") 0) "cmigemo")
-       ((eq (shell-command "which migemo") 0) "migemo")
-       (t nil)))
-(when (and migemo-command (require 'migemo nil t))
-  (setq migemo-accept-process-output-timeout-msec 20
-	migemo-isearch-enable-p t
-	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
-	migemo-coding-system 'utf-8
-	migemo-options '("-q" "--emacs" "-i" "\g"))
-  (migemo-init))
-
-
-;;;
 ;;; magit
 ;;;
 (when (autoload-if-found 'magit-status "magit" "magit: Show Git status" t)
@@ -695,13 +836,13 @@ Otherwise indent whole buffer."
 
         (set-face-foreground 'magit-diff-added "#55aa55")
         (set-face-background 'magit-diff-added nil)
-        (set-face-foreground 'magit-diff-added-highlight "#00ff00")
-        (set-face-background 'magit-diff-added-highlight "gray20")
+        (set-face-foreground 'magit-diff-added-highlight "#44ff44")
+        (set-face-background 'magit-diff-added-highlight "gray10")
 
         (set-face-foreground 'magit-diff-removed "#aa5555")
         (set-face-background 'magit-diff-removed nil)
         (set-face-foreground 'magit-diff-removed-highlight "#ff0000")
-        (set-face-background 'magit-diff-removed-highlight "gray20")
+        (set-face-background 'magit-diff-removed-highlight "gray10")
 
         (set-face-foreground 'magit-diff-hunk-heading "gray30")
         ;; (set-face-background 'magit-diff-hunk-heading "gray60")
@@ -711,7 +852,7 @@ Otherwise indent whole buffer."
         (set-face-foreground 'magit-diff-context "gray50")
         (set-face-background 'magit-diff-context nil)
         (set-face-foreground 'magit-diff-context-highlight "white")
-        (set-face-background 'magit-diff-context-highlight "gray20")
+        (set-face-background 'magit-diff-context-highlight "gray10")
 
         (set-face-foreground 'magit-branch-local "skyblue")
         (set-face-foreground 'magit-branch-remote "green")
@@ -785,8 +926,8 @@ Otherwise indent whole buffer."
 
   ;; howm のファイル名
   (setq howm-file-name-format
-        (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'org-mode)
-                                           "org"
+        (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'markdown-mode)
+                                           "md"
                                          "howm")))
 
   (setq howm-view-grep-parse-line
@@ -839,10 +980,20 @@ Otherwise indent whole buffer."
 ;; cf. http://qiita.com/nysalor/items/59060cc16f2d636c24b3
 
 (when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+  (when  (require 'ruby-tools nil t)
+    (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
+    (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
+    (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
+    (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
+    (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate)
+    )
+
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
   (eval-after-load "ruby-mode"
     #'(progn
+        (autoload-if-found 'realgud:byebug "realgud-byebug" "Ruby Debugger" t)
+
         (defun ruby-interpreter ()
           (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))
             (if (file-exists-p shims-ruby)
@@ -877,6 +1028,12 @@ Otherwise indent whole buffer."
         (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)
+        (when (functionp 'ruby-test-mode)
+          (add-hook 'ruby-mode-hook 'ruby-test-mode))
+        (eval-after-load "ruby-test-mode"
+          #'(progn
+              (define-key ruby-mode-map (kbd "C-c C-_") 'ruby-test-run)
+              (define-key ruby-mode-map (kbd "C-c C-/") 'ruby-test-run-at-point)))
 	(when (require 'rinari nil t)
 	  (global-rinari-mode t))
 	))
@@ -926,11 +1083,47 @@ Otherwise indent whole buffer."
 			 "Robe is a code assistance tool that uses a Ruby REPL subprocess" t)
   (autoload 'ac-robe-setup "ac-robe" "robe auto-complete" nil nil)
   (eval-after-load 'ruby-mode
-    #'(add-hook 'ruby-mode-hook 'robe-mode))
+    #'(progn
+        (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+        (autoload 'inf-ruby-minor-mode "inf-ruby" "" t)
+        (add-hook 'ruby-mode-hook
+                  (lambda ()
+                    (robe-mode)
+                    (robe-ac-setup)
+                    (inf-ruby-minor-mode)))
+        (eval-after-load 'inf-ruby
+          #'(progn
+              (defun my-ruby-send-thing-dwim (uarg)
+                "Sends the code fragment to the inferior Ruby process.
+If universal argument (C-u) is given, jump to the inf-ruby buffer.
+when region is active, sends the marked region.
+Otherwise sends the whole buffer."
+                (interactive "P")
+                (cond
+                 ;; regionがアクティブかつC-uが押されている
+                 ((and uarg (use-region-p))
+                  (ruby-send-region-and-go (point) (mark)))
+                 ;; regionがアクティブ
+                 ((and (not uarg) (use-region-p))
+                  (ruby-send-region (point) (mark)))
+                 ;; regionなし、かつC-uが押されている
+                 ((and uarg (not (use-region-p)))
+                  (ruby-send-region-and-go (point-min) (point-max)))
+                 ;; なんにもなし
+                 ((and (not uarg) (not (use-region-p)))
+                  (ruby-send-region (point-min) (point-max)))))
+
+              (define-key inf-ruby-minor-mode-map
+                (kbd "C-c C-r") 'my-ruby-send-thing-dwim)))))
+
   (eval-after-load 'auto-complete
     #'(add-hook 'robe-mode-hook 'ac-robe-setup))
   )
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
+  (setq inf-ruby-default-implementation "pry")
+  (setq inf-ruby-eval-binding "Pry.toplevel_binding")
+  ;; riなどのエスケープシーケンスを処理し、色付けする
+  (add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
   (eval-after-load 'auto-complete
     #'(add-to-list 'ac-modes 'inf-ruby-mode))
   (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
@@ -941,8 +1134,14 @@ Otherwise indent whole buffer."
 
 (when (fboundp 'yaml-mode)
   (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+  (eval-after-load 'yaml-mode
+    #'(define-key yaml-mode-map (kbd "C-h") 'yaml-electric-backspace))
+  (when (fboundp 'ansible)
+    (add-hook 'yaml-mode-hook 'ansible))
   )
 
+(when (fboundp 'jinja2-mode)
+  (add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode)))
 
 ;;;
 ;;; php-mode
@@ -975,6 +1174,7 @@ Otherwise indent whole buffer."
   (add-to-list 'auto-mode-alist '("\\.as[cp]x$"   . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html.eex?$" . web-mode))
 
   (eval-after-load "web-mode"
     #'(progn
@@ -1004,6 +1204,35 @@ Otherwise indent whole buffer."
 	))
   )
 
+;;; tagedit は不安定すぎるので Cask から消すことによって一度外す
+;;; 以下のコードは残す
+(when (autoload-if-found 'tagedit-mode "tagedit" "tagedit" t)
+  (eval-after-load 'web-mode
+    #'(progn
+        (add-hook 'web-mode-hook
+                  (lambda ()
+                    (tagedit-mode)
+                    (tagedit-add-experimental-features)
+                    (define-key tagedit-mode-map (kbd "<") nil)
+                    (define-key tagedit-mode-map (kbd ">") nil)
+                    (define-key tagedit-mode-map (kbd ".") nil)
+                    (define-key tagedit-mode-map (kbd "#") nil)))))
+
+  (eval-after-load 'tagedit
+    #'(progn
+        (define-key tagedit-mode-map (kbd "C-<right>") 'tagedit-forward-slurp-tag)
+        (define-key tagedit-mode-map (kbd "C-<left>") 'tagedit-forward-barf-tag)
+        (define-key tagedit-mode-map (kbd "M-r") 'tagedit-raise-tag)
+        (define-key tagedit-mode-map (kbd "C-M-s") 'tagedit-splice-tag)
+        (define-key tagedit-mode-map (kbd "C-k") 'tagedit-kill)
+        (define-key tagedit-mode-map (kbd "C-w C-k") 'tagedit-kill-attribute)
+        (eval-after-load 'smartrep
+          #'(progn
+              (smartrep-define-key
+                  tagedit-mode-map "C-q" '(("9" . 'tagedit-forward-barf-tag)
+                                           ("0" . 'tagedit-forward-slurp-tag))))))))
+
+
 
 ;;;
 ;;; markdown-mode
@@ -1026,13 +1255,17 @@ Otherwise indent whole buffer."
       (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
 
       (progn
-        (setq markdown-common-header-face-foreground "LightSlateBlue")
+        (setq markdown-common-header-face-foreground "CornflowerBlue")
         (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-2 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-3 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-4 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-5 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-6 markdown-common-header-face-foreground)
+
+        (setq markdown-common-delimiter-face-foreground "moccasin")
+        (set-face-foreground 'markdown-header-delimiter-face markdown-common-delimiter-face-foreground)
+        (set-face-foreground 'markdown-list-face markdown-common-delimiter-face-foreground)
         )
       )
     )
@@ -1048,6 +1281,25 @@ Otherwise indent whole buffer."
 ;;;
 (eval-after-load "elixir-mode"
   #'(progn
+
+      ;; 改行して行頭に |> をつける
+      (defun my-elixir-newline-and-insert-pipe ()
+        (interactive)
+        (move-end-of-line 1)
+        (newline-and-indent)
+        (insert "|> "))
+      (define-key elixir-mode-map (kbd "M-J") 'my-elixir-newline-and-insert-pipe)
+
+      (when (featurep 'smartparens)
+        (sp-with-modes '(elixir-mode)
+          (sp-local-pair "fn" "end"
+                         :when '(("SPC" "RET"))
+                         :actions '(insert navigate))
+          (sp-local-pair "do" "end"
+                         :when '(("SPC" "RET"))
+                         :post-handlers '(sp-ruby-def-post-handler)
+                         :actions '(insert navigate))))
+
       (add-hook 'elixir-mode-hook 'alchemist-mode)
       (eval-after-load "alchemist"
         #'(progn
@@ -1055,6 +1307,7 @@ Otherwise indent whole buffer."
             (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
             (set-face-foreground 'elixir-atom-face "Gold3")
             (set-face-foreground 'elixir-attribute-face "royalblue3")
+            (set-face-foreground 'elixir-ignored-var-face "dimgray")
             (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
 
             (defun my-alchemist-iex-electric-send-thing (uarg)
@@ -1077,7 +1330,9 @@ Otherwise sends the current line."
                ((and (not uarg) (not (use-region-p)))
                 (alchemist-iex-send-current-line))))
 
-            (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)))))
+            (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
+
+            ))))
 
 
 ;;;
@@ -1085,6 +1340,26 @@ Otherwise sends the current line."
 ;;;
 (when (functionp 'js2-mode)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+  (eval-after-load "js2-mode"
+    #'(progn
+        (add-to-list 'align-rules-list
+                     '(javascript-object-notation
+                       (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
+                       (tab-stop . t)              ; タブ位置でそろえる
+                       (modes    . '(js2-mode))))
+        (custom-set-variables '(js2-strict-missing-semi-warning nil))
+        (eval-after-load "auto-highlight-symbol"
+          #'(progn
+              (push 'js2-mode ahs-modes)))
+        (add-hook 'js2-mode-hook
+                  (lambda ()
+                    (setq js2-basic-offset 2)
+                    (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
+                    (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
+                    (define-key js2-mode-map (kbd "C-M-j") 'my-electric-semicolon-or-new-comment-ine)
+                    ))
+        ))
   )
 
 ;;;
@@ -1147,6 +1422,13 @@ Otherwise sends the current line."
                          ("<" . (lambda () (beginning-of-buffer-other-window 0)))
                          (">" . (lambda () (end-of-buffer-other-window 0)))
                          ))
+  (when (functionp 'mc/mark-next-like-this)
+    (smartrep-define-key
+        global-map "C-w" '(("w" . 'mc/mark-next-like-this)
+                           ("n" . 'mc/mark-next-like-this)
+                           ("p" . 'mc/mark-previous-like-this)
+                           ))
+    )
   )
 
 
@@ -1154,8 +1436,8 @@ Otherwise sends the current line."
 ;;; point-undo
 ;;;
 (when (require 'point-undo nil t)
-  (global-set-key-if-bound (kbd "M-g M-b") 'point-undo)
-  (global-set-key-if-bound (kbd "M-g M-f") 'point-redo)
+  (global-set-key-if-bound (kbd "M-'") 'point-undo)
+  (global-set-key-if-bound (kbd "M-\"") 'point-redo)
   )
 
 
@@ -1163,20 +1445,25 @@ Otherwise sends the current line."
 ;;; elscreen
 ;;;
 (when (require 'elscreen nil t)
-  (setq elscreen-prefix-key (kbd "C-w C-w"))
+  (global-unset-key (kbd "M-t"))
+  (setq elscreen-prefix-key (kbd "M-t"))
   (elscreen-start)
-  (global-set-key (kbd "C-w C-w C-w") 'elscreen-toggle)
-  (global-set-key (kbd "C-w C-w l") 'helm-elscreen)
+  (global-set-key (kbd "M-t M-t") 'elscreen-toggle)
+  (global-set-key (kbd "M-t l") 'helm-elscreen)
   ;; タブの先頭に[X]を表示しない
   (setq elscreen-tab-display-kill-screen nil)
   ;; header-lineの先頭に[<->]を表示しない
   (setq elscreen-tab-display-control nil)
 
-  (set-face-foreground 'elscreen-tab-other-screen-face "#999")
+  (set-face-foreground 'elscreen-tab-other-screen-face "#888")
   (set-face-background 'elscreen-tab-other-screen-face "#444")
 
-  (set-face-foreground 'elscreen-tab-current-screen-face "#fff")
-  (set-face-background 'elscreen-tab-current-screen-face "#666")
+  (set-face-foreground 'elscreen-tab-current-screen-face "#fc0")
+  (set-face-background 'elscreen-tab-current-screen-face "gray50")
+  (when (require 'elscreen-persist nil t)
+    (elscreen-persist-mode 1)
+    (global-set-key (kbd "M-t S" ) 'elscreen-persist-store)
+    (global-set-key (kbd "M-t L" ) 'elscreen-persist-restore))
   )
 
 ;;;
@@ -1234,11 +1521,86 @@ Otherwise sends the current line."
 (when (fboundp 'persistent-scratch-setup-default)
   (persistent-scratch-setup-default))
 
+
+;;;
+;;; auto-highlight-symbol
+;;;
+(when (require 'auto-highlight-symbol nil t)
+  (global-auto-highlight-symbol-mode t))
+
+
+;;;
+;;; pbcopy
+;;;
+(when (and osxp (require 'pbcopy nil t))
+  (turn-on-pbcopy))
+
+
 ;;;
 ;;; elscreen-separate-buffer-list
 ;;;
-(when (require 'elscreen-separate-buffer-list)
+(when (require 'elscreen-separate-buffer-list nil t)
   (elscreen-separate-buffer-list-mode))
+
+
+;;;
+;;; paredit
+;;;
+(eval-after-load 'paredit
+  #'(progn
+      (define-key paredit-mode-map (kbd "M-s") nil)
+      (define-key paredit-mode-map (kbd "C-M-s") 'paredit-splice-sexp)
+      (eval-after-load 'smartrep
+        #'(progn
+            (smartrep-define-key
+                global-map "C-q" '(("(" . 'paredit-wrap-round)
+                                   ("9" . 'paredit-forward-barf-sexp)
+                                   ("0" . 'paredit-forward-slurp-sexp)))))))
+(when (fboundp 'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+
+
+;;;
+;;; csv-mode
+;;;
+(eval-after-load 'csv-mode
+  #'(progn
+      (define-key csv-mode-map (kbd "C-M-f") 'csv-forward-field)
+      (define-key csv-mode-map (kbd "C-M-b") 'csv-backward-field)
+      ))
+
+
+;;;
+;;; plogic
+;;;
+(when (fboundp 'css-mode)
+  (add-to-list 'auto-mode-alist '("\\.plogic\\'" . css-mode)))
+
+
+;;;
+;;; eshell
+;;;
+(global-set-key-if-bound (kbd "C-w C-w") 'eshell)
+
+
+
+;;;
+;;; ace-search
+;;;
+(global-set-key-if-bound (kbd "M-C-r") 'ace-jump-mode)
+
+
+;;;
+;;; apacche-mode
+;;;
+(when (autoload-if-found 'apache-mode "apache-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+  (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+  (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+  (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+  (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode)))
+
 
 ;;;
 ;;; faces
@@ -1246,8 +1608,8 @@ Otherwise sends the current line."
 (set-face-foreground 'mode-line "chartreuse1")
 (set-face-background 'mode-line "gray40")
 (set-face-underline 'mode-line nil)
-(set-face-foreground 'mode-line-inactive "gray40")
-(set-face-background 'mode-line-inactive "gray10")
+(set-face-foreground 'mode-line-inactive "gray10")
+(set-face-background 'mode-line-inactive "gray40")
 (set-face-foreground 'font-lock-comment-face "gray60")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
@@ -1256,7 +1618,7 @@ Otherwise sends the current line."
 (set-face-foreground font-lock-builtin-face "CornflowerBlue")
 (set-face-foreground font-lock-keyword-face "DeepSkyBlue")
 (set-face-bold font-lock-keyword-face t)
-(set-face-foreground 'minibuffer-prompt "SlateBlue")
+(set-face-foreground 'minibuffer-prompt "LawnGreen")
 (set-face-foreground 'font-lock-constant-face "gold3")
 (set-face-foreground 'default "linen")
 (set-face-foreground 'match "black")
@@ -1265,3 +1627,9 @@ Otherwise sends the current line."
 (set-face-background 'show-paren-match "limegreen")
 (set-face-foreground 'font-lock-type-face "LimeGreen")
 (set-face-background 'secondary-selection "MediumPurple4")
+(set-face-foreground 'font-lock-function-name-face "MediumTurquoise")
+(eval-after-load 'diff-mode
+  #'(progn
+      (set-face-foreground 'diff-removed "black")
+      (set-face-foreground 'diff-added "black")
+      (set-face-foreground 'diff-context "gray60")))

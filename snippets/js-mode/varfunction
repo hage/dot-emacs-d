@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: varfunction
+# key: vfun
+# --
+var ${1:function_name} = function (${2:params}) {
+    $0
+};

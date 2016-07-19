@@ -1,9 +1,8 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: eval-after-load
-# key: eal
-# binding: direct-keybinding
+# key: eval-after-load
 # --
 (eval-after-load "$1"
-                 #'(progn
-      $0
-      ))
+        #'(progn
+                $0
+        ))

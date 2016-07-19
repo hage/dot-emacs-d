@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: project_root
+# key: projectroot
+# --
+PROJECT_ROOT = \`git rev-parse --show-toplevel\`.strip

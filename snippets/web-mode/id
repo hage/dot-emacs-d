@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: consolelog
-# key: log
+# name: id
+# key: id
 # --
-console.log($0);
+id="$0"

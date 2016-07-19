@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: load_path_this_directory
+# key: load_path_this_directory
+# --
+$LOAD_PATH << File.expand_path(File.dirname(\$0))

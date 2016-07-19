@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: consolelog
-# key: log
+# name: File.join
+# key: fjoin
 # --
-console.log($0);
+File.join($0)

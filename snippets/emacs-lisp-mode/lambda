@@ -1,6 +1,9 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: regexp
-# key: reg
+# name: lambda
+# key: lambda
 # binding: direct-keybinding
 # --
-%r{$0}
+(add-hook '$1
+        (lambda ()
+                $0
+))

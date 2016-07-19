@@ -9,3 +9,5 @@ ac-comphist.dat
 /.DS_Store
 /kkcrc
 .persistent-scratch
+develop/kwartz-plogic-mode
+/elscreen

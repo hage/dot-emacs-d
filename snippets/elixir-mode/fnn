@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fnn
+# key: fnn
+# binding: direct-keybinding
+# --
+fn ${1:x} ->
+        $1$0
+end

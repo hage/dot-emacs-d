@@ -2,6 +2,7 @@
 (source melpa)
 
 (depends-on "ac-alchemist")
+(depends-on "ac-dabbrev")
 (depends-on "ac-etags")
 (depends-on "ac-helm")
 (depends-on "ac-inf-ruby")

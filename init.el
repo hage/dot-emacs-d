@@ -105,6 +105,10 @@
 (line-number-mode t)			; 行番号を表示
 (setq column-number-mode nil)           ; 列番号は表示しない
 
+(when (require 'saveplace nil t)
+  (setq-default save-place t)
+  (setq save-place-file "~/.emacs.d/saved-places"))
+
 (setq-default
  mode-line-buffer-identification
  `(,(propertize " %b " 'face '(:foreground "orange" :background "gray20" :weight bold))))

@@ -1155,6 +1155,7 @@ Otherwise sends the whole buffer."
 ;;; php-mode
 ;;;
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
+  (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)))

@@ -553,6 +553,7 @@ Otherwise indent whole buffer."
   (eval-after-load "helm"
     #'(progn
         (helm-mode 1)
+        (helm-migemo-mode 1)
         (global-set-key-if-bound (kbd "M-s g") 'helm-git-grep)
         (if (require 'helm-ls-git nil t)
             (progn
@@ -642,8 +643,6 @@ Otherwise indent whole buffer."
       (helm-swoop))
     (global-set-key (kbd "M-s l") 'my-helm-swoop-symbol-at-point)
     )
-  (when (and migemo-command (require 'helm-migemo nil t))
-    (helm-migemo-mode t))
   (global-set-key-if-bound (kbd "M-s M-a") #'helm-ag)
   )
 

@@ -37,7 +37,6 @@
 (depends-on "helm-core")
 (depends-on "helm-git-grep")
 (depends-on "helm-ls-git")
-(depends-on "helm-migemo")
 (depends-on "helm-swoop")
 (depends-on "inf-ruby")
 (depends-on "jinja2-mode")

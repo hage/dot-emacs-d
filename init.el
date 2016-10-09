@@ -101,6 +101,8 @@
 ;;; いろいろ設定
 ;;;
 
+(setq garbage-collection-messages t)    ; ガベージコレクションのメッセージ
+
 ;; mode-line
 (line-number-mode t)			; 行番号を表示
 (setq column-number-mode nil)           ; 列番号は表示しない

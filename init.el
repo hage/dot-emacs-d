@@ -12,6 +12,8 @@
 
 ;; 非常に重要な設定
 (global-set-key "\C-h" 'delete-backward-char)
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
 ;; 文字コード
 (set-language-environment 'japanese)
@@ -250,8 +252,7 @@
             (delete-trailing-whitespace)))
 
 ;; vcを起動しないようにする
-(custom-set-variables
- '(vc-handled-backends nil))
+(setq vc-handled-backends nil)
 ;; vcが当てた不要なhookを外す
 (remove-hook 'find-file-hook 'vc-find-file-hook)
 (remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
@@ -598,14 +599,12 @@ Otherwise indent whole buffer."
                 ('darwin "mdfind -name %s %s")
                 (t "locate %s"))
               )
-
-        (custom-set-variables
-         '(helm-mini-default-sources `(helm-source-buffers-list
-                                       helm-source-ls-git
-                                       helm-source-recentf
-                                       helm-source-findutils
-                                       helm-source-locate
-                                       )))
+        (setq helm-mini-default-sources `(helm-source-buffers-list
+                                          helm-source-ls-git
+                                          helm-source-recentf
+                                          helm-source-findutils
+                                          helm-source-locate
+                                          ))
 	))
   (eval-after-load "helm-files"
     #'(progn
@@ -756,8 +755,7 @@ Otherwise indent whole buffer."
     #'(setq-default ac-sources
                     (append '(ac-source-dabbrev) ac-sources)))
   ;; ac-etags
-  (custom-set-variables
-   '(ac-etags-requires 1))
+  (setq ac-etags-requires 1)
   (eval-after-load "etags"
     '(progn
        (ac-etags-setup)))
@@ -789,7 +787,7 @@ Otherwise indent whole buffer."
 ;;; yasnippet
 ;;;
 (when (require 'yasnippet nil t)
-  (custom-set-variables '(yas-snippet-dirs "~/.emacs.d/snippets"))
+  (setq yas-snippet-dirs "~/.emacs.d/snippets")
   (set-face-background 'yas-field-highlight-face "gray10")
   (set-face-underline 'yas-field-highlight-face t)
   (if (require 'dropdown-list nil t)
@@ -1361,7 +1359,7 @@ Otherwise sends the current line."
                        (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
                        (tab-stop . t)              ; タブ位置でそろえる
                        (modes    . '(js2-mode))))
-        (custom-set-variables '(js2-strict-missing-semi-warning nil))
+        (setq js2-strict-missing-semi-warning nil)
         (eval-after-load "auto-highlight-symbol"
           #'(progn
               (push 'js2-mode ahs-modes)))
@@ -1483,10 +1481,9 @@ Otherwise sends the current line."
 ;;; foreign-regexp
 ;;;
 (when (require 'foreign-regexp nil t)
-  (custom-set-variables
-   '(foreign-regexp/regexp-type 'ruby)
-   '(reb-re-syntax 'foreign-regexp))
-  )
+  (setq foreign-regexp/regexp-type 'ruby
+        reb-re-syntax 'foreign-regexp)
+)
 
 
 ;;;

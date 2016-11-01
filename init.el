@@ -1477,14 +1477,6 @@ Otherwise sends the current line."
     (global-set-key (kbd "M-t L" ) 'elscreen-persist-restore))
   )
 
-;;;
-;;; foreign-regexp
-;;;
-(when (require 'foreign-regexp nil t)
-  (setq foreign-regexp/regexp-type 'ruby
-        reb-re-syntax 'foreign-regexp)
-)
-
 
 ;;;
 ;;; yatex

@@ -29,7 +29,6 @@
 (depends-on "epl")
 (depends-on "expand-region")
 (depends-on "f")
-(depends-on "foreign-regexp")
 (depends-on "git-commit")
 (depends-on "helm")
 (depends-on "helm-ag")

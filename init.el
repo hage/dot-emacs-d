@@ -9,8 +9,6 @@
 ;; (initchart-record-execution-time-of load file)
 ;; (initchart-record-execution-time-of require feature)
 
-;; GCを減らして軽くする.
-(setq gc-cons-threshold (* gc-cons-threshold 10))
 
 ;; 非常に重要な設定
 (global-set-key "\C-h" 'delete-backward-char)

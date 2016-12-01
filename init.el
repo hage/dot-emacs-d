@@ -103,7 +103,7 @@
 ;;; いろいろ設定
 ;;;
 
-(setq garbage-collection-messages t)    ; ガベージコレクションのメッセージ
+(setq garbage-collection-messages nil)    ; ガベージコレクションのメッセージ
 
 ;; mode-line
 (line-number-mode t)			; 行番号を表示

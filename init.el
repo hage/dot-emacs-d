@@ -572,7 +572,17 @@ Otherwise indent whole buffer."
 
               (set-face-foreground 'helm-ls-git-conflict-face "#f77")
               (set-face-background 'helm-ls-git-conflict-face "red3")
-              (set-face-foreground 'helm-ls-git-untracked-face "plum1"))
+              (set-face-foreground 'helm-ls-git-untracked-face "plum1")
+
+              (set-face-foreground 'helm-ff-directory "pink")
+              (set-face-background 'helm-ff-directory "#339")
+
+              (set-face-foreground 'helm-ff-dotted-directory "pink")
+              (set-face-background 'helm-ff-dotted-directory "#339")
+
+              (set-face-foreground 'helm-ff-dotted-symlink-directory "#f55")
+              (set-face-background 'helm-ff-dotted-symlink-directory "#225")
+              )
           (setq helm-source-ls-git nil))
 
         (eval-after-load "auto-complete"

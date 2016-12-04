@@ -29,6 +29,7 @@
 (depends-on "expand-region")
 (depends-on "f")
 (depends-on "git-commit")
+(depends-on "goto-chg")
 (depends-on "helm")
 (depends-on "helm-ag")
 (depends-on "helm-c-yasnippet")

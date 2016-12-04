@@ -1450,6 +1450,12 @@ Otherwise sends the current line."
                            ("p" . 'mc/mark-previous-like-this)
                            ))
     )
+  (when (functionp 'goto-last-change)
+    (smartrep-define-key
+        global-map "C-q" '(("C-b" . 'goto-last-change)
+                           ("C-f" . 'goto-last-change-reverse)
+                           ))
+    )
   )
 
 

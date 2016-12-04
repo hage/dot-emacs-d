@@ -274,7 +274,7 @@
 (global-set-key "\C-q\C-a" 'mark-whole-buffer)
 (global-set-key "\M-&" 'replace-regexp)
 (global-set-key "\M-_" 'next-error)
-(global-set-key "\C-q\C-f" 'find-function)
+(global-set-key (kbd "M-s f") 'find-function)
 (global-set-key "\M-~" 'call-last-kbd-macro)
 (global-set-key "\C-q\C-r" 'revert-buffer)
 (global-set-key "\M-\C-_" 'indent-region)

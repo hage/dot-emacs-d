@@ -1169,7 +1169,8 @@ Otherwise sends the whole buffer."
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")
   (add-hook 'php-mode-hook
             (lambda ()
-              (setq-local c-basic-offset 2)))
+              (setq-local c-basic-offset 2)
+              (local-set-key (kbd "C-M-j") 'my-electric-semicolon-or-new-comment-ine)))
   )
 
 

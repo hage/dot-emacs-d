@@ -402,7 +402,7 @@ Otherwise indent whole buffer."
 ;;   セミコロンだったら → そのまま改行
 ;;   コメントだったら → indent-new-comment-line
 ;;   どれでもないとき → セミコロンをつけて改行
-(defun my-electric-semicolon-or-new-comment-ine ()
+(defun my-semicolon-or-new-comment-ine ()
   (interactive)
   (move-end-of-line 1)
   (if (memq 'font-lock-comment-face (text-properties-at (point)))
@@ -1170,7 +1170,7 @@ Otherwise sends the whole buffer."
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)
-              (local-set-key (kbd "C-M-j") 'my-electric-semicolon-or-new-comment-ine)))
+              (local-set-key (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)))
   )
 
 
@@ -1379,7 +1379,7 @@ Otherwise sends the current line."
                     (setq js2-basic-offset 2)
                     (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
                     (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
-                    (define-key js2-mode-map (kbd "C-M-j") 'my-electric-semicolon-or-new-comment-ine)
+                    (define-key js2-mode-map (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)
                     ))
         ))
   )

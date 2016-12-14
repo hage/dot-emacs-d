@@ -629,6 +629,13 @@ Otherwise indent whole buffer."
 		      (concat ".*" input-pattern))))))
 
   (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
+    (eval-after-load "helm-swoop"
+      (lambda ()
+        (set-face-foreground 'helm-swoop-target-word-face "magenta1")
+        (set-face-background 'helm-swoop-target-word-face "gray30")
+        (set-face-bold 'helm-swoop-target-word-face t)
+        (set-face-foreground 'helm-swoop-target-line-face "black")
+        (set-face-background 'helm-swoop-target-line-face "yellow2")))
     (setq helm-swoop-pre-input-function (lambda () "")) ; helm 起動時に検索入力欄を空にする
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
     (global-set-key (kbd "M-s s") 'isearch-forward)

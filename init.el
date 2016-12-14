@@ -1638,6 +1638,7 @@ Otherwise sends the current line."
 (set-face-foreground 'font-lock-type-face "LimeGreen")
 (set-face-background 'secondary-selection "MediumPurple4")
 (set-face-foreground 'font-lock-function-name-face "MediumTurquoise")
+(set-face-foreground 'font-lock-variable-name-face "DarkOliveGreen1")
 (eval-after-load 'diff-mode
   #'(progn
       (set-face-foreground 'diff-removed "black")

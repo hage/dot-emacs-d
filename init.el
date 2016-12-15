@@ -1603,6 +1603,16 @@ Otherwise sends the current line."
 
 
 ;;;
+;;; flycheck
+;;;
+(when (fboundp #'global-flycheck-mode)
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (when (fboundp #'flycheck-pos-tip-mode) ; emacs -nw ではダメっぽいけど将来のために残しておく
+    (with-eval-after-load 'flycheck
+      (flycheck-pos-tip-mode))))
+
+
+;;;
 ;;; apacche-mode
 ;;;
 (when (autoload-if-found 'apache-mode "apache-mode" nil t)

@@ -28,6 +28,8 @@
 (depends-on "epl")
 (depends-on "expand-region")
 (depends-on "f")
+(depends-on "flycheck")
+(depends-on "flycheck-pos-tip")
 (depends-on "git-commit")
 (depends-on "goto-chg")
 (depends-on "helm")

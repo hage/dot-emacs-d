@@ -72,6 +72,7 @@
 (depends-on "smartparens")
 (depends-on "smartrep")
 (depends-on "smooth-scroll")
+(depends-on "string-inflection")
 (depends-on "transpose-frame")
 (depends-on "vagrant-tramp")
 (depends-on "volatile-highlights")

@@ -310,23 +310,6 @@
   (forward-line 1))
 (define-key global-map "\M-n" 'indent-and-next-line)
 
-;; 大文字・小文字の変更
-(defvar changecase-word-type 0)
-(defun changecase-word (cnt)
-  "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
-  (interactive "p")
-  (if (not (eq last-command 'changecase-word))
-      (setq changecase-word-type 0))
-  (cond ((= changecase-word-type 0)
-         (upcase-word (- cnt))
-         (setq changecase-word-type 1))
-        ((= changecase-word-type 1)
-         (capitalize-word (- cnt))
-         (setq changecase-word-type 2))
-        (t
-         (downcase-word (- cnt))
-         (setq changecase-word-type 0))))
-(global-set-key "\M-u" 'changecase-word) ; M-u に割り当てる
 
 ;; カーソル位置のフェースを調べる関数
 (defun describe-face-at-point ()
@@ -1610,6 +1593,47 @@ Otherwise sends the current line."
   (when (fboundp #'flycheck-pos-tip-mode) ; emacs -nw ではダメっぽいけど将来のために残しておく
     (with-eval-after-load 'flycheck
       (flycheck-pos-tip-mode))))
+
+
+;;;
+;;; string-inflection
+;;;
+(if (fboundp #'string-inflection-all-cycle)
+    (progn
+      (defun my-string-inflection-cycle-auto ()
+        "switching by major-mode"
+        (interactive)
+        (cond
+         ;; for emacs-lisp-mode
+         ((eq major-mode 'emacs-lisp-mode)
+          (string-inflection-all-cycle))
+         ;; for java
+         ((eq major-mode 'java-mode)
+          (string-inflection-java-style-cycle))
+         (t
+          ;; default
+          (string-inflection-ruby-style-cycle))))
+      (global-set-key (kbd "M-u") #'my-string-inflection-cycle-auto))
+
+  ;; string-inflection がないときは代用の関数を使う
+  (progn
+    ;; 大文字・小文字の変更
+    (defvar changecase-word-type 0)
+    (defun changecase-word (cnt)
+      "カーソルのすぐ左にある単語を大文字→先頭だけ大文字→小文字にする。"
+      (interactive "p")
+      (if (not (eq last-command 'changecase-word))
+          (setq changecase-word-type 0))
+      (cond ((= changecase-word-type 0)
+             (upcase-word (- cnt))
+             (setq changecase-word-type 1))
+            ((= changecase-word-type 1)
+             (capitalize-word (- cnt))
+             (setq changecase-word-type 2))
+            (t
+             (downcase-word (- cnt))
+             (setq changecase-word-type 0))))
+    (global-set-key "\M-u" #'changecase-word)))
 
 
 ;;;

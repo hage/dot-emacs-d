@@ -1585,7 +1585,8 @@ Otherwise sends the current line."
 ;;; plogic
 ;;;
 (when (fboundp 'css-mode)
-  (add-to-list 'auto-mode-alist '("\\.plogic\\'" . css-mode)))
+  (add-to-list 'auto-mode-alist '("\\.plogic\\'" . css-mode)
+               (setq css-indent-offset 2)))
 
 
 ;;;

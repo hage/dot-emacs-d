@@ -1466,6 +1466,8 @@ Otherwise sends the current line."
 
   (set-face-foreground 'elscreen-tab-current-screen-face "#fc0")
   (set-face-background 'elscreen-tab-current-screen-face "gray50")
+  (when (require 'elscreen-separate-buffer-list nil t)
+    (elscreen-separate-buffer-list-mode))
   )
 
 
@@ -1527,13 +1529,6 @@ Otherwise sends the current line."
 ;;;
 (when (and osxp (require 'pbcopy nil t))
   (turn-on-pbcopy))
-
-
-;;;
-;;; elscreen-separate-buffer-list
-;;;
-(when (require 'elscreen-separate-buffer-list nil t)
-  (elscreen-separate-buffer-list-mode))
 
 
 ;;;

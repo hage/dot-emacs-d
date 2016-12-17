@@ -551,6 +551,9 @@ Otherwise indent whole buffer."
 
               (set-face-foreground 'helm-ff-dotted-symlink-directory "#f55")
               (set-face-background 'helm-ff-dotted-symlink-directory "#225")
+
+              (set-face-foreground 'helm-visible-mark "#fff")
+              (set-face-background 'helm-visible-mark "palegreen4")
               )
           (setq helm-source-ls-git nil))
 

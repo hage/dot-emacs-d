@@ -426,7 +426,6 @@ Otherwise indent whole buffer."
 ;;; smartparens
 ;;;
 (when (require 'smartparens-config nil t)
-  (set-face-background 'sp-pair-overlay-face "navy")
   (set-face-background 'sp-wrap-overlay-face "blue4")
   (smartparens-global-mode))
 

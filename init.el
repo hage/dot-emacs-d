@@ -1,5 +1,8 @@
+;;; init.el --- initialize
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
+;;; Commentary:
+;;; Code:
 
 ;; init.elのロード時間を視覚化する
 ;; http://qiita.com/yuttie/items/0f38870817c11b2166bd

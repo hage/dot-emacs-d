@@ -53,6 +53,7 @@
 (depends-on "paredit")
 (depends-on "pbcopy")
 (depends-on "persistent-scratch")
+(depends-on "php-eldoc")
 (depends-on "php-mode")
 (depends-on "point-undo")
 (depends-on "popup")

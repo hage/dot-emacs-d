@@ -1151,8 +1151,8 @@ Otherwise sends the whole buffer."
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)
-              (local-set-key (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)))
-  )
+              (php-eldoc-enable)
+              (local-set-key (kbd "C-M-j") 'my-semicolon-or-new-comment-ine))))
 
 
 ;;;

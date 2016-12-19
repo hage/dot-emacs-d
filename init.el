@@ -1544,9 +1544,16 @@ Otherwise sends the current line."
       (eval-after-load 'smartrep
         #'(progn
             (smartrep-define-key
-                global-map "C-q" '(("(" . 'paredit-wrap-round)
-                                   ("9" . 'paredit-forward-barf-sexp)
-                                   ("0" . 'paredit-forward-slurp-sexp)))))))
+                global-map "C-w" '(("l" . (lambda () (paredit-forward-slurp-sexp)))
+                                   ("h" . (lambda () (paredit-forward-barf-sexp)))
+                                   ("L" . (lambda () (paredit-backward-barf-sexp)))
+                                   ("H" . (lambda () (paredit-backward-slurp-sexp)))
+                                   ("k" . (lambda () (paredit-splice-sexp-killing-forward)))))))))
+
+
+
+
+
 (when (fboundp 'enable-paredit-mode)
   (add-hook 'lisp-mode-hook 'enable-paredit-mode)
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))

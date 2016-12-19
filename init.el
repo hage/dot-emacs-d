@@ -4,6 +4,7 @@
 ;;; Commentary:
 ;;; Code:
 
+;;;;;;;;;;;;;;;;
 ;; init.elのロード時間を視覚化する
 ;; http://qiita.com/yuttie/items/0f38870817c11b2166bd
 ;;
@@ -11,7 +12,7 @@
 ;; (load "~/.emacs.d/initchart")
 ;; (initchart-record-execution-time-of load file)
 ;; (initchart-record-execution-time-of require feature)
-
+;;;;;;;;;;;;;;;;
 
 ;; 非常に重要な設定
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))

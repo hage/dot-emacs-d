@@ -11,7 +11,7 @@
 
 
 ;; 非常に重要な設定
-(global-set-key "\C-h" 'delete-backward-char)
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
@@ -433,7 +433,6 @@ Otherwise indent whole buffer."
 ;;;
 ;;; isearch
 ;;;
-(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 (set-face-foreground 'isearch-lazy-highlight-face "#fff")
 (set-face-background 'isearch-lazy-highlight-face "gray55")
 (set-face-foreground 'isearch "#fff")
@@ -562,7 +561,6 @@ Otherwise indent whole buffer."
 	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
-	(define-key helm-map (kbd "C-h") 'delete-backward-char)
         (define-key helm-map (kbd "C-M-n") 'helm-next-source)
         (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
 	(set-face-background 'helm-selection "gray20")
@@ -591,7 +589,6 @@ Otherwise indent whole buffer."
 	))
   (eval-after-load "helm-files"
     #'(progn
-	(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 
   ;; Emulate `kill-line' in helm minibuffer
@@ -702,7 +699,6 @@ Otherwise indent whole buffer."
       (define-key company-active-map (kbd "M-p") nil)
       (define-key company-active-map (kbd "C-n") 'company-select-next)
       (define-key company-active-map (kbd "C-p") 'company-select-previous)
-      (define-key company-active-map (kbd "C-h") nil)
 
       (defun company--insert-candidate2 (candidate)
         (when (> (length candidate) 0)
@@ -1133,8 +1129,6 @@ Otherwise sends the whole buffer."
 
 (when (fboundp 'yaml-mode)
   (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-  (eval-after-load 'yaml-mode
-    #'(define-key yaml-mode-map (kbd "C-h") 'yaml-electric-backspace))
   (when (fboundp 'ansible)
     (add-hook 'yaml-mode-hook 'ansible))
   )

@@ -1662,7 +1662,7 @@ Otherwise sends the current line."
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
 (set-face-background 'region "LightSteelBlue4")
-(set-face-foreground 'font-lock-string-face "tomato1")
+(set-face-foreground 'font-lock-string-face "MediumPurple2")
 (set-face-foreground font-lock-builtin-face "CornflowerBlue")
 (set-face-foreground font-lock-keyword-face "DeepSkyBlue")
 (set-face-bold font-lock-keyword-face t)

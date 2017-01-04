@@ -29,11 +29,12 @@
 ;;;
 (require 'cl)
 (defmacro exec-if-bound (sexplist)
-  "関数が存在する時だけ実行する"
+  "関数が存在する時だけ SEXPLIST を実行する."
   `(if (fboundp (car ',sexplist))
        ,sexplist))
 
 (defun add-to-load-path-if-found (path)
+  "PATH が存在するときだけ `load-path' に加える."
   (let ((epath (expand-file-name path)))
     (if (file-exists-p epath)
         (progn
@@ -41,14 +42,17 @@
           t)
       nil)))
 
-(defun autoload-if-found (function file &optional docstring interactive type)
-  "set autoload iff. FILE has found."
+(defun autoload-if-found (func file &optional docstring interactive type)
+  "FUNC が評価されたとき FILE を読み込むようにする.
+但しそれは FILE が 'load-path' 上に存在するときのみである.
+DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
   (let ((file-exist (locate-library file)))
     (and file-exist
-         (autoload function file docstring interactive type))
+         (autoload func file docstring interactive type))
     file-exist))
 
 (defun add-load-path-recurcive-if-found (my-elisp-directory)
+  "MY-ELISP-DIRECTORY 以下を再帰的に 'load-path' に加える."
   (interactive)
   (dolist (dir (let ((dir (expand-file-name my-elisp-directory)))
                  (list dir (format "%s%d" dir emacs-major-version))))
@@ -58,7 +62,7 @@
         (normal-top-level-add-subdirs-to-load-path)))))
 
 (defun load-safe (loadlib)
-  "安全な load。読み込みに失敗してもそこで止まらない。"
+  "安全な load。 LOADLIB を読み込むが読み込みに失敗してもそこで止まらない."
   ;; missing-ok で読んでみて、ダメならこっそり message でも出しておく
   (let ((load-status (load loadlib t)))
     (or load-status
@@ -66,13 +70,13 @@
     load-status))
 
 (defmacro global-set-key-if-bound (key-bind fun)
-  "関数が存在したらキーを割り当てる"
+  "関数が存在したら KEY-BIND に interactive 関数 FUN を割り当てる."
   `(when (fboundp ,fun)
      (global-set-key ,key-bind ,fun))
   )
 
 (defun string-strip (str)
-  "文字列頭と末尾のホワイトスペース及び改行文字を削除する"
+  "STR から文字列頭と末尾のホワイトスペース及び改行文字を削除する."
   (replace-regexp-in-string "^[ \n]*\\(.*\\)[ \n]*" "\\1" str))
 
 (add-load-path-recurcive-if-found "~/.emacs.d/free")
@@ -188,7 +192,9 @@
 (setq scroll-conservatively 1		; 一行だけスクロール
       scroll-step 1)
 (setq next-line-add-newlines nil)	; バッファの最後の行で next-line しても新しい行を作らない
-(defun previous-line (arg)		; beginning-of-bufferと怒られないようにする
+(defun previous-line (arg)
+  "Beginning-of-buffer と怒られないようにする.
+ARG はオリジナルの関数が持っていたもの."
   (interactive "p")
   (if (called-interactively-p 'interactive)
       (condition-case nil

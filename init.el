@@ -1688,6 +1688,6 @@ Otherwise sends the current line."
       (set-face-foreground 'diff-removed "black")
       (set-face-foreground 'diff-added "black")
       (set-face-foreground 'diff-context "gray60")))
-(eval-after-load 'eshell
+(eval-after-load 'em-prompt
   #'(progn
       (set-face-foreground 'eshell-prompt "green")))

@@ -1054,6 +1054,7 @@ Otherwise indent whole buffer."
     (set-face-bold 'rbenv-active-ruby-face nil)
     (add-hook 'ruby-mode-hook
               (lambda ()
+                (setq rbenv-show-active-ruby-in-modeline t)
                 (rbenv-use-corresponding)))
     )
 

@@ -437,6 +437,8 @@ Otherwise indent whole buffer."
 ;;;
 (when (require 'smartparens-config nil t)
   (set-face-background 'sp-wrap-overlay-face "blue4")
+  (set-face-background 'sp-pair-overlay-face "black")
+  (set-face-underline 'sp-pair-overlay-face t)
   (smartparens-global-mode))
 
 

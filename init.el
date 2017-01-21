@@ -1353,11 +1353,13 @@ Otherwise sends the current line."
 
   (eval-after-load "js2-mode"
     #'(progn
-        (add-to-list 'align-rules-list
-                     '(javascript-object-notation
-                       (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
-                       (tab-stop . t)              ; タブ位置でそろえる
-                       (modes    . '(js2-mode))))
+        (eval-after-load 'align
+          #'(progn
+              (add-to-list 'align-rules-list
+                           '(javascript-object-notation
+                             (regexp   . ":\\(\\s-*\\)") ; 末尾に \\(\\s-*\\)
+                             (tab-stop . t)              ; タブ位置でそろえる
+                             (modes    . '(js2-mode))))))
         (setq js2-strict-missing-semi-warning nil)
         (eval-after-load "auto-highlight-symbol"
           #'(progn

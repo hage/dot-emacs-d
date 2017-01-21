@@ -1367,6 +1367,7 @@ Otherwise sends the current line."
         (add-hook 'js2-mode-hook
                   (lambda ()
                     (setq js2-basic-offset 2)
+                    (setq tab-width 2)
                     (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
                     (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
                     (define-key js2-mode-map (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)

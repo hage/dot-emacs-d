@@ -1701,3 +1701,6 @@ Otherwise sends the current line."
 (eval-after-load 'em-ls
   #'(progn
       (set-face-foreground 'eshell-ls-directory "dodgerblue")))
+(eval-after-load 'popup
+  #'(progn
+      (set-face-background 'popup-scroll-bar-foreground-face "gray40")))

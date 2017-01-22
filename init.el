@@ -209,8 +209,14 @@ ARG はオリジナルの関数が持っていたもの."
 (setq vc-make-backup-files nil)
 
 ;; show-paren-mode
-(setq show-paren-delay 0.3)
-(exec-if-bound (show-paren-mode t))
+(when (functionp 'show-paren-mode)
+  (progn
+    (setq show-paren-delay 0.1)
+    (set-face-foreground 'show-paren-match "black")
+    (set-face-background 'show-paren-match "limegreen")
+    (set-face-foreground 'show-paren-mismatch "black")
+    (set-face-background 'show-paren-mismatch "hotpink")
+    (show-paren-mode t)))
 
 ;; その他
 (setq-default dabbrev-case-fold-search t) ; caseの区別なく探す
@@ -1683,8 +1689,6 @@ Otherwise sends the current line."
 (set-face-foreground 'default "linen")
 (set-face-foreground 'match "black")
 (set-face-background 'match "yellow1")
-(set-face-foreground 'show-paren-match "white")
-(set-face-background 'show-paren-match "limegreen")
 (set-face-foreground 'font-lock-type-face "LimeGreen")
 (set-face-background 'secondary-selection "MediumPurple4")
 (set-face-foreground 'font-lock-function-name-face "MediumTurquoise")

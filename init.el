@@ -1488,6 +1488,25 @@ Otherwise sends the current line."
   (set-face-background 'elscreen-tab-current-screen-face "gray50")
   (when (require 'elscreen-separate-buffer-list nil t)
     (elscreen-separate-buffer-list-mode))
+  (when (featurep 'elscreen-persist)
+
+    ;; elscreen-persist-restore のバグをリカバー
+    ;; see also https://github.com/robario/elscreen-persist/issues/4#issuecomment-261770364
+    (progn
+      (defun advice:elscreen-persist-restore-before-patch (&rest args)
+        "elscreen-persist-restore のバグをリカバーするパッチ"
+        (let ((elscreen-persist-file "~/.emacs.d/elscreen"))
+          (when (file-writable-p elscreen-persist-file)
+            (with-temp-buffer
+              (insert-file-contents-literally elscreen-persist-file)
+              (replace-string "#<" "<")
+              (write-region (point-min) (point-max) elscreen-persist-file)))))
+      (advice-add 'elscreen-persist-restore
+                  :before #'advice:elscreen-persist-restore-before-patch))
+
+    (elscreen-persist-mode 1)
+    )
+
   )
 
 

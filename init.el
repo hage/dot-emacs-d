@@ -1207,7 +1207,8 @@ Otherwise sends the whole buffer."
 	  (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
 
 	  ;; インデント数
-	  (setq web-mode-markup-indent-offset 2)
+          (setq tab-width 2)
+          (setq web-mode-markup-indent-offset 2)
 	  (setq web-mode-html-offset   2)
 	  (setq web-mode-css-offset    2)
 	  (setq web-mode-script-offset 2)

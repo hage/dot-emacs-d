@@ -1522,6 +1522,13 @@ Otherwise sends the current line."
 (when (autoload-if-found 'smart-newline-mode "smart-newline" t)
   (add-hook 'ruby-mode-hook
             (lambda () (smart-newline-mode t)))
+
+  ;; multiple-cursor-mode のときは smart-newline が邪魔をしてうまく動かないので切る
+  (eval-after-load "multiple-cursors"
+    #'(progn
+        (defun multiple-cursors-mode-hook-for-smart-newline ()
+          (smart-newline-mode 0))
+        (add-hook 'multiple-cursors-mode-hook 'multiple-cursors-mode-hook-for-smart-newline)))
   )
 
 

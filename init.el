@@ -753,12 +753,6 @@ Otherwise indent whole buffer."
         ac-auto-start 3
         ac-use-menu-map t)
 
-  (eval-after-load "yasnippet"
-    #'(setq-default ac-sources
-                    (append '(ac-source-yasnippet) ac-sources)))
-  (eval-after-load "ac-dabbrev"
-    #'(setq-default ac-sources
-                    (append '(ac-source-dabbrev) ac-sources)))
   ;; ac-etags
   (setq ac-etags-requires 1)
   (eval-after-load "etags"

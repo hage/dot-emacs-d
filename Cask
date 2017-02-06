@@ -40,6 +40,7 @@
 (depends-on "helm-git-grep")
 (depends-on "helm-ls-git")
 (depends-on "helm-swoop")
+(depends-on "howm")
 (depends-on "inf-ruby")
 (depends-on "jinja2-mode")
 (depends-on "js2-mode")

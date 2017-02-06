@@ -887,101 +887,107 @@ Otherwise indent whole buffer."
 ;;;
 ;;; howm
 ;;;
-(when (add-to-load-path-if-found "~/.emacs.d/free/howm")
-  (setq howm-menu-lang 'ja)
-  (setq howm-process-coding-system 'euc-jp-unix)
+; (defun autoload-if-found (func file &optional docstring interactive type)
 
-  (setq howm-prefix "\C-q,")
-  (global-set-key "\C-q,," 'howm-menu)
-  (global-set-key "\C-q,c" 'howm-create)
-  (global-set-key "\C-q,s" 'howm-list-grep-fixed)
+(autoload-if-found 'howm-menu "howm" nil t)
+(autoload-if-found 'howm-create "howm" nil t)
+(autoload-if-found 'howm-list-grep-fixed "howm" nil t)
 
-  (mapc
-   (lambda (f)
-     (autoload f "howm" "Hitori Otegaru Wiki Modoki" t))
-   '(howm-menu
-     howm-create
-     howm-list-grep-fixed
-     howm-list-all
-     howm-list-recent
-     howm-list-grep
-     howm-keyword-to-kill-ring))
+(global-set-key-if-bound "\C-q,," 'howm-menu)
+(global-set-key-if-bound "\C-q,c" 'howm-create)
+(global-set-key-if-bound "\C-q,s" 'howm-list-grep-fixed)
 
-  (eval-after-load "howm"
-    #'(progn
-	(define-key howm-mode-map [tab] 'action-lock-goto-next-link)
-	(define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)))
 
-  ;; 新しくメモを作る時は、先頭の「=タイトル」だけ挿入。
-  (setq howm-template "= %title%cursor")
-  ;; 「最近のメモ」一覧時にタイトル表示
-  (setq howm-list-recent-title t)
-  ;; 全メモ一覧時にタイトル表示
-  (setq howm-list-all-title t)
-  ;; メニューを 2 時間キャッシュ
-  (setq howm-menu-expiry-hours 2)
-  ;; メニューを自動更新しない
-  (setq howm-refesh-after-save nil)
-  ;; 下線を引き直さない
-  (setq howm-refresh-afgter-save nil)
+(eval-after-load "howm"
+  #'(progn
+      (setq howm-menu-lang 'ja)
+      (setq howm-process-coding-system 'euc-jp-unix)
 
-  ;; howm の時は auto-fill なしで
-  (add-hook 'howm-mode-on-hook (lambda () (auto-fill-mode -1)))
+      (setq howm-prefix "\C-q,")
 
-  ;; RET でファイルを開く際, 一覧バッファを消す
-  ;; C-u RET なら残る
-  (setq howm-view-summary-persistent nil)
+      (mapc
+       (lambda (f)
+         (autoload f "howm" "Hitori Otegaru Wiki Modoki" t))
+       '(howm-menu
+         howm-create
+         howm-list-grep-fixed
+         howm-list-all
+         howm-list-recent
+         howm-list-grep
+         howm-keyword-to-kill-ring))
+      (define-key howm-mode-map [tab] 'action-lock-goto-next-link)
+      (define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)
 
-  ;; メニューの予定表の表示範囲
-  ;; 10 日前から
-  (setq howm-menu-schedule-days-before 10)
-  ;; 3 日後まで
-  (setq howm-menu-schedule-days 3)
+      ;; 新しくメモを作る時は、先頭の「=タイトル」だけ挿入。
+      (setq howm-template "= %title%cursor")
+      ;; 「最近のメモ」一覧時にタイトル表示
+      (setq howm-list-recent-title t)
+      ;; 全メモ一覧時にタイトル表示
+      (setq howm-list-all-title t)
+      ;; メニューを 2 時間キャッシュ
+      (setq howm-menu-expiry-hours 2)
+      ;; メニューを自動更新しない
+      (setq howm-refesh-after-save nil)
+      ;; 下線を引き直さない
+      (setq howm-refresh-afgter-save nil)
 
-  ;; howm のファイル名
-  (setq howm-file-name-format
-        (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'markdown-mode)
-                                           "md"
-                                         "howm")))
+      ;; howm の時は auto-fill なしで
+      (add-hook 'howm-mode-on-hook (lambda () (auto-fill-mode -1)))
 
-  (setq howm-view-grep-parse-line
-	"^\\(\\([a-zA-Z]:/\\)?[^:]*\\.howm\\):\\([0-9]*\\):\\(.*\\)$")
-  ;; 検索しないファイルの正規表現
-  (setq
-   howm-excluded-file-regexp
-   "/\\.#\\|[~#]$\\|\\.bak$\\|/CVS/\\|\\.doc$\\|\\.pdf$\\|\\.ppt$\\|\\.xls$\\|git")
+      ;; RET でファイルを開く際, 一覧バッファを消す
+      ;; C-u RET なら残る
+      (setq howm-view-summary-persistent nil)
 
-  ;; howmの置き場所
-  (setq howm-directory "~/Documents/howm/")
+      ;; メニューの予定表の表示範囲
+      ;; 10 日前から
+      (setq howm-menu-schedule-days-before 10)
+      ;; 3 日後まで
+      (setq howm-menu-schedule-days 3)
 
-  ;; カレントバッファがhowm管理下にあるかどうか判定する
-  (defun my-howm-current-buffer-under-controlled-p ()
-    (and (buffer-file-name (current-buffer))
-         (string-match "/howm/" (buffer-file-name (current-buffer)))))
+      ;; howm のファイル名
+      (setq howm-file-name-format
+            (concat "%Y/%m/%Y%m%d-%H%M%S." (if (functionp 'markdown-mode)
+                                               "md"
+                                             "howm")))
 
-  ;; いちいち消すのも面倒なので
-  ;; 内容が 0 ならファイルごと削除する
-  (if (not (memq 'my-howm-delete-file-if-no-contents after-save-hook))
-      (setq after-save-hook
-	    (cons 'my-howm-delete-file-if-no-contents after-save-hook)))
-  ;; howmディレクトリ以下のファイルをセーブしたとき内容がなければ削除する
-  (defun my-howm-delete-file-if-no-contents ()
-    (when (and (my-howm-current-buffer-under-controlled-p)
-               (= (point-min) (point-max)))
-      (delete-file
-       (buffer-file-name (current-buffer)))))
+      (setq howm-view-grep-parse-line
+            "^\\(\\([a-zA-Z]:/\\)?[^:]*\\.howm\\):\\([0-9]*\\):\\(.*\\)$")
+      ;; 検索しないファイルの正規表現
+      (setq
+       howm-excluded-file-regexp
+       "/\\.#\\|[~#]$\\|\\.bak$\\|/CVS/\\|\\.doc$\\|\\.pdf$\\|\\.ppt$\\|\\.xls$\\|git")
 
-  ;; http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?SaveAndKillBuffer
-  ;; C-cC-c で保存してバッファをキルする
-  (defun my-save-and-kill-buffer ()
-    (interactive)
-    (when (my-howm-current-buffer-under-controlled-p)
-      (save-buffer)
-      (kill-buffer nil)))
-  (eval-after-load "howm-mode"
-    #'(define-key howm-mode-map
-        "\C-c\C-c" 'my-save-and-kill-buffer))
-  )
+      ;; howmの置き場所
+      (setq howm-directory "~/Documents/howm/")
+
+      ;; カレントバッファがhowm管理下にあるかどうか判定する
+      (defun my-howm-current-buffer-under-controlled-p ()
+        (and (buffer-file-name (current-buffer))
+             (string-match "/howm/" (buffer-file-name (current-buffer)))))
+
+      ;; いちいち消すのも面倒なので
+      ;; 内容が 0 ならファイルごと削除する
+      (if (not (memq 'my-howm-delete-file-if-no-contents after-save-hook))
+          (setq after-save-hook
+                (cons 'my-howm-delete-file-if-no-contents after-save-hook)))
+      ;; howmディレクトリ以下のファイルをセーブしたとき内容がなければ削除する
+      (defun my-howm-delete-file-if-no-contents ()
+        (when (and (my-howm-current-buffer-under-controlled-p)
+                   (= (point-min) (point-max)))
+          (delete-file
+           (buffer-file-name (current-buffer)))))
+
+      ;; http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?SaveAndKillBuffer
+      ;; C-cC-c で保存してバッファをキルする
+      (defun my-save-and-kill-buffer ()
+        (interactive)
+        (when (my-howm-current-buffer-under-controlled-p)
+          (save-buffer)
+          (kill-buffer nil)))
+      (eval-after-load "howm-mode"
+        #'(define-key howm-mode-map
+            "\C-c\C-c" 'my-save-and-kill-buffer))
+      ))
 
 
 ;;;

@@ -229,6 +229,7 @@ ARG はオリジナルの関数が持っていたもの."
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
 (setq-default indent-tabs-mode nil)	  ; インデントにTABを使わない
 (setq recenter-positions '(middle bottom top)) ; move-to-window-line-top-bottomの順番
+(setq-default smerge-command-prefix (kbd "C-q C-m"))
 
 ;; hl-line-modeを有効に
 (when (and
@@ -1742,3 +1743,22 @@ Otherwise sends the current line."
 (eval-after-load 'popup
   #'(progn
       (set-face-background 'popup-scroll-bar-foreground-face "gray40")))
+(eval-after-load 'smerge-mode
+  #'(progn
+      (set-face-foreground 'smerge-base "#000")
+      (set-face-foreground 'smerge-mine "#000")
+      (set-face-foreground 'smerge-other "#000")
+      (set-face-foreground 'smerge-markers "#000")
+      (set-face-foreground 'smerge-refined-added "#000")
+      (set-face-foreground 'smerge-refined-removed "#000")
+      (set-face-foreground 'smerge-other "#000")))
+(eval-after-load 'ediff-init
+  #'(progn
+      (set-face-foreground 'ediff-fine-diff-A "#000")
+      (set-face-foreground 'ediff-fine-diff-B "#000")
+      (set-face-foreground 'ediff-fine-diff-C "#000")
+      (set-face-foreground 'ediff-fine-diff-Ancestor "#000")
+      (set-face-foreground 'ediff-current-diff-A "#000")
+      (set-face-foreground 'ediff-current-diff-B "#000")
+      (set-face-foreground 'ediff-current-diff-C "#000")
+      (set-face-foreground 'ediff-current-diff-Ancestor "#000")))

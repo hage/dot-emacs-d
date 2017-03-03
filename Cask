@@ -63,6 +63,7 @@
 (depends-on "rbenv")
 (depends-on "realgud-byebug")
 (depends-on "recentf-ext")
+(depends-on "restclient")
 (depends-on "rinari")
 (depends-on "robe")
 (depends-on "rspec-mode")

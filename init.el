@@ -1648,7 +1648,17 @@ Otherwise sends the current line."
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (when (fboundp #'flycheck-pos-tip-mode) ; emacs -nw ではダメっぽいけど将来のために残しておく
     (with-eval-after-load 'flycheck
-      (flycheck-pos-tip-mode))))
+      (flycheck-pos-tip-mode)))
+
+  (defun register-flycheck-disable-mode (mode)
+    "flycheck-mode を無効にするモードを登録する"
+    (when (fboundp mode)
+      (add-hook mode
+                (lambda ()
+                  (flycheck-mode 0)))))
+  (register-flycheck-disable-mode 'restclient-mode)
+  (register-flycheck-disable-mode 'html-mode))
+
 
 
 ;;;

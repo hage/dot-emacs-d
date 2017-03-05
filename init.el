@@ -264,9 +264,11 @@ ARG はオリジナルの関数が持っていたもの."
             (y-or-n-p "Really quit Emacs? ")))
 
 ;; ファイルのセーブ前にそのバッファの末尾スペースを取り除く
+(setq-default enable-delete-trailing-whitespace-before-save t)
 (add-hook 'before-save-hook
           (lambda ()
-            (delete-trailing-whitespace)))
+            (when enable-delete-trailing-whitespace-before-save
+              (delete-trailing-whitespace))))
 
 ;; vcを起動しないようにする
 (setq vc-handled-backends nil)

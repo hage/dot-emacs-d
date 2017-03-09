@@ -87,6 +87,8 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
 
+;; east-asian-ambiguous
+(require 'east-asian-ambiguous)
 
 ;;;
 ;;; MELPA & Cask & Pallet

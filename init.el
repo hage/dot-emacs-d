@@ -528,6 +528,7 @@ Otherwise indent whole buffer."
 ;;;
 (when (require 'helm-config nil t)
   (global-set-key "\C-\M-o" 'helm-mini)
+  (global-set-key (kbd "M-O") 'helm-resume)
   (global-set-key "\M-x" 'helm-M-x)
   (global-set-key "\C-xb" 'helm-buffers-list)
   (global-set-key "\C-x\C-f" 'helm-find-files)

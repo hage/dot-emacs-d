@@ -81,6 +81,7 @@
 (depends-on "vagrant-tramp")
 (depends-on "volatile-highlights")
 (depends-on "web-mode")
+(depends-on "wgrep")
 (depends-on "which-key")
 (depends-on "with-editor")
 (depends-on "yaml-mode")

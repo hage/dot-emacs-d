@@ -1337,7 +1337,6 @@ Otherwise sends the whole buffer."
             (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
             (set-face-foreground 'elixir-atom-face "Gold3")
             (set-face-foreground 'elixir-attribute-face "royalblue3")
-            (set-face-foreground 'elixir-ignored-var-face "dimgray")
             (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
 
             (defun my-alchemist-iex-electric-send-thing (uarg)

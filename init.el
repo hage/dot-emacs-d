@@ -692,7 +692,6 @@ Otherwise indent whole buffer."
   (setq popwin:adjust-other-windows t)
   (setq popwin:popup-window-height .43)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
-  (push '("\\*eshell\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("*Backtrace*") popwin:special-display-config)
   (push '("*compilation*" :height .6) popwin:special-display-config)
@@ -1636,7 +1635,25 @@ Otherwise sends the current line."
 ;;; eshell
 ;;;
 (global-set-key-if-bound (kbd "C-w C-w") 'eshell)
+(when (featurep 'popwin)
+  (push '("*eshell*" :height 0.5 :stick t) popwin:special-display-config)
 
+  (defun eshell-pop (universal-argument)
+    "open eshell window using popwin-elf"
+    (interactive "P")
+    (let* ((eshell-buffer-name "*eshell*")
+	   (eshell-buffer (get-buffer eshell-buffer-name))
+	   (file-name (buffer-file-name (current-buffer)))
+	   (current-directory (with-current-buffer (current-buffer) default-directory)))
+      (if eshell-buffer
+	  (popwin:display-buffer eshell-buffer)
+	(eshell))
+      (when (and universal-argument file-name)
+	(eshell-kill-input)
+	(insert (concat "cd " current-directory))
+	(eshell-send-input)
+	(end-of-buffer))))
+  (global-set-key-if-bound (kbd "C-w C-w") 'eshell-pop))
 
 
 ;;;

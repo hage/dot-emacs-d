@@ -698,7 +698,7 @@ Otherwise indent whole buffer."
   (push '("*pry*" :height .4 :width .5 :stick t) popwin:special-display-config)
   (push '("*rake*") popwin:special-display-config)
   (push '("*Diff*") popwin:special-display-config)
-  (push '("\\*alchemist test report\\*" :regexp nil :stick t) popwin:special-display-config)
+  (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("*xref*") popwin:special-display-config)
   )
 

@@ -1342,7 +1342,7 @@ Otherwise sends the whole buffer."
             (add-hook 'alchemist-mode-hook 'ac-alchemist-setup)
             (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
             (set-face-foreground 'elixir-atom-face "Gold3")
-            (set-face-foreground 'elixir-attribute-face "royalblue3")
+            (set-face-foreground 'elixir-attribute-face "royalblue2")
             (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
 
             (when (fboundp 'auto-complete-mode)

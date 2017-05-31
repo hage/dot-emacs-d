@@ -1345,6 +1345,10 @@ Otherwise sends the whole buffer."
             (set-face-foreground 'elixir-attribute-face "royalblue3")
             (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
 
+            (when (fboundp 'auto-complete-mode)
+              (add-hook 'alchemist-iex-mode-hook
+                        (lambda () (auto-complete-mode))))
+
             (defun my-alchemist-iex-electric-send-thing (uarg)
               "Sends the code fragment to the inferior IEx process.
 If universal argument (C-u) is given, jump to the buffer.

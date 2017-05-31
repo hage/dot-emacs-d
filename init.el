@@ -773,24 +773,6 @@ Otherwise indent whole buffer."
   (push 'yaml-mode ac-modes)
   (push 'markdown-mode ac-modes)
   (push 'gfm-mode ac-modes)
-
-  ;; ac-mozc
-  (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))
-  (when mozc-helper-program-name
-    (require 'ac-mozc nil t)
-    (define-key ac-mode-map (kbd "C-c C-SPC") 'ac-complete-mozc)
-    (setq-default ac-sources (append ac-sources '(ac-source-mozc)))
-    (setq ac-auto-show-menu 0.2
-          ac-mozc-remove-space nil
-          ac-disable-faces nil)
-    (eval-after-load "inf-ruby"
-      #'(progn
-          ;; inf-ruby-mode では ac-mozc を切る
-          (add-hook 'inf-ruby-mode-hook
-                    (lambda ()
-                      (setq ac-sources (copy-alist (default-value 'ac-sources)))
-                      (delq 'ac-source-mozc ac-sources)))))
-    )
   )
 
 
@@ -1743,6 +1725,17 @@ Otherwise sends the current line."
   (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
   (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
   (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode)))
+
+
+;;;
+;;; mozc-temp
+;;;
+(when (and (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))
+           (fboundp 'mozc-temp-convert))
+  (setq mozc-candidate-style
+        (if (require 'mozc-popup nil t) 'popup 'echo-area))
+  (setq mozc-temp-remove-pre-space nil)
+  (global-set-key (kbd "M-n") 'mozc-temp-convert))
 
 
 ;;;

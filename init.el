@@ -1098,7 +1098,14 @@ Otherwise indent whole buffer."
 		     '(ruby-xmpfilter-mark
 		       (regexp . "\\(\\s-*\\)# => [^#\t\n]")
 		       (repeat . nil)
-		       (modes  . '(ruby-mode))))))
+		       (modes  . '(ruby-mode))))
+
+        (add-to-list 'align-rules-list
+		     '(elixir-comma-delimiter
+		       (regexp . ",\\(\\s-*\\)[^# \t\n]")
+		       (repeat . t)
+		       (modes  . '(elixir-mode))))
+	))
   )
 ;;   robeを使うには
 ;;     Gemfileに 'pry' と記述しておいて M-x robe-start

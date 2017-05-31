@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: deff
+# key: deff
+# --
+def ${1:function}, do: $0

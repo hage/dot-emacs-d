@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: map literal
+# key: lmap
+# --
+%{$0}

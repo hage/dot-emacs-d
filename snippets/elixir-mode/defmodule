@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: defmodule
-# key: defmodule
+# key: mod
 # --
 defmodule ${1:Module} do
-$0
+          $0
 end

@@ -752,6 +752,7 @@ Otherwise indent whole buffer."
 (when (require 'auto-complete-config nil t)
   (ac-config-default)
   (global-auto-complete-mode t)
+  (setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
   (setq ac-auto-start t
         ac-ignore-case t
 	ac-delay 0.1

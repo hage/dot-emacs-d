@@ -1736,7 +1736,7 @@ Otherwise sends the current line."
   (setq mozc-candidate-style
         (if (require 'mozc-popup nil t) 'popup 'echo-area))
   (setq mozc-temp-remove-pre-space nil)
-  (global-set-key (kbd "M-n") 'mozc-temp-convert))
+  (global-set-key (kbd "M-M") 'mozc-temp-convert))
 
 
 ;;;

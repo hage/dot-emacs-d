@@ -1312,6 +1312,14 @@ Otherwise sends the whole buffer."
         (insert "|> "))
       (define-key elixir-mode-map (kbd "M-J") 'my-elixir-newline-and-insert-pipe)
 
+      (defun my-elixir-insert-arrow-and-newline ()
+        (interactive)
+        (move-end-of-line 1)
+        (just-one-space)
+        (insert "->")
+        (newline-and-indent))
+      (define-key elixir-mode-map (kbd "M-L") 'my-elixir-insert-arrow-and-newline)
+
       (when (featurep 'smartparens)
         (sp-with-modes '(elixir-mode)
           (sp-local-pair "fn" "end"

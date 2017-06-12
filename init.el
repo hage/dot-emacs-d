@@ -1207,6 +1207,9 @@ Otherwise sends the whole buffer."
 	  (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
 	  (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
 	  (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
+          (define-key web-mode-map (kbd "M-C-d") 'web-mode-element-content-select)
+
+          (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
 
 	  ;; インデント数
           (setq tab-width 2)

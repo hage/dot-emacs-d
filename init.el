@@ -1751,12 +1751,14 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 ;;; mozc-temp
 ;;;
+(when (fboundp 'mozc-mode)
+  (setq default-input-method "japanese-mozc"))
 (when (and (setq mozc-helper-program-name (executable-find "mozc_emacs_helper"))
            (fboundp 'mozc-temp-convert))
   (setq mozc-candidate-style
         (if (require 'mozc-popup nil t) 'popup 'echo-area))
   (setq mozc-temp-remove-pre-space nil)
-  (global-set-key (kbd "M-M") 'mozc-temp-convert))
+  (global-set-key (kbd "M-M") 'mozc-temp-convert-dwim))
 
 
 ;;;

@@ -17,6 +17,7 @@
 (depends-on "company")
 (depends-on "csv-mode")
 (depends-on "dash")
+(depends-on "docker-compose-mode")
 (depends-on "dockerfile-mode")
 (depends-on "duplicate-thing")
 (depends-on "easy-kill")

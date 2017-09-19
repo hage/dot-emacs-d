@@ -167,6 +167,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
     (company-mode . " cp")
     (alchemist-mode . " Alc")
     (ruby-test-mode . " rtest")
+    (editorconfig-mode . " EdC")
     ;; Major modes
     (lisp-interaction-mode . "iLisp")
     (python-mode . "Py")
@@ -1767,6 +1768,14 @@ If universal argument (C-u) is given, jump to the buffer."
   (global-set-key (kbd "M-M") 'mozc-temp-convert-dwim))
 
 
+;;;
+;;; editorconfig
+;;;
+(when (fboundp 'editorconfig-mode)
+  (editorconfig-mode 1))
+
+
+;;;
 ;;; helm-qiita
 ;;;   インストール後初回起動時には touch ~/.emacs.d/helm-qiita すること。しばらくしたら使えるようになる
 (when (and (featurep 'helm) (featurep 'helm-qiita))

@@ -21,6 +21,7 @@
 (depends-on "dockerfile-mode")
 (depends-on "duplicate-thing")
 (depends-on "easy-kill")
+(depends-on "editorconfig")
 (depends-on "elixir-mode")
 (depends-on "elscreen")
 (depends-on "elscreen-persist")

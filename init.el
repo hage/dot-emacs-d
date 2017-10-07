@@ -1845,3 +1845,6 @@ If universal argument (C-u) is given, jump to the buffer."
       (set-face-foreground 'ediff-current-diff-B "#000")
       (set-face-foreground 'ediff-current-diff-C "#000")
       (set-face-foreground 'ediff-current-diff-Ancestor "#000")))
+(eval-after-load 'package
+  #'(progn
+      (set-face-foreground 'package-name "aquamarine")))

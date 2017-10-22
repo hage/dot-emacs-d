@@ -1805,6 +1805,7 @@ If universal argument (C-u) is given, jump to the buffer."
 (set-face-foreground 'minibuffer-prompt "LawnGreen")
 (set-face-foreground 'font-lock-constant-face "gold3")
 (set-face-foreground 'default "linen")
+(set-face-background 'default "black")
 (set-face-foreground 'match "black")
 (set-face-background 'match "yellow1")
 (set-face-foreground 'font-lock-type-face "LimeGreen")

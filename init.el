@@ -1792,7 +1792,7 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 (when (fboundp 'google-this-search)
   (setq google-this-location-suffix "co.jp")
-  (global-set-key (kbd "M-s M-g") 'google-search)
+  (global-set-key (kbd "M-s M-g") 'google-this-search)
   (global-set-key (kbd "M-s M-l") 'google-this-lucky-search))
 
 

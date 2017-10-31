@@ -34,6 +34,7 @@
 (depends-on "flycheck-elixir")
 (depends-on "flycheck-pos-tip")
 (depends-on "git-commit")
+(depends-on "google-this")
 (depends-on "goto-chg")
 (depends-on "helm")
 (depends-on "helm-ag")

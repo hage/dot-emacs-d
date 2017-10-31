@@ -1786,6 +1786,16 @@ If universal argument (C-u) is given, jump to the buffer."
   (helm-qiita-initialize)
   )
 
+
+;;;
+;;; google-this
+;;;
+(when (fboundp 'google-this-search)
+  (setq google-this-location-suffix "co.jp")
+  (global-set-key (kbd "M-s M-g") 'google-search)
+  (global-set-key (kbd "M-s M-l") 'google-this-lucky-search))
+
+
 ;;;
 ;;; faces
 ;;;

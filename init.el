@@ -1218,6 +1218,12 @@ Otherwise sends the whole buffer."
 
           (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
 
+          ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
+          ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097
+          (setq web-mode-auto-close-style 1)
+          (setq web-mode-enable-auto-closing t)
+          (setq web-mode-enable-auto-pairing t)
+
 	  ;; インデント数
           (setq tab-width 2)
           (setq web-mode-markup-indent-offset 2)

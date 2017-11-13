@@ -1218,6 +1218,9 @@ Otherwise sends the whole buffer."
 
           (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
 
+          (define-key web-mode-map (kbd "C-M-u") 'web-mode-backward-sexp)
+          (define-key web-mode-map (kbd "C-M-d") 'web-mode-forward-sexp)
+
           ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
           ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097
           (setq web-mode-auto-close-style 1)

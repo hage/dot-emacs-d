@@ -611,7 +611,6 @@ Otherwise indent whole buffer."
                 (t "locate %s"))
               )
         (setq helm-mini-default-sources `(helm-source-ls-git-status
-                                          helm-source-ls-git-buffers
                                           helm-source-ls-git
                                           helm-source-buffers-list
                                           helm-source-recentf

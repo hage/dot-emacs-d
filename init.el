@@ -1253,6 +1253,7 @@ Otherwise sends the whole buffer."
           (setq web-mode-auto-close-style 1)
           (setq web-mode-enable-auto-closing t)
           (setq web-mode-enable-auto-pairing t)
+          (setq web-mode-enable-auto-quoting t)
 
 	  ;; インデント数
           (setq tab-width 2)

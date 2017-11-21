@@ -1280,9 +1280,9 @@ Otherwise sends the whole buffer."
                             ("t" . (lambda () (web-mode-element-transpose)))
                             ("k" . (lambda () (web-mode-element-kill)))
                             ("V" . (lambda () (web-mode-element-vanish)))
-                            ("R" . (lambda () (smartrep-quit) (web-mode-element-rename)))
-                            ("S" . (lambda () (smartrep-quit) (web-mode-element-select)))
-                            ("s" . (lambda () (smartrep-quit) (web-mode-element-content-select)))))))
+                            ("R" . (lambda () (web-mode-element-rename)))
+                            ("S" . (lambda () (web-mode-element-select)))
+                            ("s" . (lambda () (web-mode-element-content-select)))))))
 	))
   )
 

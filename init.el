@@ -1244,7 +1244,10 @@ Otherwise sends the whole buffer."
 	  (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
 	  (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
 	  (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
-          (define-key web-mode-map (kbd "M-C-d") 'web-mode-element-content-select)
+
+          (define-key web-mode-map (kbd "M-RET") 'web-mode-element-content-select)
+          (define-key web-mode-map (kbd "C-M-u") 'web-mode-element-parent)
+          (define-key web-mode-map (kbd "C-M-d") 'web-mode-element-child)
           (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
           (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
 

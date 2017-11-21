@@ -1831,6 +1831,14 @@ If universal argument (C-u) is given, jump to the buffer."
 
 
 ;;;
+;;; urlenc
+;;;
+(when (featurep 'urlenc)
+  (global-set-key (kbd "C-q e u") 'urlenc:encode-region)
+  (global-set-key (kbd "C-q d u") 'urlenc:decode-region))
+
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

@@ -84,6 +84,7 @@
 (depends-on "smooth-scroll")
 (depends-on "string-inflection")
 (depends-on "transpose-frame")
+(depends-on "urlenc")
 (depends-on "vagrant-tramp")
 (depends-on "volatile-highlights")
 (depends-on "web-mode")

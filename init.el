@@ -653,7 +653,6 @@ Otherwise indent whole buffer."
     (setq helm-swoop-pre-input-function (lambda () "")) ; helm 起動時に検索入力欄を空にする
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
     (global-set-key (kbd "M-s s") 'isearch-forward)
-    (global-set-key (kbd "C-s") 'helm-swoop)
 
     (defun my-helm-swoop-symbol-at-point ()
       "list all lines another buffer that is includes symbol at point."
@@ -661,6 +660,12 @@ Otherwise indent whole buffer."
       (isearch-forward-symbol-at-point)
       (helm-swoop))
     (global-set-key (kbd "M-s l") 'my-helm-swoop-symbol-at-point)
+
+    (defun my-helm-swoop-resume-last-query ()
+      "swoop with last query."
+      (interactive)
+      (helm-swoop :$query (if (boundp 'helm-swoop-last-query) helm-swoop-last-query "")))
+    (global-set-key (kbd "C-s") 'my-helm-swoop-resume-last-query)
     )
   (global-set-key-if-bound (kbd "M-s M-a") #'helm-ag)
   )

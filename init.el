@@ -1245,11 +1245,8 @@ Otherwise sends the whole buffer."
 	  (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
 	  (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
           (define-key web-mode-map (kbd "M-C-d") 'web-mode-element-content-select)
-
+          (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
           (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
-
-          (define-key web-mode-map (kbd "C-M-u") 'web-mode-backward-sexp)
-          (define-key web-mode-map (kbd "C-M-d") 'web-mode-forward-sexp)
 
           ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
           ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097
@@ -1269,6 +1266,22 @@ Otherwise sends the whole buffer."
 	(add-hook 'web-mode-hook 'web-mode-hook)
 	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
 	(set-face-foreground 'web-mode-html-tag-face "OliveDrab3")
+
+        (eval-after-load 'smartrep
+          #'(progn
+              (smartrep-define-key web-mode-map
+                  "C-c e" '(("u" . (lambda () (web-mode-element-parent)))
+                            ("d" . (lambda () (web-mode-element-child)))
+                            ("n" . (lambda () (web-mode-element-sibling-next)))
+                            ("p" . (lambda () (web-mode-element-sibling-previous)))
+                            ("N" . (lambda () (web-mode-element-next)))
+                            ("P" . (lambda () (web-mode-element-previous)))
+                            ("t" . (lambda () (web-mode-element-transpose)))
+                            ("k" . (lambda () (web-mode-element-kill)))
+                            ("V" . (lambda () (web-mode-element-vanish)))
+                            ("R" . (lambda () (smartrep-quit) (web-mode-element-rename)))
+                            ("S" . (lambda () (smartrep-quit) (web-mode-element-select)))
+                            ("s" . (lambda () (smartrep-quit) (web-mode-element-content-select)))))))
 	))
   )
 

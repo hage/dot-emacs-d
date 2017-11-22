@@ -238,7 +238,7 @@ ARG はオリジナルの関数が持っていたもの."
 (modify-syntax-entry ?。 ".")		  ; 句点を単語境界に
 (modify-syntax-entry ?、 ".")		  ; 読点を単語境界に
 (setq-default indent-tabs-mode nil)	  ; インデントにTABを使わない
-(setq recenter-positions '(middle bottom top)) ; move-to-window-line-top-bottomの順番
+(setq recenter-positions '(middle top bottom)) ; move-to-window-line-top-bottomの順番
 (setq-default smerge-command-prefix (kbd "C-q C-m"))
 
 ;; hl-line-modeを有効に
@@ -296,7 +296,7 @@ ARG はオリジナルの関数が持っていたもの."
 (global-unset-key "\C-w")
 (global-set-key "\C-q\C-q" 'quoted-insert)
 (global-set-key "\C-q\C-j" 'join-line)
-(global-set-key "\C-ql" 'recenter-top-bottom)
+(global-set-key (kbd "M-C-l") 'recenter-top-bottom)
 (global-set-key "\C-qk" 'kill-region)
 (global-set-key "\C-xh" 'help-command)
 (global-set-key "\C-o" 'dabbrev-expand)

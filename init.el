@@ -202,16 +202,6 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (setq scroll-conservatively 1		; 一行だけスクロール
       scroll-step 1)
 (setq next-line-add-newlines nil)	; バッファの最後の行で next-line しても新しい行を作らない
-(defun previous-line (arg)
-  "Beginning-of-buffer と怒られないようにする.
-ARG はオリジナルの関数が持っていたもの."
-  (interactive "p")
-  (if (called-interactively-p 'interactive)
-      (condition-case nil
-	  (line-move (- arg))
-	((beginning-of-buffer end-of-buffer)))
-    (line-move (- arg)))
-  nil)
 
 ;; バックアップ・自動保存
 (setq auto-save-default nil)

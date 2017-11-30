@@ -643,13 +643,17 @@ Otherwise indent whole buffer."
 		      (concat ".*" input-pattern))))))
 
   (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
+    (setq my-helm-swoop-trigger-key (kbd "C-s"))
     (eval-after-load "helm-swoop"
       (lambda ()
         (set-face-foreground 'helm-swoop-target-word-face "magenta")
         (set-face-background 'helm-swoop-target-word-face "gray80")
         (set-face-bold 'helm-swoop-target-word-face t)
         (set-face-foreground 'helm-swoop-target-line-face "gray20")
-        (set-face-background 'helm-swoop-target-line-face "gray80")))
+        (set-face-background 'helm-swoop-target-line-face "gray80")
+        (define-key helm-map my-helm-swoop-trigger-key 'previous-history-element))
+      )
+    (global-set-key my-helm-swoop-trigger-key 'helm-swoop)
     (setq helm-swoop-pre-input-function (lambda () "")) ; helm 起動時に検索入力欄を空にする
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
     (global-set-key (kbd "M-s s") 'isearch-forward)
@@ -660,12 +664,6 @@ Otherwise indent whole buffer."
       (isearch-forward-symbol-at-point)
       (helm-swoop))
     (global-set-key (kbd "M-s l") 'my-helm-swoop-symbol-at-point)
-
-    (defun my-helm-swoop-resume-last-query ()
-      "swoop with last query."
-      (interactive)
-      (helm-swoop :$query (if (boundp 'helm-swoop-last-query) helm-swoop-last-query "")))
-    (global-set-key (kbd "C-s") 'my-helm-swoop-resume-last-query)
     )
   (global-set-key-if-bound (kbd "M-s M-a") #'helm-ag)
   )

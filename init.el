@@ -230,6 +230,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (setq-default indent-tabs-mode nil)	  ; インデントにTABを使わない
 (setq recenter-positions '(middle top bottom)) ; move-to-window-line-top-bottomの順番
 (setq-default smerge-command-prefix (kbd "C-q C-m"))
+(setq ring-bell-function (lambda () (princ "[RING] "))) ; 控えめな ring
 
 ;; hl-line-modeを有効に
 (when (and

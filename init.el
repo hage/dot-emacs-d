@@ -1912,3 +1912,7 @@ If universal argument (C-u) is given, jump to the buffer."
 (eval-after-load 'package
   #'(progn
       (set-face-foreground 'package-name "aquamarine")))
+
+(provide 'init)
+
+;;; init.el ends here

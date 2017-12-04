@@ -1918,6 +1918,6 @@ If universal argument (C-u) is given, jump to the buffer."
 (when (getenv "TMUX")
   (shell-command "tmux rename-window Emacs"))
 
-(provide 'init)
 
+(provide 'init)
 ;;; init.el ends here

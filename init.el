@@ -1913,6 +1913,11 @@ If universal argument (C-u) is given, jump to the buffer."
   #'(progn
       (set-face-foreground 'package-name "aquamarine")))
 
+
+;;; tmux が起動しているときは window-name を設定する
+(when (getenv "TMUX")
+  (shell-command "tmux rename-window Emacs"))
+
 (provide 'init)
 
 ;;; init.el ends here

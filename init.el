@@ -1634,6 +1634,10 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 (when (require 'which-key nil t)
   (which-key-setup-side-window-right)
+  (setq which-key-side-window-max-width 0.5)
+  (setq which-key-max-display-columns 1)
+  (setq which-key-allow-imprecise-window-fit t)
+  (setq which-key-max-description-length 70)
   (which-key-mode 1))
 
 

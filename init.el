@@ -1328,6 +1328,10 @@ Otherwise sends the whole buffer."
       (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-1)
       (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
 
+      ;; markdown-mode で outline-minor-mode を有効にする
+      (add-hook 'markdown-mode-hook
+                '(lambda () (outline-minor-mode t)))
+
       (progn
         (setq markdown-common-header-face-foreground "CornflowerBlue")
         (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)

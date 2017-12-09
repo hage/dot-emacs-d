@@ -1328,9 +1328,21 @@ Otherwise sends the whole buffer."
       (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-1)
       (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
 
-      ;; markdown-mode で outline-minor-mode を有効にする
+      (setq my-markdown-previewer
+            (if (file-exists-p "/Applications/MarkCat.app")
+                'my-markdown-previw
+              'markdown-preview))
+
+      (defun my-markdown-preview ()
+        (interactive)
+        "Preview a markdown file using MarkCat.app"
+        (shell-command (concat "open -a MarkCat " buffer-file-name)))
+
       (add-hook 'markdown-mode-hook
-                '(lambda () (outline-minor-mode t)))
+                '(lambda ()
+                   (outline-minor-mode t)  ; markdown-mode で outline-minor-mode を有効にする
+                   (define-key markdown-mode-map (kbd "C-c C-v") my-markdown-preview)
+                   ))
 
       (progn
         (setq markdown-common-header-face-foreground "CornflowerBlue")

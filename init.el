@@ -1664,7 +1664,11 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;; auto-highlight-symbol
 ;;;
 (when (require 'auto-highlight-symbol nil t)
-  (global-auto-highlight-symbol-mode t))
+  (global-auto-highlight-symbol-mode t)
+  (global-set-key (kbd "M-N") 'ahs-forward)
+  (global-set-key (kbd "M-P") 'ahs-backward)
+  (global-set-key (kbd "M-B") 'ahs-back-to-start)
+  )
 
 
 ;;;

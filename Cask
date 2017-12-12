@@ -5,6 +5,7 @@
 (depends-on "ac-dabbrev")
 (depends-on "ac-etags")
 (depends-on "ac-helm")
+(depends-on "ac-html")
 (depends-on "ac-inf-ruby")
 (depends-on "ace-jump-mode")
 (depends-on "alchemist")

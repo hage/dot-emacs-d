@@ -1328,20 +1328,25 @@ Otherwise sends the whole buffer."
       (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-1)
       (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-2)
 
+      (setq my-another-markdown-previewer (if osxp "/Applications/Markn.app/Contents/MacOS/Electron"
+                                    nil))
+
       (setq my-markdown-previewer
-            (if (file-exists-p "/Applications/MarkCat.app")
+            (if (and my-another-markdown-previewer (file-exists-p my-another-markdown-previewer))
                 'my-markdown-previw
               'markdown-preview))
 
       (defun my-markdown-preview ()
         (interactive)
-        "Preview a markdown file using MarkCat.app"
-        (shell-command (concat "open -a MarkCat " buffer-file-name)))
+        "Preview a markdown file using Markn.app"
+        ;;(async-shell-command (concat my-another-markdown-previewer " " buffer-file-name))
+        (start-process "Markn.app" "*Markn*" my-another-markdown-previewer buffer-file-name)
+        )
 
       (add-hook 'markdown-mode-hook
                 '(lambda ()
                    (outline-minor-mode t)  ; markdown-mode で outline-minor-mode を有効にする
-                   (define-key markdown-mode-map (kbd "C-c C-v") my-markdown-preview)
+                   (define-key markdown-mode-map (kbd "C-c C-v") 'my-markdown-preview)
                    ))
 
       (progn

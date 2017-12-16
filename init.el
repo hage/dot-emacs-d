@@ -443,6 +443,46 @@ Otherwise indent whole buffer."
 
 
 ;;;
+;;; auto-insert-mode
+;;;
+;;;     cf. https://sites.google.com/site/ytakenaka/ja/emacs/autoinsert
+(setq auto-insert-directory "~/.emacs.d/template")
+(auto-insert-mode)
+(defvar template-replacements-alists
+  '(("%file%"     . (lambda()(file-name-nondirectory (buffer-file-name))))
+    ("%filebody%" . (lambda ()
+                      (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))))
+    ("%name%"     . user-full-name)
+    ("%mail%"     . (lambda()(identity user-mail-address)))
+    ("%cyear%"    . (lambda()(substring (current-time-string) -4)))
+    ; ("%license%"  . (lambda()(read-from-minibuffer "License: ")))
+    ; ("%bdesc%"    . (lambda()(read-from-minibuffer "Brief dscription: ")))
+    ))
+
+(defun my-file-body-name (file-name)
+  (substring file-name 0 (position 46 file-name)))
+
+(defmacro defreplace (name replace-string)
+  `(defun ,name (str)
+     (goto-char (point-min))
+     (replace-string ,replace-string str)))
+
+(defreplace my-template-exec "%exec%")
+(defreplace my-template-package "%package%")
+
+(defun my-template ()
+  (time-stamp)
+  (mapc #'(lambda(c)
+	    (progn
+	      (goto-char (point-min))
+	      (replace-string (car c) (funcall (cdr c)) nil)))
+	template-replacements-alists)
+  (goto-char (point-max))
+  (message "done."))
+
+
+
+;;;
 ;;; smartparens
 ;;;
 (when (require 'smartparens-config nil t)
@@ -1189,6 +1229,7 @@ Otherwise sends the whole buffer."
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")
+  (define-auto-insert ".*Test\\.php$" ["php-phpunit.php" my-template])
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)

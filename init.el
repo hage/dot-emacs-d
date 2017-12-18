@@ -912,10 +912,10 @@ Otherwise indent whole buffer."
         (set-face-foreground 'magit-diff-removed-highlight "#ff0000")
         (set-face-background 'magit-diff-removed-highlight "gray10")
 
-        (set-face-foreground 'magit-diff-hunk-heading "gray30")
-        ;; (set-face-background 'magit-diff-hunk-heading "gray60")
-        (set-face-foreground 'magit-diff-hunk-heading-highlight "#ffffff")
-        ;; (set-face-background 'magit-diff-hunk-heading-highlight "gray60")
+        (set-face-foreground 'magit-diff-hunk-heading "gray60")
+        (set-face-background 'magit-diff-hunk-heading "gray30")
+        (set-face-foreground 'magit-diff-hunk-heading-highlight "#ccffff")
+        (set-face-background 'magit-diff-hunk-heading-highlight "gray30")
 
         (set-face-foreground 'magit-diff-context "gray50")
         (set-face-background 'magit-diff-context nil)

@@ -1154,6 +1154,11 @@ Otherwise indent whole buffer."
 		       (regexp . ",\\(\\s-*\\)[^# \t\n]")
 		       (repeat . t)
 		       (modes  . '(elixir-mode))))
+        (add-to-list 'align-rules-list
+                     '(php-hash
+                       (regexp . "\\( *\\) =>")
+                       (repeat . nil)
+                       (modes . '(php-mode))))
 	))
   )
 ;;   robeを使うには

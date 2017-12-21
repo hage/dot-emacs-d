@@ -231,6 +231,8 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (setq recenter-positions '(middle top bottom)) ; move-to-window-line-top-bottomの順番
 (setq-default smerge-command-prefix (kbd "C-q C-m"))
 (setq ring-bell-function (lambda () (princ "[RING] "))) ; 控えめな ring
+(savehist-mode 1)                                       ; minibuffer の履歴を保存
+
 
 ;; hl-line-modeを有効に
 (when (and

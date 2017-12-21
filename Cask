@@ -7,6 +7,7 @@
 (depends-on "ac-helm")
 (depends-on "ac-html")
 (depends-on "ac-inf-ruby")
+(depends-on "ac-php")
 (depends-on "ace-jump-mode")
 (depends-on "alchemist")
 (depends-on "ansible")

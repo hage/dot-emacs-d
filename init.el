@@ -736,7 +736,7 @@ Otherwise indent whole buffer."
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("*Backtrace*") popwin:special-display-config)
-  (push '("*compilation*" :height .6) popwin:special-display-config)
+  (push '("*compilation*" :height .4 :position bottom) popwin:special-display-config)
   (push '("*pry*" :height .4 :width .5 :stick t) popwin:special-display-config)
   (push '("*rake*") popwin:special-display-config)
   (push '("*Diff*") popwin:special-display-config)

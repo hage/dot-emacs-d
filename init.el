@@ -1978,8 +1978,10 @@ If universal argument (C-u) is given, jump to the buffer."
 (eval-after-load 'smerge-mode
   #'(progn
       (set-face-foreground 'smerge-base "#000")
-      (set-face-foreground 'smerge-mine "#000")
-      (set-face-foreground 'smerge-other "#000")
+      (set-face-foreground 'smerge-mine "#fff")
+      (set-face-background 'smerge-mine "#303")
+      (set-face-foreground 'smerge-other "#fff")
+      (set-face-background 'smerge-other "#033")
       (set-face-foreground 'smerge-markers "#000")
       (set-face-foreground 'smerge-refined-added "#000")
       (set-face-foreground 'smerge-refined-removed "#000")

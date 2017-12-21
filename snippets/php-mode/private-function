@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: private-function
+# key: prif
+# --
+private function ${1:method_name}($0) {
+}

@@ -1161,6 +1161,12 @@ Otherwise indent whole buffer."
                        (regexp . "\\( *\\) =>")
                        (repeat . nil)
                        (modes . '(php-mode))))
+        (add-to-list 'align-rules-list
+                     '(php-assignment-literal
+		       (regexp . "\\(\\s-*\\)=\\s-*[^ \t\n]")
+		       (repeat . t)
+		       (modes  . '(php-mode))))
+
 	))
   )
 ;;   robeを使うには

@@ -301,7 +301,8 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (global-set-key "\C-q\C-r" 'revert-buffer)
 (global-set-key "\M-\C-_" 'indent-region)
 (global-set-key "\M-H" 'backward-kill-word)
-(global-set-key "\M-/" 'find-tag-other-window)
+(global-set-key "\M-/" 'xref-find-definitions-other-window)
+(global-set-key (kbd "M-?") 'find-tag)
 (global-set-key "\C-xj" 'goto-line)
 (global-set-key "\C-j" 'newline-and-indent)
 (global-set-key (kbd "C-q a") 'align)
@@ -1240,6 +1241,8 @@ Otherwise sends the whole buffer."
 ;;; php-mode
 ;;;
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
+  (eval-after-load 'php-mode
+    #'(define-key php-mode-map (kbd "M-.") 'php-show-arglist))
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")
   (define-auto-insert ".*Test\\.php$" ["php-phpunit.php" my-template])

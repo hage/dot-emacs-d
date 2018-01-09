@@ -1945,6 +1945,13 @@ If universal argument (C-u) is given, jump to the buffer."
 
 
 ;;;
+;;; Docker
+;;;
+(when (fboundp 'docker-compose-mode)
+  (add-to-list 'auto-mode-alist '("docker-compose\\.yml\\'" . docker-compose-mode)))
+
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

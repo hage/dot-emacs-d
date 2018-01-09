@@ -545,6 +545,9 @@ Otherwise indent whole buffer."
       ;; ewwのサーチエンジンをgoogleに
       (setq eww-search-prefix "https://www.google.co.jp/search?q=")
 
+      ;; 一般の web ブラウザで開き直す
+      (define-key eww-mode-map (kbd "C-c C-v") 'eww-browse-with-external-browser)
+
       ;; http://rubikitch.com/2014/11/19/eww-nocolor/
       ;; [2014-11-17 Mon]背景・文字色を無効化する
       (defvar eww-disable-colorize t)

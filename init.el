@@ -1954,6 +1954,12 @@ If universal argument (C-u) is given, jump to the buffer."
 
 
 ;;;
+;;; dimmer
+;;;
+(when (exec-if-bound '(dimmer-mode))
+  (setq dimmer-percent 0.30))
+
+;;;
 ;;; faces
 ;;;
 (set-face-foreground 'mode-line "chartreuse1")

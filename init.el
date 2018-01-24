@@ -36,9 +36,11 @@
 ;;;
 (require 'cl)
 (defmacro exec-if-bound (sexplist)
-  "関数が存在する時だけ SEXPLIST を実行する."
+  "関数が存在する時だけ SEXPLIST を実行し、t を返す.  そうでないときは nil を返す."
   `(if (fboundp (car ',sexplist))
-       ,sexplist))
+       (progn ,sexplist
+              t)
+     nil))
 
 (defun add-to-load-path-if-found (path)
   "PATH が存在するときだけ `load-path' に加える."

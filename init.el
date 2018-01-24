@@ -1957,7 +1957,8 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;; dimmer
 ;;;
 (when (exec-if-bound '(dimmer-mode))
-  (setq dimmer-percent 0.30))
+  (setq dimmer-percent 0.40)
+  (dimmer-mode t))
 
 ;;;
 ;;; faces

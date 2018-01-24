@@ -1956,7 +1956,7 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 ;;; dimmer
 ;;;
-(when (exec-if-bound '(dimmer-mode))
+(when (fboundp 'dimmer-mode)
   (setq dimmer-percent 0.40)
   (setq dimmer-exclusion-regexp "\\(^\\*helm\\)")
   (dimmer-mode t))

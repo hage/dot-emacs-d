@@ -61,6 +61,7 @@
 (depends-on "mozc-popup")
 (depends-on "mozc-temp")
 (depends-on "multiple-cursors")
+(depends-on "nginx-mode")
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "paredit")

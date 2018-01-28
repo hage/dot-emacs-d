@@ -1647,15 +1647,17 @@ If universal argument (C-u) is given, jump to the buffer."
   ;; header-lineの先頭に[<->]を表示しない
   (setq elscreen-tab-display-control nil)
 
-  (set-face-foreground 'elscreen-tab-other-screen-face "#888")
-  (set-face-background 'elscreen-tab-other-screen-face "#444")
+  (set-face-foreground 'elscreen-tab-other-screen-face "gray60")
+  (set-face-background 'elscreen-tab-other-screen-face "gray20")
 
-  (set-face-foreground 'elscreen-tab-current-screen-face "#fc0")
-  (set-face-background 'elscreen-tab-current-screen-face "gray50")
+  (set-face-foreground 'elscreen-tab-current-screen-face "#af0")
+  (set-face-background 'elscreen-tab-current-screen-face "#777")
+  (set-face-bold 'elscreen-tab-current-screen-face t)
+
   (when (require 'elscreen-separate-buffer-list nil t)
     (elscreen-separate-buffer-list-mode))
-  (when (featurep 'elscreen-persist)
 
+  (when (featurep 'elscreen-persist)
     ;; elscreen-persist-restore のバグをリカバー
     ;; see also https://github.com/robario/elscreen-persist/issues/4#issuecomment-261770364
     (progn

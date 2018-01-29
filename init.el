@@ -1825,7 +1825,13 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 ;;; ace-search
 ;;;
-(global-set-key-if-bound (kbd "M-C-r") 'ace-jump-mode)
+(when (global-set-key-if-bound (kbd "M-C-r") 'ace-jump-mode)
+  (set-face-foreground 'ace-jump-face-foreground "#fff")
+  (set-face-background 'ace-jump-face-foreground "#000"))
+
+(when (global-set-key-if-bound (kbd "M-o") 'ace-window)
+  (set-face-foreground 'aw-leading-char-face "#fff")
+  (set-face-background 'aw-leading-char-face "#950"))
 
 
 ;;;

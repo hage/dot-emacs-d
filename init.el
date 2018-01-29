@@ -111,6 +111,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 	   (require 'package))
   ;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (setq package-hidden-regexps '("evil"))
   (package-initialize)
   (when (require 'cask nil t)
     (cask-initialize)

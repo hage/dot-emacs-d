@@ -1847,6 +1847,11 @@ If universal argument (C-u) is given, jump to the buffer."
     (with-eval-after-load 'flycheck
       (flycheck-pos-tip-mode)))
 
+  ;; elisp でコメントのチェックをしない
+  ;; cf. https://stackoverflow.com/questions/15552349/hw-to-disable-flycheck-warning-while-editing-emacs-lisp-scripts
+  (with-eval-after-load 'flycheck
+    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
   (defun register-flycheck-disable-mode (mode)
     "flycheck-mode を無効にするモードを登録する"
     (when (fboundp mode)

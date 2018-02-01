@@ -1744,6 +1744,10 @@ If universal argument (C-u) is given, jump to the buffer."
   (global-set-key (kbd "M-N") 'ahs-forward)
   (global-set-key (kbd "M-P") 'ahs-backward)
   (global-set-key (kbd "M-B") 'ahs-back-to-start)
+  (setq ahs-exclude
+        '(
+          (ruby-mode . "\\_<\\(end\\|def\\|class\\)\\_>")
+          ))
   )
 
 

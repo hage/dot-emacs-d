@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: minitest
+# key: minitest
+# --
+# coding: utf-8
+require 'minitst/autorun'
+
+class ${0:TestFoo} < MiniTest::Test
+  def setup
+    @foo = Foo.new
+  end
+
+  # teardown はあまり使わない
+  def teardown
+    @foo = nil
+  end
+
+  def test_foo
+    assert_equal "foo", @foo.foo
+  end
+end

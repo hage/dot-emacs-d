@@ -1193,7 +1193,11 @@ Otherwise indent whole buffer."
                     (robe-mode)
                     (robe-ac-setup)
                     (inf-ruby-minor-mode)))
+        (eval-after-load 'robe
+          #'(progn
+              (define-key ruby-mode-map (kbd "C-c C-a") 'robe-ask)))
         (eval-after-load 'inf-ruby
+          (define-key ruby-mode-map (kbd "C-c C-i") 'inf-ruby-console-auto)
           #'(progn
               (defun my-ruby-send-thing-dwim (uarg)
                 "Sends the code fragment to the inferior Ruby process.

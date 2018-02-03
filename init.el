@@ -1197,8 +1197,8 @@ Otherwise indent whole buffer."
           #'(progn
               (define-key ruby-mode-map (kbd "C-c C-a") 'robe-ask)))
         (eval-after-load 'inf-ruby
-          (define-key ruby-mode-map (kbd "C-c C-i") 'inf-ruby-console-auto)
           #'(progn
+              (define-key ruby-mode-map (kbd "C-c C-i") 'inf-ruby-console-auto)
               (defun my-ruby-send-thing-dwim (uarg)
                 "Sends the code fragment to the inferior Ruby process.
 If universal argument (C-u) is given, jump to the inf-ruby buffer.

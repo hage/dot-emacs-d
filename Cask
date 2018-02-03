@@ -2,7 +2,6 @@
 (source melpa)
 
 (depends-on "ac-alchemist")
-(depends-on "ac-dabbrev")
 (depends-on "ac-etags")
 (depends-on "ac-helm")
 (depends-on "ac-html")
@@ -29,7 +28,6 @@
 (depends-on "editorconfig")
 (depends-on "elixir-mode")
 (depends-on "elscreen")
-(depends-on "elscreen-persist")
 (depends-on "elscreen-separate-buffer-list")
 (depends-on "emmet-mode")
 (depends-on "epl")
@@ -70,7 +68,6 @@
 (depends-on "persistent-scratch")
 (depends-on "php-eldoc")
 (depends-on "php-mode")
-(depends-on "point-undo")
 (depends-on "popup")
 (depends-on "popwin")
 (depends-on "rbenv")

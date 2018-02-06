@@ -1962,6 +1962,25 @@ If universal argument (C-u) is given, jump to the buffer."
   (setq dimmer-exclusion-regexp "\\(^\\*helm\\)")
   (dimmer-mode t))
 
+
+;;;
+;;; showcss-mode
+;;;
+(when (fboundp 'showcss-mode)
+  (progn
+    (defun sm/toggle-showcss()
+      "Toggle showcss-mode"
+      (interactive)
+      (if (derived-mode-p
+           'html-mode
+           'nxml-mode
+           'nxhtml-mode
+           'web-mode
+           'handlebars-mode)
+          (showcss-mode 'toggle)
+        (message "Not in an html mode")))
+    (global-set-key (kbd "C-c C-k") 'sm/toggle-showcss)))
+
 ;;;
 ;;; faces
 ;;;

@@ -1582,16 +1582,6 @@ If universal argument (C-u) is given, jump to the buffer."
     (server-start)))
 
 
-
-
-;;;
-;;; hiwin
-;;;
-
-;; (when (require 'hiwin nil t)
-;;   (hiwin-activate)
-;;   (set-face-background 'hiwin-face "gray15"))
-
 ;;;
 ;;; smartrep
 ;;;

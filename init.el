@@ -1962,6 +1962,10 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 (when (fboundp 'showcss-mode)
   (progn
+    (eval-after-load 'showcss-mode
+      #'((set-face-background 'showcss/region-face "gray2")
+         (set-face-background 'showcss/header-filepath-face nil)
+         (set-face-foreground 'showcss/header-filepath-face "gray60")))
     (defun sm/toggle-showcss()
       "Toggle showcss-mode"
       (interactive)

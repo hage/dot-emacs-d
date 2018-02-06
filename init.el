@@ -751,6 +751,7 @@ Otherwise indent whole buffer."
   (push '("*Diff*") popwin:special-display-config)
   (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)
   (push '("*xref*") popwin:special-display-config)
+  (push '("*robe-doc*" :stick t :dedicated t :width .5 :height .5) popwin:special-display-config)
   )
 
 

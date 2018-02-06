@@ -735,9 +735,11 @@ Otherwise indent whole buffer."
 
 ;;;
 ;;; popwin
+;;; https://github.com/m2ym/popwin-el
 ;;;
 (when (require 'popwin nil t)
   (popwin-mode 1)
+  (global-set-key (kbd "C-w C-p") popwin:keymap)
   (setq popwin:adjust-other-windows t)
   (setq popwin:popup-window-height .43)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)

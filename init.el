@@ -2049,8 +2049,11 @@ If universal argument (C-u) is given, jump to the buffer."
       (set-face-foreground 'package-name "aquamarine")))
 
 
-;;; tmux が起動しているときは window-name を設定する
-(when (getenv "TMUX")
+;;; tmux 内にいる && Emacs がインタラクティブに起動 && Emacs がwindow-name にないとき
+;;; window-name を設定する
+(when (and (getenv "TMUX")
+           (not noninteractive)
+           (not (string-match-p "[0-9]: Emacs" (shell-command-to-string "tmux lsw"))))
   (shell-command "tmux rename-window Emacs"))
 
 

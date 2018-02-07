@@ -1961,23 +1961,26 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;; showcss-mode
 ;;;
 (when (fboundp 'showcss-mode)
-  (progn
-    (eval-after-load 'showcss-mode
-      #'((set-face-background 'showcss/region-face "gray2")
-         (set-face-background 'showcss/header-filepath-face nil)
-         (set-face-foreground 'showcss/header-filepath-face "gray60")))
-    (defun sm/toggle-showcss()
-      "Toggle showcss-mode"
-      (interactive)
-      (if (derived-mode-p
-           'html-mode
-           'nxml-mode
-           'nxhtml-mode
-           'web-mode
-           'handlebars-mode)
-          (showcss-mode 'toggle)
-        (message "Not in an html mode")))
-    (global-set-key (kbd "C-c C-k") 'sm/toggle-showcss)))
+  (eval-after-load "show-css"
+    #'(progn
+        (set-face-background 'showcss/region-face "gray5")
+        (set-face-background 'showcss/header-filepath-face nil)
+        (set-face-foreground 'showcss/header-filepath-face "gray60")
+        (set-face-background 'showcss/source-region-face "gray20")
+        (set-face-foreground 'showcss/source-region-face "gray80")))
+
+  (defun sm/toggle-showcss()
+    "Toggle showcss-mode"
+    (interactive)
+    (if (derived-mode-p
+         'html-mode
+         'nxml-mode
+         'nxhtml-mode
+         'web-mode
+         'handlebars-mode)
+        (showcss-mode 'toggle)
+      (message "Not in an html mode")))
+  (global-set-key (kbd "C-c C-k") 'sm/toggle-showcss))
 
 ;;;
 ;;; faces

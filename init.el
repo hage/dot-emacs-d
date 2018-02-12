@@ -658,9 +658,9 @@ Otherwise indent whole buffer."
                 ('darwin "mdfind -name %s %s")
                 (t "locate %s"))
               )
-        (setq helm-mini-default-sources `(helm-source-ls-git-status
+        (setq helm-mini-default-sources `(helm-source-buffers-list
+                                          helm-source-ls-git-status
                                           helm-source-ls-git
-                                          helm-source-buffers-list
                                           helm-source-recentf
                                           helm-source-locate
                                           ))

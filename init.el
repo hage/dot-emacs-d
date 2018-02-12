@@ -2020,8 +2020,18 @@ If universal argument (C-u) is given, jump to the buffer."
 (set-face-foreground 'font-lock-variable-name-face "DarkOliveGreen1")
 (eval-after-load 'diff-mode
   #'(progn
-      (set-face-foreground 'diff-removed "black")
-      (set-face-foreground 'diff-added "black")
+      (set-face-foreground 'diff-added "#ddf")
+      (set-face-background 'diff-added "#001")
+      (set-face-foreground 'diff-indicator-added "#fff")
+      (set-face-background 'diff-indicator-added "#000")
+      (set-face-bold 'diff-indicator-added t)
+
+      (set-face-foreground 'diff-removed "#fdd")
+      (set-face-background 'diff-removed "#100")
+      (set-face-foreground 'diff-indicator-removed "#fff")
+      (set-face-background 'diff-indicator-removed "#000")
+      (set-face-bold 'diff-indicator-removed t)
+
       (set-face-foreground 'diff-context "gray60")))
 
 (eval-after-load 'em-prompt

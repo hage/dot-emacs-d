@@ -1754,7 +1754,8 @@ If universal argument (C-u) is given, jump to the buffer."
                                    ("h" . (lambda () (paredit-forward-barf-sexp)))
                                    ("L" . (lambda () (paredit-backward-barf-sexp)))
                                    ("H" . (lambda () (paredit-backward-slurp-sexp)))
-                                   ("k" . (lambda () (paredit-splice-sexp-killing-forward)))))))))
+                                   ("k" . (lambda () (paredit-splice-sexp-killing-backward)))
+                                   ("j" . (lambda () (paredit-splice-sexp-killing-forward)))))))))
 
 
 

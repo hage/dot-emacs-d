@@ -292,7 +292,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (global-unset-key "\C-w")
 (global-set-key "\C-q\C-q" 'quoted-insert)
 (global-set-key "\C-q\C-j" 'join-line)
-(global-set-key (kbd "M-C-l") 'recenter-top-bottom)
+(global-set-key (kbd "M-L") 'recenter-top-bottom)
 (global-set-key "\C-qk" 'kill-region)
 (global-set-key "\C-xh" 'help-command)
 (global-set-key "\C-o" 'dabbrev-expand)

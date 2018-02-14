@@ -1715,7 +1715,10 @@ If universal argument (C-u) is given, jump to the buffer."
     #'(progn
         (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
         (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m")))))
-
+(when (autoload-if-found 'ansi-color-apply-on-region "ansi-color")
+  (add-hook 'compilation-filter-hook
+            '(lambda ()
+               (ansi-color-apply-on-region (point-min) (point-max)))))
 
 ;;;
 ;;; easy-kill

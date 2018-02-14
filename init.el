@@ -663,7 +663,13 @@ Otherwise indent whole buffer."
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
         (define-key helm-map (kbd "C-M-n") 'helm-next-source)
         (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-	(set-face-background 'helm-selection "gray20")
+
+        (let ((keyb (kbd "C-o")))
+          (define-key helm-buffer-map     keyb 'helm-buffer-switch-other-window)
+          (define-key helm-find-files-map keyb 'helm-ff-run-switch-other-window)
+          (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window))
+
+        (set-face-background 'helm-selection "gray20")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
 	(set-face-background 'helm-source-header "gray10")

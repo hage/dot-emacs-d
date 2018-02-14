@@ -1114,7 +1114,6 @@ Otherwise indent whole buffer."
   (eval-after-load "ruby-mode"
     #'(progn
         (modify-syntax-entry ?@ "w" ruby-mode-syntax-table)
-        (autoload-if-found 'realgud:byebug "realgud-byebug" "Ruby Debugger" t)
         (defun ruby-interpreter ()
           (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))
             (if (file-exists-p shims-ruby)

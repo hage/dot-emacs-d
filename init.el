@@ -611,9 +611,9 @@ Otherwise indent whole buffer."
   (global-set-key "\C-xha" 'helm-apropos)
   (global-set-key "\M-I" 'helm-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
-  (global-set-key (kbd "C-q C-y") 'helm-show-kill-ring)
-                                        ; (global-set-key (kbd "C-o") 'helm-dabbrev)
-
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-o") 'helm-dabbrev)
+  (setq helm-dabbrev-cycle-threshold 2)
   (setq helm-case-fold-search t)
   (setq helm-M-x-fuzzy-match nil)
   (setq helm-M-x-always-save-history t)

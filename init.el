@@ -609,7 +609,7 @@ Otherwise indent whole buffer."
   (global-set-key "\C-xb" 'helm-buffers-list)
   (global-set-key "\C-x\C-f" 'helm-find-files)
   (global-set-key "\C-xha" 'helm-apropos)
-  (global-set-key "\M-I" 'helm-imenu)
+  (global-set-key "\M-I" 'helm-semantic-or-imenu)
   (global-set-key (kbd "C-x C-d") 'helm-browse-project)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-o") 'helm-dabbrev)
@@ -619,6 +619,7 @@ Otherwise indent whole buffer."
   (setq helm-M-x-always-save-history t)
   (setq helm-dabbrev-cycle-thresold 3)
   (setq helm-buffer-max-length 40)
+  (semantic-mode 1)
 
   (eval-after-load "helm"
     #'(progn

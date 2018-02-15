@@ -43,6 +43,7 @@
 (depends-on "helm-ag")
 (depends-on "helm-c-yasnippet")
 (depends-on "helm-core")
+(depends-on "helm-elscreen")
 (depends-on "helm-git-grep")
 (depends-on "helm-ls-git")
 (depends-on "helm-projectile")

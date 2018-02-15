@@ -259,7 +259,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
       (setq recentf-max-saved-items 4096)
       (setq recentf-auto-cleanup 3600)
       (setq recentf-exclude '(".recentf"))
-      (run-with-idle-timer 30 t 'recentf-save-list)
+      (run-with-idle-timer 60 t (lambda () (shut-up (recentf-save-list))))
       (require 'recentf-ext nil t)
       ))
 

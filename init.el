@@ -661,13 +661,6 @@ Otherwise indent whole buffer."
 	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
-        (define-key helm-map (kbd "C-M-n") 'helm-next-source)
-        (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-
-        (let ((keyb (kbd "C-o")))
-          (define-key helm-buffer-map     keyb 'helm-buffer-switch-other-window)
-          (define-key helm-find-files-map keyb 'helm-ff-run-switch-other-window)
-          (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window))
 
         (set-face-background 'helm-selection "gray20")
 	(set-face-foreground 'helm-selection nil)
@@ -690,6 +683,19 @@ Otherwise indent whole buffer."
                                           helm-source-recentf
                                           helm-source-locate
                                           ))
+
+        (define-key helm-map (kbd "C-M-n") 'helm-next-source)
+        (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+        (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+        (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+        (define-key helm-map (kbd "C-M-i") 'helm-select-action)
+
+        (let ((keyb (kbd "C-o")))
+          (define-key helm-buffer-map     keyb 'helm-buffer-switch-other-window)
+          (define-key helm-find-files-map keyb 'helm-ff-run-switch-other-window)
+          (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window))
+
+
 	))
   (eval-after-load "helm-files"
     #'(progn

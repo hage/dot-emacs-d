@@ -2001,6 +2001,18 @@ If universal argument (C-u) is given, jump to the buffer."
   (setq dimmer-exclusion-regexp "\\(^\\*helm\\)")
   (dimmer-mode t))
 
+;;;
+;;; zoom-window
+;;;
+(when (fboundp 'zoom-window-zoom)
+  (global-set-key (kbd "C-x 1") 'zoom-window-zoom)
+  (eval-after-load "zomm-window"
+    #'(progn
+        (setq zoom-window-mode-line-color "#010")
+        (when (featurep 'elscreen)
+          (setq zoom-window-use-elscreen t))
+        (zoom-window-setup))))
+
 
 ;;;
 ;;; showcss-mode

@@ -702,6 +702,10 @@ Otherwise indent whole buffer."
     #'(progn
 	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 
+  ; mode に関係なく dbbrev する
+  (setq helm-dabbrev-related-buffer-fn
+        (lambda (start-buffer) t))
+
   ;; Emulate `kill-line' in helm minibuffer
   (setq helm-delete-minibuffer-contents-from-point t)
   (defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)

@@ -2005,7 +2005,7 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;; zoom-window
 ;;;
 (when (fboundp 'zoom-window-zoom)
-  (global-set-key (kbd "C-x 1") 'zoom-window-zoom)
+  (global-set-key (kbd "C-w 1") 'zoom-window-zoom)
   (eval-after-load "zomm-window"
     #'(progn
         (setq zoom-window-mode-line-color "#010")

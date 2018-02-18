@@ -71,6 +71,7 @@
 (depends-on "php-mode")
 (depends-on "popup")
 (depends-on "popwin")
+(depends-on "rake")
 (depends-on "rbenv")
 (depends-on "recentf-ext")
 (depends-on "restclient")

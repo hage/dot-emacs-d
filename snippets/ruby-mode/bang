@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bang
+# key: bang
+# --
+#!/usr/bin/env ruby
+# coding: utf-8

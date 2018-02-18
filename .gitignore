@@ -16,3 +16,4 @@ helm-qiita
 custom.el
 /history
 /semanticdb/
+/rake.cache

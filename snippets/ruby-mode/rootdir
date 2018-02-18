@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: rootdir
+# key: rootdir
+# --
+ROOT_DIR = File.expand_path(File.dirname(\$0))

@@ -214,11 +214,13 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 ;; show-paren-mode
 (when (functionp 'show-paren-mode)
   (progn
-    (setq show-paren-delay 0.1)
-    (set-face-foreground 'show-paren-match "black")
-    (set-face-background 'show-paren-match "limegreen")
+    (setq show-paren-delay 0.2)
+    (setq show-paren-style 'expression)
+    (set-face-foreground 'show-paren-match nil)
+    (set-face-background 'show-paren-match "gray50")
+    (set-face-bold 'show-paren-match t)
     (set-face-foreground 'show-paren-mismatch "black")
-    (set-face-background 'show-paren-mismatch "hotpink")
+    (set-face-background 'show-paren-mismatch "red")
     (show-paren-mode t)))
 
 ;; その他

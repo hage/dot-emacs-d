@@ -854,7 +854,7 @@ Otherwise indent whole buffer."
         ac-use-menu-map t)
 
   ;; ac-etags
-  (setq ac-etags-requires 1)
+  (setq ac-etags-requires 3)
   (eval-after-load "etags"
     '(progn
        (ac-etags-setup)))

@@ -2001,6 +2001,10 @@ If universal argument (C-u) is given, jump to the buffer."
 (when (fboundp 'docker-compose-mode)
   (add-to-list 'auto-mode-alist '("docker-compose\\.yml\\'" . docker-compose-mode)))
 
+(eval-after-load 'helm-files
+  #'(progn
+      (require 'docker-tramp-compat nil t)))
+
 
 ;;;
 ;;; dimmer

@@ -790,7 +790,7 @@ Otherwise indent whole buffer."
   (setq popwin:adjust-other-windows t)
   (setq popwin:popup-window-height .43)
   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
-  (push '("\\*eww.*\\*" :regexp t :stick t) popwin:special-display-config)
+  (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .6) popwin:special-display-config)
   (push '("*Backtrace*") popwin:special-display-config)
   (push '("*compilation*" :height .4 :position bottom) popwin:special-display-config)
   (push '("*pry*" :height .5 :width .5 :stick t) popwin:special-display-config)

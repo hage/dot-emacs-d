@@ -733,11 +733,14 @@ Otherwise indent whole buffer."
     (setq my-helm-swoop-trigger-key (kbd "C-s"))
     (eval-after-load "helm-swoop"
       (lambda ()
-        (set-face-foreground 'helm-swoop-target-word-face "magenta")
-        (set-face-background 'helm-swoop-target-word-face "gray80")
+        (set-face-foreground 'helm-swoop-target-word-face "#ffffff")
+        (set-face-background 'helm-swoop-target-word-face "skyblue4")
         (set-face-bold 'helm-swoop-target-word-face t)
-        (set-face-foreground 'helm-swoop-target-line-face "gray20")
-        (set-face-background 'helm-swoop-target-line-face "gray80")
+
+        (set-face-foreground 'helm-swoop-target-line-face nil)
+        (set-face-background 'helm-swoop-target-line-face "#430")
+        (set-face-underline 'helm-swoop-target-line-face nil)
+
         (define-key helm-map my-helm-swoop-trigger-key 'previous-history-element))
       )
     (global-set-key my-helm-swoop-trigger-key 'helm-swoop)

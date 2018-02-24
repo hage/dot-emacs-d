@@ -2101,6 +2101,13 @@ If universal argument (C-u) is given, jump to the buffer."
       (set-face-foreground 'smerge-other "#000")))
 (eval-after-load 'ediff-init
   #'(progn
+      (set-face-background 'ediff-odd-diff-A "gray10")
+      (set-face-background 'ediff-odd-diff-B "gray10")
+      (set-face-background 'ediff-odd-diff-C "gray10")
+      (set-face-underline  'ediff-odd-diff-A t)
+      (set-face-underline  'ediff-odd-diff-B t)
+      (set-face-underline  'ediff-odd-diff-C t)
+
       (set-face-foreground 'ediff-fine-diff-A "#000")
       (set-face-foreground 'ediff-fine-diff-B "#000")
       (set-face-foreground 'ediff-fine-diff-C "#000")

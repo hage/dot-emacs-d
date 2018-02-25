@@ -409,6 +409,13 @@ Otherwise indent whole buffer."
     ))
 (global-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)
 
+(eval-after-load "nginx-mode"
+  #'(progn
+      (add-hook 'nginx-mode-hook
+                (lambda ()
+                  (local-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)))))
+
+
 ;; 行末に移動して
 ;;   セミコロンだったら → そのまま改行
 ;;   コメントだったら → indent-new-comment-line

@@ -2097,15 +2097,15 @@ If universal argument (C-u) is given, jump to the buffer."
       (set-face-background 'popup-scroll-bar-foreground-face "gray40")))
 (eval-after-load 'smerge-mode
   #'(progn
+      (set-face-foreground 'smerge-markers "#fff")
       (set-face-foreground 'smerge-base "#000")
-      (set-face-foreground 'smerge-mine "#fff")
-      (set-face-background 'smerge-mine "#303")
-      (set-face-foreground 'smerge-other "#fff")
-      (set-face-background 'smerge-other "#033")
+      (set-face-foreground 'smerge-mine nil)
+      (set-face-background 'smerge-mine "#100")
+      (set-face-foreground 'smerge-other nil)
+      (set-face-background 'smerge-other "#001")
       (set-face-foreground 'smerge-markers "#000")
       (set-face-foreground 'smerge-refined-added "#000")
-      (set-face-foreground 'smerge-refined-removed "#000")
-      (set-face-foreground 'smerge-other "#000")))
+      (set-face-foreground 'smerge-refined-removed "#000")))
 (eval-after-load 'ediff-init
   #'(progn
       (set-face-background 'ediff-odd-diff-A "gray10")

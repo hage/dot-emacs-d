@@ -969,6 +969,8 @@ Otherwise indent whole buffer."
 
   (eval-after-load "magit"
     #'(progn
+        (setq magit-merge-arguments '("--no-ff"))
+
         (define-key magit-mode-map (kbd "C-w") ctl-q-map)
         (set-face-background 'magit-section-highlight "gray20")
 

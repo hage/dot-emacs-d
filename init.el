@@ -603,14 +603,6 @@ Otherwise indent whole buffer."
 ;;;
 ;;; Helm
 ;;;
-
-
-;; helm-swoop が直るまでローカルでパッチを当てたものを使用する。
-;; 直ったあとは以下のブロックを削除し、リポジトリも削除する。
-(when (add-to-load-path-if-found "~/project/opensource/helm-swoop")
-  (autoload 'helm-swoop "helm-swoop"))
-
-
 (when (require 'helm-config nil t)
   (global-set-key "\C-\M-o" 'helm-mini)
   (global-set-key (kbd "M-O") 'helm-resume)

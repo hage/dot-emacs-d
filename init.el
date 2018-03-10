@@ -1328,11 +1328,6 @@ Otherwise sends the whole buffer."
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode))
 
-(defun my-hook-for-lisp-interaction-mode ()
-  "Set a key hook for Lisp Interaction Mode."
-  (local-set-key (kbd "C-m") 'eval-print-last-sexp))
-(add-hook 'lisp-interaction-mode-hook 'my-hook-for-lisp-interaction-mode)
-
 ;;;
 ;;; web-mode
 ;;;

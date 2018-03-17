@@ -259,6 +259,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (setq-default smerge-command-prefix (kbd "C-q C-m"))
 (setq ring-bell-function (lambda () (princ "[RING] "))) ; 控えめな ring
 (savehist-mode 1)                                       ; minibuffer の履歴を保存
+(setq auto-revert-check-vc-info t)      ; 変化があったときに自動的に revert する
 
 
 ;; hl-line-modeを有効に

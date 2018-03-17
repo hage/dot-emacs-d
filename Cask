@@ -53,6 +53,7 @@
 (depends-on "jinja2-mode")
 (depends-on "js2-mode")
 (depends-on "json-mode")
+(depends-on "keycast")
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "markdown-mode")

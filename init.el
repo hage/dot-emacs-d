@@ -173,7 +173,6 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
                 (vc-mode vc-mode)
                 mode-line-modes
                 mode-line-misc-info
-                ;;mode-line-end-spaces
                 ))
 (defvar mode-line-cleaner-alist
   '( ;; For minor-mode, first char is 'space'
@@ -193,6 +192,13 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
     (alchemist-mode . " Alc")
     (ruby-test-mode . " rtest")
     (editorconfig-mode . " EdC")
+    (helm-migemo-mode . "")             ; Hmio
+    (auto-revert-mode . "")             ; ARev
+    (auto-highlight-symbol-mode . "")   ; HS
+    (which-key-mode . "")               ; WK
+    (smartparens-mode . "")             ; SP
+    (auto-complete-mode . "")           ; AC
+
     ;; Major modes
     (lisp-interaction-mode . "iLisp")
     (python-mode . "Py")

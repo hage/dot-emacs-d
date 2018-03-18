@@ -468,6 +468,18 @@ Otherwise indent whole buffer."
           (insert ";"))
       (newline-and-indent))))
 
+;; Finder でカレントディレクトリを開く // M-g o にキーバインド
+(defun my-open-current-directory-with-finder ()
+  "Open current directory with Finder (macOS)."
+  (interactive)
+  (cond
+   (osxp
+    (shell-command (concat "open " default-directory))
+    (message (concat "Open directory \"" default-directory "\" with Finder.")))
+   (t
+    (dired default-directory))))
+(global-set-key (kbd "M-g o") 'my-open-current-directory-with-finder)
+
 ;;;
 ;;; cde用 -- カレントバッファのディレクトリを返す
 ;;;

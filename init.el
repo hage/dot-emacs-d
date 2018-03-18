@@ -220,13 +220,16 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 ;;; keycast-mode
-(when (exec-if-bound (keycast-mode 1))
-  (setq keycast-remove-tail-elements t)
-  (setq keycast-insert-after 'mode-line-misc-info)
-  (setq keycast-separator-width 0)
-  (setq keycast-window-predicate 'keycast-bottom-right-window-p)
-  (set-face-foreground 'keycast-command "yellow"))
-
+(eval-after-load 'keycast
+  #'(progn
+      (setq keycast-remove-tail-elements t)
+      (setq keycast-insert-after 'mode-line-misc-info)
+      (setq keycast-separator-width 0)
+      (setq keycast-window-predicate 'keycast-bottom-right-window-p)
+      (set-face-foreground 'keycast-command "white")))
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (exec-if-bound (keycast-mode 1))))
 
 ;; メニューバーやスクロールバーなど余計なものを消す
 (setq inhibit-startup-message t)

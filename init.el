@@ -791,8 +791,8 @@ Otherwise indent whole buffer."
         (set-face-bold 'helm-swoop-target-word-face t)
 
         (set-face-foreground 'helm-swoop-target-line-face nil)
-        (set-face-background 'helm-swoop-target-line-face "#430")
-        (set-face-underline 'helm-swoop-target-line-face nil)
+        (set-face-background 'helm-swoop-target-line-face nil)
+        (set-face-underline 'helm-swoop-target-line-face t)
 
         (define-key helm-map my-helm-swoop-trigger-key 'previous-history-element))
       )

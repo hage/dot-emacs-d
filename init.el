@@ -278,6 +278,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (setq ring-bell-function (lambda () (princ "[RING] "))) ; 控えめな ring
 (savehist-mode 1)                                       ; minibuffer の履歴を保存
 (setq auto-revert-check-vc-info t)      ; 変化があったときに自動的に revert する
+(add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)
 
 
 ;; hl-line-modeを有効に

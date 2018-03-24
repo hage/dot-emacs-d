@@ -1820,7 +1820,7 @@ If universal argument (C-u) is given, jump to the buffer."
   (eval-after-load 'smartrep
     #'(progn
         (smartrep-define-key
-            global-map "C-q" '(("f" . 'ahs-forward)
+            global-map "C-w" '(("f" . 'ahs-forward)
                                ("b" . 'ahs-backward)
                                ("B" . 'ahs-back-to-start)))))
   (setq ahs-exclude

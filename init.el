@@ -681,6 +681,7 @@ Otherwise indent whole buffer."
         (helm-mode 1)
         (helm-migemo-mode 1)
         (global-set-key-if-bound (kbd "M-s g") 'helm-git-grep)
+        (setq helm-window-prefer-horizontal-split t) ; helm-buffer-switch-other-window で縦分割する
         (if (require 'helm-ls-git nil t)
             (progn
               (set-face-foreground 'helm-ff-file "aquamarine1")

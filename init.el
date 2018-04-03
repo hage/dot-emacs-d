@@ -2120,7 +2120,7 @@ If universal argument (C-u) is given, jump to the buffer."
 (set-face-underline 'mode-line nil)
 (set-face-foreground 'mode-line-inactive "gray10")
 (set-face-background 'mode-line-inactive "gray40")
-(set-face-foreground 'font-lock-comment-face "gray60")
+(set-face-foreground 'font-lock-comment-face "gray65")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
 (set-face-background 'region "LightSteelBlue4")

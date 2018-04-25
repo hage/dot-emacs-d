@@ -1591,7 +1591,9 @@ Otherwise sends the whole buffer."
                          :post-handlers '(sp-ruby-def-post-handler)
                          :actions '(insert navigate))))
 
-      (add-hook 'elixir-mode-hook 'alchemist-mode)
+      (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
+      (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
+
       (eval-after-load "alchemist"
         #'(progn
             (add-hook 'alchemist-mode-hook 'ac-alchemist-setup)

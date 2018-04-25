@@ -64,6 +64,11 @@
               t)
      nil))
 
+(defmacro add-hook-if-bound (hook func)
+  "(fboundp func) が t のとき hook に func をフックする"
+  `(if (fboundp ,func)
+       (add-hook ,hook ,func)))
+
 (defun add-to-load-path-if-found (path)
   "PATH が存在するときだけ `load-path' に加える."
   (let ((epath (expand-file-name path)))

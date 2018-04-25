@@ -942,24 +942,29 @@ Otherwise indent whole buffer."
 ;;;
 ;;; yasnippet
 ;;;
-(when (require 'yasnippet nil t)
-  (setq yas-snippet-dirs "~/.emacs.d/snippets")
-  (set-face-background 'yas-field-highlight-face "gray10")
-  (set-face-underline 'yas-field-highlight-face t)
-  (if (require 'dropdown-list nil t)
-      (setq yas-prompt-functions '(yas/dropdown-prompt
-				   yas/ido-prompt
-				   yas/completing-prompt)))
-  (yas-global-mode 1)
-  (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
-  (if (and (fboundp 'helm-mini)
-           (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
-      (progn
-	(autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
-	(global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
-	(global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
-  ;; snippet-mode for *.yasnippet files
-  (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))
+;; auto-complete が require してくれているっぽいので、
+;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
+(eval-after-load 'yasnippet
+  (lambda ()
+    (progn
+      (setq yas-snippet-dirs "~/.emacs.d/snippets")
+      (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
+
+      (set-face-background 'yas-field-highlight-face "gray10")
+      (set-face-underline 'yas-field-highlight-face t)
+      (if (require 'dropdown-list nil t)
+          (setq yas-prompt-functions '(yas/dropdown-prompt
+                                       yas/ido-prompt
+                                       yas/completing-prompt)))
+      (yas-global-mode 1)
+      (if (and (fboundp 'helm-mini)
+               (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
+          (progn
+            (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
+            (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
+            (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
+      ;; snippet-mode for *.yasnippet files
+      (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))))
 
 
 ;;;

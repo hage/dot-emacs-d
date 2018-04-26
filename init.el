@@ -946,25 +946,12 @@ Otherwise indent whole buffer."
 ;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
 (eval-after-load 'yasnippet
   (lambda ()
-    (progn
-      (setq yas-snippet-dirs "~/.emacs.d/snippets")
-      (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
-
-      (set-face-background 'yas-field-highlight-face "gray10")
-      (set-face-underline 'yas-field-highlight-face t)
-      (if (require 'dropdown-list nil t)
-          (setq yas-prompt-functions '(yas/dropdown-prompt
-                                       yas/ido-prompt
-                                       yas/completing-prompt)))
-      (yas-global-mode 1)
-      (if (and (fboundp 'helm-mini)
-               (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
-          (progn
-            (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
-            (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
-            (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
-      ;; snippet-mode for *.yasnippet files
-      (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode)))))
+    (if (and (fboundp 'helm-mini)
+             (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
+        (progn
+          (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
+          (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
+          (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))))
 
 
 ;;;
@@ -1601,15 +1588,16 @@ Otherwise sends the whole buffer."
 
       (eval-after-load "alchemist"
         #'(progn
+            (defun my-alchemist-iex-setup ()
+              (ac-alchemist-setup)
+              (auto-complete-mode 1))
+            (add-hook 'alchemist-iex-mode-hook 'my-alchemist-iex-setup)
             (add-hook 'alchemist-mode-hook 'ac-alchemist-setup)
+
             (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
+
             (set-face-foreground 'elixir-atom-face "Gold3")
             (set-face-foreground 'elixir-attribute-face "royalblue2")
-            (define-key alchemist-mode-map (kbd "C-x C-e") 'alchemist-iex-send-last-sexp)
-
-            (when (fboundp 'auto-complete-mode)
-              (add-hook 'alchemist-iex-mode-hook
-                        (lambda () (auto-complete-mode))))
 
             (defun my-alchemist-iex-electric-send-thing (uarg)
               "Sends the code fragment to the inferior IEx process.
@@ -1640,9 +1628,7 @@ If universal argument (C-u) is given, jump to the buffer."
               (alchemist-iex-send-region (point-min) (point-max))
               (if uarg (pop-to-buffer (process-buffer (alchemist-iex-process))))
               )
-            (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-send-buffer)
-
-            ))))
+            (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-send-buffer)))))
 
 
 ;;;

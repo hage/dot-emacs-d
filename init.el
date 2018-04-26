@@ -936,6 +936,8 @@ Otherwise indent whole buffer."
   (push 'yaml-mode ac-modes)
   (push 'markdown-mode ac-modes)
   (push 'gfm-mode ac-modes)
+  (push 'elixir-mode ac-modes)
+  (push 'alchemist-iex-mode ac-modes)
   )
 
 
@@ -946,6 +948,8 @@ Otherwise indent whole buffer."
 ;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
 (eval-after-load 'yasnippet
   (lambda ()
+    (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
+    (yas-global-mode)
     (if (and (fboundp 'helm-mini)
              (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
         (progn
@@ -1588,11 +1592,10 @@ Otherwise sends the whole buffer."
 
       (eval-after-load "alchemist"
         #'(progn
-            (defun my-alchemist-iex-setup ()
-              (ac-alchemist-setup)
-              (auto-complete-mode 1))
-            (add-hook 'alchemist-iex-mode-hook 'my-alchemist-iex-setup)
-            (add-hook 'alchemist-mode-hook 'ac-alchemist-setup)
+            (defun my-elixir-and-alchemist-iex-setup ()
+              (ac-alchemist-setup))
+            (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)
+            (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup)
 
             (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
 

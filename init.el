@@ -120,6 +120,11 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (defun string-currentline ()
   (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
 
+(defun inside-string-p (&optional pos)
+  "POS のある位置が文字列であるなら nil 以外を返す. POS が与えられなかったら (point) から得る."
+  (save-excursion
+    (nth 3 (syntax-ppss (or pos (point))))))
+
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
 

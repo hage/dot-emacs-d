@@ -1192,7 +1192,7 @@ Otherwise indent whole buffer."
               (string-strip (shell-command-to-string "which ruby")))))
         (defun ruby-mode-insert-braces ()
           (interactive)
-          (if (memq 'font-lock-string-face (text-properties-at (point)))
+          (if (inside-string-p)
               (progn
                 (insert "#{}")
                 (backward-char))

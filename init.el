@@ -725,7 +725,7 @@ Otherwise indent whole buffer."
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 
-        (set-face-background 'helm-selection "gray20")
+        (set-face-background 'helm-selection "gray30")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
 	(set-face-background 'helm-source-header "gray10")
@@ -2117,6 +2117,8 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 ;;; faces
 ;;;
+(if (not window-system)
+    (setq frame-background-mode 'dark))
 (set-face-foreground 'mode-line "chartreuse1")
 (set-face-background 'mode-line "gray40")
 (set-face-underline 'mode-line nil)

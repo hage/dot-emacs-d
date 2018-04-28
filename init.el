@@ -1583,6 +1583,17 @@ Otherwise sends the whole buffer."
         (newline-and-indent))
       (define-key elixir-mode-map (kbd "M-L") 'my-elixir-insert-arrow-and-newline)
 
+      (defun my-elixir-string-embed-expression ()
+        (interactive)
+        (if (inside-string-p)
+            (progn
+              (insert "#{}")
+              (backward-char))
+          (progn
+            (insert "#"))))
+      (define-key elixir-mode-map (kbd "#") 'my-elixir-string-embed-expression)
+
+
       (when (featurep 'smartparens)
         (sp-with-modes '(elixir-mode)
           (sp-local-pair "fn" "end"

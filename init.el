@@ -944,6 +944,10 @@ Otherwise indent whole buffer."
   (push 'gfm-mode ac-modes)
   (push 'elixir-mode ac-modes)
   (push 'alchemist-iex-mode ac-modes)
+
+  (eval-after-load 'auto-complete
+    #'(progn
+        (define-key ac-menu-map (kbd "RET") nil)))
   )
 
 

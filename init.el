@@ -1277,6 +1277,11 @@ Otherwise indent whole buffer."
 		       (regexp . "\\(\\s-*\\)# => [^#\t\n]")
 		       (repeat . nil)
 		       (modes  . '(ruby-mode))))
+        (add-to-list 'align-rules-list
+             '(ruby-hash-literal2
+               (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
 
         (add-to-list 'align-rules-list
 		     '(elixir-comma-delimiter

@@ -1591,6 +1591,7 @@ Otherwise sends the whole buffer."
         (insert "->")
         (newline-and-indent))
       (define-key elixir-mode-map (kbd "M-L") 'my-elixir-insert-arrow-and-newline)
+      (define-key elixir-mode-map (kbd "M-u") 'string-inflection-ruby-style-cycle)
 
       (defun my-elixir-string-embed-expression ()
         (interactive)

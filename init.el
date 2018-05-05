@@ -959,6 +959,10 @@ Otherwise indent whole buffer."
 (eval-after-load 'yasnippet
   (lambda ()
     (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
+
+    (set-face-foreground 'yas-field-highlight-face "#fff")
+    (set-face-background 'yas-field-highlight-face "#509")
+
     (yas-global-mode)
     (if (and (fboundp 'helm-mini)
              (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))

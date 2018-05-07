@@ -2,4 +2,5 @@
 # name: for
 # key: for
 # --
-for ${2:x} <- ${1:Enumeration}, do: $2$0
+for ${1:x} <- ${2:Enumeration} do
+    $1$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: forr
+# key: forr
+# --
+for ${1:x} <- ${2:Enumeration}, do: $1$0

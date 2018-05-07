@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: proc-literal
+# key: fn
+# --
+->($1) {$0}

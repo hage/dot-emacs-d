@@ -454,7 +454,7 @@ Otherwise indent whole buffer."
     (if (string-match "[])}>]" ch)
         (progn
           (newline-and-indent)
-          (previous-line 1)
+          (forward-line -1)
           (move-end-of-line 1)
           (newline-and-indent))
       (newline-and-indent))

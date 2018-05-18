@@ -921,8 +921,7 @@ Otherwise indent whole buffer."
   (ac-config-default)
   (global-auto-complete-mode t)
   (setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
-  (setq ac-auto-start t
-        ac-ignore-case t
+  (setq ac-ignore-case t
 	ac-delay 0.1
         ac-auto-start 3
         ac-use-menu-map t)

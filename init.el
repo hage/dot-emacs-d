@@ -1230,6 +1230,8 @@ Otherwise indent whole buffer."
         (define-key ruby-mode-map (kbd "C-q m") 'eww-open-ruby-reference)
         (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
         (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
+        (define-key ruby-mode-map (kbd "C-c C-i") 'run-ruby)
+        (define-key ruby-mode-map (kbd "C-c C-v") 'ruby-send-buffer)
 	(setq ruby-indent-level 2)
 	(setq ruby-indent-tabs-mode nil)
         (when (functionp 'ruby-test-mode)

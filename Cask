@@ -95,6 +95,7 @@
 (depends-on "urlenc")
 (depends-on "vagrant-tramp")
 (depends-on "volatile-highlights")
+(depends-on "vue-mode")
 (depends-on "web-mode")
 (depends-on "wgrep")
 (depends-on "wgrep-helm")

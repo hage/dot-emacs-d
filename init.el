@@ -1485,6 +1485,15 @@ Otherwise sends the whole buffer."
                             ("R" . (lambda () (web-mode-element-rename)))
                             ("S" . (lambda () (web-mode-element-select)))
                             ("s" . (lambda () (web-mode-element-content-select)))))))
+        ;; convinience functions
+        (defun my-web-mode-markup-paragraph-current-line ()
+          (interactive)
+          (back-to-indentation)
+          (insert "<p>")
+          (move-end-of-line 1)
+          (insert "</p>")
+          (forward-char))
+        (define-key web-mode-map (kbd "M-P") 'my-web-mode-markup-paragraph-current-line)
 	))
   )
 

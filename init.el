@@ -159,7 +159,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 
 ;; mode-line
 (line-number-mode t)			; 行番号を表示
-(setq column-number-mode nil)           ; 列番号は表示しない
+(setq column-number-mode t)             ; 列番号を表示する
 
 (when (require 'saveplace nil t)
   (setq-default save-place t)

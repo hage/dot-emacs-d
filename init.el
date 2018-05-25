@@ -687,6 +687,12 @@ Otherwise indent whole buffer."
   (setq helm-buffer-max-length 40)
   (semantic-mode 1)
 
+  (run-with-idle-timer 2 nil (lambda ()
+                               (message "loading helm...")
+                               (require 'helm)
+                               (require 'helm-buffers)
+                               (message "loading helm... done.")))
+
   (eval-after-load "helm"
     #'(progn
         (helm-mode 1)

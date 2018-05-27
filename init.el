@@ -1458,6 +1458,7 @@ Otherwise sends the whole buffer."
           (setq web-mode-enable-auto-quoting t)
 
 	  ;; インデント数
+          (setq indent-tabs-mode nil)
           (setq tab-width 2)
           (setq web-mode-markup-indent-offset 2)
 	  (setq web-mode-html-offset   2)

@@ -495,6 +495,17 @@ Otherwise indent whole buffer."
     (dired default-directory))))
 (global-set-key (kbd "M-g o") 'my-open-current-directory-with-finder)
 
+;; yank 後にインデント
+(defun my-yank-and-indent-it ()
+  "Yank and indentat it."
+  (interactive)
+  (yank)
+  (save-excursion
+    (exchange-point-and-mark)
+    (indent-region (point) (mark))))
+(global-set-key (kbd "C-M-y") 'yank)                ; yank を C-M-y に移して
+(global-set-key (kbd "C-y") 'my-yank-and-indent-it) ; 普通の yank に割り当てられているキーをこれに
+
 ;;;
 ;;; cde用 -- カレントバッファのディレクトリを返す
 ;;;

@@ -3,9 +3,12 @@
 # key: minitest
 # --
 # coding: utf-8
-require 'minitst/autorun'
+require 'rubygems'
+require 'minitest/autorun'
 
-class ${0:TestFoo} < MiniTest::Test
+# [documents](https://www.rubydoc.info/gems/minitest)
+
+class $0Test < MiniTest::Test
   def setup
     @foo = Foo.new
   end

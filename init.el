@@ -534,6 +534,28 @@ Otherwise indent whole buffer."
 
 
 ;;;
+;;; emacs-ja.info
+;;;
+;;;   https://ayatakesi.github.io
+;;;   http://emacs.rubikitch.com/emacs245-manual-ja/
+;;;
+;;; マニュアルの生成 (ダウンロード) は
+;;;   cd ~/.emacs.d
+;;;   make info-ja
+;;;
+(defvar emacs-info-ja-path "~/.emacs.d/info/emacs-ja.info")
+(when (file-exists-p emacs-info-ja-path)
+  (add-to-list 'Info-directory-list (file-name-directory emacs-info-ja-path))
+  (defun Info-find-node--info-ja (orig-fn filename &rest args)
+    (apply orig-fn
+           (pcase filename
+             ("emacs" "emacs-ja")
+             (t filename))
+           args))
+  (advice-add 'Info-find-node :around 'Info-find-node--info-ja))
+
+
+;;;
 ;;; auto-insert-mode
 ;;;
 ;;;     cf. https://sites.google.com/site/ytakenaka/ja/emacs/autoinsert

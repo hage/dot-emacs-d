@@ -1652,6 +1652,17 @@ Otherwise sends the whole buffer."
 
       (eval-after-load "alchemist"
         #'(progn
+
+            ;; C-c C-f でカーソル下の関数などのドキュメントを探し、
+            ;; C-u をつけるとドキュメントの目次を表示する
+            (defun my-alchemist-help-search (uarg)
+              "Search Document by alchemist-help."
+              (interactive "P")
+              (if uarg
+                  (alchemist-help)
+                (alchemist-help-search-at-point)))
+            (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
+
             (defun my-elixir-and-alchemist-iex-setup ()
               (ac-alchemist-setup))
             (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)

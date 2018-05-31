@@ -606,8 +606,6 @@ Otherwise indent whole buffer."
 ;;;
 ;;; isearch
 ;;;
-(set-face-foreground 'isearch-lazy-highlight-face "#fff")
-(set-face-background 'isearch-lazy-highlight-face "gray55")
 (set-face-foreground 'isearch "#fff")
 (set-face-background 'isearch "tomato")
 

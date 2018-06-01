@@ -14,3 +14,9 @@
 Launch Emacs as below;
 
     % emacs -q -l ~/.emacs.d/emergency-init.el
+
+## You can use japanese transleted Emacs Info Docs.
+### install
+
+1. cd ~/.emacs.d
+2. make info-ja

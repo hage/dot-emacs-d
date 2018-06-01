@@ -529,8 +529,10 @@ Otherwise indent whole buffer."
 ;;;
 ;;; transpose-frame
 ;;;
-(global-set-key-if-bound (kbd "C-w '") 'transpose-frame)
-(global-set-key-if-bound (kbd "C-w \"") 'flop-frame)
+(eval-after-load "transpose-frame"
+  #'(progn
+      (global-set-key-if-bound (kbd "C-w '") 'transpose-frame)
+      (global-set-key-if-bound (kbd "C-w \"") 'flop-frame)))
 
 
 ;;;

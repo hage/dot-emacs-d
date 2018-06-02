@@ -365,6 +365,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 (global-set-key (kbd "C-q a") 'align)
 (global-set-key (kbd "C-w C-SPC") 'mark-sexp)
 (global-set-key (kbd "C-q DEL") 'just-one-space)
+(global-unset-key (kbd "C-x C-h"))
 
 (setq ctl-q-map (key-binding (kbd "C-q")))
 (setq ctl-w-map (key-binding (kbd "C-w")))

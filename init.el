@@ -125,6 +125,18 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
   (save-excursion
     (nth 3 (syntax-ppss (or pos (point))))))
 
+(defun* git-toplevel-dir (&optional (path (buffer-file-name)))
+  "Returns git root dir of specified PATH or current buffer.
+returns nil when;
+* PATH was not exist
+* buffer does not have file name"
+  (if (and path (file-exists-p path))
+      (let ((result (string-strip
+                     (shell-command-to-string (format  "cd %s && git rev-parse --show-toplevel" default-directory)))))
+        result)
+    nil)
+  )
+
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
 

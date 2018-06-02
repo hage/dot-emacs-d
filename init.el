@@ -507,6 +507,10 @@ Otherwise indent whole buffer."
 (global-set-key (kbd "C-M-y") 'yank)                ; yank を C-M-y に移して
 (global-set-key (kbd "C-y") 'my-yank-and-indent-it) ; 普通の yank に割り当てられているキーをこれに
 
+(with-eval-after-load 'make-mode
+    (define-key makefile-mode-map (kbd "C-y") 'yank)
+ )
+
 ;;;
 ;;; cde用 -- カレントバッファのディレクトリを返す
 ;;;

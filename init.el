@@ -1441,7 +1441,7 @@ Otherwise sends the whole buffer."
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)
-              (php-eldoc-enable)
+              ; (php-eldoc-enable)
               (when (require 'ac-php nil t)
                 (push 'ac-source-php ac-sources))
               (local-set-key (kbd "C-M-j") 'my-semicolon-or-new-comment-ine))))

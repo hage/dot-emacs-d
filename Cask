@@ -19,6 +19,7 @@
 (depends-on "csv-mode")
 (depends-on "dash")
 (depends-on "dimmer")
+(depends-on "direx")
 (depends-on "docker")
 (depends-on "docker-compose-mode")
 (depends-on "dockerfile-mode")

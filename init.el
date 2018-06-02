@@ -1887,7 +1887,16 @@ If universal argument (C-u) is given, jump to the buffer."
   (eval-after-load "ruby-mode"
     #'(progn
         (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
-        (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m")))))
+        (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))))
+  (with-eval-after-load 'php-mode
+    (add-hook 'php-mode-hook
+              (lambda ()
+                (setq-local smart-compile-option-string "test")))
+    (define-key php-mode-map (kbd "C-c c") 'smart-compile)
+    (define-key php-mode-map (kbd "C-c C-c") (kbd "C-c c C-m")))
+  )
+
+
 (when (autoload-if-found 'ansi-color-apply-on-region "ansi-color")
   (add-hook 'compilation-filter-hook
             '(lambda ()

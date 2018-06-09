@@ -301,7 +301,7 @@ returns nil when;
 (savehist-mode 1)                                       ; minibuffer の履歴を保存
 (setq auto-revert-check-vc-info t)      ; 変化があったときに自動的に revert する
 (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)
-
+(setq force-load-messages t)
 
 ;; hl-line-modeを有効に
 (when (and

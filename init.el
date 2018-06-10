@@ -2212,9 +2212,9 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;;
 (when (fboundp 'zoom-window-zoom)
   (global-set-key (kbd "C-w 1") 'zoom-window-zoom)
+  (setq zoom-window-mode-line-color "#050")
   (eval-after-load "zomm-window"
     #'(progn
-        (setq zoom-window-mode-line-color "#010")
         (when (featurep 'elscreen)
           (setq zoom-window-use-elscreen t))
         (zoom-window-setup))))

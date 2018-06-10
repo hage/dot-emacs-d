@@ -1656,7 +1656,8 @@ Otherwise sends the whole buffer."
 ;;;
 (eval-after-load "elixir-mode"
   #'(progn
-
+      (define-key elixir-mode-map (kbd "C-M-a") 'elixir-beginning-of-defun)
+      (define-key elixir-mode-map (kbd "C-M-e") 'elixir-end-of-defun)
       ;; 改行して行頭に |> をつける
       (defun my-elixir-newline-and-insert-pipe ()
         (interactive)

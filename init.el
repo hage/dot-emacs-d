@@ -1320,49 +1320,57 @@ Otherwise indent whole buffer."
   ;; align
   (eval-after-load "align"
     #'(progn
-	(add-to-list 'align-rules-list
-		     '(ruby-comma-delimiter
-		       (regexp . ",\\(\\s-*\\)[^# \t\n]")
-		       (repeat . t)
-		       (modes  . '(ruby-mode))))
-	(add-to-list 'align-rules-list
-		     '(ruby-hash-literal
-		       (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
-		       (repeat . t)
-		       (modes  . '(ruby-mode))))
-	(add-to-list 'align-rules-list
-		     '(ruby-assignment-literal
-		       (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
-		       (repeat . t)
-		       (modes  . '(ruby-mode))))
-	(add-to-list 'align-rules-list	;TODO add to rcodetools.el
-		     '(ruby-xmpfilter-mark
-		       (regexp . "\\(\\s-*\\)# => [^#\t\n]")
-		       (repeat . nil)
-		       (modes  . '(ruby-mode))))
-        (add-to-list 'align-rules-list
-             '(ruby-hash-literal2
-               (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
-               (repeat . t)
-               (modes  . '(ruby-mode))))
-
-        (add-to-list 'align-rules-list
-		     '(elixir-comma-delimiter
-		       (regexp . ",\\(\\s-*\\)[^# \t\n]")
-		       (repeat . t)
-		       (modes  . '(elixir-mode))))
-        (add-to-list 'align-rules-list
-                     '(php-hash
-                       (regexp . "\\( *\\) =>")
-                       (repeat . nil)
-                       (modes . '(php-mode))))
-        (add-to-list 'align-rules-list
-                     '(php-assignment-literal
-		       (regexp . "\\(\\s-*\\)=\\s-*[^ \t\n]")
-		       (repeat . t)
-		       (modes  . '(php-mode))))
-
-	))
+        (defun align-rules-setup ()
+	  (add-to-list 'align-rules-list
+		       '(ruby-comma-delimiter
+		         (regexp . ",\\(\\s-*\\)[^# \t\n]")
+		         (repeat . t)
+		         (modes  . '(ruby-mode))))
+	  (add-to-list 'align-rules-list
+		       '(ruby-hash-literal
+		         (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+		         (repeat . t)
+		         (modes  . '(ruby-mode))))
+	  (add-to-list 'align-rules-list
+		       '(ruby-assignment-literal
+		         (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+		         (repeat . t)
+		         (modes  . '(ruby-mode))))
+	  (add-to-list 'align-rules-list	;TODO add to rcodetools.el
+		       '(ruby-xmpfilter-mark
+		         (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+		         (repeat . nil)
+		         (modes  . '(ruby-mode))))
+          (add-to-list 'align-rules-list
+                       '(ruby-hash-literal2
+                         (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
+                         (repeat . t)
+                         (modes  . '(ruby-mode))))
+          (add-to-list 'align-rules-list
+		       '(elixir-comma-delimiter
+		         (regexp . ",\\(\\s-*\\)[^# \t\n]")
+		         (repeat . t)
+		         (modes  . '(elixir-mode))))
+          (add-to-list 'align-rules-list
+		       '(elixir-colon-delimiter
+		         (regexp . ":\\(\\s-*\\)[^# \t\n]")
+		         (repeat . t)
+		         (modes  . '(elixir-mode))))
+          (add-to-list 'align-rules-list
+                       '(php-hash
+                         (regexp . "\\( *\\) =>")
+                         (repeat . nil)
+                         (modes . '(php-mode))))
+          (add-to-list 'align-rules-list
+                       '(php-assignment-literal
+		         (regexp . "\\(\\s-*\\)=\\s-*[^ \t\n]")
+		         (repeat . t)
+		         (modes  . '(php-mode)))))
+        (defun align-reset-rules ()
+          (interactive)
+          (setq align-rules-list nil)
+          (align-rules-setup))
+        (align-rules-setup)))
   )
 ;;   robeを使うには
 ;;     Gemfileに 'pry' と記述しておいて M-x robe-start

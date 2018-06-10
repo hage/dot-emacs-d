@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: inspect
+# key: ins
+# --
+inspect($0)

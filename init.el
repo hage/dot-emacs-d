@@ -724,7 +724,6 @@ Otherwise indent whole buffer."
   (global-set-key "\C-x\C-f" 'helm-find-files)
   (global-set-key "\C-xha" 'helm-apropos)
   (global-set-key "\M-I" 'helm-semantic-or-imenu)
-  (global-set-key (kbd "C-x C-d") 'helm-browse-project)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-o") 'helm-dabbrev)
   (global-set-key (kbd "M-s a") 'helm-do-grep-ag)
@@ -736,6 +735,12 @@ Otherwise indent whole buffer."
   (defvar helm-buffer-max-length 40)
   (semantic-mode 1)
 
+  ;; helm-projectile
+  (global-set-key (kbd "C-x C-g")
+                  (if (fboundp 'helm-projectile) 'helm-projectile 'helm-browse-project))
+  (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
+
+  ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()
                                (message "loading helm...")
                                (require 'helm)

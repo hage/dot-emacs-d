@@ -2221,6 +2221,25 @@ If universal argument (C-u) is given, jump to the buffer."
 
 
 ;;;
+;;; direx
+;;;
+(when (fboundp 'direx-project:jump-to-project-root-other-window)
+  (autoload-if-found 'direx-project:find-project-root-noselect "direx-project")
+
+  (defun* my-direx-project:find-root (&optional (dir (or buffer-file-name default-directory)))
+    "find project root directory of DIR,
+guessing a default from current buffer file name or default directory. "
+    (direx-project:find-project-root-noselect dir))
+
+  (defun my-direx:dwim (uarg)
+    (interactive "P")
+    (if (and (my-direx-project:find-root) (not uarg))
+        (direx-project:jump-to-project-root-other-window)
+      (direx:jump-to-directory-other-window)))
+  (global-set-key (kbd "C-x C-d") #' my-direx:dwim))
+
+
+;;;
 ;;; showcss-mode
 ;;;
 (when (fboundp 'showcss-mode)

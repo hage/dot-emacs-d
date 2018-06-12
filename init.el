@@ -929,6 +929,7 @@ Otherwise indent whole buffer."
   (push '("*robe-doc*" :stick t :dedicated t :width .5 :height .5) popwin:special-display-config)
   (push '("*Messages*" :position bottom :dedicated t :height .3) popwin:special-display-config)
   (push '("\\*Man .*" :regexp t :position right :stick t :width .5) popwin:special-display-config)
+  (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
   )
 
 

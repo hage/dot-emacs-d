@@ -1104,22 +1104,23 @@ Otherwise indent whole buffer."
         (set-face-foreground 'magit-diff-added "#22aa22")
         (set-face-background 'magit-diff-added "black")
         (set-face-foreground 'magit-diff-added-highlight "#44ff44")
-        (set-face-background 'magit-diff-added-highlight "gray10")
+        (set-face-background 'magit-diff-added-highlight "#112")
 
         (set-face-foreground 'magit-diff-removed "#aa2222")
         (set-face-background 'magit-diff-removed nil)
-        (set-face-foreground 'magit-diff-removed-highlight "#ff0000")
-        (set-face-background 'magit-diff-removed-highlight "gray10")
+        (set-face-foreground 'magit-diff-removed-highlight "#ff4444")
+        (set-face-background 'magit-diff-removed-highlight "#112")
 
         (set-face-foreground 'magit-diff-hunk-heading "gray60")
         (set-face-background 'magit-diff-hunk-heading "gray30")
-        (set-face-foreground 'magit-diff-hunk-heading-highlight "#ccffff")
+        (set-face-foreground 'magit-diff-hunk-heading-highlight "#88ffff")
         (set-face-background 'magit-diff-hunk-heading-highlight "gray30")
+        (set-face-bold-p 'magit-diff-hunk-heading-highlight t)
 
         (set-face-foreground 'magit-diff-context "gray50")
         (set-face-background 'magit-diff-context nil)
         (set-face-foreground 'magit-diff-context-highlight "white")
-        (set-face-background 'magit-diff-context-highlight "gray10")
+        (set-face-background 'magit-diff-context-highlight "#112")
 
         (set-face-foreground 'magit-branch-local "skyblue")
         (set-face-foreground 'magit-branch-remote "green")

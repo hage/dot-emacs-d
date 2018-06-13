@@ -298,7 +298,6 @@ returns nil when;
 (setq recenter-positions '(top middle bottom)) ; move-to-window-line-top-bottomの順番
 (setq-default smerge-command-prefix (kbd "C-q C-m"))
 (setq ring-bell-function (lambda () (princ "[RING] "))) ; 控えめな ring
-(savehist-mode 1)                                       ; minibuffer の履歴を保存
 (setq auto-revert-check-vc-info t)      ; 変化があったときに自動的に revert する
 (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)
 (setq force-load-messages t)
@@ -318,6 +317,11 @@ returns nil when;
   ;; (cancel-timer global-hl-line-timer)
   (set-face-background 'hl-line "gray10")
   )
+
+;; savehist
+(defvar savehist-additional-variables '(kill-ring))           ; 追加で保存する履歴
+(defvar savehist-ignored-variables '(magit-revision-history)) ; 保存しない履歴
+(savehist-mode 1)                                             ; minibuffer の履歴を保存
 
 ;; recentf
 (eval-after-load 'recentf

@@ -279,7 +279,7 @@ returns nil when;
     (setq show-paren-delay 0.2)
     (setq show-paren-style 'expression)
     (set-face-foreground 'show-paren-match nil)
-    (set-face-background 'show-paren-match "gray30")
+    (set-face-background 'show-paren-match "#112909")
     (set-face-bold 'show-paren-match t)
     (set-face-foreground 'show-paren-mismatch "black")
     (set-face-background 'show-paren-mismatch "red")

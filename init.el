@@ -1729,7 +1729,9 @@ Otherwise sends the whole buffer."
             (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
 
             (set-face-foreground 'elixir-atom-face "Gold3")
-            (set-face-foreground 'elixir-attribute-face "royalblue2")
+
+            (set-face-foreground 'elixir-attribute-face "royalblue1")
+            (set-face-bold-p 'elixir-attribute-face t)
 
             (defun my-alchemist-iex-electric-send-thing (uarg)
               "Sends the code fragment to the inferior IEx process.

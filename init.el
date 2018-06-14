@@ -2209,7 +2209,7 @@ If universal argument (C-u) is given, jump to the buffer."
 ;;; dimmer
 ;;;
 (when (fboundp 'dimmer-mode)
-  (setq dimmer-percent 0.40)
+  (setq dimmer-fraction 0.3)
   (setq dimmer-exclusion-regexp "\\(^\\*helm\\)")
   (dimmer-mode t))
 

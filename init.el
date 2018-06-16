@@ -742,6 +742,13 @@ Otherwise indent whole buffer."
   (defvar helm-dabbrev-cycle-thresold 3)
   (defvar helm-buffer-max-length 40)
   (defvar helm-autoresize-min-height 25)
+
+  ;; helm-mini をフレーム下部に横いっぱいに広げて表示する
+  ;;   https://github.com/emacs-helm/helm/issues/2039
+  (defvar helm-always-two-windows nil)
+  (defvar helm-display-buffer-default-height 23)
+  (defvar helm-default-display-buffer-functions '(display-buffer-in-side-window))
+
   (semantic-mode 1)
 
   ;; helm-projectile

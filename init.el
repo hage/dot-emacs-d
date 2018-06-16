@@ -383,6 +383,10 @@ returns nil when;
 (global-set-key (kbd "C-q DEL") 'just-one-space)
 (global-unset-key (kbd "C-x C-h"))
 
+(global-set-key (kbd "M-f") 'forward-to-word)
+(global-set-key (kbd "M-F") 'forward-word)
+(global-set-key (kbd "M-B") 'backward-to-word)
+
 (setq ctl-q-map (key-binding (kbd "C-q")))
 (setq ctl-w-map (key-binding (kbd "C-w")))
 

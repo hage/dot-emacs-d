@@ -772,7 +772,7 @@ Otherwise indent whole buffer."
         (if (require 'helm-ls-git nil t)
             (progn
               (set-face-foreground 'helm-ff-file "aquamarine1")
-              (set-face-foreground 'helm-buffer-file "lime green")
+              (set-face-foreground 'helm-buffer-file "limegreen")
               (set-face-background 'helm-selection-line "gray20")
               (set-face-underline 'helm-selection-line nil)
 
@@ -785,11 +785,13 @@ Otherwise indent whole buffer."
               (set-face-background 'helm-ls-git-conflict-face "red3")
               (set-face-foreground 'helm-ls-git-untracked-face "plum1")
 
-              (set-face-foreground 'helm-ff-directory "pink")
-              (set-face-background 'helm-ff-directory "#339")
+              (set-face-foreground 'helm-ff-directory "yellow")
+              (set-face-background 'helm-ff-directory nil)
+              (set-face-underline 'helm-ff-directory t)
 
-              (set-face-foreground 'helm-ff-dotted-directory "pink")
-              (set-face-background 'helm-ff-dotted-directory "#339")
+              (set-face-foreground 'helm-ff-dotted-directory "yellow")
+              (set-face-background 'helm-ff-dotted-directory nil)
+              (set-face-underline 'helm-ff-dotted-directory t)
 
               (set-face-foreground 'helm-ff-dotted-symlink-directory "#f55")
               (set-face-background 'helm-ff-dotted-symlink-directory "#225")
@@ -806,7 +808,7 @@ Otherwise indent whole buffer."
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 
-        (set-face-background 'helm-selection "gray30")
+        (set-face-background 'helm-selection "gray40")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
 	(set-face-background 'helm-source-header "gray10")
@@ -874,12 +876,12 @@ Otherwise indent whole buffer."
     (setq my-helm-swoop-trigger-key (kbd "C-s"))
     (eval-after-load "helm-swoop"
       (lambda ()
-        (set-face-foreground 'helm-swoop-target-word-face "black")
-        (set-face-background 'helm-swoop-target-word-face "yellow")
+        (set-face-foreground 'helm-swoop-target-word-face "#ffffff")
+        (set-face-background 'helm-swoop-target-word-face "#050")
         (set-face-bold 'helm-swoop-target-word-face t)
 
         (set-face-foreground 'helm-swoop-target-line-face nil)
-        (set-face-background 'helm-swoop-target-line-face "#440")
+        (set-face-background 'helm-swoop-target-line-face "#030")
         (set-face-underline 'helm-swoop-target-line-face nil)
 
         (define-key helm-map my-helm-swoop-trigger-key 'previous-history-element))

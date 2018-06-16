@@ -281,8 +281,8 @@ returns nil when;
     (set-face-foreground 'show-paren-match nil)
     (set-face-background 'show-paren-match "#112909")
     (set-face-bold 'show-paren-match t)
-    (set-face-foreground 'show-paren-mismatch "black")
-    (set-face-background 'show-paren-mismatch "red")
+    (set-face-foreground 'show-paren-mismatch nil)
+    (set-face-background 'show-paren-mismatch "#551109")
     (show-paren-mode t)))
 
 ;; その他

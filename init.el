@@ -741,6 +741,7 @@ Otherwise indent whole buffer."
   (defvar helm-M-x-always-save-history t)
   (defvar helm-dabbrev-cycle-thresold 3)
   (defvar helm-buffer-max-length 40)
+  (defvar helm-autoresize-min-height 25)
   (semantic-mode 1)
 
   ;; helm-projectile

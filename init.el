@@ -381,7 +381,7 @@ returns nil when;
 (global-set-key (kbd "C-q a") 'align)
 (global-set-key (kbd "C-w C-SPC") 'mark-sexp)
 (global-set-key (kbd "C-q DEL") 'just-one-space)
-(global-unset-key (kbd "C-x C-h"))
+(global-unset-key (kbd "C-x DEL"))
 
 (global-set-key (kbd "M-f") 'forward-to-word)
 (global-set-key (kbd "M-F") 'forward-word)

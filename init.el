@@ -758,10 +758,8 @@ Otherwise indent whole buffer."
 
   ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()
-                               (message "loading helm...")
                                (require 'helm)
-                               (require 'helm-buffers)
-                               (message "loading helm... done.")))
+                               (require 'helm-buffers)))
 
   (eval-after-load "helm"
     #'(progn

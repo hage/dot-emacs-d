@@ -456,16 +456,20 @@ Otherwise indent whole buffer."
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "FMove to: ")
   (let ((name (buffer-name))
-        (filename (buffer-file-name)))
+        (filename (buffer-file-name))
+        (dest-dir (file-name-directory new-name)))
     (if (not filename)
         (message "Buffer '%s' is not visiting a file!" name)
       (if (get-buffer new-name)
           (message "A buffer named '%s' already exists!" new-name)
-        (progn
-          (rename-file name new-name 1)
-          (rename-buffer new-name)
-          (set-visited-file-name new-name)
-          (set-buffer-modified-p nil))))))
+        (if (or (file-exists-p dest-dir)
+                (and (y-or-n-p (format "directory <%s> is not exist. make it?" dest-dir))
+                     (or (make-directory dest-dir t) t))) ; make-directory は常に nil を返す
+            (progn
+              (rename-file name new-name 1)
+              (rename-buffer new-name)
+              (set-visited-file-name new-name)
+              (set-buffer-modified-p nil)))))))
 (global-set-key (kbd "C-x w") 'rename-file-and-buffer)
 
 

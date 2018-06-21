@@ -847,7 +847,7 @@ Otherwise indent whole buffer."
     #'(progn
 	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 
-  ; mode に関係なく dbbrev する
+  ;; mode に関係なく dbbrev する
   (setq helm-dabbrev-related-buffer-fn
         (lambda (start-buffer) t))
 

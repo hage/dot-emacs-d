@@ -742,6 +742,7 @@ Otherwise indent whole buffer."
   (defvar helm-dabbrev-cycle-thresold 3)
   (defvar helm-buffer-max-length 40)
   (defvar helm-autoresize-min-height 25)
+  (defvar helm-ff-skip-boring-files t)
 
   ;; helm-mini をフレーム下部に横いっぱいに広げて表示する
   ;;   https://github.com/emacs-helm/helm/issues/2039

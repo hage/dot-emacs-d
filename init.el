@@ -1738,6 +1738,17 @@ Otherwise sends the whole buffer."
             (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
             (define-key alchemist-iex-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
 
+            ;; test と 実装を行き来する。
+            ;; C-u をつけるとウィンドウを分割してそこに表示する。
+            (defun my-alchemist-project-toggle-file-and-tests (uarg)
+              "Toggle between a file and its tests."
+              (interactive "P")
+              (if uarg
+                  (alchemist-project-toggle-file-and-tests-other-window)
+                (alchemist-project-toggle-file-and-tests)))
+            (define-key alchemist-mode-map (kbd "C-c a a") 'my-alchemist-project-toggle-file-and-tests)
+
+            ;; iex に関する設定
             (defun my-elixir-and-alchemist-iex-setup ()
               (ac-alchemist-setup))
             (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)

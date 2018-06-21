@@ -1764,14 +1764,14 @@ Otherwise sends the current line."
 
             (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
 
-            (defun my-alchemist-iex-send-buffer (uarg)
-              "Sends the code of current buffer to the inferior IEx process.
-If universal argument (C-u) is given, jump to the buffer."
+            (defun my-alchemist-iex-compile-buffer (uarg)
+              "Compile the code of current buffer in the inferior IEx process.
+If universal argument (C-u) is given, jump to the IEx buffer."
               (interactive "P")
-              (alchemist-iex-send-region (point-min) (point-max))
-              (if uarg (pop-to-buffer (process-buffer (alchemist-iex-process))))
-              )
-            (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-send-buffer)))))
+              (if uarg
+                  (alchemist-iex-compile-this-buffer-and-go)
+                (alchemist-iex-compile-this-buffer)))
+            (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)))))
 
 
 ;;;

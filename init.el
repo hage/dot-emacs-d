@@ -826,6 +826,7 @@ Otherwise indent whole buffer."
                                           helm-source-ls-git-status
                                           helm-source-ls-git
                                           helm-source-recentf
+                                          helm-source-findutils
                                           helm-source-locate
                                           ))
 

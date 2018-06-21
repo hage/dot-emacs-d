@@ -1728,6 +1728,7 @@ Otherwise sends the whole buffer."
                   (alchemist-help)
                 (alchemist-help-search-at-point)))
             (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
+            (define-key alchemist-iex-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
 
             (defun my-elixir-and-alchemist-iex-setup ()
               (ac-alchemist-setup))

@@ -996,7 +996,8 @@ Otherwise indent whole buffer."
   (setq ac-ignore-case t
 	ac-delay 0.1
         ac-auto-start 3
-        ac-use-menu-map t)
+        ac-use-menu-map t
+        ac-use-comphist nil)
 
   ;; ac-etags
   (setq ac-etags-requires 3)

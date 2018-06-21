@@ -943,7 +943,7 @@ Otherwise indent whole buffer."
   (push '("\\*Man .*" :regexp t :position right :stick t :width .5) popwin:special-display-config)
   (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
   (push '("*info*" :position right :stick t :width 80 :dedicated t) popwin:special-display-config)
-  (push '("*Help*" :position right :width 80) popwin:special-display-config)
+  (push '("*Help*" :position right :width 80 :dedicated t :stick t :noselect t) popwin:special-display-config)
   )
 
 

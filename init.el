@@ -419,12 +419,6 @@ returns nil when;
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
 
-(defun move-end-of-line-and-newline-and-indent ()
-  (interactive)
-  (move-end-of-line nil)
-  (newline-and-indent))
-(global-set-key (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
-
 (defun narrow-to-sexp ()
   "Make text outside current sexp invisible."
   (interactive)
@@ -483,7 +477,9 @@ Otherwise indent whole buffer."
           (forward-line -1)
           (move-end-of-line 1)
           (newline-and-indent))
-      (newline-and-indent))
+      (progn
+        (move-end-of-line 1)
+        (newline-and-indent)))
     ))
 (global-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)
 

@@ -938,6 +938,7 @@ Otherwise indent whole buffer."
   (push '("*Backtrace*") popwin:special-display-config)
   (push '("*compilation*" :height .4 :position bottom :stick t) popwin:special-display-config)
   (push '("*pry*" :height .5 :width .5 :stick t) popwin:special-display-config)
+  (push '("*Alchemist-IEx*" :height .5 :width .5 :stick t) popwin:special-display-config)
   (push '("*rake*") popwin:special-display-config)
   (push '("*Diff*") popwin:special-display-config)
   (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)

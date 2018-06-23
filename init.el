@@ -467,11 +467,14 @@ Otherwise indent whole buffer."
 (global-set-key (kbd "C-x w") 'rename-file-and-buffer)
 
 
-;; 閉じカッコの上にカーソルがあった時はブロックを開いて、そうじゃないときは newline-and-indent
 (defun my-open-block-or-newline-and-indent ()
+  "カーソル前と上がぞれぞれ括弧のペアだったときはブロックを開き、
+そうじゃないときは次行に新たな行を開いてインデント"
   (interactive)
-  (let ((ch (char-to-string (following-char))))
-    (if (string-match "[])}>]" ch)
+  (let ((lch (char-to-string (preceding-char)))
+        (rch (char-to-string (following-char))))
+    (if (and (string-match "[[({<]" lch)  ; 手抜きをしてペアが同種の括弧かどうかは判定していない
+             (string-match "[])}>]" rch))
         (progn
           (newline-and-indent)
           (forward-line -1)

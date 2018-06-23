@@ -725,7 +725,6 @@ Otherwise indent whole buffer."
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)
-  (global-set-key "\C-\M-o" 'helm-mini)
   (global-set-key (kbd "M-O") 'helm-resume)
   (global-set-key "\M-x" 'helm-M-x)
   (global-set-key "\C-xb" 'helm-buffers-list)
@@ -753,9 +752,36 @@ Otherwise indent whole buffer."
   (semantic-mode 1)
 
   ;; helm-projectile
-  (global-set-key (kbd "C-x C-g")
-                  (if (fboundp 'helm-projectile) 'helm-projectile 'helm-browse-project))
-  (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
+  (defun my-helm-browse-project ()
+    (interactive)
+    "helm-projectile があるときはそれを、なければ helm-browse-project を起動する"
+    (if (fboundp 'helm-projectile)
+        (helm-projectile)
+      (helm-browse-project)))
+  (global-set-key (kbd "C-x C-g") 'my-helm-browse-project)
+
+  ;; helm-projectile がないとき C-M-o にバインドするデフォルト。
+  ;; helm-projectile があるときは my-helm-browse-project にバインドし直す。
+  (global-set-key (kbd "C-M-o") 'helm-mini)
+  (when (fboundp 'helm-projectile)
+    (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
+
+    (autoload-if-found 'projectile-project-p "projectile")
+    (defun my-helm-mini-or-browse-project ()
+      (interactive)
+      (if (projectile-project-p)
+          (my-helm-browse-project)
+        (helm-mini)))
+    (global-set-key (kbd "C-M-o") 'my-helm-mini-or-browse-project)
+
+    (defvar helm-projectile-sources-list)
+    (with-eval-after-load "helm-projectile"
+      (setq helm-projectile-sources-list
+            (append helm-projectile-sources-list
+                    '(helm-source-recentf
+                      helm-source-findutils)))
+      )
+    )
 
   ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()

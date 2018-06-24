@@ -953,11 +953,12 @@ Otherwise indent whole buffer."
 ;;; popwin
 ;;; https://github.com/m2ym/popwin-el
 ;;;
-(defvar popwin:keymap)
-(defvar popwin:adjust-other-windows)
-(defvar popwin:popup-window-height)
-(defvar popwin:special-display-config)
 (when (require 'popwin nil t)
+  (defvar popwin:keymap)
+  (defvar popwin:adjust-other-windows)
+  (defvar popwin:popup-window-height)
+  (defvar popwin:special-display-config)
+
   (popwin-mode 1)
   (global-set-key (kbd "C-w C-p") popwin:keymap)
   (setq popwin:adjust-other-windows t)

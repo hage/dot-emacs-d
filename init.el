@@ -1376,6 +1376,7 @@ Otherwise indent whole buffer."
   (eval-after-load "align"
     #'(progn
         (defun align-rules-setup ()
+          ;; Ruby
 	  (add-to-list 'align-rules-list
 		       '(ruby-comma-delimiter
 		         (regexp . ",\\(\\s-*\\)[^# \t\n]")
@@ -1401,6 +1402,8 @@ Otherwise indent whole buffer."
                          (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
                          (repeat . t)
                          (modes  . '(ruby-mode))))
+
+          ;; Elixir
           (add-to-list 'align-rules-list
 		       '(elixir-comma-delimiter
 		         (regexp . ",\\(\\s-*\\)[^# \t\n]")
@@ -1417,6 +1420,8 @@ Otherwise indent whole buffer."
 		         (regexp . ":\\(\\s-*\\)[^# \t\n]")
 		         (repeat . t)
 		         (modes  . '(elixir-mode))))
+
+          ;; PHP
           (add-to-list 'align-rules-list
                        '(php-hash
                          (regexp . "\\( *\\) =>")

@@ -1176,6 +1176,7 @@ Otherwise indent whole buffer."
         (set-face-foreground 'magit-branch-remote "green")
 
         (set-face-background 'magit-diff-hunk-region "#247")
+        (set-face-foreground 'magit-hash "#9d4")
         ))
   )
 

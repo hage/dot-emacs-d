@@ -779,6 +779,7 @@ Otherwise indent whole buffer."
 
     (defvar helm-projectile-sources-list)
     (with-eval-after-load "helm-projectile"
+      (require 'helm-for-files)         ; helm-source-recentf を構築する
       (setq helm-projectile-sources-list
             (append helm-projectile-sources-list
                     '(helm-source-recentf

@@ -73,6 +73,7 @@
 (depends-on "php-mode")
 (depends-on "popup")
 (depends-on "popwin")
+(depends-on "projectile")
 (depends-on "rake")
 (depends-on "rbenv")
 (depends-on "realgud-byebug")

@@ -1407,6 +1407,12 @@ Otherwise indent whole buffer."
 		         (repeat . t)
 		         (modes  . '(elixir-mode))))
           (add-to-list 'align-rules-list
+                       '(elixir-map-label
+                         (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
+                         (repeat . t)
+                         (modes  . '(elixir-mode))))
+
+          (add-to-list 'align-rules-list
 		       '(elixir-colon-delimiter
 		         (regexp . ":\\(\\s-*\\)[^# \t\n]")
 		         (repeat . t)

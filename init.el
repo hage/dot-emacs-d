@@ -1154,7 +1154,7 @@ Otherwise indent whole buffer."
 
         (set-face-foreground 'magit-diff-removed "#aa2222")
         (set-face-background 'magit-diff-removed nil)
-        (set-face-foreground 'magit-diff-removed-highlight "#ff4444")
+        (set-face-foreground 'magit-diff-removed-highlight "#ff3300")
         (set-face-background 'magit-diff-removed-highlight "#112")
 
         (set-face-foreground 'magit-diff-hunk-heading "gray60")
@@ -1170,6 +1170,8 @@ Otherwise indent whole buffer."
 
         (set-face-foreground 'magit-branch-local "skyblue")
         (set-face-foreground 'magit-branch-remote "green")
+
+        (set-face-background 'magit-diff-hunk-region "#247")
         ))
   )
 

@@ -163,6 +163,29 @@ returns nil when;
       (pallet--on))
     ))
 
+
+;; 一定時間経過したら自動的にパッケージリストを更新する
+(when (fboundp 'helm-list-elisp-packages)
+  (defvar my-package-list-last-refreshed-time 0
+    "最後にリフレッシュを行った時刻")
+  (defvar my-package-list-refresh-interval (* 60 60 2)
+    "前回リフレッシュ時から次にリフレッシュするまでの経過秒数")
+
+  (defun my-helm-list-elisp-packages (uarg)
+    "my-package-list-last-refreshed-time から
+my-package-list-refresh-interval 秒経過していたらリフレッシュする。
+universal argument が与えられていたら必ずリフレッシュする"
+    (interactive "P")
+    (helm-list-elisp-packages
+     (if (or uarg
+             (< my-package-list-refresh-interval
+                (- (float-time) my-package-list-last-refreshed-time)))
+         (progn
+           (setq my-package-list-refresh-interval (float-time))
+           t)
+       nil)))
+  (global-set-key (kbd "C-x c @") 'my-helm-list-elisp-packages))
+
 ;;;
 ;;; いろいろ設定
 ;;;

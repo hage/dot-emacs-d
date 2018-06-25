@@ -737,20 +737,22 @@ Otherwise indent whole buffer."
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-o") 'helm-dabbrev)
   (global-set-key (kbd "M-s a") 'helm-do-grep-ag)
-  (defvar helm-dabbrev-cycle-threshold 2)
-  (defvar helm-case-fold-search t)
-  (defvar helm-M-x-fuzzy-match nil)
-  (defvar helm-M-x-always-save-history t)
-  (defvar helm-dabbrev-cycle-thresold 3)
-  (defvar helm-buffer-max-length 40)
-  (defvar helm-autoresize-min-height 25)
-  (defvar helm-ff-skip-boring-files t)
+  (custom-set-variables '(helm-dabbrev-cycle-threshold 2)
+                        '(helm-case-fold-search t)
+                        '(helm-M-x-fuzzy-match nil)
+                        '(helm-M-x-always-save-history t)
+                        '(helm-dabbrev-cycle-thresold 3)
+                        '(helm-buffer-max-length 40)
+                        '(helm-autoresize-min-height 25)
+                        '(helm-ff-skip-boring-files t)
+                        ;; helm-grep-ag-command のデフォルト値に含まれている --color オプションだと見づらいのでこのように変えた
+                        '(helm-grep-ag-command "ag --line-numbers -S --hidden --nocolor --nogroup %s %s %s"))
 
   ;; helm-mini をフレーム下部に横いっぱいに広げて表示する
   ;;   https://github.com/emacs-helm/helm/issues/2039
-  (defvar helm-always-two-windows nil)
-  (defvar helm-display-buffer-default-height 23)
-  (defvar helm-default-display-buffer-functions '(display-buffer-in-side-window))
+  (custom-set-variables '(helm-always-two-windows nil)
+                        '(helm-display-buffer-default-height 23)
+                        '(helm-default-display-buffer-functions '(display-buffer-in-side-window)))
 
   (semantic-mode 1)
 
@@ -901,8 +903,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
     (setq my-helm-swoop-trigger-key (kbd "C-s"))
     (eval-after-load "helm-swoop"
       (lambda ()
-        (set-face-foreground 'helm-swoop-target-word-face "#ffffff")
-        (set-face-background 'helm-swoop-target-word-face "#050")
+        (set-face-foreground 'helm-swoop-target-word-face "#99ff33")
+        (set-face-background 'helm-swoop-target-word-face nil)
         (set-face-bold 'helm-swoop-target-word-face t)
 
         (set-face-foreground 'helm-swoop-target-line-face nil)

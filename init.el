@@ -2319,6 +2319,13 @@ guessing a default from current buffer file name or default directory. "
 
 
 ;;;
+;;; quick-preview
+;;;
+(when (fboundp 'quick-preview-at-point)
+  (global-set-key (kbd "C-c C-p") 'quick-preview-at-point)
+  (define-key direx:direx-mode-map (kbd "P") 'quick-preview-at-point))
+
+;;;
 ;;; showcss-mode
 ;;;
 (when (fboundp 'showcss-mode)

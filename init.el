@@ -1604,6 +1604,10 @@ Otherwise sends the whole buffer."
           (define-key web-mode-map (kbd "C-M-d") 'web-mode-element-child)
           (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
           (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
+          (define-key web-mode-map (kbd "C-c C-r") 'web-mode-element-rename)
+          (define-key web-mode-map (kbd "C-c R") 'web-mode-reload)
+
+
 
           ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
           ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097

@@ -1931,7 +1931,7 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 ;;; smooth-scroll
 ;;;
 (when (require 'smooth-scroll nil t)
-  (setq smooth-scroll/vscroll-step-size 3)
+  (setq smooth-scroll/vscroll-step-size 6)
   (smooth-scroll-mode t))
 
 

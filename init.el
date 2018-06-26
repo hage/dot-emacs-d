@@ -1097,12 +1097,11 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   (set-face-background 'yas-field-highlight-face "#509")
 
   (yas-global-mode)
-  (if (and (fboundp 'helm-mini)
-           (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
-      (progn
-        (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
-        (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
-        (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file))))
+  (when (and (fboundp 'helm-mini)
+             (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
+    (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
+    (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
+    (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
 
 
 ;;;

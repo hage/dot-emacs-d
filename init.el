@@ -181,7 +181,7 @@ universal argument が与えられていたら必ずリフレッシュする"
              (< my-package-list-refresh-interval
                 (- (float-time) my-package-list-last-refreshed-time)))
          (progn
-           (setq my-package-list-refresh-interval (float-time))
+           (setq my-package-list-last-refreshed-time (float-time))
            t)
        nil)))
   (global-set-key (kbd "C-x c @") 'my-helm-list-elisp-packages))

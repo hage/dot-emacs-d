@@ -1103,6 +1103,23 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
     (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
     (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
 
+;; Project Local Snippets
+;;   Place snippet files into <project-root-dir>/.snippets/
+;;   cf. https://www.reddit.com/r/emacs/comments/57i41t/projectlocal_snippets/
+(when (package-installed-p 'projectile)
+  (require 'yasnippet)
+  (autoload-if-found 'projectile-project-p "projectile")
+  (defvar yas-snippet-dirs)
+  (defvar my--default-yas-snippet-dirs yas-snippet-dirs)
+  (defun my/set-projectile-yas-dir ()
+    "Append a projectile-local YAS snippet dir to yas-snippet-dirs."
+    (interactive)
+    (when (projectile-project-p)
+      (let ((local-yas-dir (concat (projectile-project-root) ".snippets")))
+        (setq yas-snippet-dirs (cons local-yas-dir
+                                     my--default-yas-snippet-dirs)))))
+  (add-hook 'find-file-hook 'my/set-projectile-yas-dir)
+  (add-hook 'projectile-find-file-hook 'my/set-projectile-yas-dir))
 
 ;;;
 ;;; expand-region

@@ -1090,20 +1090,19 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;;
 ;; auto-complete が require してくれているっぽいので、
 ;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
-(eval-after-load 'yasnippet
-  (lambda ()
-    (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
+(with-eval-after-load "yasnippet"
+  (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
 
-    (set-face-foreground 'yas-field-highlight-face "#fff")
-    (set-face-background 'yas-field-highlight-face "#509")
+  (set-face-foreground 'yas-field-highlight-face "#fff")
+  (set-face-background 'yas-field-highlight-face "#509")
 
-    (yas-global-mode)
-    (if (and (fboundp 'helm-mini)
-             (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
-        (progn
-          (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
-          (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
-          (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))))
+  (yas-global-mode)
+  (if (and (fboundp 'helm-mini)
+           (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
+      (progn
+        (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
+        (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
+        (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file))))
 
 
 ;;;

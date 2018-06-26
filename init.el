@@ -2368,11 +2368,18 @@ guessing a default from current buffer file name or default directory. "
 ;;;
 ;;; quick-preview
 ;;;
-(when (fboundp 'quick-preview-at-point)
+(when (package-installed-p 'quick-preview)
   (global-set-key (kbd "C-c C-p") 'quick-preview-at-point)
-  (with-eval-after-load "quick-preview"
+
+  ;; direx において [SPACE] でプレビュー
+  (with-eval-after-load "direx"
     (defvar direx:direx-mode-map)
-    (define-key direx:direx-mode-map (kbd "P") 'quick-preview-at-point)))
+    (define-key direx:direx-mode-map (kbd "SPC") 'quick-preview-at-point)
+    (defun my-advice-quick-preview---get-file-name-for-direx (f &rest args)
+      (if (eq major-mode 'direx:direx-mode)
+          (direx:file-full-name (direx:item-tree (direx:item-at-point)))
+        (apply f args)))
+    (advice-add 'quick-preview--get-filename :around #'my-advice-quick-preview---get-file-name-for-direx)))
 
 ;;;
 ;;; showcss-mode

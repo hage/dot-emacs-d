@@ -803,7 +803,14 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
       (if (and (not uarg) (projectile-project-p))
           (helm-projectile)
         (helm-mini)))
-    (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile))
+    (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)
+
+    (with-eval-after-load "helm-projectile"
+      (require 'helm-for-files)
+      (setq helm-projectile-sources-list
+            (append helm-projectile-sources-list
+                    '(helm-source-recentf
+                      helm-source-findutils)))))
 
   ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()

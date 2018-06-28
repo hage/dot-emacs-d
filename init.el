@@ -767,6 +767,7 @@ Otherwise indent whole buffer."
                         '(helm-dabbrev-cycle-thresold 3)
                         '(helm-buffer-max-length 40)
                         '(helm-autoresize-min-height 25)
+                        '(helm-autoresize-mode t)
                         '(helm-ff-skip-boring-files t)
                         ;; helm-grep-ag-command のデフォルト値に含まれている --color オプションだと見づらいのでこのように変えた
                         '(helm-grep-ag-command "ag --line-numbers -S --hidden --nocolor --nogroup %s %s %s"))

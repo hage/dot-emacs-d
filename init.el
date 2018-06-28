@@ -1996,21 +1996,19 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 ;;;
 (when (require 'elscreen nil t)
   (global-unset-key (kbd "M-t"))
-  (setq elscreen-prefix-key (kbd "M-t"))
-  (elscreen-start)
+  (custom-set-variables'(elscreen-prefix-key (kbd "M-t"))
+                       '(elscreen-tab-display-kill-screen nil) ; タブの先頭に[X]を表示しない
+                       '(elscreen-tab-display-control nil))    ; header-lineの先頭に[<->]を表示しない
   (global-set-key (kbd "M-t M-t") 'elscreen-toggle)
   (global-set-key (kbd "M-t l") 'helm-elscreen)
-  ;; タブの先頭に[X]を表示しない
-  (setq elscreen-tab-display-kill-screen nil)
-  ;; header-lineの先頭に[<->]を表示しない
-  (setq elscreen-tab-display-control nil)
 
   (set-face-foreground 'elscreen-tab-other-screen-face "gray60")
   (set-face-background 'elscreen-tab-other-screen-face "gray20")
-
   (set-face-foreground 'elscreen-tab-current-screen-face "#af0")
   (set-face-background 'elscreen-tab-current-screen-face "#777")
   (set-face-bold 'elscreen-tab-current-screen-face t)
+
+  (elscreen-start)
 
   (when (require 'elscreen-separate-buffer-list nil t)
     (elscreen-separate-buffer-list-mode))

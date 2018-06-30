@@ -2214,8 +2214,8 @@ If universal argument (C-u) is given, jump to the IEx buffer."
       (add-hook mode
                 (lambda ()
                   (flycheck-mode 0)))))
-  (register-flycheck-disable-mode 'restclient-mode)
-  (register-flycheck-disable-mode 'html-mode))
+  (register-flycheck-disable-mode 'restclient-mode-hook)
+  (register-flycheck-disable-mode 'html-mode-hook))
 
 
 

@@ -994,7 +994,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   (progn                                ; progn ごと評価しなおせば最初から全体を構築し直す
     (custom-reevaluate-setting 'popwin:special-display-config)
     (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
-    (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .6) popwin:special-display-config)
+    (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4) popwin:special-display-config)
     (push '("*Backtrace*") popwin:special-display-config)
     (push '("*compilation*" :height .4 :position bottom :stick t) popwin:special-display-config)
     (push '("*pry*" :height .5 :width .5 :stick t) popwin:special-display-config)

@@ -2440,6 +2440,7 @@ guessing a default from current buffer file name or default directory. "
 (set-face-background 'secondary-selection "MediumPurple4")
 (set-face-foreground 'font-lock-function-name-face "MediumTurquoise")
 (set-face-foreground 'font-lock-variable-name-face "DarkOliveGreen1")
+(set-face-foreground 'warning "salmon")
 
 (eval-after-load 'em-prompt
   #'(progn

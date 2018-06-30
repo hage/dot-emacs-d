@@ -1066,12 +1066,29 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 (when (require 'auto-complete-config nil t)
   (ac-config-default)
   (global-auto-complete-mode t)
-  (setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
+  (ac-set-trigger-key "TAB")
+  (setq-default ac-sources '(ac-source-filename
+                             ac-source-dictionary
+                             ac-source-yasnippet
+                             ac-source-words-in-buffer
+                             ac-source-words-in-same-mode-buffers
+                             ac-source-words-in-all-buffer))
+  (defun ac-ruby-mode-setup ()
+    (setq ac-sources '(ac-source-filename
+                       ac-source-yasnippet
+                       ac-source-robe
+                       ac-source-words-in-buffer
+                       ac-source-words-in-same-mode-buffers
+                       ac-source-words-in-all-buffer)))
+
   (setq ac-ignore-case t
 	ac-delay 0.1
         ac-auto-start 3
+        ac-disable-inline t
+        ac-dwim t
         ac-use-menu-map t
-        ac-use-comphist nil)
+        ac-use-comphist t
+        ac-menu-height 20)
 
   ;; ac-etags
   (setq ac-etags-requires 3)

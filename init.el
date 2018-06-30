@@ -751,6 +751,8 @@ Otherwise indent whole buffer."
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)
+  (with-eval-after-load 'popwin
+    (setq helm-display-function #'display-buffer))
   (global-set-key (kbd "M-O") 'helm-resume)
   (global-set-key "\M-x" 'helm-M-x)
   (global-set-key "\C-xb" 'helm-buffers-list)
@@ -1009,7 +1011,9 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
     (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
     (push '("*info*" :position right :stick t :width 80 :dedicated t) popwin:special-display-config)
     (push '(help-mode :position right :width 80) popwin:special-display-config)
-    (push '(direx:direx-mode :position left :width 25 :dedicated t) popwin:special-display-config))
+    (push '(direx:direx-mode :position left :width 25 :dedicated t) popwin:special-display-config)
+    (push '("\\*helm " :regexp t :position bottom) popwin:special-display-config)
+    (push '("*helm list packages*" :position bottom :height 100) popwin:special-display-config))
   )
 
 

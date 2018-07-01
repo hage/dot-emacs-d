@@ -810,6 +810,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 
     (with-eval-after-load "helm-projectile"
       (require 'helm-for-files)
+      (push ".git/" projectile-globally-ignored-files)
       (setq helm-projectile-sources-list
             (append helm-projectile-sources-list
                     '(helm-source-recentf

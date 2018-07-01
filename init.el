@@ -782,40 +782,6 @@ Otherwise indent whole buffer."
 
   (semantic-mode 1)
 
-  ;; helm-projectile
-  (defun my-helm-browse-project ()
-    (interactive)
-    "helm-projectile があるときはそれを、なければ helm-browse-project を起動する"
-    (if (fboundp 'helm-projectile)
-        (helm-projectile)
-      (helm-browse-project)))
-  (global-set-key (kbd "C-x C-g") 'my-helm-browse-project)
-
-  ;; helm-projectile がないとき C-M-o にバインドするデフォルト。
-  ;; helm-projectile があるときは my-helm-mini-or-projectile にバインドし直す。
-  (global-set-key (kbd "C-M-o") 'helm-mini)
-  (when (fboundp 'helm-projectile)
-    (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
-
-    (autoload-if-found 'projectile-project-p "projectile")
-    (defun my-helm-mini-or-projectile (uarg)
-      "projectile 配下のときは helm-projectile を、
-そうでないときは helm-mini を起動する。
-C-u を前置したときはどのような場合でも helm-mini を起動する。"
-      (interactive "P")
-      (if (and (not uarg) (projectile-project-p))
-          (helm-projectile)
-        (helm-mini)))
-    (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)
-
-    (with-eval-after-load "helm-projectile"
-      (require 'helm-for-files)
-      (push ".git/" projectile-globally-ignored-files)
-      (setq helm-projectile-sources-list
-            (append helm-projectile-sources-list
-                    '(helm-source-recentf
-                      helm-source-findutils)))))
-
   ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()
                                (require 'helm)
@@ -953,6 +919,42 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
     (define-key isearch-mode-map (kbd "M-o") 'helm-swoop-from-isearch)
     (global-set-key (kbd "M-s s") 'isearch-forward))
   (global-set-key-if-bound (kbd "M-s M-a") #'helm-ag)
+
+  ;; helm-projectile ================================================================
+  (defun my-helm-browse-project ()
+    (interactive)
+    "helm-projectile があるときはそれを、なければ helm-browse-project を起動する"
+    (if (fboundp 'helm-projectile)
+        (helm-projectile)
+      (helm-browse-project)))
+  (global-set-key (kbd "C-x C-g") 'my-helm-browse-project)
+
+  ;; helm-projectile がないとき C-M-o にバインドするデフォルト。
+  ;; helm-projectile があるときは my-helm-mini-or-projectile にバインドし直す。
+  (global-set-key (kbd "C-M-o") 'helm-mini)
+
+
+  (when (package-installed-p 'helm-projectile)
+    (setq helm-projectile-fuzzy-match nil) ; helm-projectile の load 前に設定しなければならない
+    (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
+    (autoload-if-found 'projectile-project-p "projectile")
+    (defun my-helm-mini-or-projectile (uarg)
+      "projectile 配下のときは helm-projectile を、
+そうでないときは helm-mini を起動する。
+C-u を前置したときはどのような場合でも helm-mini を起動する。"
+      (interactive "P")
+      (if (and (not uarg) (projectile-project-p))
+          (helm-projectile)
+        (helm-mini)))
+    (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)
+
+    (with-eval-after-load "helm-projectile"
+      (require 'helm-for-files)
+      (push ".git/" projectile-globally-ignored-files)
+      (setq helm-projectile-sources-list
+            (append helm-projectile-sources-list
+                    '(helm-source-recentf
+                      helm-source-findutils)))))
   )
 
 ;;;

@@ -933,6 +933,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 			(substring input-pattern 1)
 		      (concat ".*" input-pattern))))))
 
+  ;; helm-swoop ================================================================
   (when (autoload-if-found 'helm-swoop-from-isearch "helm-swoop" nil t)
     (setq my-helm-swoop-trigger-key (kbd "C-s"))
     (eval-after-load "helm-swoop"

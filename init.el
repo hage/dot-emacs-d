@@ -1437,17 +1437,13 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 	))
 
   ;; rbenv
-  (when (fboundp 'global-rbenv-mode)
-    (setq rbenv-show-active-ruby-in-modeline nil)
-    (global-rbenv-mode)
-    (set-face-foreground 'rbenv-active-ruby-face "green1")
-    (set-face-background 'rbenv-active-ruby-face nil)
-    (set-face-bold 'rbenv-active-ruby-face nil)
+  (when (and (package-installed-p 'ruby-mode)
+             (package-installed-p 'rbenv))
+    (with-eval-after-load 'ruby-mode
+      (require 'rbenv))
     (add-hook 'ruby-mode-hook
               (lambda ()
-                (setq rbenv-show-active-ruby-in-modeline t)
-                (rbenv-use-corresponding)))
-    )
+                (run-with-idle-timer 2 nil (lambda () (rbenv-use-corresponding))))))
 
   ;; align
   (eval-after-load "align"

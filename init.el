@@ -2208,11 +2208,14 @@ If universal argument (C-u) is given, jump to the IEx buffer."
       (set-face-foreground 'ace-jump-face-foreground "#fff")
       (set-face-background 'ace-jump-face-foreground "#000"))))
 
-(when (global-set-key-if-bound (kbd "M-o") 'ace-window)
+(when (global-set-key-if-bound (kbd "C-x o") 'ace-window)
+  (global-set-key (kbd "M-o") 'other-window)
+  (run-with-idle-timer 5 nil (lambda () (ace-window-display-mode)))
   (eval-after-load 'ace-window
     (lambda ()
-      (set-face-foreground 'aw-leading-char-face "#fff")
-      (set-face-background 'aw-leading-char-face "#950"))))
+      (set-face-foreground 'aw-leading-char-face "#000")
+      (set-face-background 'aw-leading-char-face "#fffffff")
+      (set-face-bold 'aw-leading-char-face t))))
 
 
 ;;;

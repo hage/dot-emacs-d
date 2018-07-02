@@ -1091,7 +1091,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         ac-disable-inline t
         ac-dwim t
         ac-use-menu-map t
-        ac-use-comphist t
+        ac-use-comphist nil
         ac-menu-height 20)
 
   ;; ac-etags

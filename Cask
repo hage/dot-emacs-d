@@ -73,7 +73,6 @@
 (depends-on "php-eldoc")
 (depends-on "php-mode")
 (depends-on "popup")
-(depends-on "popwin")
 (depends-on "projectile")
 (depends-on "quick-preview")
 (depends-on "rake")

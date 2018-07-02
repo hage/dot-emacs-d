@@ -33,6 +33,7 @@
 (depends-on "epl")
 (depends-on "expand-region")
 (depends-on "f")
+(depends-on "find-temp-file")
 (depends-on "flycheck")
 (depends-on "flycheck-elixir")
 (depends-on "flycheck-pos-tip")

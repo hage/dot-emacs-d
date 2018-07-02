@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: OptionParser
+# key: optparse
+# --
+# require 'optparse'
+# https://docs.ruby-lang.org/ja/latest/library/optparse.html
+# https://qiita.com/sonots/items/1b44ed3a770ef790a63d
+OptionParser.new do |opt|
+	# opt.on('-a', 'explain') {|v| p v }
+	# opt.on('-b VAL') {|v| p v }
+	# opt.on('-c', '--ccc') {|v| p v}
+	# opt.on('-d', '--ddd=VAL') {|v| p v}
+	# opt.on('-e', '--eee=VAL') {|v| p v}
+	# opt.on('-f', '--fff=[VAL]') {|v| p v}
+	# opt.on('--[no-]ddd=[VAL]') {|v| p v}
+
+	opt.parse!(ARGV)
+end

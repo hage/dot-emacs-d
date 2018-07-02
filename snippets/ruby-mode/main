@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: main (exec if not required)
+# key: main
+# --
+main(ARGV) if __FILE__ == \$0

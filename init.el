@@ -413,6 +413,10 @@ universal argument が与えられていたら必ずリフレッシュする"
 (setq ctl-q-map (key-binding (kbd "C-q")))
 (setq ctl-w-map (key-binding (kbd "C-w")))
 
+(winner-mode 1)
+(global-set-key (kbd "M-[") 'winner-undo)
+(global-set-key (kbd "M-]") 'winner-redo)
+
 ;;;
 ;;; ちょっとした関数とそのキーバインド
 ;;;
@@ -1020,6 +1024,26 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;     (push '("*helm list packages*" :position bottom :height 100) popwin:special-display-config))
 ;;   )
 
+(when (require 'shackle nil t)
+  (custom-reevaluate-setting 'shackle-rules)
+  (setq shackle-rules
+        '(("*eshell*" :align below :size .3 :popup t)
+          ("\\*Faces\\*" :regexp t :align right :size 95)
+          ("\\*eww.*\\*" :regexp t :stick t :align bottom :size .4)
+          ("*compilation*" :size .3 :align bottom)
+          ("*pry*" :align below :size .3 :popup t)
+          ("*Alchemist-IEx*" :size .5 )
+          ("\\*alchemist .*\\*" :regexp t )
+          ("*robe-doc*"  :size .5)
+          ("*Messages*" :align bottom :size .3)
+          ("\\*Man .*" :regexp t :align right :size 80)
+          ("*Colors*" :align right :size .5)
+          (Info-mode :align right :size 80 :popup t)
+          (help-mode :align right :size 80)
+          (direx:direx-mode :align left :size 30)
+          ("\\*helm " :regexp t :align bottom)
+          ("*helm list packages*" :align bottom :size 100)))
+  (shackle-mode 1))
 
 ;;;
 ;;; company-mode

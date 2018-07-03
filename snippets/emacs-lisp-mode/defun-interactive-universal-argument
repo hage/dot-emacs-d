@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: defun-interactive-universal-argument
+# key: defun-uarg
+# --
+(defun ${1:funcname} (uarg)
+	""
+	(interactive "P")
+	(when uarg
+        	$0
+	)
+
+)

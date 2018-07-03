@@ -1108,15 +1108,15 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
                        ac-source-words-in-buffer
                        ac-source-words-in-same-mode-buffers
                        ac-source-words-in-all-buffer)))
-
-  (setq ac-ignore-case t
-	ac-delay 0.1
+  (setq ac-ignore-case 'smart
+	ac-delay 0.2
         ac-auto-start 3
-        ac-disable-inline t
+        ac-disable-inline nil
         ac-dwim t
         ac-use-menu-map t
-        ac-use-comphist nil
+        ac-use-comphist t
         ac-menu-height 20)
+
 
   ;; ac-etags
   (setq ac-etags-requires 3)
@@ -1138,7 +1138,10 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 
   (eval-after-load 'auto-complete
     #'(progn
-        (define-key ac-menu-map (kbd "RET") nil)))
+        (define-key ac-complete-mode-map (kbd "RET") 'nil)
+        (define-key ac-menu-map (kbd "RET") 'ac-complete)
+        ;(define-key ac-menu-map (kbd "RET") nil)
+        ))
   )
 
 

@@ -413,6 +413,10 @@ universal argument が与えられていたら必ずリフレッシュする"
 (setq ctl-q-map (key-binding (kbd "C-q")))
 (setq ctl-w-map (key-binding (kbd "C-w")))
 
+(winner-mode 1)
+(global-set-key (kbd "M-[") 'winner-undo)
+(global-set-key (kbd "M-]") 'winner-redo)
+
 ;;;
 ;;; ちょっとした関数とそのキーバインド
 ;;;
@@ -986,40 +990,60 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;; popwin
 ;;; https://github.com/m2ym/popwin-el
 ;;;
-(when (require 'popwin nil t)
-  (defvar popwin:keymap)
-  (defvar popwin:adjust-other-windows)
-  (defvar popwin:popup-window-height)
-  (defvar popwin:special-display-config)
+;; (when (require 'popwin nil t)
+;;   (defvar popwin:keymap)
+;;   (defvar popwin:adjust-other-windows)
+;;   (defvar popwin:popup-window-height)
+;;   (defvar popwin:special-display-config)
 
-  (popwin-mode 1)
-  (global-set-key (kbd "C-w C-p") popwin:keymap)
-  (setq popwin:adjust-other-windows t)
-  (setq popwin:popup-window-height .43)
+;;   (popwin-mode 1)
+;;   (global-set-key (kbd "C-w C-p") popwin:keymap)
+;;   (setq popwin:adjust-other-windows t)
+;;   (setq popwin:popup-window-height .43)
 
-  (progn                                ; progn ごと評価しなおせば最初から全体を構築し直す
-    (custom-reevaluate-setting 'popwin:special-display-config)
-    (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
-    (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4) popwin:special-display-config)
-    (push '("*Backtrace*") popwin:special-display-config)
-    (push '("*compilation*" :height .3 :position bottom :stick t) popwin:special-display-config)
-    (push '("*pry*" :height .3 :width .5 :stick t) popwin:special-display-config)
-    (push '("*Alchemist-IEx*" :height .5 :width .5 :stick t) popwin:special-display-config)
-    (push '("*rake*") popwin:special-display-config)
-    (push '("*Diff*") popwin:special-display-config)
-    (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)
-    (push '("*xref*") popwin:special-display-config)
-    (push '("*robe-doc*" :stick t :dedicated t :width .5 :height .5) popwin:special-display-config)
-    (push '("*Messages*" :position bottom :dedicated t :height .3) popwin:special-display-config)
-    (push '("\\*Man .*" :regexp t :position right :stick t :width .5) popwin:special-display-config)
-    (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
-    (push '("*info*" :position right :stick t :width 80 :dedicated t) popwin:special-display-config)
-    (push '(help-mode :position right :width 80) popwin:special-display-config)
-    (push '(direx:direx-mode :position left :width 25 :dedicated t) popwin:special-display-config)
-    (push '("\\*helm " :regexp t :position bottom) popwin:special-display-config)
-    (push '("*helm list packages*" :position bottom :height 100) popwin:special-display-config))
-  )
+;;   (progn                                ; progn ごと評価しなおせば最初から全体を構築し直す
+;;     (custom-reevaluate-setting 'popwin:special-display-config)
+;;     (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
+;;     (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4) popwin:special-display-config)
+;;     (push '("*Backtrace*") popwin:special-display-config)
+;;     (push '("*compilation*" :height .3 :position bottom :stick t) popwin:special-display-config)
+;;     (push '("*pry*" :height .3 :width .5 :stick t) popwin:special-display-config)
+;;     (push '("*Alchemist-IEx*" :height .5 :width .5 :stick t) popwin:special-display-config)
+;;     (push '("*rake*") popwin:special-display-config)
+;;     (push '("*Diff*") popwin:special-display-config)
+;;     (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)
+;;     (push '("*xref*") popwin:special-display-config)
+;;     (push '("*robe-doc*" :stick t :dedicated t :width .5 :height .5) popwin:special-display-config)
+;;     (push '("*Messages*" :position bottom :dedicated t :height .3) popwin:special-display-config)
+;;     (push '("\\*Man .*" :regexp t :position right :stick t :width .5) popwin:special-display-config)
+;;     (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
+;;     (push '("*info*" :position right :stick t :width 80 :dedicated t) popwin:special-display-config)
+;;     (push '(help-mode :position right :width 80) popwin:special-display-config)
+;;     (push '(direx:direx-mode :position left :width 25 :dedicated t) popwin:special-display-config)
+;;     (push '("\\*helm " :regexp t :position bottom) popwin:special-display-config)
+;;     (push '("*helm list packages*" :position bottom :height 100) popwin:special-display-config))
+;;   )
 
+(when (require 'shackle nil t)
+  (custom-reevaluate-setting 'shackle-rules)
+  (setq shackle-rules
+        '(("*eshell*" :align below :size .3 :popup t)
+          ("\\*Faces\\*" :regexp t :align right :size 95)
+          ("\\*eww.*\\*" :regexp t :stick t :align bottom :size .4)
+          ("*compilation*" :size .3 :align bottom)
+          ("*pry*" :align below :size .3 :popup t)
+          ("*Alchemist-IEx*" :size .5 )
+          ("\\*alchemist .*\\*" :regexp t )
+          ("*robe-doc*"  :size .5)
+          ("*Messages*" :align bottom :size .3)
+          ("\\*Man .*" :regexp t :align right :size 80)
+          ("*Colors*" :align right :size .5)
+          (Info-mode :align right :size 80 :popup t)
+          (help-mode :align right :size 80)
+          (direx:direx-mode :align left :size 30)
+          ("\\*helm " :regexp t :align bottom)
+          ("*helm list packages*" :align bottom :size 100)))
+  (shackle-mode 1))
 
 ;;;
 ;;; company-mode
@@ -2178,25 +2202,25 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 ;;; eshell
 ;;;
 (global-set-key-if-bound (kbd "C-w C-w") 'eshell)
-(when (featurep 'popwin)
-  (push '("*eshell*" :height 0.5 :stick t) popwin:special-display-config)
+;; (when (featurep 'popwin)
+;;   (push '("*eshell*" :height 0.5 :stick t) popwin:special-display-config)
 
-  (defun eshell-pop (universal-argument)
-    "open eshell window using popwin-elf"
-    (interactive "P")
-    (let* ((eshell-buffer-name "*eshell*")
-	   (eshell-buffer (get-buffer eshell-buffer-name))
-	   (file-name (buffer-file-name (current-buffer)))
-	   (current-directory (with-current-buffer (current-buffer) default-directory)))
-      (if eshell-buffer
-	  (popwin:display-buffer eshell-buffer)
-	(eshell))
-      (when (and universal-argument file-name)
-	(eshell-kill-input)
-	(insert (concat "cd " current-directory))
-	(eshell-send-input)
-	(end-of-buffer))))
-  (global-set-key-if-bound (kbd "C-w C-w") 'eshell-pop))
+;;   (defun eshell-pop (universal-argument)
+;;     "open eshell window using popwin-elf"
+;;     (interactive "P")
+;;     (let* ((eshell-buffer-name "*eshell*")
+;; 	   (eshell-buffer (get-buffer eshell-buffer-name))
+;; 	   (file-name (buffer-file-name (current-buffer)))
+;; 	   (current-directory (with-current-buffer (current-buffer) default-directory)))
+;;       (if eshell-buffer
+;; 	  (popwin:display-buffer eshell-buffer)
+;; 	(eshell))
+;;       (when (and universal-argument file-name)
+;; 	(eshell-kill-input)
+;; 	(insert (concat "cd " current-directory))
+;; 	(eshell-send-input)
+;; 	(end-of-buffer))))
+;;   (global-set-key-if-bound (kbd "C-w C-w") 'eshell-pop))
 
 
 ;;;

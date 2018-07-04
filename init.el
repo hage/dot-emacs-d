@@ -939,7 +939,9 @@ Otherwise indent whole buffer."
 
 
   (when (package-installed-p 'helm-projectile)
-    (setq helm-projectile-fuzzy-match nil) ; helm-projectile の load 前に設定しなければならない
+    (setq helm-projectile-fuzzy-match nil ; helm-projectile の load 前に設定しなければならない
+          projectile-sort-order 'recentf)
+
     (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
     (autoload-if-found 'projectile-project-p "projectile")
     (defun my-helm-mini-or-projectile (uarg)

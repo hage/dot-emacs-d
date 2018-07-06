@@ -2551,6 +2551,7 @@ guessing a default from current buffer file name or default directory. "
   #'(progn
       (set-face-foreground 'package-name "aquamarine")))
 
+(find-file "~/.emacs.d/init.el")
 (provide 'init)
 ;;; init.el ends here
 

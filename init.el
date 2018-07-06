@@ -1645,6 +1645,20 @@ Otherwise sends the whole buffer."
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode))
 
+
+;;;
+;;; rainbow-mode
+;;;
+(when (package-installed-p 'rainbow-mode)
+  (setq rainbow-html-colors t)
+  (setq rainbow-x-colors t)
+  (setq rainbow-latex-colors t)
+  (setq rainbow-ansi-colors t)
+
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (run-with-idle-timer .3 nil #'rainbow-mode))))
+
 ;;;
 ;;; web-mode
 ;;;

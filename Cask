@@ -75,6 +75,7 @@
 (depends-on "popup")
 (depends-on "projectile")
 (depends-on "quick-preview")
+(depends-on "rainbow-mode")
 (depends-on "rake")
 (depends-on "rbenv")
 (depends-on "realgud-byebug")

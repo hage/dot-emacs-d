@@ -1716,7 +1716,7 @@ Otherwise sends the whole buffer."
 	  (setq web-mode-asp-offset    2))
 	(add-hook 'web-mode-hook 'web-mode-hook)
 	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
-	(set-face-foreground 'web-mode-html-tag-face "OliveDrab3")
+	(set-face-foreground 'web-mode-html-tag-face "olivedrab3")
 
         (eval-after-load 'smartrep
           #'(progn
@@ -1916,7 +1916,7 @@ Otherwise sends the whole buffer."
 
     (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
 
-    (set-face-foreground 'elixir-atom-face "Gold3")
+    (set-face-foreground 'elixir-atom-face "gold3")
 
     (set-face-foreground 'elixir-attribute-face "royalblue1")
     (set-face-bold 'elixir-attribute-face t)
@@ -2490,21 +2490,21 @@ guessing a default from current buffer file name or default directory. "
 (set-face-foreground 'font-lock-comment-face "#a0a3b5")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
-(set-face-background 'region "LightSteelBlue4")
+(set-face-background 'region "lightsteelblue4")
 (set-face-foreground 'font-lock-string-face "mediumpurple1")
-(set-face-foreground font-lock-builtin-face "CornflowerBlue")
-(set-face-foreground font-lock-keyword-face "DeepSkyBlue")
+(set-face-foreground font-lock-builtin-face "cornflowerblue")
+(set-face-foreground font-lock-keyword-face "deepskyblue")
 (set-face-bold font-lock-keyword-face t)
-(set-face-foreground 'minibuffer-prompt "LawnGreen")
+(set-face-foreground 'minibuffer-prompt "lawngreen")
 (set-face-foreground 'font-lock-constant-face "gold3")
 (set-face-foreground 'default "snow")
 (set-face-background 'default "black")
 (set-face-foreground 'match "black")
 (set-face-background 'match "yellow1")
-(set-face-foreground 'font-lock-type-face "LimeGreen")
-(set-face-background 'secondary-selection "MediumPurple4")
-(set-face-foreground 'font-lock-function-name-face "MediumTurquoise")
-(set-face-foreground 'font-lock-variable-name-face "DarkOliveGreen1")
+(set-face-foreground 'font-lock-type-face "limegreen")
+(set-face-background 'secondary-selection "mediumpurple4")
+(set-face-foreground 'font-lock-function-name-face "mediumturquoise")
+(set-face-foreground 'font-lock-variable-name-face "darkolivegreen1")
 (set-face-foreground 'warning "salmon")
 
 (eval-after-load 'em-prompt

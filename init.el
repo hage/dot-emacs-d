@@ -1269,7 +1269,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         (set-face-background 'magit-diff-hunk-heading "gray30")
         (set-face-foreground 'magit-diff-hunk-heading-highlight "white")
         (set-face-background 'magit-diff-hunk-heading-highlight "gray45")
-        (set-face-bold-p 'magit-diff-hunk-heading-highlight t)
+        (set-face-bold 'magit-diff-hunk-heading-highlight t)
 
         (set-face-foreground 'magit-branch-local "skyblue")
         (set-face-foreground 'magit-branch-remote "green")
@@ -1919,7 +1919,7 @@ Otherwise sends the whole buffer."
     (set-face-foreground 'elixir-atom-face "Gold3")
 
     (set-face-foreground 'elixir-attribute-face "royalblue1")
-    (set-face-bold-p 'elixir-attribute-face t)
+    (set-face-bold 'elixir-attribute-face t)
 
     (defun my-alchemist-iex-electric-send-thing (uarg)
       "Sends the code fragment to the inferior IEx process.

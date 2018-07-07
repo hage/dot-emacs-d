@@ -1841,119 +1841,116 @@ Otherwise sends the whole buffer."
 ;;;
 ;;; elixir-mode
 ;;;
-(eval-after-load "elixir-mode"
-  #'(progn
-      (require 'flycheck-elixir nil t)
-      (define-key elixir-mode-map (kbd "C-M-a") 'elixir-beginning-of-defun)
-      (define-key elixir-mode-map (kbd "C-M-e") 'elixir-end-of-defun)
-      ;; 改行して行頭に |> をつける
-      (defun my-elixir-newline-and-insert-pipe ()
-        (interactive)
-        (move-end-of-line 1)
-        (newline-and-indent)
-        (insert "|> "))
-      (define-key elixir-mode-map (kbd "M-J") 'my-elixir-newline-and-insert-pipe)
+(with-eval-after-load 'elixir-mode
+  (require 'flycheck-elixir nil t)
+  (define-key elixir-mode-map (kbd "C-M-a") 'elixir-beginning-of-defun)
+  (define-key elixir-mode-map (kbd "C-M-e") 'elixir-end-of-defun)
+  ;; 改行して行頭に |> をつける
+  (defun my-elixir-newline-and-insert-pipe ()
+    (interactive)
+    (move-end-of-line 1)
+    (newline-and-indent)
+    (insert "|> "))
+  (define-key elixir-mode-map (kbd "M-J") 'my-elixir-newline-and-insert-pipe)
 
-      (defun my-elixir-insert-arrow-and-newline ()
-        (interactive)
-        (move-end-of-line 1)
-        (just-one-space)
-        (insert "->")
-        (newline-and-indent))
-      (define-key elixir-mode-map (kbd "M-L") 'my-elixir-insert-arrow-and-newline)
-      (define-key elixir-mode-map (kbd "M-u") 'string-inflection-ruby-style-cycle)
+  (defun my-elixir-insert-arrow-and-newline ()
+    (interactive)
+    (move-end-of-line 1)
+    (just-one-space)
+    (insert "->")
+    (newline-and-indent))
+  (define-key elixir-mode-map (kbd "M-L") 'my-elixir-insert-arrow-and-newline)
+  (define-key elixir-mode-map (kbd "M-u") 'string-inflection-ruby-style-cycle)
 
-      (defun my-elixir-string-embed-expression ()
-        (interactive)
-        (if (inside-string-p)
-            (progn
-              (insert "#{}")
-              (backward-char))
-          (progn
-            (insert "#"))))
-      (define-key elixir-mode-map (kbd "#") 'my-elixir-string-embed-expression)
+  (defun my-elixir-string-embed-expression ()
+    (interactive)
+    (if (inside-string-p)
+        (progn
+          (insert "#{}")
+          (backward-char))
+      (progn
+        (insert "#"))))
+  (define-key elixir-mode-map (kbd "#") 'my-elixir-string-embed-expression)
 
 
-      (when (featurep 'smartparens)
-        (sp-with-modes '(elixir-mode)
-          (sp-local-pair "fn" "end"
-                         :when '(("SPC" "RET"))
-                         :actions '(insert navigate))
-          (sp-local-pair "do" "end"
-                         :when '(("SPC" "RET"))
-                         :post-handlers '(sp-ruby-def-post-handler)
-                         :actions '(insert navigate))))
+  (when (featurep 'smartparens)
+    (sp-with-modes '(elixir-mode)
+      (sp-local-pair "fn" "end"
+                     :when '(("SPC" "RET"))
+                     :actions '(insert navigate))
+      (sp-local-pair "do" "end"
+                     :when '(("SPC" "RET"))
+                     :post-handlers '(sp-ruby-def-post-handler)
+                     :actions '(insert navigate))))
 
-      (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
-      (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
+  (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
+  (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
 
-      (eval-after-load "alchemist"
-        #'(progn
+  (with-eval-after-load "alchemist"
+    ;; C-c C-f でカーソル下の関数などのドキュメントを探し、
+    ;; C-u をつけるとドキュメントの目次を表示する
+    (defun my-alchemist-help-search (uarg)
+      "Search Document by alchemist-help."
+      (interactive "P")
+      (if uarg
+          (alchemist-help)
+        (alchemist-help-search-at-point)))
+    (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
+    (define-key alchemist-iex-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
 
-            ;; C-c C-f でカーソル下の関数などのドキュメントを探し、
-            ;; C-u をつけるとドキュメントの目次を表示する
-            (defun my-alchemist-help-search (uarg)
-              "Search Document by alchemist-help."
-              (interactive "P")
-              (if uarg
-                  (alchemist-help)
-                (alchemist-help-search-at-point)))
-            (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
-            (define-key alchemist-iex-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
+    ;; test と 実装を行き来する。
+    ;; C-u をつけるとウィンドウを分割してそこに表示する。
+    (defun my-alchemist-project-toggle-file-and-tests (uarg)
+      "Toggle between a file and its tests."
+      (interactive "P")
+      (if uarg
+          (alchemist-project-toggle-file-and-tests-other-window)
+        (alchemist-project-toggle-file-and-tests)))
+    (define-key alchemist-mode-map (kbd "C-c a a") 'my-alchemist-project-toggle-file-and-tests)
 
-            ;; test と 実装を行き来する。
-            ;; C-u をつけるとウィンドウを分割してそこに表示する。
-            (defun my-alchemist-project-toggle-file-and-tests (uarg)
-              "Toggle between a file and its tests."
-              (interactive "P")
-              (if uarg
-                  (alchemist-project-toggle-file-and-tests-other-window)
-                (alchemist-project-toggle-file-and-tests)))
-            (define-key alchemist-mode-map (kbd "C-c a a") 'my-alchemist-project-toggle-file-and-tests)
+    ;; iex に関する設定
+    (defun my-elixir-and-alchemist-iex-setup ()
+      (ac-alchemist-setup))
+    (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)
+    (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup)
 
-            ;; iex に関する設定
-            (defun my-elixir-and-alchemist-iex-setup ()
-              (ac-alchemist-setup))
-            (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)
-            (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup)
+    (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
 
-            (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
+    (set-face-foreground 'elixir-atom-face "Gold3")
 
-            (set-face-foreground 'elixir-atom-face "Gold3")
+    (set-face-foreground 'elixir-attribute-face "royalblue1")
+    (set-face-bold-p 'elixir-attribute-face t)
 
-            (set-face-foreground 'elixir-attribute-face "royalblue1")
-            (set-face-bold-p 'elixir-attribute-face t)
-
-            (defun my-alchemist-iex-electric-send-thing (uarg)
-              "Sends the code fragment to the inferior IEx process.
+    (defun my-alchemist-iex-electric-send-thing (uarg)
+      "Sends the code fragment to the inferior IEx process.
 If universal argument (C-u) is given, jump to the buffer.
 when region is active, sends the marked region.
 Otherwise sends the current line."
-              (interactive "P")
-              (cond
-               ;; regionがアクティブかつC-uが押されている
-               ((and uarg (use-region-p))
-                (alchemist-iex-send-region-and-go))
-               ;; regionがアクティブ
-               ((and (not uarg) (use-region-p))
-                (alchemist-iex-send-region (point) (mark)))
-               ;; regionなし、かつC-uが押されている
-               ((and uarg (not (use-region-p)))
-                (alchemist-iex-send-current-line-and-go))
-               ;; なんにもなし
-               ((and (not uarg) (not (use-region-p)))
-                (alchemist-iex-send-current-line))))
+      (interactive "P")
+      (cond
+       ;; regionがアクティブかつC-uが押されている
+       ((and uarg (use-region-p))
+        (alchemist-iex-send-region-and-go))
+       ;; regionがアクティブ
+       ((and (not uarg) (use-region-p))
+        (alchemist-iex-send-region (point) (mark)))
+       ;; regionなし、かつC-uが押されている
+       ((and uarg (not (use-region-p)))
+        (alchemist-iex-send-current-line-and-go))
+       ;; なんにもなし
+       ((and (not uarg) (not (use-region-p)))
+        (alchemist-iex-send-current-line))))
 
-            (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
+    (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
 
-            (defun my-alchemist-iex-compile-buffer (uarg)
-              "Compile the code of current buffer in the inferior IEx process.
+    (defun my-alchemist-iex-compile-buffer (uarg)
+      "Compile the code of current buffer in the inferior IEx process.
 If universal argument (C-u) is given, jump to the IEx buffer."
-              (interactive "P")
-              (if uarg
-                  (alchemist-iex-compile-this-buffer-and-go)
-                (alchemist-iex-compile-this-buffer)))
-            (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)))))
+      (interactive "P")
+      (if uarg
+          (alchemist-iex-compile-this-buffer-and-go)
+        (alchemist-iex-compile-this-buffer)))
+    (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)))
 
 
 ;;;

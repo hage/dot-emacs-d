@@ -190,7 +190,7 @@ universal argument が与えられていたら必ずリフレッシュする"
 ;;; いろいろ設定
 ;;;
 
-(setq garbage-collection-messages nil)    ; ガベージコレクションのメッセージ
+(setq garbage-collection-messages t)    ; ガベージコレクションのメッセージ
 
 ;; mode-line
 (line-number-mode t)			; 行番号を表示

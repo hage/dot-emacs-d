@@ -720,6 +720,12 @@ Otherwise indent whole buffer."
   (setq modeline-git-branch-wait-time 2)
   (modeline-git-branch-mode 1))
 
+;;;
+;;; smart-mark
+;;;
+;;;   mark-whole-buffer 後などに C-g を押すと元いた場所に帰ってくる
+(when (require 'smart-mark nil t)
+  (smart-mark-mode 1))
 
 ;;;
 ;;; eww

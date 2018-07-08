@@ -91,6 +91,7 @@
 (depends-on "shackle")
 (depends-on "show-css")
 (depends-on "smart-compile")
+(depends-on "smart-mark")
 (depends-on "smart-newline")
 (depends-on "smartparens")
 (depends-on "smartrep")

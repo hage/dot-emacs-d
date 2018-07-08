@@ -197,8 +197,8 @@ universal argument が与えられていたら必ずリフレッシュする"
 (setq column-number-mode t)             ; 列番号を表示する
 
 (when (require 'saveplace nil t)
-  (setq-default save-place t)
-  (setq save-place-file "~/.emacs.d/saved-places"))
+  (setq save-place-file "~/.emacs.d/saved-places")
+  (save-place-mode t))
 
 (setq-default
  mode-line-buffer-identification

@@ -1043,8 +1043,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           (Info-mode :align right :size 80 :popup t)
           (help-mode :align right :size 80)
           (direx:direx-mode :align left :size 30)
-          ("\\*helm " :regexp t :align bottom)
-          ("*helm list packages*" :align bottom :size 100)))
+          ("*helm list packages*" :align bottom :size 100)
+          ("\\*helm " :regexp t :align bottom)))
   (shackle-mode 1))
 
 ;;;

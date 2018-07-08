@@ -287,8 +287,9 @@ universal argument が与えられていたら必ずリフレッシュする"
 (put 'narrow-to-region 'disabled nil)
 
 ;; スクロール、カーソル移動
-(setq scroll-conservatively 1		; 一行だけスクロール
-      scroll-step 1)
+(setq scroll-conservatively 2		; 一行だけスクロール
+      scroll-step 1
+      scroll-margin 3)
 (setq next-line-add-newlines nil)	; バッファの最後の行で next-line しても新しい行を作らない
 
 ;; バックアップ・自動保存

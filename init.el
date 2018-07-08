@@ -1046,14 +1046,13 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           ("*robe-doc*"  :size .5)
           ("*Messages*" :align bottom :size .3)
           ("\\*Man .*" :regexp t :align right :size 80)
-          ("*Colors*" :align right :size .5)
+          ("*Colors*" :align right :size .5 :select t)
           (Info-mode :align right :size 80 :popup t)
-          (help-mode :align right :size 80)
+          (help-mode :align right :size 80 :popup t :select t)
           (direx:direx-mode :align left :size 30)
           ("*helm list packages*" :align bottom :size 100)
           ("\\*helm " :regexp t :align bottom)))
   (shackle-mode 1))
-
 ;;;
 ;;; company-mode
 ;;;

@@ -1051,7 +1051,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           (help-mode :align right :size 80 :popup t :select t)
           (direx:direx-mode :align left :size 30)
           ("*helm list packages*" :align bottom :size 100)
-          ("\\*helm " :regexp t :align bottom)))
+          ("\\*helm " :regexp t :align bottom)
+          ("*docker-containers*" :align bottom :size 10 :select t)))
   (shackle-mode 1))
 ;;;
 ;;; company-mode

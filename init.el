@@ -1893,6 +1893,8 @@ Otherwise sends the whole buffer."
   (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
   (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
 
+  (when (package-installed-p 'alchemist)
+    (setq alchemist-key-command-prefix (kbd "M-K")))
   (with-eval-after-load "alchemist"
     ;; C-c C-f でカーソル下の関数などのドキュメントを探し、
     ;; C-u をつけるとドキュメントの目次を表示する

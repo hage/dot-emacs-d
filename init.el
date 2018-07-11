@@ -1882,17 +1882,6 @@ Otherwise sends the whole buffer."
         (insert "#"))))
   (define-key elixir-mode-map (kbd "#") 'my-elixir-string-embed-expression)
 
-
-  (when (featurep 'smartparens)
-    (sp-with-modes '(elixir-mode)
-      (sp-local-pair "fn" "end"
-                     :when '(("SPC" "RET"))
-                     :actions '(insert navigate))
-      (sp-local-pair "do" "end"
-                     :when '(("SPC" "RET"))
-                     :post-handlers '(sp-ruby-def-post-handler)
-                     :actions '(insert navigate))))
-
   (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
   (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
 

@@ -190,7 +190,10 @@ universal argument が与えられていたら必ずリフレッシュする"
 ;;; いろいろ設定
 ;;;
 
+(setq gc-cons-threshold (* 5 800000))
 (setq garbage-collection-messages t)    ; ガベージコレクションのメッセージ
+
+(setq-default bidi-display-reordering nil)
 
 ;; mode-line
 (line-number-mode t)			; 行番号を表示

@@ -2185,7 +2185,9 @@ If universal argument (C-u) is given, jump to the IEx buffer."
           (ruby-mode . "\\_<\\(end\\|def\\|class\\)\\_>")
           (elixir-mode . "\\_<\\(end\\|def\\sw\\|fn\\|do\\)\\_>")
           ))
-  )
+  (set-face-foreground 'ahs-plugin-defalt-face nil)
+  (set-face-background 'ahs-plugin-defalt-face "black")
+  (set-face-bold 'ahs-plugin-defalt-face t))
 
 
 ;;;

@@ -1763,7 +1763,18 @@ Otherwise sends the whole buffer."
           (insert "</p>")
           (forward-char))
         (define-key web-mode-map (kbd "M-P") 'my-web-mode-markup-paragraph-current-line)
-	))
+
+        (defun my-web-mode-insert-embed-code ()
+          (interactive)
+          (insert "<%  %>")
+          (forward-char -3))
+        (defun my-web-mode-insert-embed-print ()
+          (interactive)
+          (insert "<%=  %>")
+          (forward-char -3))
+        (define-key web-mode-map (kbd "C-c p") 'my-web-mode-insert-embed-print)
+        (define-key web-mode-map (kbd "C-c c") 'my-web-mode-insert-embed-code)
+        ))
   )
 
 ;;; tagedit は不安定すぎるので Cask から消すことによって一度外す

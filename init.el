@@ -2183,6 +2183,7 @@ If universal argument (C-u) is given, jump to the IEx buffer."
   (setq ahs-exclude
         '(
           (ruby-mode . "\\_<\\(end\\|def\\|class\\)\\_>")
+          (elixir-mode . "\\_<\\(end\\|def\\sw\\|fn\\|do\\)\\_>")
           ))
   )
 

@@ -1048,6 +1048,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;   )
 
 (when (require 'shackle nil t)
+  (setq helm-display-function 'pop-to-buffer) ; make helm play nice
   (custom-reevaluate-setting 'shackle-rules)
   (setq shackle-rules
         '(("*eshell*" :align below :size .3 :popup t)
@@ -1060,12 +1061,13 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           ("*robe-doc*"  :size .5)
           ("*Messages*" :align bottom :size .3)
           ("\\*Man .*" :regexp t :align right :size 80)
-          ("*Colors*" :align right :size .5 :select t)
-          (Info-mode :align right :size 80 :popup t)
-          (help-mode :align right :size 80 :popup t :select t)
+          ("*Colors*" :align right :size .3 :select t)
+          (Info-mode :align right :size 80 :select t :other t :popup t)
+          (help-mode :align right :size 80 :select t :other t)
           (direx:direx-mode :align left :size 30)
-          ("*helm list packages*" :align bottom :size 100)
-          ("\\*helm " :regexp t :align bottom)
+          ("*helm list packages*" :align bottom :size .90)
+          ; ("\\*helm " :regexp t :align bottom)
+          ("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.4)
           ("*docker-containers*" :align bottom :size 10 :select t)))
   (shackle-mode 1))
 ;;;

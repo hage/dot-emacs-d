@@ -689,8 +689,13 @@ Otherwise indent whole buffer."
 ;;; smartparens
 ;;;
 (when (require 'smartparens-config nil t)
+  (set-face-foreground 'sp-show-pair-match-face "black")
+  (set-face-background 'sp-show-pair-match-face "gray80")
+  (set-face-bold 'sp-show-pair-match-face t)
   (set-face-background 'sp-wrap-overlay-face "blue4")
   (set-face-background 'sp-pair-overlay-face "black")
+  (set-face-foreground 'sp-show-pair-mismatch-face "black")
+  (set-face-background 'sp-show-pair-mismatch-face "red")
   (set-face-underline 'sp-pair-overlay-face t)
   (smartparens-global-mode))
 

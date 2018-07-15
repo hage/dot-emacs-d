@@ -517,7 +517,8 @@ Otherwise indent whole buffer."
         (move-end-of-line 1)
         (newline-and-indent)))
     ))
-(global-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)
+(global-set-key (kbd "M-j") 'my-open-block-or-newline-and-indent)
+(global-set-key (kbd "C-j") 'newline-and-indent)
 
 (eval-after-load "nginx-mode"
   #'(progn

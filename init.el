@@ -561,23 +561,16 @@ Otherwise indent whole buffer."
   (save-excursion
     (exchange-point-and-mark)
     (indent-region (point) (mark))))
+(defmacro my-set-key-my-yank-and-indent-with-mode-and-map (mode keymap)
+  `(with-eval-after-load ',mode
+     (define-key ,keymap (kbd "C-M-y") 'yank)
+     (define-key ,keymap (kbd "C-y")   'my-yank-and-indent-it)))
+(my-set-key-my-yank-and-indent-with-mode-and-map web-mode web-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map ruby-mode ruby-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map elixir-mode elixir-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map elisp-mode emacs-lisp-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map php-mode php-mode-map)
 
-(mapc
- (lambda (param)
-   (let ((mode   (car param))
-         (keymap (cdr param)))
-     (with-eval-after-load mode
-       (define-key (eval keymap) (kbd "C-M-y") 'yank)                   ; yank を C-M-y に移して
-       (define-key (eval keymap) (kbd "C-y")   'my-yank-and-indent-it)) ; 普通の yank に割り当てられているキーをこれに
-     ))
- '((web-mode    . web-mode-map)
-   (elixir-mode . elixir-mode-map)
-   (ruby-mode   . ruby-mode-map)))
-
-
-(with-eval-after-load 'make-mode
-    (define-key makefile-mode-map (kbd "C-y") 'yank)
- )
 
 ;;;
 ;;; cde用 -- カレントバッファのディレクトリを返す

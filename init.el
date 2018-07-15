@@ -2066,6 +2066,9 @@ If universal argument (C-u) is given, jump to the IEx buffer."
                          ("<" . (lambda () (beginning-of-buffer-other-window 0)))
                          (">" . (lambda () (end-of-buffer-other-window 0)))
                          ))
+  (smartrep-define-key
+      global-map "M-g" '(("[" . #'goto-last-change)
+                         ("]" . #'goto-last-change-reverse)))
   (when (functionp 'mc/mark-next-like-this)
     (smartrep-define-key
         global-map "C-w" '(("w" . 'mc/mark-next-like-this)

@@ -408,6 +408,8 @@ universal argument が与えられていたら必ずリフレッシュする"
 (global-set-key (kbd "C-q a") 'align)
 (global-set-key (kbd "C-w C-SPC") 'mark-sexp)
 (global-set-key (kbd "C-q DEL") 'just-one-space)
+(global-set-key (kbd "M-Q") 'quit-window)
+
 (global-unset-key (kbd "C-x DEL"))
 
 (global-set-key (kbd "M-f") 'forward-to-word)

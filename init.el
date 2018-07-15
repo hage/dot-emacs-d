@@ -1061,6 +1061,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           ("*compilation*" :size .3 :align bottom)
           ("*pry*" :align below :size .3 :popup t)
           ("*Alchemist-IEx*" :size .5 )
+          ("*alchemist help*" :size 81 :align right)
+          ("*alchemist mix*" :size 0.3 :align bottom)
           ("\\*alchemist .*\\*" :regexp t )
           ("*robe-doc*"  :size .5)
           ("*Messages*" :align bottom :size .3)

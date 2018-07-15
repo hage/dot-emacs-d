@@ -1880,7 +1880,11 @@ Otherwise sends the whole buffer."
 ;;; elixir-mode
 ;;;
 (with-eval-after-load 'elixir-mode
-  (require 'flycheck-elixir nil t)
+  ;; (require 'flycheck-elixir nil t)
+  ;; (add-hook 'elixir-mode-hook 'flycheck-mode)
+  (require 'flycheck-mix)
+  (flycheck-mix-setup)
+
   (define-key elixir-mode-map (kbd "C-M-a") 'elixir-beginning-of-defun)
   (define-key elixir-mode-map (kbd "C-M-e") 'elixir-end-of-defun)
   ;; 改行して行頭に |> をつける

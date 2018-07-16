@@ -38,6 +38,7 @@
 (depends-on "flycheck-elixir")
 (depends-on "flycheck-mix")
 (depends-on "flycheck-pos-tip")
+(depends-on "ghub")
 (depends-on "git-commit")
 (depends-on "github-browse-file")
 (depends-on "google-this")

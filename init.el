@@ -858,8 +858,8 @@ Otherwise indent whole buffer."
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 
-        (set-face-background 'helm-selection "#bbe")
-	(set-face-foreground 'helm-selection "#000")
+        (set-face-background 'helm-selection "#66a")
+	(set-face-foreground 'helm-selection "#fff")
 	(set-face-underline 'helm-selection nil)
         (set-face-bold 'helm-selection t)
 

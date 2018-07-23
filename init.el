@@ -125,17 +125,17 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
   (save-excursion
     (nth 3 (syntax-ppss (or pos (point))))))
 
-(defun* git-toplevel-dir (&optional (path (buffer-file-name)))
+(defun* git-toplevel-dir (&optional (path default-directory))
   "Returns git root dir of specified PATH or current buffer.
 returns nil when;
 * PATH was not exist
 * buffer does not have file name"
   (if (and path (file-exists-p path))
       (let ((result (string-strip
-                     (shell-command-to-string (format  "cd %s && git rev-parse --show-toplevel" default-directory)))))
-        result)
-    nil)
-  )
+                     (shell-command-to-string (format  "cd %s && git rev-parse --show-toplevel" path)))))
+        (and (not (string= result "fatal: not a git repository (or any of the parent directories): .git"))
+             result))
+    nil))
 
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
@@ -1017,65 +1017,41 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;; popwin
 ;;; https://github.com/m2ym/popwin-el
 ;;;
-;; (when (require 'popwin nil t)
-;;   (defvar popwin:keymap)
-;;   (defvar popwin:adjust-other-windows)
-;;   (defvar popwin:popup-window-height)
-;;   (defvar popwin:special-display-config)
+(when (require 'popwin nil t)
+  (popwin-mode 1)
+  (global-set-key (kbd "C-w C-p") popwin:keymap)
+  (setq popwin:popup-window-height .43)
+  (progn
+    (custom-reevaluate-setting 'popwin:special-display-config)
+    (setq popwin:special-display-config
+     (append
+      '(("*alchemist mix*" :position bottom :dedicated t :height .3)
+        ("*Alchemist-IEx*" :height .5 :width .5 :stick t)
+        ("\\*alchemist .*\\*" :regexp t :position bottom :height .3 :stick t)
 
-;;   (popwin-mode 1)
-;;   (global-set-key (kbd "C-w C-p") popwin:keymap)
-;;   (setq popwin:adjust-other-windows t)
-;;   (setq popwin:popup-window-height .43)
+        ("*pry*" :height .3 :width .5 :stick t)
+        ("*rake*")
+        ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
-;;   (progn                                ; progn ごと評価しなおせば最初から全体を構築し直す
-;;     (custom-reevaluate-setting 'popwin:special-display-config)
-;;     (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
-;;     (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4) popwin:special-display-config)
-;;     (push '("*Backtrace*") popwin:special-display-config)
-;;     (push '("*compilation*" :height .3 :position bottom :stick t) popwin:special-display-config)
-;;     (push '("*pry*" :height .3 :width .5 :stick t) popwin:special-display-config)
-;;     (push '("*Alchemist-IEx*" :height .5 :width .5 :stick t) popwin:special-display-config)
-;;     (push '("*rake*") popwin:special-display-config)
-;;     (push '("*Diff*") popwin:special-display-config)
-;;     (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)
-;;     (push '("*xref*") popwin:special-display-config)
-;;     (push '("*robe-doc*" :stick t :dedicated t :width .5 :height .5) popwin:special-display-config)
-;;     (push '("*Messages*" :position bottom :dedicated t :height .3) popwin:special-display-config)
-;;     (push '("\\*Man .*" :regexp t :position right :stick t :width .5) popwin:special-display-config)
-;;     (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
-;;     (push '("*info*" :position right :stick t :width 80 :dedicated t) popwin:special-display-config)
-;;     (push '(help-mode :position right :width 80) popwin:special-display-config)
-;;     (push '(direx:direx-mode :position left :width 25 :dedicated t) popwin:special-display-config)
-;;     (push '("\\*helm " :regexp t :position bottom) popwin:special-display-config)
-;;     (push '("*helm list packages*" :position bottom :height 100) popwin:special-display-config))
-;;   )
+        ("\\*helm " :regexp t :position bottom)
+        ("*helm list packages*" :position bottom :height 100)
 
-(when (require 'shackle nil t)
-  (setq helm-display-function 'pop-to-buffer) ; make helm play nice
-  (custom-reevaluate-setting 'shackle-rules)
-  (setq shackle-rules
-        '(("*eshell*" :align below :size .3 :popup t)
-          ("\\*Faces\\*" :regexp t :align right :size 95)
-          ("\\*eww.*\\*" :regexp t :stick t :align bottom :size .4)
-          ("*compilation*" :size .3 :align bottom)
-          ("*pry*" :align below :size .3 :popup t)
-          ("*Alchemist-IEx*" :size .5 )
-          ("*alchemist help*" :size 81 :align right)
-          ("*alchemist mix*" :size 0.3 :align bottom)
-          ("\\*alchemist .*\\*" :regexp t )
-          ("*robe-doc*"  :size .5)
-          ("*Messages*" :align bottom :size .3)
-          ("\\*Man .*" :regexp t :align right :size 80)
-          ("*Colors*" :align right :size .3 :select t)
-          (Info-mode :align right :size 80 :select t :other t :popup t)
-          (help-mode :align right :size 80 :select t :other t)
-          (direx:direx-mode :align left :size 30)
-          ("*helm list packages*" :align bottom :size .90)
-          ; ("\\*helm " :regexp t :align bottom)
-          ("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.4)
-          ("*docker-containers*" :align bottom :size 10 :select t)))
-  (shackle-mode 1))
+        ("*eshell*" :position bottom :height .35)
+        (direx:direx-mode :position right :width 35 :dedicated t)
+        (help-mode :position right :width 82 :dedicated t)
+        ("\\*Faces\\*" :regexp t :stick t)
+        ("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4)
+        ("*Backtrace*")
+        ("*compilation*" :height .3 :position bottom :stick t)
+        ("*Diff*")
+        ("*xref*")
+        ("*Messages*" :position bottom :dedicated t :height .3)
+        ("\\*Man .*" :regexp t :position right :stick t :width .5)
+        ("*Colors*" :position right :stick t :width .5)
+        ("*info*" :position right :stick t :width 80 :dedicated t))
+      popwin:special-display-config))))
+
+
 ;;;
 ;;; company-mode
 ;;;

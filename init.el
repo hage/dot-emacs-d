@@ -1020,43 +1020,36 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 (when (require 'popwin nil t)
   (popwin-mode 1)
   (global-set-key (kbd "C-w C-p") popwin:keymap)
-;  (setq popwin:adjust-other-windows t)
   (setq popwin:popup-window-height .43)
-
   (progn
     (custom-reevaluate-setting 'popwin:special-display-config)
-    (setq
-     popwin:special-display-config
+    (setq popwin:special-display-config
      (append
+      '(("*alchemist mix*" :position bottom :dedicated t :height .3)
+        ("*Alchemist-IEx*" :height .5 :width .5 :stick t)
+        ("\\*alchemist .*\\*" :regexp t :position bottom :height .3 :stick t)
 
-      '((direx:direx-mode :position right :width 35 :dedicated t)
-        (help-mode :position right :width 80 :dedicated t))
+        ("*pry*" :height .3 :width .5 :stick t)
+        ("*rake*")
+        ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
-      popwin:special-display-config)))
+        ("\\*helm " :regexp t :position bottom)
+        ("*helm list packages*" :position bottom :height 100)
 
-
-  ;(progn                                ; progn ごと評価しなおせば最初から全体を構築し直す
-  ;;
-  ;;   (push '("\\*Faces\\*" :regexp t :stick t) popwin:special-display-config)
-  ;;   (push '("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4) popwin:special-display-config)
-  ;;   (push '("*Backtrace*") popwin:special-display-config)
-  ;;   (push '("*compilation*" :height .3 :position bottom :stick t) popwin:special-display-config)
-  ;;   (push '("*pry*" :height .3 :width .5 :stick t) popwin:special-display-config)
-  ;;   (push '("*Alchemist-IEx*" :height .5 :width .5 :stick t) popwin:special-display-config)
-  ;;   (push '("*rake*") popwin:special-display-config)
-  ;;   (push '("*Diff*") popwin:special-display-config)
-  ;;   (push '("\\*alchemist .*\\*" :regexp t :stick t) popwin:special-display-config)
-  ;;   (push '("*xref*") popwin:special-display-config)
-  ;;   (push '("*robe-doc*" :stick t :dedicated t :width .5 :height .5) popwin:special-display-config)
-  ;;   (push '("*Messages*" :position bottom :dedicated t :height .3) popwin:special-display-config)
-  ;;   (push '("\\*Man .*" :regexp t :position right :stick t :width .5) popwin:special-display-config)
-  ;;   (push '("*Colors*" :position right :stick t :width .5) popwin:special-display-config)
-  ;;   (push '("*info*" :position right :stick t :width 80 :dedicated t) popwin:special-display-config)
-  ;;
-  ;;
-  ;;   (push '("\\*helm " :regexp t :position bottom) popwin:special-display-config)
-  ;;   (push '("*helm list packages*" :position bottom :height 100) popwin:special-display-config))
-  )
+        ("*eshell*" :position bottom :height .35)
+        (direx:direx-mode :position right :width 35 :dedicated t)
+        (help-mode :position right :width 82 :dedicated t)
+        ("\\*Faces\\*" :regexp t :stick t)
+        ("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4)
+        ("*Backtrace*")
+        ("*compilation*" :height .3 :position bottom :stick t)
+        ("*Diff*")
+        ("*xref*")
+        ("*Messages*" :position bottom :dedicated t :height .3)
+        ("\\*Man .*" :regexp t :position right :stick t :width .5)
+        ("*Colors*" :position right :stick t :width .5)
+        ("*info*" :position right :stick t :width 80 :dedicated t))
+      popwin:special-display-config))))
 
 
 ;;;

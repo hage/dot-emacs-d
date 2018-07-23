@@ -970,11 +970,11 @@ Otherwise indent whole buffer."
     (global-set-key-if-bound (kbd "C-w C-o") 'helm-projectile-find-file-dwim)
     (autoload-if-found 'projectile-project-p "projectile")
     (defun my-helm-mini-or-projectile (uarg)
-      "projectile 配下のときは helm-projectile を、
+      "git 配下のときは helm-projectile を、
 そうでないときは helm-mini を起動する。
 C-u を前置したときはどのような場合でも helm-mini を起動する。"
       (interactive "P")
-      (if (and (not uarg) (projectile-project-p))
+      (if (and (not uarg) (git-toplevel-dir))
           (helm-projectile)
         (helm-mini)))
     (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)

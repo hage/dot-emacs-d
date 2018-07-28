@@ -1024,32 +1024,32 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   (progn
     (custom-reevaluate-setting 'popwin:special-display-config)
     (setq popwin:special-display-config
-     (append
-      '(("*alchemist mix*" :position bottom :dedicated t :height .3)
-        ("*Alchemist-IEx*" :height .5 :width .5 :stick t)
-        ("\\*alchemist .*\\*" :regexp t :position bottom :height .3 :stick t)
+          (append
+           '(("*alchemist mix*" :position bottom :dedicated t :height .3)
+             ("*Alchemist-IEx*" :height .35 :position bottom :stick t)
+             ("\\*alchemist .*\\*" :regexp t :position bottom :height .3 :stick t)
 
-        ("*pry*" :height .3 :width .5 :stick t)
-        ("*rake*")
-        ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
+             ("*pry*" :height .3 :width .5 :stick t)
+             ("*rake*")
+             ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
-        ("\\*helm " :regexp t :position bottom)
-        ("*helm list packages*" :position bottom :height 100)
+             ("*helm list packages*" :position bottom :height 100)
+             ("\\*helm " :regexp t :position bottom)
 
-        ("*eshell*" :position bottom :height .35)
-        (direx:direx-mode :position right :width 35 :dedicated t)
-        (help-mode :position right :width 82 :dedicated t)
-        ("\\*Faces\\*" :regexp t :stick t)
-        ("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4)
-        ("*Backtrace*")
-        ("*compilation*" :height .3 :position bottom :stick t)
-        ("*Diff*")
-        ("*xref*")
-        ("*Messages*" :position bottom :dedicated t :height .3)
-        ("\\*Man .*" :regexp t :position right :stick t :width .5)
-        ("*Colors*" :position right :stick t :width .5)
-        ("*info*" :position right :stick t :width 80 :dedicated t))
-      popwin:special-display-config))))
+             ("\\*eshell\\*" :regexp t :position bottom :height .35)
+             (direx:direx-mode :position right :width 35 :dedicated t)
+             (help-mode :position right :width 82 :dedicated t)
+             ("\\*Faces\\*" :regexp t :stick t)
+             ("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4)
+             ("*Backtrace*")
+             ("*compilation*" :height .3 :position bottom :stick t)
+             ("*Diff*")
+             ("*xref*")
+             ("*Messages*" :position bottom :dedicated t :height .3)
+             ("\\*Man .*" :regexp t :position right :stick t :width .5)
+             ("*Colors*" :position right :stick t :width .5)
+             ("*info*" :position right :stick t :width 80 :dedicated t))
+           popwin:special-display-config))))
 
 
 ;;;

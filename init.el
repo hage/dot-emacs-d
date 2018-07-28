@@ -2245,25 +2245,23 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 ;;; eshell
 ;;;
 (global-set-key-if-bound (kbd "C-w C-w") 'eshell)
-;; (when (featurep 'popwin)
-;;   (push '("*eshell*" :height 0.5 :stick t) popwin:special-display-config)
-
-;;   (defun eshell-pop (universal-argument)
-;;     "open eshell window using popwin-elf"
-;;     (interactive "P")
-;;     (let* ((eshell-buffer-name "*eshell*")
-;; 	   (eshell-buffer (get-buffer eshell-buffer-name))
-;; 	   (file-name (buffer-file-name (current-buffer)))
-;; 	   (current-directory (with-current-buffer (current-buffer) default-directory)))
-;;       (if eshell-buffer
-;; 	  (popwin:display-buffer eshell-buffer)
-;; 	(eshell))
-;;       (when (and universal-argument file-name)
-;; 	(eshell-kill-input)
-;; 	(insert (concat "cd " current-directory))
-;; 	(eshell-send-input)
-;; 	(end-of-buffer))))
-;;   (global-set-key-if-bound (kbd "C-w C-w") 'eshell-pop))
+(when (featurep 'popwin)
+  (defun eshell-pop (universal-argument)
+    "open eshell window using popwin-elf"
+    (interactive "P")
+    (let* ((eshell-buffer-name "*eshell*")
+	   (eshell-buffer (get-buffer eshell-buffer-name))
+	   (file-name (buffer-file-name (current-buffer)))
+	   (current-directory (with-current-buffer (current-buffer) default-directory)))
+      (if eshell-buffer
+	  (popwin:display-buffer eshell-buffer)
+	(eshell))
+      (when (and universal-argument file-name)
+	(eshell-kill-input)
+	(insert (concat "cd " current-directory))
+	(eshell-send-input)
+	(end-of-buffer))))
+  (global-set-key-if-bound (kbd "C-w C-w") 'eshell-pop))
 
 
 ;;;

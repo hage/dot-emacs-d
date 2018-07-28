@@ -1681,27 +1681,6 @@ Otherwise sends the whole buffer."
     #'(progn
 	(defun web-mode-hook ()
 	  "Hooks for Web mode."
-	  ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
-	  ;; バッティングするため C-c t X に換える
-	  (define-key web-mode-map (kbd "C-c t a") 'web-mode-tag-attributes-sort)
-	  (define-key web-mode-map (kbd "C-c t b") 'web-mode-tag-beginning)
-	  (define-key web-mode-map (kbd "C-c t e") 'web-mode-tag-end)
-	  (define-key web-mode-map (kbd "C-c t m") 'web-mode-tag-match)
-	  (define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
-	  (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
-	  (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
-	  (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
-
-          (define-key web-mode-map (kbd "M-RET") 'web-mode-element-content-select)
-          (define-key web-mode-map (kbd "C-M-u") 'web-mode-element-parent)
-          (define-key web-mode-map (kbd "C-M-d") 'web-mode-element-child)
-          (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
-          (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
-          (define-key web-mode-map (kbd "C-c C-r") 'web-mode-element-rename)
-          (define-key web-mode-map (kbd "C-c R") 'web-mode-reload)
-
-
-
           ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
           ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097
           (setq web-mode-auto-close-style 1)
@@ -1719,9 +1698,39 @@ Otherwise sends the whole buffer."
 	  (setq web-mode-php-offset    2)
 	  (setq web-mode-java-offset   2)
 	  (setq web-mode-asp-offset    2))
+
 	(add-hook 'web-mode-hook 'web-mode-hook)
 	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
 	(set-face-foreground 'web-mode-html-tag-face "olivedrab3")
+
+        ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
+	;; バッティングするため C-c t X に換える
+	(define-key web-mode-map (kbd "C-c t a") 'web-mode-tag-attributes-sort)
+	(define-key web-mode-map (kbd "C-c t b") 'web-mode-tag-beginning)
+	(define-key web-mode-map (kbd "C-c t e") 'web-mode-tag-end)
+	(define-key web-mode-map (kbd "C-c t m") 'web-mode-tag-match)
+	(define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
+	(define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
+	(define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
+	(define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
+
+        (define-key web-mode-map (kbd "M-RET") 'web-mode-element-content-select)
+
+        (define-key web-mode-map (kbd "C-M-u") 'web-mode-element-parent)
+        (define-key web-mode-map (kbd "C-M-d") 'web-mode-element-child)
+        (define-key web-mode-map (kbd "C-M-a") 'web-mode-element-beginning)
+        (define-key web-mode-map (kbd "C-M-e") 'web-mode-element-end)
+        (define-key web-mode-map (kbd "C-M-p") 'web-mode-element-sibling-previous)
+        (define-key web-mode-map (kbd "C-M-n") 'web-mode-element-sibling-next)
+        (define-key web-mode-map (kbd "C-M-b") 'web-mode-tag-previous)
+        (define-key web-mode-map (kbd "C-M-f") 'web-mode-tag-next)
+        (define-key web-mode-map (kbd "C-M-k") 'web-mode-element-kill)
+
+        (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
+        (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
+        (define-key web-mode-map (kbd "C-c C-r") 'web-mode-element-rename)
+        (define-key web-mode-map (kbd "C-c R") 'web-mode-reload)
+
 
         (eval-after-load 'smartrep
           #'(progn

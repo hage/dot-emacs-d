@@ -125,14 +125,20 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
   (save-excursion
     (nth 3 (syntax-ppss (or pos (point))))))
 
+(defvar my-git-toplevel-dir-chache nil "cache")
+(defun my-clear-git-toplevel-dir-cache ()
+  (setq my-git-toplevel-dir-chache (make-hash-table :test 'equal)))
+(my-clear-git-toplevel-dir-cache)
 (defun* git-toplevel-dir (&optional (path default-directory))
   "Returns git root dir of specified PATH or current buffer.
 returns nil when;
 * PATH was not exist
 * buffer does not have file name"
   (if (and path (file-exists-p path))
-      (let ((result (string-strip
-                     (shell-command-to-string (format  "cd %s && git rev-parse --show-toplevel" path)))))
+      (let ((result (or (gethash path my-git-toplevel-dir-chache)
+                        (puthash path (string-strip
+                                       (shell-command-to-string (format  "cd %s && git rev-parse --show-toplevel" path)))
+                                 my-git-toplevel-dir-chache))))
         (and (not (string= result "fatal: not a git repository (or any of the parent directories): .git"))
              result))
     nil))

@@ -2003,7 +2003,7 @@ If universal argument (C-u) is given, jump to the IEx buffer."
                     (setq js2-basic-offset 2)
                     (setq tab-width 2)
                     (setq js-indent-level 2)
-                    (define-key js2-mode-map (kbd "M-j") 'move-end-of-line-and-newline-and-indent)
+                    (define-key js2-mode-map (kbd "M-j") 'my-open-block-or-newline-and-indent)
                     (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
                     (define-key js2-mode-map (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)
                     ))

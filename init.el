@@ -139,7 +139,7 @@ returns nil when;
                         (puthash path (string-strip
                                        (shell-command-to-string (format  "cd %s && git rev-parse --show-toplevel" path)))
                                  my-git-toplevel-dir-chache))))
-        (and (not (string= result "fatal: not a git repository (or any of the parent directories): .git"))
+        (and (not (string-match-p "\\`fatal: " result))
              result))
     nil))
 

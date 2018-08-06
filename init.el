@@ -794,6 +794,7 @@ Otherwise indent whole buffer."
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-o") 'helm-dabbrev)
   (global-set-key (kbd "M-s a") 'helm-do-grep-ag)
+  (global-set-key (kbd "C-x h i") 'helm-info)
   (custom-set-variables '(helm-dabbrev-cycle-threshold 2)
                         '(helm-case-fold-search t)
                         '(helm-M-x-fuzzy-match nil)

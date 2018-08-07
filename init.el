@@ -125,6 +125,9 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
   (save-excursion
     (nth 3 (syntax-ppss (or pos (point))))))
 
+;;;
+;;; git-toplevel-dir
+;;;
 (defvar my-git-toplevel-dir-chache nil "cache")
 (defun my-clear-git-toplevel-dir-cache ()
   (setq my-git-toplevel-dir-chache (make-hash-table :test 'equal)))

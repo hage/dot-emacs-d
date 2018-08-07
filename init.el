@@ -145,6 +145,11 @@ returns nil when;
         (and (not (string-match-p "\\`fatal: " result))
              result))
     nil))
+(with-eval-after-load 'magit
+  (advice-add 'magit-init :after
+              (lambda (_dir)
+                (my-clear-git-toplevel-dir-cache))))
+
 
 ;; 機種判別
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか

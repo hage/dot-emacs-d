@@ -1042,6 +1042,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           (append
            '(("*alchemist mix*" :position bottom :dedicated t :height .3)
              ("*Alchemist-IEx*" :height .35 :position bottom :stick t)
+             ("*alchemist help*" :width 82 :position right :stick t)
              ("\\*alchemist .*\\*" :regexp t :position bottom :height .3 :stick t)
 
              ("*pry*" :height .3 :width .5 :stick t)

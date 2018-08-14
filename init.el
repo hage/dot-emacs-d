@@ -2103,6 +2103,7 @@ If universal argument (C-u) is given, jump to the IEx buffer."
                        '(elscreen-tab-display-control nil))    ; header-lineの先頭に[<->]を表示しない
   (global-set-key (kbd "M-t M-t") 'elscreen-toggle)
   (global-set-key (kbd "M-t l") 'helm-elscreen)
+  (global-set-key (kbd "M-t M-f") 'elscreen-find-file)
 
   (set-face-foreground 'elscreen-tab-other-screen-face "gray60")
   (set-face-background 'elscreen-tab-other-screen-face "gray20")

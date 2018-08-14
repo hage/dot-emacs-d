@@ -130,6 +130,7 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
 ;;;
 (defvar my-git-toplevel-dir-chache nil "cache")
 (defun my-clear-git-toplevel-dir-cache ()
+  (interactive)
   (setq my-git-toplevel-dir-chache (make-hash-table :test 'equal)))
 (my-clear-git-toplevel-dir-cache)
 (defun* git-toplevel-dir (&optional (path default-directory))

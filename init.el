@@ -236,7 +236,7 @@ universal argument が与えられていたら必ずリフレッシュする"
                 mode-line-modes
                 mode-line-misc-info
                 ))
-(defvar mode-line-cleaner-alist
+(setq mode-line-cleaner-alist
   '( ;; For minor-mode, first char is 'space'
     (yas-minor-mode . "")
     (paredit-mode . " ()e")
@@ -251,7 +251,8 @@ universal argument が与えられていたら必ずリフレッシュする"
     (emmet-mode . " Emt")
     (robe-mode . " R")
     (company-mode . " cp")
-    (alchemist-mode . " Alc")
+    (alchemist-mode . "")
+    (alchemist-phoenix-mode . " phx")
     (ruby-test-mode . " rtest")
     (editorconfig-mode . " EdC")
     (helm-migemo-mode . "")             ; Hmio
@@ -262,11 +263,11 @@ universal argument が与えられていたら必ずリフレッシュする"
     (auto-complete-mode . "")           ; AC
 
     ;; Major modes
-    (lisp-interaction-mode . "iLisp")
+    (lisp-interaction-mode . "ilisp")
     (python-mode . "Py")
     (ruby-mode   . "Ruby")
     (emacs-lisp-mode . "Elisp")
-    (elixir-mode . "Elx")
+    (elixir-mode . "Elixir")
     (js2-mode . "Js2")
     (markdown-mode . "Md")))
 (defun clean-mode-line ()

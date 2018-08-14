@@ -1959,6 +1959,11 @@ Otherwise sends the whole buffer."
     (set-face-foreground 'elixir-attribute-face "royalblue1")
     (set-face-bold 'elixir-attribute-face t)
 
+    ;; 誰かが '[' を prefix-key に設定しているので、設定し直す
+    (add-hook 'alchemist-iex-mode-hook
+              (lambda ()
+                (local-set-key "[" 'self-insert-command)))
+
     (defun my-alchemist-iex-electric-send-thing (uarg)
       "Sends the code fragment to the inferior IEx process.
 If universal argument (C-u) is given, jump to the buffer.

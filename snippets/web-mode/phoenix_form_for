@@ -1,0 +1,12 @@
+# key: formfor
+# name: phoenix_form_for
+# --
+<% form_for @conn, ${1:$$(car (last (split-string default-directory "/") 2))}_path(@conn, :${2:create}), [method: :${3:post}, as: :user], fn f -> %>
+   <div class="form-group">
+        <%= text_input f, :email, placeholder: "Email" %>
+   </div>
+
+   <div class="form-group">
+        <%= submit "Submit" %>
+   </div>
+<% end %>

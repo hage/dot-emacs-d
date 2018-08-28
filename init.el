@@ -322,7 +322,7 @@ universal argument が与えられていたら必ずリフレッシュする"
     (setq show-paren-delay 0.2)
     (setq show-paren-style 'expression)
     (set-face-foreground 'show-paren-match nil)
-    (set-face-background 'show-paren-match "#112909")
+    (set-face-background 'show-paren-match "#312910")
     (set-face-bold 'show-paren-match t)
     (set-face-foreground 'show-paren-mismatch nil)
     (set-face-background 'show-paren-mismatch "#551109")

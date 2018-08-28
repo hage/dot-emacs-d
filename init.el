@@ -881,9 +881,11 @@ Otherwise indent whole buffer."
 	(set-face-underline 'helm-selection nil)
         (set-face-bold 'helm-selection t)
 
-        (set-face-background 'helm-source-header "gray15")
-	(set-face-foreground 'helm-source-header "gray50")
+        (set-face-background 'helm-source-header nil)
+        (set-face-foreground 'helm-source-header "hotpink4")
 	(set-face-underline 'helm-source-header t)
+        (set-face-bold 'helm-source-header t)
+
 	(set-face-foreground 'helm-match "hotpink1")
 	(set-face-underline 'helm-match t)
         (setq helm-locate-command

@@ -2559,6 +2559,12 @@ guessing a default from current buffer file name or default directory. "
 (set-face-foreground 'font-lock-variable-name-face "darkolivegreen1")
 (set-face-foreground 'warning "salmon")
 
+;;; vertical-border
+(set-face-background 'vertical-border "#333")
+(set-display-table-slot standard-display-table
+                        'vertical-border
+                        (make-glyph-code ? ))
+
 (eval-after-load 'em-prompt
   #'(progn
       (set-face-foreground 'eshell-prompt "green")))

@@ -2473,8 +2473,8 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 ;;;
 (when (fboundp 'direx-project:jump-to-project-root-other-window)
   (autoload-if-found 'direx-project:find-project-root-noselect "direx-project")
-  (setq direx:open-icon "▹ ")
-  (setq direx:closed-icon "▿ ")
+  (setq direx:closed-icon "▹")
+  (setq direx:open-icon "▿")
   (defun* my-direx-project:find-root (&optional (dir (or buffer-file-name default-directory)))
     "find project root directory of DIR,
 guessing a default from current buffer file name or default directory. "

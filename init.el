@@ -608,6 +608,11 @@ Otherwise indent whole buffer."
                      (nth 1 (nth 1 (current-frame-configuration))))))
      default-directory)))
 
+;;;
+;;; toggle-quotes
+;;;
+(global-set-key-if-bound (kbd "C-q '") #'toggle-quotes)
+
 
 ;;;
 ;;; transpose-frame

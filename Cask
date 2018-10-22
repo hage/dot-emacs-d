@@ -99,6 +99,7 @@
 (depends-on "smartrep")
 (depends-on "smooth-scroll")
 (depends-on "string-inflection")
+(depends-on "toggle-quotes")
 (depends-on "transpose-frame")
 (depends-on "urlenc")
 (depends-on "vagrant-tramp")

@@ -1003,6 +1003,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           (helm-projectile)
         (helm-mini)))
     (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)
+    (global-set-key (kbd "M-s p") 'helm-projectile-grep)
 
     (with-eval-after-load "helm-projectile"
       (require 'helm-for-files)

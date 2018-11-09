@@ -1256,6 +1256,12 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         (setq mc--insert-numbers-number (+ mc--insert-numbers-number my/mc/insert-numbers-inc)))))
   )
 
+
+;;;
+;;; SQL
+;;;
+(load-safe "~/.emacs.d/.sql-connections.el")
+
 ;;;
 ;;; magit
 ;;;

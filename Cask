@@ -53,6 +53,7 @@
 (depends-on "helm-projectile")
 (depends-on "helm-qiita")
 (depends-on "helm-swoop")
+(depends-on "helm-xref")
 (depends-on "howm")
 (depends-on "inf-ruby")
 (depends-on "jinja2-mode")

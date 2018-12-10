@@ -1013,6 +1013,9 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
             (append helm-projectile-sources-list
                     '(helm-source-recentf
                       helm-source-findutils)))))
+
+  (when (require 'helm-xref nil t)
+    (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
   )
 
 ;;;

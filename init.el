@@ -314,6 +314,7 @@ universal argument が与えられていたら必ずリフレッシュする"
 ;; バックアップ・自動保存
 (setq auto-save-default nil)
 (setq make-backup-files nil)
+(setq create-lockfiles nil)
 (setq vc-make-backup-files nil)
 
 ;; show-paren-mode

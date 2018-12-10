@@ -1836,6 +1836,13 @@ Otherwise sends the whole buffer."
                                            ("0" . 'tagedit-forward-slurp-tag))))))))
 
 
+;;;
+;;; restclient-mode
+;;;
+(eval-after-load 'restclient
+  #'(progn
+      (define-key restclient-mode-map (kbd "M-p") 'restclient-jump-prev)
+      (define-key restclient-mode-map (kbd "M-n") 'restclient-jump-next)))
 
 ;;;
 ;;; markdown-mode

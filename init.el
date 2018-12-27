@@ -1,5 +1,5 @@
 ;;; init.el --- initialize
-;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8 ; lexical-binding: t -*-
 
 ;;; Commentary:
 ;;; Code:

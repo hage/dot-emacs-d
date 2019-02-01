@@ -1884,6 +1884,8 @@ Otherwise sends the whole buffer."
                 '(lambda ()
                    (outline-minor-mode t)  ; markdown-mode で outline-minor-mode を有効にする
                    (define-key markdown-mode-map (kbd "C-c C-v") 'my-markdown-preview)
+                   (when my-another-markdown-previewer
+                     (setq markdown-live-preview-mode nil))
                    ))
 
       (progn

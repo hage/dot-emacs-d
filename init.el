@@ -1889,7 +1889,12 @@ Otherwise sends the whole buffer."
       (progn
         (setq markdown-common-header-face-foreground "CornflowerBlue")
         (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)
+        (set-face-bold 'markdown-header-face-1 t)
+        (set-face-underline 'markdown-header-face-1 t)
+
         (set-face-foreground 'markdown-header-face-2 markdown-common-header-face-foreground)
+        (set-face-bold 'markdown-header-face-2 t)
+
         (set-face-foreground 'markdown-header-face-3 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-4 markdown-common-header-face-foreground)
         (set-face-foreground 'markdown-header-face-5 markdown-common-header-face-foreground)

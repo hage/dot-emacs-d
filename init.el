@@ -1067,7 +1067,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
              ("*helm list packages*" :position bottom :height 100)
              ("\\*helm " :regexp t :position bottom)
 
-             ("\\*eshell\\*" :regexp t :position bottom :height .35)
+             ("\\*eshell\\*" :regexp t :position bottom :height .35 :stick t)
              (direx:direx-mode :position right :width 35 :dedicated t)
              (help-mode :position right :width 82 :dedicated t)
              ("\\*Faces\\*" :regexp t :stick t)

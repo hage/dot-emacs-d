@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: phpp
+# key: phpp
+# --
+<?php

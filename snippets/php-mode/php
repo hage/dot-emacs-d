@@ -2,4 +2,4 @@
 # name: php
 # key: php
 # --
-<?php
+<?php $0; ?>

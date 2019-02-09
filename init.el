@@ -2546,7 +2546,7 @@ guessing a default from current buffer file name or default directory. "
     (define-key direx:direx-mode-map (kbd "SPC") 'quick-preview-at-point)
     (defun my-advice-quick-preview---get-file-name-for-direx (f &rest args)
       (if (eq major-mode 'direx:direx-mode)
-          (direx:file-full-name (direx:item-tree (direx:item-at-point)))
+          (my-direx-fullpath-at-current-point)
         (apply f args)))
     (advice-add 'quick-preview--get-filename :around #'my-advice-quick-preview---get-file-name-for-direx)))
 

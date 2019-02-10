@@ -262,6 +262,7 @@ universal argument が与えられていたら必ずリフレッシュする"
     (which-key-mode . "")               ; WK
     (smartparens-mode . "")             ; SP
     (auto-complete-mode . "")           ; AC
+    (projectile-mode . " P")
 
     ;; Major modes
     (lisp-interaction-mode . "ilisp")
@@ -810,7 +811,13 @@ Otherwise indent whole buffer."
   (global-set-key "\M-I" 'helm-semantic-or-imenu)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-o") 'helm-dabbrev)
-  (global-set-key (kbd "M-s a") 'helm-do-grep-ag)
+
+  ;; M-s M-s で helm-do-grep-ag を使う。projectile の時は helm-projectile-ag を使う
+  (let ((agkey (kbd "M-s M-s")))
+    (global-set-key agkey 'helm-do-grep-ag)
+    (with-eval-after-load 'helm-projectile
+      (define-key projectile-mode-map agkey 'helm-projectile-ag)))
+
   (global-set-key (kbd "C-x h i") 'helm-info)
   (custom-set-variables '(helm-dabbrev-cycle-threshold 2)
                         '(helm-case-fold-search t)
@@ -835,7 +842,10 @@ Otherwise indent whole buffer."
   ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()
                                (require 'helm)
-                               (require 'helm-buffers)))
+                               (require 'helm-buffers)
+                               (projectile-mode 1)
+                               (helm-projectile-on)
+                               ))
 
   (eval-after-load "helm"
     #'(progn

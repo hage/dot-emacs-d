@@ -813,10 +813,9 @@ Otherwise indent whole buffer."
   (global-set-key (kbd "C-o") 'helm-dabbrev)
 
   ;; M-s M-s で helm-do-grep-ag を使う。projectile の時は helm-projectile-ag を使う
-  (let ((agkey (kbd "M-s M-s")))
-    (global-set-key agkey 'helm-do-grep-ag)
-    (with-eval-after-load 'helm-projectile
-      (define-key projectile-mode-map agkey 'helm-projectile-ag)))
+  (global-set-key (kbd "M-s M-s") 'helm-do-grep-ag)
+  (with-eval-after-load 'helm-projectile
+    (define-key projectile-mode-map (kbd "M-s M-s") 'helm-projectile-ag))
 
   (global-set-key (kbd "C-x h i") 'helm-info)
   (custom-set-variables '(helm-dabbrev-cycle-threshold 2)

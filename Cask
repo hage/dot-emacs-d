@@ -8,6 +8,7 @@
 (depends-on "ac-php")
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
+(depends-on "ag")
 (depends-on "alchemist")
 (depends-on "ansible")
 (depends-on "apache-mode")

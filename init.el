@@ -2511,20 +2511,21 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 guessing a default from current buffer file name or default directory. "
     (direx-project:find-project-root-noselect dir))
 
-  (defun my-direx-fullpath-at-current-point ()
-    "returns a fullpath of current point in direx-mode."
-    (direx:file-full-name (direx:item-tree (direx:item-at-point))))
+  (with-eval-after-load 'direx
+    (defun my-direx-fullpath-at-current-point ()
+      "returns a fullpath of current point in direx-mode."
+      (direx:file-full-name (direx:item-tree (direx:item-at-point))))
 
-  (defun my-direx-kill-ring-save-current-path ()
-    (interactive)
-    (kill-new (my-direx-fullpath-at-current-point)))
-  (defun my-direx-insert-current-path ()
-    (interactive)
-    (let ((path (my-direx-fullpath-at-current-point)))
-      (quit-window)
-      (insert path)))
-  (define-key direx:direx-mode-map (kbd "M-w") #'my-direx-kill-ring-save-current-path)
-  (define-key direx:direx-mode-map (kbd "C-j") #'my-direx-insert-current-path)
+    (defun my-direx-kill-ring-save-current-path ()
+      (interactive)
+      (kill-new (my-direx-fullpath-at-current-point)))
+    (defun my-direx-insert-current-path ()
+      (interactive)
+      (let ((path (my-direx-fullpath-at-current-point)))
+        (quit-window)
+        (insert path)))
+    (define-key direx:direx-mode-map (kbd "M-w") #'my-direx-kill-ring-save-current-path)
+    (define-key direx:direx-mode-map (kbd "C-j") #'my-direx-insert-current-path))
 
   (defun my-direx:dwim (uarg)
     (interactive "P")

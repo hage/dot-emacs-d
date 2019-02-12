@@ -844,6 +844,8 @@ Otherwise indent whole buffer."
                                (require 'helm-buffers)
                                (projectile-mode 1)
                                (helm-projectile-on)
+                               (when (require 'helm-xref nil t)
+                                 (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
                                ))
 
   (eval-after-load "helm"
@@ -1023,8 +1025,6 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
                     '(helm-source-recentf
                       helm-source-findutils)))))
 
-  (when (require 'helm-xref nil t)
-    (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
   )
 
 ;;;

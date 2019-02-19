@@ -2534,12 +2534,15 @@ guessing a default from current buffer file name or default directory. "
       (let ((path (my-direx-fullpath-at-current-point)))
         (quit-window)
         (insert path)))
-    (defun my-direx-open-thing ()
-      (interactive)
-      (async-shell-command (concat "open " (shell-quote-argument (my-direx-fullpath-at-current-point)))))
     (define-key direx:direx-mode-map (kbd "M-w") #'my-direx-kill-ring-save-current-path)
     (define-key direx:direx-mode-map (kbd "C-j") #'my-direx-insert-current-path)
-    (define-key direx:direx-mode-map (kbd "M-O") #'my-direx-open-thing))
+
+    (when osxp
+      (defun my-direx-macos-open-thing ()
+        (interactive)
+        (async-shell-command (concat "open " (shell-quote-argument (my-direx-fullpath-at-current-point)))))
+      (define-key direx:direx-mode-map (kbd "M-O") #'my-direx-macos-open-thing))
+    )
 
   (defun my-direx:dwim (uarg)
     (interactive "P")

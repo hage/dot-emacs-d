@@ -432,8 +432,9 @@ universal argument が与えられていたら必ずリフレッシュする"
 
 (global-unset-key (kbd "C-x DEL"))
 
-(global-set-key (kbd "M-f") 'forward-to-word)
-(global-set-key (kbd "M-F") 'forward-word)
+(global-set-key (kbd "M-f") 'forward-word)
+(global-set-key (kbd "M-b") 'backward-word)
+(global-set-key (kbd "M-F") 'forward-to-word)
 (global-set-key (kbd "M-B") 'backward-to-word)
 
 (setq ctl-q-map (key-binding (kbd "C-q")))

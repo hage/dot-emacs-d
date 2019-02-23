@@ -1060,6 +1060,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;;
 (when (require 'popwin nil t)
   (popwin-mode 1)
+  (setq pop-up-windows t)
   (global-set-key (kbd "C-w C-p") popwin:keymap)
   (setq popwin:popup-window-height .43)
   (progn

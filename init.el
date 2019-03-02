@@ -1201,17 +1201,33 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;; auto-complete が require してくれているっぽいので、
 ;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
 (with-eval-after-load "yasnippet"
-  (global-set-key (kbd "C-l") 'yas-expand-from-trigger-key)
+  (yas-global-mode)
 
   (set-face-foreground 'yas-field-highlight-face "#fff")
   (set-face-background 'yas-field-highlight-face "#509")
 
-  (yas-global-mode)
+  (defun my-yas-describe-snippets ()
+    "snippet の一覧を表示する。helm-yas-complete が load されていたら helm インタフェイスで表示する"
+    (interactive)
+    (or (exec-if-bound (helm-yas-complete))
+        (yas-describe-table)))
+  (defun my-yas-expand (uarg)
+    "snippet を展開する。展開できなかった or C-u が押されていた時は snippet の一覧を表示する"
+    (interactive "P")
+    (if uarg
+        (my-yas-describe-snippets)
+      (if (not (yas-expand))
+          (my-yas-describe-snippets))))
+
   (when (and (fboundp 'helm-mini)
              (autoload-if-found 'helm-yas-complete "helm-c-yasnippet" nil t))
     (autoload 'helm-yas-visit-snippet-file "helm-c-yasnippet")
     (global-set-key (kbd "C-q C-l C-l") 'helm-yas-complete)
     (global-set-key (kbd "C-q C-l C-v") 'helm-yas-visit-snippet-file)))
+
+(when (autoload-if-found #'my-yas-expand "yasnippet")
+  (global-set-key (kbd "C-l") 'my-yas-expand))
+
 
 ;; Project Local Snippets
 ;;   Place snippet files into <project-root-dir>/.snippets/

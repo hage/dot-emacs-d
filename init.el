@@ -2213,12 +2213,6 @@ If universal argument (C-u) is given, jump to the IEx buffer."
             '(lambda ()
                (ansi-color-apply-on-region (point-min) (point-max)))))
 
-;;;
-;;; easy-kill
-;;;
-(when (require 'easy-kill nil t)
-  (global-set-key (kbd "M-w") 'easy-kill))
-
 
 ;;;
 ;;; which-key

@@ -25,7 +25,6 @@
 (depends-on "docker-compose-mode")
 (depends-on "dockerfile-mode")
 (depends-on "duplicate-thing")
-(depends-on "easy-kill")
 (depends-on "editorconfig")
 (depends-on "elixir-mode")
 (depends-on "elscreen")

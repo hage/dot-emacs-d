@@ -1827,6 +1827,12 @@ Otherwise sends the whole buffer."
           (forward-char))
         (define-key web-mode-map (kbd "M-P") 'my-web-mode-markup-paragraph-current-line)
 
+        (defun my-web-mode-insert-br-and-new-line ()
+          (interactive)
+          (insert "<br>")
+          (newline-and-indent))
+        (define-key web-mode-map (kbd "M-j") 'my-web-mode-insert-br-and-new-line)
+
         (defun my-web-mode-insert-embed-code ()
           (interactive)
           (insert "<%  %>")

@@ -2562,7 +2562,7 @@ guessing a default from current buffer file name or default directory. "
     (when osxp
       (defun my-direx-macos-open-thing ()
         (interactive)
-        (async-shell-command (concat "open " (shell-quote-argument (my-direx-fullpath-at-current-point)))))
+        (shell-command (concat "open " (shell-quote-argument (my-direx-fullpath-at-current-point)))))
       (define-key direx:direx-mode-map (kbd "M-O") #'my-direx-macos-open-thing))
     )
 

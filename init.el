@@ -1784,6 +1784,7 @@ Otherwise sends the whole buffer."
 	(define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
 	(define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
 
+        (define-key web-mode-map (kbd "M-h") 'web-mode-element-select) ; 元は mark-paragraph
         (define-key web-mode-map (kbd "M-RET") 'web-mode-element-content-select)
 
         (define-key web-mode-map (kbd "C-M-u") 'web-mode-element-parent)

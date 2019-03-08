@@ -39,6 +39,7 @@
 (depends-on "flycheck-mix")
 (depends-on "flycheck-pos-tip")
 (depends-on "git-commit")
+(depends-on "git-gutter")
 (depends-on "github-browse-file")
 (depends-on "google-this")
 (depends-on "goto-chg")

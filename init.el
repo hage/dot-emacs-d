@@ -440,10 +440,6 @@ universal argument が与えられていたら必ずリフレッシュする"
 (setq ctl-q-map (key-binding (kbd "C-q")))
 (setq ctl-w-map (key-binding (kbd "C-w")))
 
-(winner-mode 1)
-(global-set-key (kbd "M-[") 'winner-undo)
-(global-set-key (kbd "M-]") 'winner-redo)
-
 ;;;
 ;;; ちょっとした関数とそのキーバインド
 ;;;

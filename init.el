@@ -1345,13 +1345,18 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   )
 
 (when (fboundp 'git-gutter-mode)
+  (run-with-idle-timer 1 nil
+                       (lambda ()
+                         (global-git-gutter-mode)))
   (setq git-gutter:modified-sign "  ")
-  (global-set-key (kbd "C-q g h") #'git-gutter-mode)
+  (global-set-key (kbd "C-q g h") #'global-git-gutter-mode)
   (global-set-key (kbd "C-q g s") #'git-gutter:stage-hunk)
   (global-set-key (kbd "C-q g R") #'git-gutter:revert-hunk)
-  (smartrep-define-key global-map "C-q g"
-    '(("n" . #'git-gutter:next-hunk)
-      ("p" . #'git-gutter:previous-hunk)))
+  (eval-after-load 'smartrep
+    #'(progn
+        (smartrep-define-key global-map "C-q g"
+                             '(("n" . #'git-gutter:next-hunk)
+                               ("p" . #'git-gutter:previous-hunk)))))
   )
 
 ;;;

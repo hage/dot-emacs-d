@@ -1712,28 +1712,32 @@ Otherwise sends the whole buffer."
 ;;; php-mode
 ;;;
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
-  (eval-after-load 'php-mode
-    #'(define-key php-mode-map (kbd "M-.") 'php-show-arglist))
+  (with-eval-after-load 'php-mode
+    (define-key php-mode-map (kbd "C-M-j") #'my-semicolon-or-new-comment-ine)
+    (defun browse-php-document ()
+      (interactive)
+      (browse-url "https://secure.php.net/manual/ja/index.php"))
+    (define-key php-mode-map (kbd "C-q m") #'browse-php-document)
+    (when (require 'auto-complete nil t)
+      (auto-complete-mode t)
+      (when (require 'ac-php nil t)
+        (push 'ac-source-php ac-sources)
+        (define-key php-mode-map  (kbd "M-/") 'ac-php-find-symbol-at-point)
+        (define-key php-mode-map  (kbd "M-,") 'ac-php-location-stack-back)
+        (define-key php-mode-map (kbd "M-.") #'ac-php-show-tip)
+
+        (defun ac-php-remake-tags-after-save-hook-handler ()
+          (ignore-errors (ac-php-remake-tags))))))
+
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")
   (define-auto-insert ".*Test\\.php$" ["php-phpunit.php" my-template])
   (add-hook 'php-mode-hook
             (lambda ()
               (setq-local c-basic-offset 2)
-                                        ; (php-eldoc-enable)
-              (when (require 'auto-complete nil t)
-                (auto-complete-mode t)
-                (when (require 'ac-php nil t)
-                  (push 'ac-source-php ac-sources)
-                  (define-key php-mode-map  (kbd "C-M-l") 'ac-php-find-symbol-at-point)
-                  (define-key php-mode-map  (kbd "M-[") 'ac-php-location-stack-back)
-                  ))
-              (local-set-key (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)
-
-              (defun browse-php-document ()
-                (interactive)
-                (browse-url "https://secure.php.net/manual/ja/index.php"))
-              (define-key php-mode-map (kbd "C-q m") #'browse-php-document)
+              (when (fboundp 'ac-php-remake-tags-after-save-hook-handler)
+                (add-hook 'after-save-hook 'ac-php-remake-tags-after-save-hook-handler t t))
+              ;; (php-eldoc-enable)
               )))
 
 

@@ -1729,6 +1729,11 @@ Otherwise sends the whole buffer."
                   (define-key php-mode-map  (kbd "M-[") 'ac-php-location-stack-back)
                   ))
               (local-set-key (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)
+
+              (defun browse-php-document ()
+                (interactive)
+                (browse-url "https://secure.php.net/manual/ja/index.php"))
+              (define-key php-mode-map (kbd "C-q m") #'browse-php-document)
               )))
 
 

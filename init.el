@@ -206,7 +206,7 @@ universal argument が与えられていたら必ずリフレッシュする"
 ;;;
 
 (setq gc-cons-threshold (* 5 800000))
-(setq garbage-collection-messages t)    ; ガベージコレクションのメッセージ
+(setq garbage-collection-messages nil)    ; ガベージコレクションのメッセージ
 
 (setq-default bidi-display-reordering nil)
 

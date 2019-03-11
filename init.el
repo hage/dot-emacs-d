@@ -1354,9 +1354,9 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
      (lambda (face) (set-face-background face "gray10"))
      '(git-gutter:added git-gutter:deleted git-gutter:modified git-gutter:unchanged git-gutter:separator))
 
-    (setq git-gutter:modified-sign "="
-          git-gutter:deleted-sign  "-"
-          git-gutter:added-sign    "+"
+    (setq git-gutter:modified-sign  "="
+          git-gutter:deleted-sign   "-"
+          git-gutter:added-sign     "+"
           git-gutter:unchanged-sign " "
           git-gutter:separator-sign " ")
 

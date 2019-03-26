@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: regexp
+# key: reg
+# --
+~r{$0}

@@ -1777,107 +1777,106 @@ Otherwise sends the whole buffer."
   (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\.[^.]+$" . web-mode))
 
-  (eval-after-load "web-mode"
-    #'(progn
-	(defun web-mode-hook ()
-	  "Hooks for Web mode."
-          ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
-          ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097
-          (setq web-mode-auto-close-style 1)
-          (setq web-mode-enable-auto-closing t)
-          (setq web-mode-enable-auto-pairing t)
-          (setq web-mode-enable-auto-quoting t)
+  (with-eval-after-load "web-mode"
+    (defun web-mode-hook ()
+      "Hooks for Web mode."
+      ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
+      ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097
+      (setq web-mode-auto-close-style 1)
+      (setq web-mode-enable-auto-closing t)
+      (setq web-mode-enable-auto-pairing t)
+      (setq web-mode-enable-auto-quoting t)
 
-	  ;; インデント数
-          (setq indent-tabs-mode nil)
-          (setq tab-width 2)
-          (setq web-mode-markup-indent-offset 2)
-	  (setq web-mode-html-offset   2)
-	  (setq web-mode-css-offset    2)
-	  (setq web-mode-script-offset 2)
-          (setq web-mode-code-indent-offset 2)
-	  (setq web-mode-php-offset    2)
-	  (setq web-mode-java-offset   2)
-	  (setq web-mode-asp-offset    2)
+      ;; インデント数
+      (setq indent-tabs-mode nil)
+      (setq tab-width 2)
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-html-offset   2)
+      (setq web-mode-css-offset    2)
+      (setq web-mode-script-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      (setq web-mode-php-offset    2)
+      (setq web-mode-java-offset   2)
+      (setq web-mode-asp-offset    2)
 
-          (when (require 'sgml-mode nil t) (sgml-electric-tag-pair-mode 1)))
+      (when (require 'sgml-mode nil t) (sgml-electric-tag-pair-mode 1)))
 
-	(add-hook 'web-mode-hook 'web-mode-hook)
-	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
-	(set-face-foreground 'web-mode-html-tag-face "olivedrab3")
+    (add-hook 'web-mode-hook 'web-mode-hook)
+    (set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
+    (set-face-foreground 'web-mode-html-tag-face "olivedrab3")
 
-        ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
-	;; バッティングするため C-c t X に換える
-	(define-key web-mode-map (kbd "C-c t a") 'web-mode-tag-attributes-sort)
-	(define-key web-mode-map (kbd "C-c t b") 'web-mode-tag-beginning)
-	(define-key web-mode-map (kbd "C-c t e") 'web-mode-tag-end)
-	(define-key web-mode-map (kbd "C-c t m") 'web-mode-tag-match)
-	(define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
-	(define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
-	(define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
-	(define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
+    ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
+    ;; バッティングするため C-c t X に換える
+    (define-key web-mode-map (kbd "C-c t a") 'web-mode-tag-attributes-sort)
+    (define-key web-mode-map (kbd "C-c t b") 'web-mode-tag-beginning)
+    (define-key web-mode-map (kbd "C-c t e") 'web-mode-tag-end)
+    (define-key web-mode-map (kbd "C-c t m") 'web-mode-tag-match)
+    (define-key web-mode-map (kbd "C-c t n") 'web-mode-tag-next)
+    (define-key web-mode-map (kbd "C-c t p") 'web-mode-tag-previous)
+    (define-key web-mode-map (kbd "C-c t s") 'web-mode-tag-select)
+    (define-key web-mode-map (kbd "C-c t c") 'web-mode-element-close)
 
-        (define-key web-mode-map (kbd "M-h") 'web-mode-element-select) ; 元は mark-paragraph
-        (define-key web-mode-map (kbd "M-RET") 'web-mode-element-content-select)
+    (define-key web-mode-map (kbd "M-h") 'web-mode-element-select) ; 元は mark-paragraph
+    (define-key web-mode-map (kbd "M-RET") 'web-mode-element-content-select)
 
-        (define-key web-mode-map (kbd "C-M-u") 'web-mode-element-parent)
-        (define-key web-mode-map (kbd "C-M-d") 'web-mode-element-child)
-        (define-key web-mode-map (kbd "C-M-a") 'web-mode-element-beginning)
-        (define-key web-mode-map (kbd "C-M-e") 'web-mode-element-end)
-        (define-key web-mode-map (kbd "C-M-p") 'web-mode-element-sibling-previous)
-        (define-key web-mode-map (kbd "C-M-n") 'web-mode-element-sibling-next)
-        (define-key web-mode-map (kbd "C-M-b") 'web-mode-tag-previous)
-        (define-key web-mode-map (kbd "C-M-f") 'web-mode-tag-next)
-        (define-key web-mode-map (kbd "C-M-k") 'web-mode-element-kill)
+    (define-key web-mode-map (kbd "C-M-u") 'web-mode-element-parent)
+    (define-key web-mode-map (kbd "C-M-d") 'web-mode-element-child)
+    (define-key web-mode-map (kbd "C-M-a") 'web-mode-element-beginning)
+    (define-key web-mode-map (kbd "C-M-e") 'web-mode-element-end)
+    (define-key web-mode-map (kbd "C-M-p") 'web-mode-element-sibling-previous)
+    (define-key web-mode-map (kbd "C-M-n") 'web-mode-element-sibling-next)
+    (define-key web-mode-map (kbd "C-M-b") 'web-mode-tag-previous)
+    (define-key web-mode-map (kbd "C-M-f") 'web-mode-tag-next)
+    (define-key web-mode-map (kbd "C-M-k") 'web-mode-element-kill)
 
-        (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
-        (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
-        (define-key web-mode-map (kbd "C-c C-r") 'web-mode-element-rename)
-        (define-key web-mode-map (kbd "C-c R") 'web-mode-reload)
+    (define-key web-mode-map (kbd "M-]") 'web-mode-navigate)
+    (define-key web-mode-map (kbd "C-c C-v") 'browse-url-of-buffer)
+    (define-key web-mode-map (kbd "C-c C-r") 'web-mode-element-rename)
+    (define-key web-mode-map (kbd "C-c R") 'web-mode-reload)
 
 
-        (eval-after-load 'smartrep
-          #'(progn
-              (smartrep-define-key web-mode-map
-                  "C-c e" '(("u" . (lambda () (web-mode-element-parent)))
-                            ("d" . (lambda () (web-mode-element-child)))
-                            ("n" . (lambda () (web-mode-element-sibling-next)))
-                            ("p" . (lambda () (web-mode-element-sibling-previous)))
-                            ("N" . (lambda () (web-mode-element-next)))
-                            ("P" . (lambda () (web-mode-element-previous)))
-                            ("t" . (lambda () (web-mode-element-transpose)))
-                            ("k" . (lambda () (web-mode-element-kill)))
-                            ("V" . (lambda () (web-mode-element-vanish)))
-                            ("R" . (lambda () (web-mode-element-rename)))
-                            ("S" . (lambda () (web-mode-element-select)))
-                            ("s" . (lambda () (web-mode-element-content-select)))))))
-        ;; convinience functions
-        (defun my-web-mode-markup-paragraph-current-line ()
-          (interactive)
-          (back-to-indentation)
-          (insert "<p>")
-          (move-end-of-line 1)
-          (insert "</p>")
-          (forward-char))
-        (define-key web-mode-map (kbd "M-P") 'my-web-mode-markup-paragraph-current-line)
+    (eval-after-load 'smartrep
+      #'(progn
+          (smartrep-define-key web-mode-map
+              "C-c e" '(("u" . (lambda () (web-mode-element-parent)))
+                        ("d" . (lambda () (web-mode-element-child)))
+                        ("n" . (lambda () (web-mode-element-sibling-next)))
+                        ("p" . (lambda () (web-mode-element-sibling-previous)))
+                        ("N" . (lambda () (web-mode-element-next)))
+                        ("P" . (lambda () (web-mode-element-previous)))
+                        ("t" . (lambda () (web-mode-element-transpose)))
+                        ("k" . (lambda () (web-mode-element-kill)))
+                        ("V" . (lambda () (web-mode-element-vanish)))
+                        ("R" . (lambda () (web-mode-element-rename)))
+                        ("S" . (lambda () (web-mode-element-select)))
+                        ("s" . (lambda () (web-mode-element-content-select)))))))
+    ;; convinience functions
+    (defun my-web-mode-markup-paragraph-current-line ()
+      (interactive)
+      (back-to-indentation)
+      (insert "<p>")
+      (move-end-of-line 1)
+      (insert "</p>")
+      (forward-char))
+    (define-key web-mode-map (kbd "M-P") 'my-web-mode-markup-paragraph-current-line)
 
-        (defun my-web-mode-insert-br-and-new-line ()
-          (interactive)
-          (insert "<br>")
-          (newline-and-indent))
-        (define-key web-mode-map (kbd "M-j") 'my-web-mode-insert-br-and-new-line)
+    (defun my-web-mode-insert-br-and-new-line ()
+      (interactive)
+      (insert "<br>")
+      (newline-and-indent))
+    (define-key web-mode-map (kbd "M-j") 'my-web-mode-insert-br-and-new-line)
 
-        (defun my-web-mode-insert-embed-code ()
-          (interactive)
-          (insert "<%  %>")
-          (forward-char -3))
-        (defun my-web-mode-insert-embed-print ()
-          (interactive)
-          (insert "<%=  %>")
-          (forward-char -3))
-        (define-key web-mode-map (kbd "C-c p") 'my-web-mode-insert-embed-print)
-        (define-key web-mode-map (kbd "C-c c") 'my-web-mode-insert-embed-code)
-        ))
+    (defun my-web-mode-insert-embed-code ()
+      (interactive)
+      (insert "<%  %>")
+      (forward-char -3))
+    (defun my-web-mode-insert-embed-print ()
+      (interactive)
+      (insert "<%=  %>")
+      (forward-char -3))
+    (define-key web-mode-map (kbd "C-c p") 'my-web-mode-insert-embed-print)
+    (define-key web-mode-map (kbd "C-c c") 'my-web-mode-insert-embed-code)
+    )
   )
 
 ;;; tagedit は不安定すぎるので Cask から消すことによって一度外す

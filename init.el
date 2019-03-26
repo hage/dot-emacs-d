@@ -1800,7 +1800,7 @@ Otherwise sends the whole buffer."
 	  (setq web-mode-java-offset   2)
 	  (setq web-mode-asp-offset    2)
 
-          (exec-if-bound (sgml-electric-tag-pair-mode 1)))
+          (when (require 'sgml-mode nil t) (sgml-electric-tag-pair-mode 1)))
 
 	(add-hook 'web-mode-hook 'web-mode-hook)
 	(set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")

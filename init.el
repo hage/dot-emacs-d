@@ -704,20 +704,6 @@ Otherwise indent whole buffer."
 (when (fboundp 'diff-mode)
   (add-to-list 'auto-mode-alist '("\\.diff$" . diff-mode)))
 
-;;;
-;;; smartparens
-;;;
-(when (require 'smartparens-config nil t)
-  (set-face-foreground 'sp-show-pair-match-face "black")
-  (set-face-background 'sp-show-pair-match-face "gray80")
-  (set-face-bold 'sp-show-pair-match-face t)
-  (set-face-background 'sp-wrap-overlay-face "blue4")
-  (set-face-background 'sp-pair-overlay-face "black")
-  (set-face-foreground 'sp-show-pair-mismatch-face "black")
-  (set-face-background 'sp-show-pair-mismatch-face "red")
-  (set-face-underline 'sp-pair-overlay-face t)
-  (smartparens-global-mode))
-
 
 ;;;
 ;;; isearch
@@ -2293,29 +2279,31 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 
 
 ;;;
-;;; paredit
+;;; smartparens
 ;;;
-(eval-after-load 'paredit
-  #'(progn
-      (define-key paredit-mode-map (kbd "M-s") nil)
-      (define-key paredit-mode-map (kbd "C-M-s") 'paredit-splice-sexp)
-      (eval-after-load 'smartrep
-        #'(progn
-            (smartrep-define-key
-                global-map "C-w" '(("l" . (lambda () (paredit-forward-slurp-sexp)))
-                                   ("h" . (lambda () (paredit-forward-barf-sexp)))
-                                   ("L" . (lambda () (paredit-backward-barf-sexp)))
-                                   ("H" . (lambda () (paredit-backward-slurp-sexp)))
-                                   ("k" . (lambda () (paredit-splice-sexp-killing-backward)))
-                                   ("j" . (lambda () (paredit-splice-sexp-killing-forward)))))))))
+(when (require 'smartparens-config nil t)
+  (set-face-foreground 'sp-show-pair-match-face "black")
+  (set-face-background 'sp-show-pair-match-face "gray80")
+  (set-face-bold 'sp-show-pair-match-face t)
+  (set-face-background 'sp-wrap-overlay-face "blue4")
+  (set-face-background 'sp-pair-overlay-face "black")
+  (set-face-foreground 'sp-show-pair-mismatch-face "black")
+  (set-face-background 'sp-show-pair-mismatch-face "red")
+  (set-face-underline 'sp-pair-overlay-face t)
 
+  (define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
+  (define-key smartparens-mode-map (kbd "M-R") 'sp-raise-sexp)
+  (with-eval-after-load 'smartrep
+    (smartrep-define-key
+        smartparens-mode-map "C-w"
+      '(("l" . (lambda () (sp-forward-slurp-sexp)))
+        ("h" . (lambda () (sp-forward-barf-sexp)))
+        ("L" . (lambda () (sp-backward-barf-sexp)))
+        ("H" . (lambda () (sp-backward-slurp-sexp)))
+        ("k" . (lambda () (sp-splice-sexp-killing-backward)))
+        ("j" . (lambda () (sp-splice-sexp-killing-forward))))))
 
-
-
-
-(when (fboundp 'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+  (smartparens-global-mode))
 
 
 ;;;

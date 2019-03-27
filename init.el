@@ -1879,34 +1879,6 @@ Otherwise sends the whole buffer."
     )
   )
 
-;;; tagedit は不安定すぎるので Cask から消すことによって一度外す
-;;; 以下のコードは残す
-(when (autoload-if-found 'tagedit-mode "tagedit" "tagedit" t)
-  (eval-after-load 'web-mode
-    #'(progn
-        (add-hook 'web-mode-hook
-                  (lambda ()
-                    (tagedit-mode)
-                    (tagedit-add-experimental-features)
-                    (define-key tagedit-mode-map (kbd "<") nil)
-                    (define-key tagedit-mode-map (kbd ">") nil)
-                    (define-key tagedit-mode-map (kbd ".") nil)
-                    (define-key tagedit-mode-map (kbd "#") nil)))))
-
-  (eval-after-load 'tagedit
-    #'(progn
-        (define-key tagedit-mode-map (kbd "C-<right>") 'tagedit-forward-slurp-tag)
-        (define-key tagedit-mode-map (kbd "C-<left>") 'tagedit-forward-barf-tag)
-        (define-key tagedit-mode-map (kbd "M-r") 'tagedit-raise-tag)
-        (define-key tagedit-mode-map (kbd "C-M-s") 'tagedit-splice-tag)
-        (define-key tagedit-mode-map (kbd "C-k") 'tagedit-kill)
-        (define-key tagedit-mode-map (kbd "C-w C-k") 'tagedit-kill-attribute)
-        (eval-after-load 'smartrep
-          #'(progn
-              (smartrep-define-key
-                  tagedit-mode-map "C-q" '(("9" . 'tagedit-forward-barf-tag)
-                                           ("0" . 'tagedit-forward-slurp-tag))))))))
-
 
 ;;;
 ;;; restclient-mode

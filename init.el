@@ -2291,15 +2291,17 @@ If universal argument (C-u) is given, jump to the IEx buffer."
   (set-face-background 'sp-show-pair-mismatch-face "red")
   (set-face-underline 'sp-pair-overlay-face t)
 
+  (sp-use-smartparens-bindings)
   (define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
   (define-key smartparens-mode-map (kbd "M-R") 'sp-raise-sexp)
+  (define-key smartparens-mode-map (kbd "M-C") 'sp-clone-sexp)
   (with-eval-after-load 'smartrep
     (smartrep-define-key
         smartparens-mode-map "C-w"
       '(("l" . (lambda () (sp-forward-slurp-sexp)))
-        ("h" . (lambda () (sp-forward-barf-sexp)))
-        ("L" . (lambda () (sp-backward-barf-sexp)))
-        ("H" . (lambda () (sp-backward-slurp-sexp)))
+        ("L" . (lambda () (sp-forward-barf-sexp)))
+        ("H" . (lambda () (sp-backward-barf-sexp)))
+        ("h" . (lambda () (sp-backward-slurp-sexp)))
         ("k" . (lambda () (sp-splice-sexp-killing-backward)))
         ("j" . (lambda () (sp-splice-sexp-killing-forward))))))
 

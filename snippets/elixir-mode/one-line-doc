@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: one-line-doc
+# key: docc
+# --
+@doc "$0"

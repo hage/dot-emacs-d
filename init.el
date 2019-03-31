@@ -2298,6 +2298,11 @@ If universal argument (C-u) is given, jump to the IEx buffer."
   (define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
   (define-key smartparens-mode-map (kbd "M-R") 'sp-raise-sexp)
   (define-key smartparens-mode-map (kbd "M-C") 'sp-clone-sexp)
+
+  (mapc (lambda (mode) (define-key mode (kbd "C-k") 'sp-kill-hybrid-sexp))
+        `(,lisp-mode-map
+          ,emacs-lisp-mode-map))
+
   (with-eval-after-load 'smartrep
     (smartrep-define-key
         smartparens-mode-map "C-w"

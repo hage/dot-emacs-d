@@ -878,7 +878,7 @@ Otherwise indent whole buffer."
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 
-        (set-face-background 'helm-selection "#777")
+        (set-face-background 'helm-selection "#407")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
         (set-face-bold 'helm-selection t)
@@ -889,6 +889,7 @@ Otherwise indent whole buffer."
         (set-face-bold 'helm-source-header t)
 
 	(set-face-foreground 'helm-match "hotpink1")
+	(set-face-bold 'helm-match t)
 	(set-face-underline 'helm-match t)
         (setq helm-locate-command
               (case system-type

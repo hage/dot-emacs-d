@@ -1060,7 +1060,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
              ("*rake*")
              ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
-             ("*helm list packages*" :position bottom :height 100)
+             ("*helm list packages*" :position bottom :height .95)
              ("\\*helm " :regexp t :position bottom)
 
              ("\\*eshell\\*" :regexp t :position bottom :height .35 :stick t)

@@ -2002,6 +2002,10 @@ Otherwise sends the whole buffer."
     (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
     (define-key alchemist-iex-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
 
+    ;; mix プロジェクト内でファイルを新規に作る。
+    ;; 階層に応じたモジュールが定義された状態で作られる。
+    (define-key alchemist-mode-map (kbd "M-K n") #'alchemist-project-create-file)
+
     ;; test と 実装を行き来する。
     ;; C-u をつけるとウィンドウを分割してそこに表示する。
     (defun my-alchemist-project-toggle-file-and-tests (uarg)
@@ -2052,13 +2056,11 @@ Otherwise sends the current line."
 
     (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
 
-    (defun my-alchemist-iex-compile-buffer (uarg)
-      "Compile the code of current buffer in the inferior IEx process.
-If universal argument (C-u) is given, jump to the IEx buffer."
-      (interactive "P")
-      (if uarg
-          (alchemist-iex-compile-this-buffer-and-go)
-        (alchemist-iex-compile-this-buffer)))
+    (defun my-alchemist-iex-compile-buffer ()
+      "Compile the code of current buffer in the inferior IEx process."
+      (interactive)
+      (alchemist-iex-compile-this-buffer)
+      (alchemist-iex-run))
     (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)))
 
 

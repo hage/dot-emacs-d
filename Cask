@@ -71,7 +71,6 @@
 (depends-on "nginx-mode")
 (depends-on "package-build")
 (depends-on "pallet")
-(depends-on "paredit")
 (depends-on "pbcopy")
 (depends-on "persistent-scratch")
 (depends-on "php-eldoc")

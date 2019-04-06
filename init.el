@@ -704,20 +704,6 @@ Otherwise indent whole buffer."
 (when (fboundp 'diff-mode)
   (add-to-list 'auto-mode-alist '("\\.diff$" . diff-mode)))
 
-;;;
-;;; smartparens
-;;;
-(when (require 'smartparens-config nil t)
-  (set-face-foreground 'sp-show-pair-match-face "black")
-  (set-face-background 'sp-show-pair-match-face "gray80")
-  (set-face-bold 'sp-show-pair-match-face t)
-  (set-face-background 'sp-wrap-overlay-face "blue4")
-  (set-face-background 'sp-pair-overlay-face "black")
-  (set-face-foreground 'sp-show-pair-mismatch-face "black")
-  (set-face-background 'sp-show-pair-mismatch-face "red")
-  (set-face-underline 'sp-pair-overlay-face t)
-  (smartparens-global-mode))
-
 
 ;;;
 ;;; isearch
@@ -892,7 +878,7 @@ Otherwise indent whole buffer."
 	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
 	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
 
-        (set-face-background 'helm-selection "#777")
+        (set-face-background 'helm-selection "#407")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
         (set-face-bold 'helm-selection t)
@@ -903,6 +889,7 @@ Otherwise indent whole buffer."
         (set-face-bold 'helm-source-header t)
 
 	(set-face-foreground 'helm-match "hotpink1")
+	(set-face-bold 'helm-match t)
 	(set-face-underline 'helm-match t)
         (setq helm-locate-command
               (case system-type
@@ -1073,7 +1060,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
              ("*rake*")
              ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
-             ("*helm list packages*" :position bottom :height 100)
+             ("*helm list packages*" :position bottom :height .95)
              ("\\*helm " :regexp t :position bottom)
 
              ("\\*eshell\\*" :regexp t :position bottom :height .35 :stick t)
@@ -1360,14 +1347,16 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           git-gutter:unchanged-sign " "
           git-gutter:separator-sign " ")
 
+    (setq git-gutter:disabled-modes '(magit-mode))
+    (setq git-gutter:always-show-separator t)
+
     (global-set-key (kbd "C-q g h") #'global-git-gutter-mode)
     (global-set-key (kbd "C-q g s") #'git-gutter:stage-hunk)
     (global-set-key (kbd "C-q g R") #'git-gutter:revert-hunk)
-    (eval-after-load 'smartrep
-      #'(progn
-          (smartrep-define-key global-map "C-q g"
-            '(("n" . #'git-gutter:next-hunk)
-              ("p" . #'git-gutter:previous-hunk))))))
+    (with-eval-after-load 'smartrep
+      (smartrep-define-key global-map "M-g"
+        '(("n" . #'git-gutter:next-hunk)
+          ("p" . #'git-gutter:previous-hunk)))))
   )
 
 ;;;
@@ -1879,34 +1868,6 @@ Otherwise sends the whole buffer."
     )
   )
 
-;;; tagedit は不安定すぎるので Cask から消すことによって一度外す
-;;; 以下のコードは残す
-(when (autoload-if-found 'tagedit-mode "tagedit" "tagedit" t)
-  (eval-after-load 'web-mode
-    #'(progn
-        (add-hook 'web-mode-hook
-                  (lambda ()
-                    (tagedit-mode)
-                    (tagedit-add-experimental-features)
-                    (define-key tagedit-mode-map (kbd "<") nil)
-                    (define-key tagedit-mode-map (kbd ">") nil)
-                    (define-key tagedit-mode-map (kbd ".") nil)
-                    (define-key tagedit-mode-map (kbd "#") nil)))))
-
-  (eval-after-load 'tagedit
-    #'(progn
-        (define-key tagedit-mode-map (kbd "C-<right>") 'tagedit-forward-slurp-tag)
-        (define-key tagedit-mode-map (kbd "C-<left>") 'tagedit-forward-barf-tag)
-        (define-key tagedit-mode-map (kbd "M-r") 'tagedit-raise-tag)
-        (define-key tagedit-mode-map (kbd "C-M-s") 'tagedit-splice-tag)
-        (define-key tagedit-mode-map (kbd "C-k") 'tagedit-kill)
-        (define-key tagedit-mode-map (kbd "C-w C-k") 'tagedit-kill-attribute)
-        (eval-after-load 'smartrep
-          #'(progn
-              (smartrep-define-key
-                  tagedit-mode-map "C-q" '(("9" . 'tagedit-forward-barf-tag)
-                                           ("0" . 'tagedit-forward-slurp-tag))))))))
-
 
 ;;;
 ;;; restclient-mode
@@ -2041,6 +2002,10 @@ Otherwise sends the whole buffer."
     (define-key alchemist-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
     (define-key alchemist-iex-mode-map (kbd "C-c C-f") 'my-alchemist-help-search)
 
+    ;; mix プロジェクト内でファイルを新規に作る。
+    ;; 階層に応じたモジュールが定義された状態で作られる。
+    (define-key alchemist-mode-map (kbd "M-K n") #'alchemist-project-create-file)
+
     ;; test と 実装を行き来する。
     ;; C-u をつけるとウィンドウを分割してそこに表示する。
     (defun my-alchemist-project-toggle-file-and-tests (uarg)
@@ -2091,13 +2056,11 @@ Otherwise sends the current line."
 
     (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
 
-    (defun my-alchemist-iex-compile-buffer (uarg)
-      "Compile the code of current buffer in the inferior IEx process.
-If universal argument (C-u) is given, jump to the IEx buffer."
-      (interactive "P")
-      (if uarg
-          (alchemist-iex-compile-this-buffer-and-go)
-        (alchemist-iex-compile-this-buffer)))
+    (defun my-alchemist-iex-compile-buffer ()
+      "Compile the code of current buffer in the inferior IEx process."
+      (interactive)
+      (alchemist-iex-compile-this-buffer)
+      (alchemist-iex-run))
     (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)))
 
 
@@ -2321,29 +2284,38 @@ If universal argument (C-u) is given, jump to the IEx buffer."
 
 
 ;;;
-;;; paredit
+;;; smartparens
 ;;;
-(eval-after-load 'paredit
-  #'(progn
-      (define-key paredit-mode-map (kbd "M-s") nil)
-      (define-key paredit-mode-map (kbd "C-M-s") 'paredit-splice-sexp)
-      (eval-after-load 'smartrep
-        #'(progn
-            (smartrep-define-key
-                global-map "C-w" '(("l" . (lambda () (paredit-forward-slurp-sexp)))
-                                   ("h" . (lambda () (paredit-forward-barf-sexp)))
-                                   ("L" . (lambda () (paredit-backward-barf-sexp)))
-                                   ("H" . (lambda () (paredit-backward-slurp-sexp)))
-                                   ("k" . (lambda () (paredit-splice-sexp-killing-backward)))
-                                   ("j" . (lambda () (paredit-splice-sexp-killing-forward)))))))))
+(when (require 'smartparens-config nil t)
+  (set-face-foreground 'sp-show-pair-match-face "black")
+  (set-face-background 'sp-show-pair-match-face "gray80")
+  (set-face-bold 'sp-show-pair-match-face t)
+  (set-face-background 'sp-wrap-overlay-face "blue4")
+  (set-face-background 'sp-pair-overlay-face "black")
+  (set-face-foreground 'sp-show-pair-mismatch-face "black")
+  (set-face-background 'sp-show-pair-mismatch-face "red")
+  (set-face-underline 'sp-pair-overlay-face t)
 
+  (sp-use-smartparens-bindings)
+  (define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
+  (define-key smartparens-mode-map (kbd "M-R") 'sp-raise-sexp)
+  (define-key smartparens-mode-map (kbd "M-C") 'sp-clone-sexp)
 
+  (mapc (lambda (mode) (define-key mode (kbd "C-k") 'sp-kill-hybrid-sexp))
+        `(,lisp-mode-map
+          ,emacs-lisp-mode-map))
 
+  (with-eval-after-load 'smartrep
+    (smartrep-define-key
+        smartparens-mode-map "C-w"
+      '(("l" . (lambda () (sp-forward-slurp-sexp)))
+        ("L" . (lambda () (sp-forward-barf-sexp)))
+        ("H" . (lambda () (sp-backward-barf-sexp)))
+        ("h" . (lambda () (sp-backward-slurp-sexp)))
+        ("k" . (lambda () (sp-splice-sexp-killing-backward)))
+        ("j" . (lambda () (sp-splice-sexp-killing-forward))))))
 
-
-(when (fboundp 'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+  (smartparens-global-mode))
 
 
 ;;;

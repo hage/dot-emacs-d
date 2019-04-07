@@ -2007,14 +2007,14 @@ Otherwise sends the whole buffer."
     (define-key alchemist-mode-map (kbd "M-K n") #'alchemist-project-create-file)
 
     ;; test と 実装を行き来する。
-    ;; C-u をつけるとウィンドウを分割してそこに表示する。
+    ;; C-u カレントウィンドウに対のファイルを表示する。
     (defun my-alchemist-project-toggle-file-and-tests (uarg)
       "Toggle between a file and its tests."
       (interactive "P")
       (if uarg
-          (alchemist-project-toggle-file-and-tests-other-window)
-        (alchemist-project-toggle-file-and-tests)))
-    (define-key alchemist-mode-map (kbd "C-c a a") 'my-alchemist-project-toggle-file-and-tests)
+          (alchemist-project-toggle-file-and-tests)
+        (alchemist-project-toggle-file-and-tests-other-window)))
+    (define-key alchemist-mode-map (kbd "M-K M-K") 'my-alchemist-project-toggle-file-and-tests)
 
     ;; iex に関する設定
     (defun my-elixir-and-alchemist-iex-setup ()

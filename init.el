@@ -1350,6 +1350,9 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
     (setq git-gutter:disabled-modes '(magit-mode))
     (setq git-gutter:always-show-separator t)
 
+    (with-eval-after-load 'magit
+      (add-hook 'git-commit-post-finish-hook #'git-gutter:update-all-windows))
+
     (global-set-key (kbd "C-q g h") #'global-git-gutter-mode)
     (global-set-key (kbd "C-q g s") #'git-gutter:stage-hunk)
     (global-set-key (kbd "C-q g R") #'git-gutter:revert-hunk)

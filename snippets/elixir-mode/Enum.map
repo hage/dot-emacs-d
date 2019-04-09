@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Enum.map
+# key: emap
+# --
+Enum.map($0)

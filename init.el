@@ -1345,7 +1345,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
           git-gutter:deleted-sign   "-"
           git-gutter:added-sign     "+"
           git-gutter:unchanged-sign " "
-          git-gutter:separator-sign " ")
+          git-gutter:separator-sign "")
 
     (setq git-gutter:disabled-modes '(magit-mode))
     (setq git-gutter:always-show-separator t)

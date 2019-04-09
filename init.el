@@ -263,7 +263,7 @@ universal argument が与えられていたら必ずリフレッシュする"
     (smartparens-mode . "")             ; SP
     (auto-complete-mode . "")           ; AC
     (projectile-mode . " P")
-    (git-gutter-mode . " Gutt")
+    (git-gutter-mode . "")
 
     ;; Major modes
     (lisp-interaction-mode . "ilisp")

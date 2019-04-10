@@ -1151,6 +1151,10 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         ac-use-comphist t
         ac-menu-height 20)
 
+  ;; yasnippet の候補がハイライトされているように見えて紛らわしいので色を変更
+  (set-face-foreground 'ac-yasnippet-candidate-face (face-foreground 'ac-candidate-face))
+  (set-face-background 'ac-yasnippet-candidate-face (face-background 'ac-candidate-face))
+  (set-face-bold 'ac-yasnippet-candidate-face t)
 
   ;; ac-etags
   (setq ac-etags-requires 3)

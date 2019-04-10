@@ -2068,7 +2068,17 @@ Otherwise sends the current line."
       (interactive)
       (alchemist-iex-compile-this-buffer)
       (alchemist-iex-run))
-    (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)))
+    (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)
+
+    ;; compilation for IEx
+    (push '(elixir "\\([-a-zA-Z0-9./_]+\\):\\([0-9]+\\)\\(: warning\\)?" 1 2 nil (3) 1) compilation-error-regexp-alist-alist)
+    (push 'elixir compilation-error-regexp-alist)
+    (defun my-alchemist-iex-mode-hooks ()
+      ;; IEx バッファでは elixir のエラーしか起こらんのでそれだけを評価するように
+      (setq-local compilation-error-regexp-alist '(elixir))
+      (compilation-shell-minor-mode))
+    (add-hook 'alchemist-iex-mode-hook #'my-alchemist-iex-mode-hooks)
+    ))
 
 
 ;;;

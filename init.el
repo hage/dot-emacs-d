@@ -2372,7 +2372,7 @@ Otherwise sends the current line."
 	(eshell-kill-input)
 	(insert (concat "cd " current-directory))
 	(eshell-send-input)
-	(end-of-buffer))))
+	(goto-char (point-max)))))
   (global-set-key-if-bound (kbd "C-w C-w") 'eshell-pop))
 
 

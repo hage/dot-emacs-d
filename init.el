@@ -641,7 +641,9 @@ Otherwise indent whole buffer."
              ("emacs" "emacs-ja")
              (t filename))
            args))
-  (advice-add 'Info-find-node :around 'Info-find-node--info-ja))
+  (advice-add 'Info-find-node :around 'Info-find-node--info-ja)
+  (with-eval-after-load 'helm
+    (global-set-key (kbd "C-x h j") #'helm-info-emacs-ja)))
 
 
 ;;;

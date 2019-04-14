@@ -634,16 +634,17 @@ Otherwise indent whole buffer."
 ;;;
 (defvar emacs-info-ja-path "~/.emacs.d/info/emacs-ja.info")
 (when (file-exists-p emacs-info-ja-path)
-  (add-to-list 'Info-directory-list (file-name-directory emacs-info-ja-path))
-  (defun Info-find-node--info-ja (orig-fn filename &rest args)
-    (apply orig-fn
-           (pcase filename
-             ("emacs" "emacs-ja")
-             (t filename))
-           args))
-  (advice-add 'Info-find-node :around 'Info-find-node--info-ja)
-  (with-eval-after-load 'helm
-    (global-set-key (kbd "C-x h j") #'helm-info-emacs-ja)))
+  (with-eval-after-load 'info
+    (add-to-list 'Info-directory-list (file-name-directory emacs-info-ja-path))
+    (defun Info-find-node--info-ja (orig-fn filename &rest args)
+      (apply orig-fn
+             (pcase filename
+               ("emacs" "emacs-ja")
+               (_ filename))
+             args))
+    (advice-add 'Info-find-node :around 'Info-find-node--info-ja)
+    (with-eval-after-load 'helm
+      (global-set-key (kbd "C-x h j") #'helm-info-emacs-ja))))
 
 
 ;;;

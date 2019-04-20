@@ -2032,8 +2032,6 @@ Otherwise sends the whole buffer."
     (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)
     (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup)
 
-    (setq alchemist-key-command-prefix (kbd "C-c a")) ; これがないとiexの起動に失敗する
-
     (set-face-foreground 'elixir-atom-face "gold3")
 
     (set-face-foreground 'elixir-attribute-face "royalblue1")

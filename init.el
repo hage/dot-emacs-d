@@ -2280,7 +2280,7 @@ Otherwise sends the current line."
   (setq ahs-exclude
         '(
           (ruby-mode . "\\_<\\(end\\|def\\|class\\)\\_>")
-          (elixir-mode . "\\_<\\(end\\|def\\sw\\|fn\\|do\\)\\_>")
+          (elixir-mode . "\\_<\\(end\\|def\\sw*\\|fn\\|do\\|case\\|receive\\|with\\)\\_>")
           ))
   (set-face-foreground 'ahs-plugin-defalt-face nil)
   (set-face-background 'ahs-plugin-defalt-face nil)

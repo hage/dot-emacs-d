@@ -1995,6 +1995,16 @@ Otherwise sends the whole buffer."
         (insert "#"))))
   (define-key elixir-mode-map (kbd "#") 'my-elixir-string-embed-expression)
 
+  (defun my-elixir-heredocument ()
+    (interactive)
+    (insert "\"\"\"\"\"\"")
+    (forward-char -3)
+    (newline-and-indent)
+    (forward-line -1)
+    (move-end-of-line 1)
+    (newline-and-indent))
+  (define-key elixir-mode-map (kbd "M-\"") #'my-elixir-heredocument)
+
   (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
   (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
 

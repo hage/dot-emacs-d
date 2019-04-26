@@ -1335,6 +1335,13 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 
         (set-face-background 'magit-diff-hunk-region "#247")
         (set-face-foreground 'magit-hash "#9d4")
+
+        (when (not window-system)
+          (set-face-underline 'magit-branch-current t)
+          (set-face-underline 'magit-branch-local t)
+          (set-face-underline 'magit-branch-remote t)
+          (set-face-underline 'magit-branch-remote-head t)
+          (set-face-underline 'magit-branch-upstream t))
         ))
   )
 

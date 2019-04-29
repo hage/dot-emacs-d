@@ -2738,3 +2738,4 @@ guessing a default from current buffer file name or default directory. "
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
 ;; End:
+(put 'narrow-to-page 'disabled nil)

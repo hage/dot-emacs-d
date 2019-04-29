@@ -2018,6 +2018,12 @@ Otherwise sends the whole buffer."
   (when (package-installed-p 'alchemist)
     (setq alchemist-key-command-prefix (kbd "M-K")))
   (with-eval-after-load "alchemist"
+
+    ;; 実験的にこうしてみる
+    (with-eval-after-load 'smartparens
+      (define-key elixir-mode-map (kbd "C-k") #'sp-kill-hybrid-sexp))
+
+
     ;; C-c C-f でカーソル下の関数などのドキュメントを探し、
     ;; C-u をつけるとドキュメントの目次を表示する
     (defun my-alchemist-help-search (uarg)

@@ -2307,7 +2307,9 @@ Otherwise sends the current line."
           ))
   (set-face-foreground 'ahs-plugin-defalt-face nil)
   (set-face-background 'ahs-plugin-defalt-face nil)
-  (set-face-bold 'ahs-plugin-defalt-face t))
+  (set-face-foreground 'ahs-face nil)
+  (set-face-background 'ahs-face "#004044")
+  (set-face-bold 'ahs-plugin-defalt-face nil))
 
 
 ;;;

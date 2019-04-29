@@ -2,7 +2,6 @@
 # name: GenServer
 # key: GenServer
 # --
-defmodule ${1:Module} do
 use GenServer
 
 # Client API
@@ -13,7 +12,4 @@ end
 # Server callbacks
 def init(state) do
 {:ok, state}
-end
-
-$0
 end

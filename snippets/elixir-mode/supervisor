@@ -2,7 +2,6 @@
 # name: Supervisor
 # key: Supervisor
 # --
-defmodule ${1:Module}.Supervisor do
 use Supervisor
 
 def start_link do
@@ -14,6 +13,4 @@ children = [
 $0
 ]
 supervise(children, strategy: :one_for_one)
-end
-
 end

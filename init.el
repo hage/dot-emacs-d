@@ -1131,9 +1131,12 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
                       :background "gold")
   (set-face-attribute 'company-scrollbar-bg nil
                       :background "gray40")
+  (set-face-attribute 'company-tooltip-search nil
+                      :background "orchid4")
+  (set-face-attribute 'company-tooltip-search-selection nil
+                      :background "orchid4")
 
   (global-company-mode nil))
-
 
 ;;;
 ;;; yasnippet

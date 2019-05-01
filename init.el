@@ -1107,9 +1107,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
                (equal company-common (car company-candidates)))
           (company-complete-selection)
         (company--insert-candidate2 company-common))))
-
-  (define-key company-active-map [tab] 'company-complete-common2)
-
+  (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
+  (define-key company-active-map (kbd "C-i") 'company-complete-common2)
   (global-company-mode nil))
 
 

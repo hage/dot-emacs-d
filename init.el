@@ -1115,6 +1115,23 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         (company--insert-candidate2 company-common))))
   (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
   (define-key company-active-map (kbd "C-i") 'company-complete-common2)
+
+  ;; faces
+  (set-face-attribute 'company-tooltip nil
+                      :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common nil
+                      :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common-selection nil
+                      :foreground "white" :background "steelblue")
+  (set-face-attribute 'company-tooltip-selection nil
+                      :foreground "black" :background "steelblue")
+  (set-face-attribute 'company-preview-common nil
+                      :background nil :foreground "lightgrey" :underline t)
+  (set-face-attribute 'company-scrollbar-fg nil
+                      :background "gold")
+  (set-face-attribute 'company-scrollbar-bg nil
+                      :background "gray40")
+
   (global-company-mode nil))
 
 

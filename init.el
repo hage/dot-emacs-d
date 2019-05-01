@@ -1077,44 +1077,41 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;;
 ;;; company-mode
 ;;;
-;;; elixir-mode では company-mode しか受け付けないようなのでしかたなしに設定する
 ;;; cf. http://qiita.com/sune2/items/b73037f9e85962f5afb7
 ;;;
-;;; 追記: ac-alchemist なるものができたので elixir-mode において auto-complete が
-;;; 使えるようになったが、この設定は残しておく。
+(when (require 'company nil t)
+  (setq company-idle-delay .3
+        company-minimum-prefix-length 3
+        company-selection-wrap-around t)
 
-(eval-after-load "company"
-  #'(progn
-      (setq company-idle-delay .3
-            company-minimum-prefix-length 3
-            company-selection-wrap-around t
-            )
-      (define-key company-active-map (kbd "M-n") nil)
-      (define-key company-active-map (kbd "M-p") nil)
-      (define-key company-active-map (kbd "C-n") 'company-select-next)
-      (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
-      (defun company--insert-candidate2 (candidate)
-        (when (> (length candidate) 0)
-          (setq candidate (substring-no-properties candidate))
-          (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-              (insert (company-strip-prefix candidate))
-            (if (equal company-prefix candidate)
-                (company-select-next)
-              (delete-region (- (point) (length company-prefix)) (point))
-              (insert candidate))
-            )))
+  (defun company--insert-candidate2 (candidate)
+    (when (> (length candidate) 0)
+      (setq candidate (substring-no-properties candidate))
+      (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
+          (insert (company-strip-prefix candidate))
+        (if (equal company-prefix candidate)
+            (company-select-next)
+          (delete-region (- (point) (length company-prefix)) (point))
+          (insert candidate))
+        )))
 
-      (defun company-complete-common2 ()
-        (interactive)
-        (when (company-manual-begin)
-          (if (and (not (cdr company-candidates))
-                   (equal company-common (car company-candidates)))
-              (company-complete-selection)
-            (company--insert-candidate2 company-common))))
+  (defun company-complete-common2 ()
+    (interactive)
+    (when (company-manual-begin)
+      (if (and (not (cdr company-candidates))
+               (equal company-common (car company-candidates)))
+          (company-complete-selection)
+        (company--insert-candidate2 company-common))))
 
-      (define-key company-active-map [tab] 'company-complete-common2)
-      ))
+  (define-key company-active-map [tab] 'company-complete-common2)
+
+  (global-company-mode nil))
+
 
 ;;;
 ;;; yasnippet

@@ -1077,7 +1077,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;;
 ;;; company-mode
 ;;;
-;;; cf. http://qiita.com/sune2/items/b73037f9e85962f5afb7
+;;; cf. https://qiita.com/sune2/items/b73037f9e85962f5afb7
+;;;     https://qiita.com/syohex/items/8d21d7422f14e9b53b17
 ;;;
 (when (require 'company nil t)
   (setq company-idle-delay .3

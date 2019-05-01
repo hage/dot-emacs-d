@@ -261,7 +261,6 @@ universal argument が与えられていたら必ずリフレッシュする"
     (auto-highlight-symbol-mode . "")   ; HS
     (which-key-mode . "")               ; WK
     (smartparens-mode . "")             ; SP
-    (auto-complete-mode . "")           ; AC
     (projectile-mode . " P")
     (git-gutter-mode . "")
 
@@ -874,13 +873,6 @@ Otherwise indent whole buffer."
               )
           (setq helm-source-ls-git nil))
 
-        (eval-after-load "auto-complete"
-	  #'(when (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
-	      (setq my-ac-helm-trigger-key (kbd "M-l"))
-	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
-	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
-	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
-
         (set-face-background 'helm-selection "#407")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
@@ -1124,73 +1116,9 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
       (define-key company-active-map [tab] 'company-complete-common2)
       ))
 
-
-;;;
-;;; auto-complete-mode
-;;;
-(when (require 'auto-complete-config nil t)
-  (ac-config-default)
-  (global-auto-complete-mode t)
-  (ac-set-trigger-key "TAB")
-  (setq-default ac-sources '(ac-source-filename
-                             ac-source-dictionary
-                             ac-source-yasnippet
-                             ac-source-words-in-buffer
-                             ac-source-words-in-same-mode-buffers
-                             ac-source-words-in-all-buffer))
-  (defun ac-ruby-mode-setup ()
-    (setq ac-sources '(ac-source-filename
-                       ac-source-yasnippet
-                       ac-source-robe
-                       ac-source-words-in-buffer
-                       ac-source-words-in-same-mode-buffers
-                       ac-source-words-in-all-buffer)))
-  (setq ac-ignore-case 'smart
-	ac-delay 0.2
-        ac-auto-start 3
-        ac-disable-inline nil
-        ac-dwim t
-        ac-use-menu-map t
-        ac-use-comphist t
-        ac-menu-height 20)
-
-  ;; yasnippet の候補がハイライトされているように見えて紛らわしいので色を変更
-  (set-face-foreground 'ac-yasnippet-candidate-face (face-foreground 'ac-candidate-face))
-  (set-face-background 'ac-yasnippet-candidate-face (face-background 'ac-candidate-face))
-  (set-face-bold 'ac-yasnippet-candidate-face t)
-
-  ;; ac-etags
-  (setq ac-etags-requires 3)
-  (eval-after-load "etags"
-    '(progn
-       (ac-etags-setup)))
-  (defun my/prog-mode-common-hook ()
-    (add-to-list 'ac-sources 'ac-source-etags))
-  (add-hook 'c-mode-common-hook 'my/prog-mode-common-hook)
-  (add-hook 'ruby-mode-hook 'my/prog-mode-common-hook)
-
-  (push 'text-mode ac-modes)
-  (push 'markdown-mode ac-modes)
-  (push 'yaml-mode ac-modes)
-  (push 'markdown-mode ac-modes)
-  (push 'gfm-mode ac-modes)
-  (push 'elixir-mode ac-modes)
-  (push 'alchemist-iex-mode ac-modes)
-
-  (eval-after-load 'auto-complete
-    #'(progn
-        (define-key ac-complete-mode-map (kbd "RET") 'nil)
-        (define-key ac-menu-map (kbd "RET") 'ac-complete)
-        ;(define-key ac-menu-map (kbd "RET") nil)
-        ))
-  )
-
-
 ;;;
 ;;; yasnippet
 ;;;
-;; auto-complete が require してくれているっぽいので、
-;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
 (with-eval-after-load "yasnippet"
   (yas-global-mode)
 
@@ -1644,7 +1572,6 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;     M-x robe-start
 (when (autoload-if-found 'robe-mode "robe"
 			 "Robe is a code assistance tool that uses a Ruby REPL subprocess" t)
-  (autoload 'ac-robe-setup "ac-robe" "robe auto-complete" nil nil)
   (eval-after-load 'ruby-mode
     #'(progn
         (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
@@ -1682,20 +1609,14 @@ Otherwise sends the whole buffer."
 
               (define-key inf-ruby-minor-mode-map
                 (kbd "C-c C-r") 'my-ruby-send-thing-dwim)))))
-
-  (eval-after-load 'auto-complete
-    #'(add-hook 'robe-mode-hook 'ac-robe-setup))
   )
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
   (setq inf-ruby-default-implementation "pry")
   (setq inf-ruby-eval-binding "Pry.toplevel_binding")
   ;; riなどのエスケープシーケンスを処理し、色付けする
   (add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
-  (eval-after-load 'auto-complete
-    #'(add-to-list 'ac-modes 'inf-ruby-mode))
   (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
-  (eval-after-load 'inf-ruby
-    #'(define-key inf-ruby-mode-map (kbd "TAB") 'auto-complete)))
+  )
 
 ;; realgud:byebug
 (eval-after-load 'realgud-byebug
@@ -1723,17 +1644,7 @@ Otherwise sends the whole buffer."
     (defun browse-php-document ()
       (interactive)
       (browse-url "https://secure.php.net/manual/ja/index.php"))
-    (define-key php-mode-map (kbd "C-q m") #'browse-php-document)
-    (when (require 'auto-complete nil t)
-      (auto-complete-mode t)
-      (when (require 'ac-php nil t)
-        (push 'ac-source-php ac-sources)
-        (define-key php-mode-map  (kbd "M-/") 'ac-php-find-symbol-at-point)
-        (define-key php-mode-map  (kbd "M-,") 'ac-php-location-stack-back)
-        (define-key php-mode-map (kbd "M-.") #'ac-php-show-tip)
-
-        (defun ac-php-remake-tags-after-save-hook-handler ()
-          (ignore-errors (ac-php-remake-tags))))))
+    (define-key php-mode-map (kbd "C-q m") #'browse-php-document))
 
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")

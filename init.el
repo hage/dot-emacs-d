@@ -1055,7 +1055,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
     (setq popwin:special-display-config
           (append
            '(("*alchemist mix*" :position bottom :dedicated t :height .3)
-             ("*Alchemist-IEx*" :height .35 :position bottom :stick t)
+             ("*Alchemist-IEx*" :height .40 :position bottom :stick t)
              ("*alchemist help*" :width 82 :position right :stick t)
              ("\\*alchemist .*\\*" :regexp t :position bottom :height .35 :stick t)
 

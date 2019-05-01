@@ -1090,6 +1090,11 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
+  ;; C-sで絞り込む
+  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+  (define-key company-search-map (kbd "C-n") 'company-select-next)
+  (define-key company-search-map (kbd "C-p") 'company-select-previous)
+
   (defun company--insert-candidate2 (candidate)
     (when (> (length candidate) 0)
       (setq candidate (substring-no-properties candidate))

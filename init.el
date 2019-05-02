@@ -1084,7 +1084,9 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   (setq company-idle-delay .3
         company-minimum-prefix-length 3
         company-selection-wrap-around t
-        company-search-filtering t)
+        company-search-filtering t
+        company-dabbrev-code-ignore-case t
+        company-dabbrev-ignore-case t)
 
   (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)

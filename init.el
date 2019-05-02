@@ -1085,36 +1085,18 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         company-minimum-prefix-length 3
         company-selection-wrap-around t)
 
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-
-  ;; C-sで絞り込む
-  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
-  (define-key company-search-map (kbd "C-n") 'company-select-next)
-  (define-key company-search-map (kbd "C-p") 'company-select-previous)
-
-  (defun company--insert-candidate2 (candidate)
-    (when (> (length candidate) 0)
-      (setq candidate (substring-no-properties candidate))
-      (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-          (insert (company-strip-prefix candidate))
-        (if (equal company-prefix candidate)
-            (company-select-next)
-          (delete-region (- (point) (length company-prefix)) (point))
-          (insert candidate))
-        )))
-
-  (defun company-complete-common2 ()
-    (interactive)
-    (when (company-manual-begin)
-      (if (and (not (cdr company-candidates))
-               (equal company-common (car company-candidates)))
-          (company-complete-selection)
-        (company--insert-candidate2 company-common))))
   (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
-  (define-key company-active-map (kbd "C-i") 'company-complete-common2)
+  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+
+  ;; 候補の移動は C-n, C-p で
+  ;; C-i でインデント/候補の移動/候補が一つだけの時は補完完了
+  (mapc
+   (lambda (keymap)
+     (define-key keymap (kbd "C-n") #'company-select-next)
+     (define-key keymap (kbd "C-p") #'company-select-previous)
+     (define-key keymap (kbd "C-i")
+       #'company-select-next-if-tooltip-visible-or-complete-selection))
+   `(,company-active-map ,company-search-map ,company-filter-map))
 
   ;; faces
   (set-face-attribute 'company-tooltip nil

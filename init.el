@@ -251,7 +251,7 @@ universal argument が与えられていたら必ずリフレッシュする"
     (volatile-highlights-mode . "")     ; VHl
     (emmet-mode . " Emt")
     (robe-mode . " R")
-    (company-mode . " cp")
+    (company-mode . "")
     (alchemist-mode . "")
     (alchemist-phoenix-mode . " phx")
     (ruby-test-mode . " rtest")

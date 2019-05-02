@@ -1083,7 +1083,8 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 (when (require 'company nil t)
   (setq company-idle-delay .3
         company-minimum-prefix-length 3
-        company-selection-wrap-around t)
+        company-selection-wrap-around t
+        company-search-filtering t)
 
   (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
@@ -1097,6 +1098,11 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
      (define-key keymap (kbd "C-i")
        #'company-select-next-if-tooltip-visible-or-complete-selection))
    `(,company-active-map ,company-search-map ,company-filter-map))
+
+  ;; 絞り込み指定が補完後に解除されるので、hook で設定し直す
+  (defun my-hook-for-company-after-completion-hook (_arg)
+    (setq company-search-filtering t))
+  (add-hook 'company-after-completion-hook #'my-hook-for-company-after-completion-hook)
 
   ;; faces
   (set-face-attribute 'company-tooltip nil

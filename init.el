@@ -261,7 +261,6 @@ universal argument が与えられていたら必ずリフレッシュする"
     (auto-highlight-symbol-mode . "")   ; HS
     (which-key-mode . "")               ; WK
     (smartparens-mode . "")             ; SP
-    (auto-complete-mode . "")           ; AC
     (projectile-mode . " P")
     (git-gutter-mode . "")
 
@@ -874,13 +873,6 @@ Otherwise indent whole buffer."
               )
           (setq helm-source-ls-git nil))
 
-        (eval-after-load "auto-complete"
-	  #'(when (autoload-if-found 'ac-complete-with-helm "ac-helm" nil t)
-	      (setq my-ac-helm-trigger-key (kbd "M-l"))
-	      (define-key ac-complete-mode-map my-ac-helm-trigger-key 'ac-complete-with-helm)
-	      (global-set-key my-ac-helm-trigger-key 'ac-complete-with-helm)
-	      (define-key helm-map my-ac-helm-trigger-key 'helm-next-line)))
-
         (set-face-background 'helm-selection "#407")
 	(set-face-foreground 'helm-selection nil)
 	(set-face-underline 'helm-selection nil)
@@ -1085,112 +1077,60 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;;
 ;;; company-mode
 ;;;
-;;; elixir-mode では company-mode しか受け付けないようなのでしかたなしに設定する
-;;; cf. http://qiita.com/sune2/items/b73037f9e85962f5afb7
+;;; cf. https://qiita.com/sune2/items/b73037f9e85962f5afb7
+;;;     https://qiita.com/syohex/items/8d21d7422f14e9b53b17
 ;;;
-;;; 追記: ac-alchemist なるものができたので elixir-mode において auto-complete が
-;;; 使えるようになったが、この設定は残しておく。
+(when (require 'company nil t)
+  (setq company-idle-delay .3
+        company-minimum-prefix-length 3
+        company-selection-wrap-around t
+        company-search-filtering t
+        company-dabbrev-code-ignore-case t
+        company-dabbrev-ignore-case t)
 
-(eval-after-load "company"
-  #'(progn
-      (setq company-idle-delay .3
-            company-minimum-prefix-length 3
-            company-selection-wrap-around t
-            )
-      (define-key company-active-map (kbd "M-n") nil)
-      (define-key company-active-map (kbd "M-p") nil)
-      (define-key company-active-map (kbd "C-n") 'company-select-next)
-      (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
+  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
 
-      (defun company--insert-candidate2 (candidate)
-        (when (> (length candidate) 0)
-          (setq candidate (substring-no-properties candidate))
-          (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-              (insert (company-strip-prefix candidate))
-            (if (equal company-prefix candidate)
-                (company-select-next)
-              (delete-region (- (point) (length company-prefix)) (point))
-              (insert candidate))
-            )))
+  ;; 候補の移動は C-n, C-p で
+  ;; C-i でインデント/候補の移動/候補が一つだけの時は補完完了
+  (mapc
+   (lambda (keymap)
+     (define-key keymap (kbd "C-n") #'company-select-next)
+     (define-key keymap (kbd "C-p") #'company-select-previous)
+     (define-key keymap (kbd "C-i")
+       #'company-select-next-if-tooltip-visible-or-complete-selection))
+   `(,company-active-map ,company-search-map ,company-filter-map))
 
-      (defun company-complete-common2 ()
-        (interactive)
-        (when (company-manual-begin)
-          (if (and (not (cdr company-candidates))
-                   (equal company-common (car company-candidates)))
-              (company-complete-selection)
-            (company--insert-candidate2 company-common))))
+  ;; 絞り込み指定が補完後に解除されるので、hook で設定し直す
+  (defun my-hook-for-company-after-completion-hook (_arg)
+    (setq company-search-filtering t))
+  (add-hook 'company-after-completion-hook #'my-hook-for-company-after-completion-hook)
 
-      (define-key company-active-map [tab] 'company-complete-common2)
-      ))
+  ;; faces
+  (set-face-attribute 'company-tooltip nil
+                      :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common nil
+                      :foreground "black" :background "lightgrey")
+  (set-face-attribute 'company-tooltip-common-selection nil
+                      :foreground "white" :background "steelblue")
+  (set-face-attribute 'company-tooltip-selection nil
+                      :foreground "black" :background "steelblue")
+  (set-face-attribute 'company-preview-common nil
+                      :background nil :foreground "lightgrey" :underline t)
+  (set-face-attribute 'company-scrollbar-fg nil
+                      :background "gold")
+  (set-face-attribute 'company-scrollbar-bg nil
+                      :background "gray40")
+  (set-face-attribute 'company-tooltip-search nil
+                      :background "orchid4")
+  (set-face-attribute 'company-tooltip-search-selection nil
+                      :background "orchid4")
 
-
-;;;
-;;; auto-complete-mode
-;;;
-(when (require 'auto-complete-config nil t)
-  (ac-config-default)
-  (global-auto-complete-mode t)
-  (ac-set-trigger-key "TAB")
-  (setq-default ac-sources '(ac-source-filename
-                             ac-source-dictionary
-                             ac-source-yasnippet
-                             ac-source-words-in-buffer
-                             ac-source-words-in-same-mode-buffers
-                             ac-source-words-in-all-buffer))
-  (defun ac-ruby-mode-setup ()
-    (setq ac-sources '(ac-source-filename
-                       ac-source-yasnippet
-                       ac-source-robe
-                       ac-source-words-in-buffer
-                       ac-source-words-in-same-mode-buffers
-                       ac-source-words-in-all-buffer)))
-  (setq ac-ignore-case 'smart
-	ac-delay 0.2
-        ac-auto-start 3
-        ac-disable-inline nil
-        ac-dwim t
-        ac-use-menu-map t
-        ac-use-comphist t
-        ac-menu-height 20)
-
-  ;; yasnippet の候補がハイライトされているように見えて紛らわしいので色を変更
-  (set-face-foreground 'ac-yasnippet-candidate-face (face-foreground 'ac-candidate-face))
-  (set-face-background 'ac-yasnippet-candidate-face (face-background 'ac-candidate-face))
-  (set-face-bold 'ac-yasnippet-candidate-face t)
-
-  ;; ac-etags
-  (setq ac-etags-requires 3)
-  (eval-after-load "etags"
-    '(progn
-       (ac-etags-setup)))
-  (defun my/prog-mode-common-hook ()
-    (add-to-list 'ac-sources 'ac-source-etags))
-  (add-hook 'c-mode-common-hook 'my/prog-mode-common-hook)
-  (add-hook 'ruby-mode-hook 'my/prog-mode-common-hook)
-
-  (push 'text-mode ac-modes)
-  (push 'markdown-mode ac-modes)
-  (push 'yaml-mode ac-modes)
-  (push 'markdown-mode ac-modes)
-  (push 'gfm-mode ac-modes)
-  (push 'elixir-mode ac-modes)
-  (push 'alchemist-iex-mode ac-modes)
-
-  (eval-after-load 'auto-complete
-    #'(progn
-        (define-key ac-complete-mode-map (kbd "RET") 'nil)
-        (define-key ac-menu-map (kbd "RET") 'ac-complete)
-        ;(define-key ac-menu-map (kbd "RET") nil)
-        ))
-  )
-
+  (global-company-mode nil))
 
 ;;;
 ;;; yasnippet
 ;;;
-;; auto-complete が require してくれているっぽいので、
-;; auto-complete を使わなくなったら自前で require する必要があるかもしれない
 (with-eval-after-load "yasnippet"
   (yas-global-mode)
 
@@ -1644,7 +1584,6 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;     M-x robe-start
 (when (autoload-if-found 'robe-mode "robe"
 			 "Robe is a code assistance tool that uses a Ruby REPL subprocess" t)
-  (autoload 'ac-robe-setup "ac-robe" "robe auto-complete" nil nil)
   (eval-after-load 'ruby-mode
     #'(progn
         (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
@@ -1682,20 +1621,14 @@ Otherwise sends the whole buffer."
 
               (define-key inf-ruby-minor-mode-map
                 (kbd "C-c C-r") 'my-ruby-send-thing-dwim)))))
-
-  (eval-after-load 'auto-complete
-    #'(add-hook 'robe-mode-hook 'ac-robe-setup))
   )
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
   (setq inf-ruby-default-implementation "pry")
   (setq inf-ruby-eval-binding "Pry.toplevel_binding")
   ;; riなどのエスケープシーケンスを処理し、色付けする
   (add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
-  (eval-after-load 'auto-complete
-    #'(add-to-list 'ac-modes 'inf-ruby-mode))
   (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
-  (eval-after-load 'inf-ruby
-    #'(define-key inf-ruby-mode-map (kbd "TAB") 'auto-complete)))
+  )
 
 ;; realgud:byebug
 (eval-after-load 'realgud-byebug
@@ -1723,17 +1656,7 @@ Otherwise sends the whole buffer."
     (defun browse-php-document ()
       (interactive)
       (browse-url "https://secure.php.net/manual/ja/index.php"))
-    (define-key php-mode-map (kbd "C-q m") #'browse-php-document)
-    (when (require 'auto-complete nil t)
-      (auto-complete-mode t)
-      (when (require 'ac-php nil t)
-        (push 'ac-source-php ac-sources)
-        (define-key php-mode-map  (kbd "M-/") 'ac-php-find-symbol-at-point)
-        (define-key php-mode-map  (kbd "M-,") 'ac-php-location-stack-back)
-        (define-key php-mode-map (kbd "M-.") #'ac-php-show-tip)
-
-        (defun ac-php-remake-tags-after-save-hook-handler ()
-          (ignore-errors (ac-php-remake-tags))))))
+    (define-key php-mode-map (kbd "C-q m") #'browse-php-document))
 
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")

@@ -1973,10 +1973,11 @@ Otherwise sends the whole buffer."
     (define-key alchemist-mode-map (kbd "M-K M-K") 'my-alchemist-project-toggle-file-and-tests)
 
     ;; iex に関する設定
-    (defun my-elixir-and-alchemist-iex-setup ()
-      (ac-alchemist-setup))
-    (add-hook 'alchemist-iex-mode-hook 'my-elixir-and-alchemist-iex-setup)
-    (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup)
+    (with-eval-after-load "company"
+      (defun my-elixir-and-alchemist-iex-setup ()
+        (setq-local company-backends (append '(alchemist-company) company-backends)))
+      (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup))
+
 
     (set-face-foreground 'elixir-atom-face "gold3")
 

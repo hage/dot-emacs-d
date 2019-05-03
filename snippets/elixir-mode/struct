@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: struct
+# key: struct
+# --
+%${1:StructyName}{$0}

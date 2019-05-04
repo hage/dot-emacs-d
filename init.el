@@ -1935,6 +1935,16 @@ Otherwise sends the whole buffer."
     (newline-and-indent))
   (define-key elixir-mode-map (kbd "M-\"") #'my-elixir-heredocument)
 
+
+  ;; lsp
+  ;;   elixir-ls のビルドは cd ~/.emacs.d/lsp-servers && make lsp-servers
+  (defvar my-elixir-ls-path (concat (getenv "HOME") "/.emacs.d/lsp-servers/elixir-ls/release"))
+  (when (and (fboundp 'lsp)
+             (file-exists-p my-elixir-ls-path))
+      (add-hook 'elixir-mode-hook #'lsp)
+      (add-to-list 'exec-path my-elixir-ls-path t))
+
+  ;; alchemist
   (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
   (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
 

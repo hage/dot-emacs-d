@@ -1942,7 +1942,14 @@ Otherwise sends the whole buffer."
   (when (and (fboundp 'lsp)
              (file-exists-p my-elixir-ls-path))
       (add-hook 'elixir-mode-hook #'lsp)
-      (add-to-list 'exec-path my-elixir-ls-path t))
+      (add-to-list 'exec-path my-elixir-ls-path t)
+      (with-eval-after-load 'alchemist-company
+        (defun advice-on-alchemist-mode-hook-remove-alchemist-company ()
+          (setq company-backends (remq 'alchemist-company company-backends)))
+        (advice-add 'alchemist-mode :after 'advice-on-alchemist-mode-hook-remove-alchemist-company)
+        (advice-add 'alchemist-iex-mode :after 'advice-on-alchemist-mode-hook-remove-alchemist-company)
+        )
+      )
 
   ;; alchemist
   (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
@@ -1981,13 +1988,6 @@ Otherwise sends the whole buffer."
           (alchemist-project-toggle-file-and-tests)
         (alchemist-project-toggle-file-and-tests-other-window)))
     (define-key alchemist-mode-map (kbd "M-K M-K") 'my-alchemist-project-toggle-file-and-tests)
-
-    ;; iex に関する設定
-    (with-eval-after-load "company"
-      (defun my-elixir-and-alchemist-iex-setup ()
-        (setq-local company-backends (append '(alchemist-company) company-backends)))
-      (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup))
-
 
     (set-face-foreground 'elixir-atom-face "gold3")
 

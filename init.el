@@ -1960,7 +1960,7 @@ Otherwise sends the whole buffer."
       (add-hook 'elixir-mode-hook #'lsp)
       (add-to-list 'exec-path my-elixir-ls-exec-path t)
       (with-eval-after-load 'alchemist-company
-        (defun advice-on-alchemist-mode-hook-remove-alchemist-company ()
+        (defun advice-on-alchemist-mode-hook-remove-alchemist-company (&rest args)
           (setq company-backends (remq 'alchemist-company company-backends)))
         (advice-add 'alchemist-mode :after 'advice-on-alchemist-mode-hook-remove-alchemist-company)
         (advice-add 'alchemist-iex-mode :after 'advice-on-alchemist-mode-hook-remove-alchemist-company)

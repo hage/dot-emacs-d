@@ -1953,6 +1953,7 @@ Otherwise sends the whole buffer."
 
   ;; lsp
   ;;   elixir-ls のビルドは cd ~/.emacs.d/lsp-servers && make elixir-server
+  ;;   cf. https://elixirforum.com/t/emacs-elixir-setup-configuration-wiki/19196
   (defvar my-elixir-ls-exec-path (concat (getenv "HOME") "/.emacs.d/lsp-servers/elixir-ls/release"))
   (when (and (fboundp 'lsp)
              (file-exists-p my-elixir-ls-exec-path))

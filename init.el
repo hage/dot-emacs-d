@@ -1938,11 +1938,11 @@ Otherwise sends the whole buffer."
 
   ;; lsp
   ;;   elixir-ls のビルドは cd ~/.emacs.d/lsp-servers && make elixir-server
-  (defvar my-elixir-ls-path (concat (getenv "HOME") "/.emacs.d/lsp-servers/elixir-ls/release"))
+  (defvar my-elixir-ls-exec-path (concat (getenv "HOME") "/.emacs.d/lsp-servers/elixir-ls/release"))
   (when (and (fboundp 'lsp)
-             (file-exists-p my-elixir-ls-path))
+             (file-exists-p my-elixir-ls-exec-path))
       (add-hook 'elixir-mode-hook #'lsp)
-      (add-to-list 'exec-path my-elixir-ls-path t)
+      (add-to-list 'exec-path my-elixir-ls-exec-path t)
       (with-eval-after-load 'alchemist-company
         (defun advice-on-alchemist-mode-hook-remove-alchemist-company ()
           (setq company-backends (remq 'alchemist-company company-backends)))

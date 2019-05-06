@@ -785,6 +785,13 @@ Otherwise indent whole buffer."
       ))
 
 ;;;
+;;; lsp-mode
+;;;
+(with-eval-after-load 'lsp-mode
+  (require 'yasnippet nil t))
+
+
+;;;
 ;;; Helm
 ;;;
 (when (require 'helm-config nil t)

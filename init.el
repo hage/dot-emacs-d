@@ -1244,6 +1244,21 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
   (eval-after-load "magit"
     #'(progn
         (define-key magit-mode-map (kbd "C-w") ctl-q-map)
+
+        ;; コミットメッセージに prefix をつける。
+        ;; magit で commit メッセージ入力バッファを開いた時 prefix メニューが表示される。
+        ;; text-mode の snippet に以下の snippet を定義すること
+        ;;
+        ;; # -*- mode: snippet -*-
+        ;; # name: :
+        ;; # key: :
+        ;; # --
+        ;; `(yas-choose-value '("[feat]" "[fix]" "[docs][ci skip] Update" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0
+        (defun git-commit-prefix-select ()
+          (insert ":")
+          (yas-expand))
+        (add-hook 'git-commit-setup-hook 'git-commit-prefix-select)
+
         (set-face-background 'magit-section-highlight "gray20")
 
         (setq my-magit-diff-highlight-common-background "#224")

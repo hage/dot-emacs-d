@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#  git commit messages
+#  original idea from https://qiita.com/akicho8/items/edaa7985940872b5249e
+# name: :
+# key: :
+# --
+`(yas-choose-value '("[feat]" "[fix]" "[docs][ci skip] Update" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0

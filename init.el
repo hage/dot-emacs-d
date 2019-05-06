@@ -1950,6 +1950,23 @@ Otherwise sends the whole buffer."
     (newline-and-indent))
   (define-key elixir-mode-map (kbd "M-\"") #'my-elixir-heredocument)
 
+
+  ;; lsp
+  ;;   elixir-ls のビルドは cd ~/.emacs.d/lsp-servers && make elixir-server
+  (defvar my-elixir-ls-exec-path (concat (getenv "HOME") "/.emacs.d/lsp-servers/elixir-ls/release"))
+  (when (and (fboundp 'lsp)
+             (file-exists-p my-elixir-ls-exec-path))
+      (add-hook 'elixir-mode-hook #'lsp)
+      (add-to-list 'exec-path my-elixir-ls-exec-path t)
+      (with-eval-after-load 'alchemist-company
+        (defun advice-on-alchemist-mode-hook-remove-alchemist-company ()
+          (setq company-backends (remq 'alchemist-company company-backends)))
+        (advice-add 'alchemist-mode :after 'advice-on-alchemist-mode-hook-remove-alchemist-company)
+        (advice-add 'alchemist-iex-mode :after 'advice-on-alchemist-mode-hook-remove-alchemist-company)
+        )
+      )
+
+  ;; alchemist
   (add-hook-if-bound 'elixir-mode-hook 'alchemist-mode)
   (add-hook-if-bound 'elixir-mode-hook 'auto-highlight-symbol-mode)
 
@@ -1986,13 +2003,6 @@ Otherwise sends the whole buffer."
           (alchemist-project-toggle-file-and-tests)
         (alchemist-project-toggle-file-and-tests-other-window)))
     (define-key alchemist-mode-map (kbd "M-K M-K") 'my-alchemist-project-toggle-file-and-tests)
-
-    ;; iex に関する設定
-    (with-eval-after-load "company"
-      (defun my-elixir-and-alchemist-iex-setup ()
-        (setq-local company-backends (append '(alchemist-company) company-backends)))
-      (add-hook 'alchemist-mode-hook 'my-elixir-and-alchemist-iex-setup))
-
 
     (set-face-foreground 'elixir-atom-face "gold3")
 

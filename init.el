@@ -241,7 +241,7 @@ universal argument が与えられていたら必ずリフレッシュする"
   '( ;; For minor-mode, first char is 'space'
     (yas-minor-mode . "")
     (paredit-mode . " ()e")
-    (eldoc-mode . " Ed")
+    (eldoc-mode . "")
     (abbrev-mode . "")
     (helm-mode . "")
     (undo-tree-mode . " Ut")
@@ -255,7 +255,7 @@ universal argument が与えられていたら必ずリフレッシュする"
     (alchemist-mode . "")
     (alchemist-phoenix-mode . " phx")
     (ruby-test-mode . " rtest")
-    (editorconfig-mode . " EdC")
+    (editorconfig-mode . "")
     (helm-migemo-mode . "")             ; Hmio
     (auto-revert-mode . "")             ; ARev
     (auto-highlight-symbol-mode . "")   ; HS
@@ -263,10 +263,11 @@ universal argument が与えられていたら必ずリフレッシュする"
     (smartparens-mode . "")             ; SP
     (projectile-mode . " P")
     (git-gutter-mode . "")
+    (rainbow-mode . "")
 
     ;; Major modes
-    (lisp-interaction-mode . "ilisp")
-    (python-mode . "Py")
+    (lisp-interaction-mode . "Lisp-i")
+    (python-mode . "Python")
     (ruby-mode   . "Ruby")
     (emacs-lisp-mode . "Elisp")
     (elixir-mode . "Elixir")

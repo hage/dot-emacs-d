@@ -1844,63 +1844,61 @@ Otherwise sends the whole buffer."
 ;;; markdown-mode
 ;;;
 (when (autoload-if-found 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-  (eval-after-load "markdown-mode"
-    (lambda ()
-      ;; デフォルトでキーシーケンスにC-tが入っているコマンド群はtmuxに当たるので C-t -> t に変更
-      (define-key markdown-mode-map "\C-cth" 'markdown-insert-header-dwim)
-      (define-key markdown-mode-map "\C-ctH" 'markdown-insert-header-setext-dwim)
-      (define-key markdown-mode-map "\C-ct1" 'markdown-insert-header-atx-1)
-      (define-key markdown-mode-map "\C-ct2" 'markdown-insert-header-atx-2)
-      (define-key markdown-mode-map "\C-ct3" 'markdown-insert-header-atx-3)
-      (define-key markdown-mode-map "\C-ct4" 'markdown-insert-header-atx-4)
-      (define-key markdown-mode-map "\C-ct5" 'markdown-insert-header-atx-5)
-      (define-key markdown-mode-map "\C-ct6" 'markdown-insert-header-atx-6)
-      (define-key markdown-mode-map "\C-ct!" 'markdown-insert-header-setext-1)
-      (define-key markdown-mode-map "\C-ct@" 'markdown-insert-header-setext-2)
-      (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-1)
-      (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-2)
+  (with-eval-after-load "markdown-mode"
+    ;; デフォルトでキーシーケンスにC-tが入っているコマンド群はtmuxに当たるので C-t -> t に変更
+    (define-key markdown-mode-map "\C-cth" 'markdown-insert-header-dwim)
+    (define-key markdown-mode-map "\C-ctH" 'markdown-insert-header-setext-dwim)
+    (define-key markdown-mode-map "\C-ct1" 'markdown-insert-header-atx-1)
+    (define-key markdown-mode-map "\C-ct2" 'markdown-insert-header-atx-2)
+    (define-key markdown-mode-map "\C-ct3" 'markdown-insert-header-atx-3)
+    (define-key markdown-mode-map "\C-ct4" 'markdown-insert-header-atx-4)
+    (define-key markdown-mode-map "\C-ct5" 'markdown-insert-header-atx-5)
+    (define-key markdown-mode-map "\C-ct6" 'markdown-insert-header-atx-6)
+    (define-key markdown-mode-map "\C-ct!" 'markdown-insert-header-setext-1)
+    (define-key markdown-mode-map "\C-ct@" 'markdown-insert-header-setext-2)
+    (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-1)
+    (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-2)
 
-      (setq my-another-markdown-previewer (if osxp "/Applications/Markn.app/Contents/MacOS/Electron"
-                                    nil))
+    (setq my-another-markdown-previewer (if osxp "/Applications/Markn.app/Contents/MacOS/Electron"
+                                          nil))
 
-      (setq my-markdown-previewer
-            (if (and my-another-markdown-previewer (file-exists-p my-another-markdown-previewer))
-                'my-markdown-previw
-              'markdown-preview))
+    (setq my-markdown-previewer
+          (if (and my-another-markdown-previewer (file-exists-p my-another-markdown-previewer))
+              'my-markdown-previw
+            'markdown-preview))
 
-      (defun my-markdown-preview ()
-        (interactive)
-        "Preview a markdown file using Markn.app"
-        ;;(async-shell-command (concat my-another-markdown-previewer " " buffer-file-name))
-        (start-process "Markn.app" "*Markn*" my-another-markdown-previewer buffer-file-name)
-        )
+    (defun my-markdown-preview ()
+      (interactive)
+      "Preview a markdown file using Markn.app"
+      ;;(async-shell-command (concat my-another-markdown-previewer " " buffer-file-name))
+      (start-process "Markn.app" "*Markn*" my-another-markdown-previewer buffer-file-name)
+      )
 
-      (add-hook 'markdown-mode-hook
-                '(lambda ()
-                   (outline-minor-mode t)  ; markdown-mode で outline-minor-mode を有効にする
-                   (define-key markdown-mode-map (kbd "C-c C-v") 'my-markdown-preview)
-                   (when my-another-markdown-previewer
-                     (setq markdown-live-preview-mode nil))
-                   ))
+    (add-hook 'markdown-mode-hook
+              '(lambda ()
+                 (outline-minor-mode t)  ; markdown-mode で outline-minor-mode を有効にする
+                 (define-key markdown-mode-map (kbd "C-c C-v") 'my-markdown-preview)
+                 (when my-another-markdown-previewer
+                   (setq markdown-live-preview-mode nil))
+                 ))
 
-      (progn
-        (setq markdown-common-header-face-foreground "CornflowerBlue")
-        (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)
-        (set-face-bold 'markdown-header-face-1 t)
-        (set-face-underline 'markdown-header-face-1 t)
+    (progn
+      (setq markdown-common-header-face-foreground "CornflowerBlue")
+      (set-face-foreground 'markdown-header-face-1 markdown-common-header-face-foreground)
+      (set-face-bold 'markdown-header-face-1 t)
+      (set-face-underline 'markdown-header-face-1 t)
 
-        (set-face-foreground 'markdown-header-face-2 markdown-common-header-face-foreground)
-        (set-face-bold 'markdown-header-face-2 t)
+      (set-face-foreground 'markdown-header-face-2 markdown-common-header-face-foreground)
+      (set-face-bold 'markdown-header-face-2 t)
 
-        (set-face-foreground 'markdown-header-face-3 markdown-common-header-face-foreground)
-        (set-face-foreground 'markdown-header-face-4 markdown-common-header-face-foreground)
-        (set-face-foreground 'markdown-header-face-5 markdown-common-header-face-foreground)
-        (set-face-foreground 'markdown-header-face-6 markdown-common-header-face-foreground)
+      (set-face-foreground 'markdown-header-face-3 markdown-common-header-face-foreground)
+      (set-face-foreground 'markdown-header-face-4 markdown-common-header-face-foreground)
+      (set-face-foreground 'markdown-header-face-5 markdown-common-header-face-foreground)
+      (set-face-foreground 'markdown-header-face-6 markdown-common-header-face-foreground)
 
-        (setq markdown-common-delimiter-face-foreground "moccasin")
-        (set-face-foreground 'markdown-header-delimiter-face markdown-common-delimiter-face-foreground)
-        (set-face-foreground 'markdown-list-face markdown-common-delimiter-face-foreground)
-        )
+      (setq markdown-common-delimiter-face-foreground "moccasin")
+      (set-face-foreground 'markdown-header-delimiter-face markdown-common-delimiter-face-foreground)
+      (set-face-foreground 'markdown-list-face markdown-common-delimiter-face-foreground)
       )
     )
   (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))

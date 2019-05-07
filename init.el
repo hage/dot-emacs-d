@@ -1859,6 +1859,8 @@ Otherwise sends the whole buffer."
     (define-key markdown-mode-map "\C-cts" 'markdown-insert-header-setext-1)
     (define-key markdown-mode-map "\C-ctt" 'markdown-insert-header-setext-2)
 
+    (setq markdown-asymmetric-header t) ; ### title のようなスタイル
+
     (setq my-another-markdown-previewer (if osxp "/Applications/Markn.app/Contents/MacOS/Electron"
                                           nil))
 

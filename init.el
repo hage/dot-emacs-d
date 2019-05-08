@@ -1614,7 +1614,6 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         (add-hook 'ruby-mode-hook
                   (lambda ()
                     (robe-mode)
-                    (robe-ac-setup)
                     (inf-ruby-minor-mode)))
         (eval-after-load 'robe
           #'(progn
@@ -1650,7 +1649,6 @@ Otherwise sends the whole buffer."
   (setq inf-ruby-eval-binding "Pry.toplevel_binding")
   ;; riなどのエスケープシーケンスを処理し、色付けする
   (add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
-  (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
   )
 
 ;; realgud:byebug
@@ -1686,11 +1684,7 @@ Otherwise sends the whole buffer."
   (define-auto-insert ".*Test\\.php$" ["php-phpunit.php" my-template])
   (add-hook 'php-mode-hook
             (lambda ()
-              (setq-local c-basic-offset 2)
-              (when (fboundp 'ac-php-remake-tags-after-save-hook-handler)
-                (add-hook 'after-save-hook 'ac-php-remake-tags-after-save-hook-handler t t))
-              ;; (php-eldoc-enable)
-              )))
+              (setq-local c-basic-offset 2))))
 
 
 ;;;

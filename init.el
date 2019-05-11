@@ -1913,10 +1913,8 @@ Otherwise sends the whole buffer."
   (require 'flycheck-mix)
   (flycheck-mix-setup)
 
-  (defun my-on-hook-elixir-mode ()
-    (setq-local projectile-globally-ignored-directories
-                (append '(".*") projectile-globally-ignored-directories)))
-  (add-hook 'elixir-mode-hook #'my-on-hook-elixir-mode)
+  (push ".elixir_ls" projectile-globally-ignored-directories)
+  (push ".beam" projectile-globally-ignored-file-suffixes)
 
   (define-key elixir-mode-map (kbd "C-M-a") 'elixir-beginning-of-defun)
   (define-key elixir-mode-map (kbd "C-M-e") 'elixir-end-of-defun)

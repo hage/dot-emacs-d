@@ -21,3 +21,4 @@ custom.el
 /info
 /transient/
 /.lsp-session-v1
+*.cache

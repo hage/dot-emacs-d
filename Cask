@@ -5,6 +5,7 @@
 (depends-on "ace-window")
 (depends-on "ag")
 (depends-on "alchemist")
+(depends-on "alert")
 (depends-on "ansible")
 (depends-on "apache-mode")
 (depends-on "async")

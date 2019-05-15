@@ -2689,6 +2689,18 @@ guessing a default from current buffer file name or default directory. "
       (set-face-foreground 'package-name "aquamarine")))
 
 (find-file "~/.emacs.d/init.el")
+
+;;;
+;;; alert
+;;;
+(when (require 'alert nil t)
+  (setq alert-default-style
+        (if osxp
+            (if (eq (shell-command "which terminal-notifier") 0)
+                'notifier
+              'osx-notifier)))
+  (alert "Now Emacs Ready."))
+
 (provide 'init)
 ;;; init.el ends here
 

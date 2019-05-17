@@ -1682,9 +1682,17 @@ Otherwise sends the whole buffer."
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
   (setq php-search-url "https://secure.php.net/search.php?show=quickref&pattern=")
   (define-auto-insert ".*Test\\.php$" ["php-phpunit.php" my-template])
-  (add-hook 'php-mode-hook
-            (lambda ()
-              (setq-local c-basic-offset 2))))
+
+  (let ((lsp-php-path (expand-file-name "~/.emacs.d/lsp-servers/php-ls/vendor/felixfbecker/language-server/bin/php-language-server.php")))
+    (if (file-exists-p lsp-php-path)
+        (progn
+          (setq lsp-clients-php-server-command `("php" ,lsp-php-path))
+          (add-hook 'php-mode-hook #'lsp))))
+
+  (defun my-on-hook-php-mode ()
+    (company-mode t)
+    (setq-local c-basic-offset 2))
+  (add-hook 'php-mode-hook #'my-on-hook-php-mode))
 
 
 ;;;

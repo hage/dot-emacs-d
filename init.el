@@ -1109,7 +1109,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
      (define-key keymap (kbd "C-p") #'company-select-previous)
      (define-key keymap (kbd "C-i")
        #'company-select-next-if-tooltip-visible-or-complete-selection))
-   `(,company-active-map ,company-search-map ,company-filter-map))
+   (list company-active-map company-search-map company-filter-map))
 
   ;; 絞り込み指定が補完後に解除されるので、hook で設定し直す
   (defun my-hook-for-company-after-completion-hook (_arg)
@@ -2309,8 +2309,7 @@ Otherwise sends the current line."
   (define-key smartparens-mode-map (kbd "M-C") 'sp-clone-sexp)
 
   (mapc (lambda (mode) (define-key mode (kbd "C-k") 'sp-kill-hybrid-sexp))
-        `(,lisp-mode-map
-          ,emacs-lisp-mode-map))
+        (list lisp-mode-map emacs-lisp-mode-map))
 
   (with-eval-after-load 'smartrep
     (smartrep-define-key

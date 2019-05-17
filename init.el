@@ -1675,6 +1675,12 @@ Otherwise sends the whole buffer."
 ;;;
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
   (with-eval-after-load 'php-mode
+
+    (defun my-php-object-arrow ()
+      (interactive)
+      (yas-expand-snippet (yas-lookup-snippet "objmember")))
+    (define-key php-mode-map (kbd "M-=") #'my-php-object-arrow)
+
     (define-key php-mode-map (kbd "C-M-j") #'my-semicolon-or-new-comment-ine)
     (defun browse-php-document ()
       (interactive)

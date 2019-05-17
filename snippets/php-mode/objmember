@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: objmenber
+# name: objmember
 # key: ll
 # --
 \$$1->$0

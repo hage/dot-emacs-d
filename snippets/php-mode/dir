@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dir
+# key: dir
+# --
+__DIR__

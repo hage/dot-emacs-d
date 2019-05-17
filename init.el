@@ -2467,18 +2467,6 @@ Otherwise sends the current line."
 
 
 ;;;
-;;; helm-qiita
-;;;   インストール後初回起動時には touch ~/.emacs.d/helm-qiita すること。しばらくしたら使えるようになる
-(when (and (featurep 'helm) (featurep 'helm-qiita))
-  ; (setq helm-qiita-debug-mode t) ;; 何かあったときに使える https://twitter.com/masutaka/status/899204475683864580
-  (setq helm-qiita-username "__hage")
-  ; (setq helm-qiita-organization "Your Organization") ;; optional. For example, "feedforce"
-  (setq helm-qiita-access-token "a85219b05c24563583640daeea5e2c6c1465a0bc") ;; See https://qiita.com/settings/applications
-  (helm-qiita-initialize)
-  )
-
-
-;;;
 ;;; google-this
 ;;;
 (when (fboundp 'google-this-search)

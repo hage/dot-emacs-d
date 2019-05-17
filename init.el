@@ -1091,7 +1091,7 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
 ;;;     https://qiita.com/syohex/items/8d21d7422f14e9b53b17
 ;;;
 (when (require 'company nil t)
-  (setq company-idle-delay .5
+  (setq company-idle-delay .2
         company-minimum-prefix-length 3
         company-selection-wrap-around t
         company-search-filtering t

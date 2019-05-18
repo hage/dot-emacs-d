@@ -791,7 +791,7 @@ Otherwise indent whole buffer."
 (with-eval-after-load 'lsp-mode
   (require 'yasnippet nil t)
   (with-eval-after-load 'lsp-ui
-    (set-face-background 'lsp-ui-sideline-global "slateblue4")))
+    (set-face-background 'lsp-ui-sideline-global "#134")))
 
 
 ;;;

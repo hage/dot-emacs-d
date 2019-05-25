@@ -1740,7 +1740,7 @@ Otherwise sends the whole buffer."
   (add-to-list 'auto-mode-alist '("\\.html\\.[^.]+$" . web-mode))
 
   (with-eval-after-load "web-mode"
-    (defun web-mode-hook ()
+    (defun on-hook-for-web-mode ()
       "Hooks for Web mode."
       ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする
       ;; cf. https://qiita.com/hayamiz/items/130727c09230fab0c097

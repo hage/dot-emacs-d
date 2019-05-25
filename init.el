@@ -170,7 +170,7 @@ returns nil when;
 	   (require 'package))
   ;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-  (setq package-hidden-regexps '("\\(evil\\|-theme\\)"))
+  (setq package-hidden-regexps '("\\(evil\\|-theme\\|^ac-\\|auto-complete\\)"))
   (package-initialize)
   (when (require 'cask nil t)
     (cask-initialize)

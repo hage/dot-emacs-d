@@ -1098,7 +1098,29 @@ C-u を前置したときはどのような場合でも helm-mini を起動す�
         company-dabbrev-code-ignore-case t
         company-dabbrev-ignore-case t)
 
-  (global-set-key (kbd "C-i") 'company-indent-or-complete-common)
+  (defun my-company-indent-or-complete-common ()
+    "Indent the current line or region, or complete the common part."
+    (interactive)
+    (cond
+     ((use-region-p)
+      (indent-region (region-beginning) (region-end)))
+
+     ;; TAB に関数 indent-relative(-maybe) が割り当てられていた時補完になってしまい
+     ;; いろんなモードで不都合が生じるのでそれをキャンセルした。
+     ;; cf. https://github.com/company-mode/company-mode/issues/605
+     ;; ((memq indent-line-function
+     ;;        '(indent-relative indent-relative-maybe))
+     ;;  (company-complete-common))
+
+     ((let ((old-point (point))
+            (old-tick (buffer-chars-modified-tick))
+            (tab-always-indent t))
+        (call-interactively #'indent-for-tab-command)
+        (when (and (eq old-point (point))
+                   (eq old-tick (buffer-chars-modified-tick)))
+          (company-complete-common))))))
+
+  (global-set-key (kbd "C-i") #'my-company-indent-or-complete-common)
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
 
   ;; 候補の移動は C-n, C-p で

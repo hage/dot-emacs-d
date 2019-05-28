@@ -1698,6 +1698,8 @@ Otherwise sends the whole buffer."
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
   (with-eval-after-load 'php-mode
 
+    (define-key php-mode-map (kbd "C-k") #'sp-kill-hybrid-sexp)
+
     (defun my-php-object-arrow ()
       (interactive)
       (yas-expand-snippet (yas-lookup-snippet "objmember")))

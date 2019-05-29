@@ -1000,9 +1000,12 @@ Otherwise indent whole buffer."
     (defun my-helm-mini-or-projectile (uarg)
       "git 配下のときは helm-projectile を、
 そうでないときは helm-mini を起動する。
-C-u を前置したときはどのような場合でも helm-mini を起動する。"
-      (interactive "P")
-      (if (and (not uarg) (git-toplevel-dir))
+C-u を前置したときはどのような場合でも helm-mini を起動する。
+git 配下なのに helm-mini が起動するときは C-u C-u を前置すると直るかもしれない。"
+      (interactive "p")
+      (when (eq uarg 16)
+        (my-clear-git-toplevel-dir-cache))
+      (if (and (or (eq uarg 16) (eq uarg 1)) (git-toplevel-dir))
           (helm-projectile)
         (helm-mini)))
     (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)

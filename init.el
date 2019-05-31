@@ -830,8 +830,7 @@ Otherwise indent whole buffer."
   ;; helm-mini をフレーム下部に横いっぱいに広げて表示する
   ;;   https://github.com/emacs-helm/helm/issues/2039
   (custom-set-variables '(helm-always-two-windows nil)
-                        '(helm-display-buffer-default-height 23)
-                        '(helm-default-display-buffer-functions '(display-buffer-in-side-window)))
+                        '(helm-display-buffer-default-height 23))
 
   (semantic-mode 1)
 

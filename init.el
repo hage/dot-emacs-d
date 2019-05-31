@@ -1700,8 +1700,7 @@ Otherwise sends the whole buffer."
 ;;;
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
   (with-eval-after-load 'php-mode
-
-    (define-key php-mode-map (kbd "C-k") #'sp-kill-hybrid-sexp)
+    (define-key php-mode-map (kbd "M-C-k") #'sp-kill-hybrid-sexp)
 
     (defun my-php-object-arrow ()
       (interactive)
@@ -2024,11 +2023,8 @@ Otherwise sends the whole buffer."
   (when (package-installed-p 'alchemist)
     (setq alchemist-key-command-prefix (kbd "M-K")))
   (with-eval-after-load "alchemist"
-
-    ;; 実験的にこうしてみる
     (with-eval-after-load 'smartparens
-      (define-key elixir-mode-map (kbd "C-k") #'sp-kill-hybrid-sexp))
-
+      (define-key elixir-mode-map (kbd "M-C-k") #'sp-kill-hybrid-sexp))
 
     ;; C-c C-f でカーソル下の関数などのドキュメントを探し、
     ;; C-u をつけるとドキュメントの目次を表示する
@@ -2338,7 +2334,7 @@ Otherwise sends the current line."
   (define-key smartparens-mode-map (kbd "M-C") 'sp-clone-sexp)
 
   (mapc (lambda (mode) (define-key mode (kbd "C-k") 'sp-kill-hybrid-sexp))
-        (list lisp-mode-map emacs-lisp-mode-map))
+        (list lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
 
   (with-eval-after-load 'smartrep
     (smartrep-define-key

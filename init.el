@@ -1280,7 +1280,10 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
         (define-key magit-mode-map (kbd "C-w") ctl-q-map)
 
         ;; コミットメッセージに prefix をつける。
-        ;; magit で commit メッセージ入力バッファを開いた時 prefix メニューが表示される。
+        ;; magit で commit メッセージ入力バッファを開いた時 : が入力されており、
+        ;; C-l で prefix メニューが表示される。
+        ;; prefix が必要なければ単に : を消せば良い。
+        ;;
         ;; text-mode の snippet に以下の snippet を定義すること
         ;;
         ;; # -*- mode: snippet -*-
@@ -1288,9 +1291,9 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
         ;; # key: :
         ;; # --
         ;; `(yas-choose-value '("[feat]" "[fix]" "[docs][ci skip] Update" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0
+        ;;
         (defun git-commit-prefix-select ()
-          (insert ":")
-          (yas-expand))
+          (insert ":"))
         (add-hook 'git-commit-setup-hook 'git-commit-prefix-select)
 
         (set-face-background 'magit-section-highlight "gray20")

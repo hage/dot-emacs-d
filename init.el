@@ -1273,7 +1273,6 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
   (global-set-key (kbd "C-q g l") 'magit-log)
   (global-set-key (kbd "C-q g c") 'magit-branch-and-checkout)
   (global-set-key (kbd "C-q g b") 'magit-checkout)
-  (global-set-key (kbd "C-q g v") 'vc-revert)
 
   (eval-after-load "magit"
     #'(progn
@@ -1361,7 +1360,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 
     (global-set-key (kbd "C-q g h") #'global-git-gutter-mode)
     (global-set-key (kbd "C-q g s") #'git-gutter:stage-hunk)
-    (global-set-key (kbd "C-q g R") #'git-gutter:revert-hunk)
+    (global-set-key (kbd "C-q g r") #'git-gutter:revert-hunk)
     (with-eval-after-load 'smartrep
       (smartrep-define-key global-map "M-g"
         '(("n" . #'git-gutter:next-hunk)

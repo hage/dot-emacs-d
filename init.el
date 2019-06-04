@@ -399,9 +399,6 @@ universal argument が与えられていたら必ずリフレッシュする"
 (remove-hook 'find-file-hook 'vc-find-file-hook)
 (remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
 
-;; tramp -- zshだとハングアップすることが多いため
-(eval-after-load 'tramp #'(setenv "SHELL" "/bin/bash"))
-
 
 ;;; キー・バインドの変更、新規割当
 ;;;
@@ -608,6 +605,14 @@ Otherwise indent whole buffer."
               (assoc 'buffer-list
                      (nth 1 (nth 1 (current-frame-configuration))))))
      default-directory)))
+
+
+;;;
+;;; tramp
+;;;
+(eval-after-load 'tramp #'(setenv "SHELL" "/bin/bash")) ; zshだとハングアップすることが多いため
+(global-set-key-if-bound (kbd "C-x F") #'helm-tramp)
+
 
 ;;;
 ;;; toggle-quotes

@@ -49,6 +49,7 @@
 (depends-on "helm-projectile")
 (depends-on "helm-rubygems-org")
 (depends-on "helm-swoop")
+(depends-on "helm-tramp")
 (depends-on "helm-xref")
 (depends-on "howm")
 (depends-on "inf-ruby")

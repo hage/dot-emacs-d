@@ -2574,6 +2574,17 @@ guessing a default from current buffer file name or default directory. "
     (direx-project:find-project-root-noselect dir))
 
   (with-eval-after-load 'direx
+
+    (define-key direx:direx-mode-map "j" #'direx:next-item)
+    (define-key direx:direx-mode-map "k" #'direx:previous-item)
+    (define-key direx:direx-mode-map "h" #'direx:collapse-item)
+    (define-key direx:direx-mode-map "l" #'direx:expand-item)
+    (define-key direx:direx-mode-map (kbd "C-l") #'direx:expand-item-recursively)
+    (define-key direx:direx-mode-map "n" #'direx:next-sibling-item)
+    (define-key direx:direx-mode-map "p" #'direx:previous-sibling-item)
+    (define-key direx:direx-mode-map "u" #'direx:up-item)
+    (define-key direx:direx-mode-map "d" #'direx:down-item)
+
     (defun my-direx-fullpath-at-current-point ()
       "returns a fullpath of current point in direx-mode."
       (direx:file-full-name (direx:item-tree (direx:item-at-point))))

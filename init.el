@@ -2443,6 +2443,8 @@ Otherwise sends the current line."
 ;;;
 ;;; string-inflection
 ;;;
+(defvar my-key-of-string-inflection-cycle (kbd "M-u")
+  "Key binding for change case like fooBar => FooBar => FOO_BAR => fooBar")
 (if (fboundp #'string-inflection-all-cycle)
     (progn
       (defun my-string-inflection-cycle-auto ()
@@ -2458,7 +2460,7 @@ Otherwise sends the current line."
          (t
           ;; default
           (string-inflection-ruby-style-cycle))))
-      (global-set-key (kbd "M-u") #'my-string-inflection-cycle-auto))
+      (global-set-key my-key-of-string-inflection-cycle #'my-string-inflection-cycle-auto))
 
   ;; string-inflection がないときは代用の関数を使う
   (progn
@@ -2478,7 +2480,7 @@ Otherwise sends the current line."
             (t
              (downcase-word (- cnt))
              (setq changecase-word-type 0))))
-    (global-set-key "\M-u" #'changecase-word)))
+    (global-set-key my-key-of-string-inflection-cycle #'changecase-word)))
 
 
 ;;;

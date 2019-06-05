@@ -1706,6 +1706,28 @@ Otherwise sends the whole buffer."
 ;;;
 (when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
   (with-eval-after-load 'php-mode
+
+    (when (require 'string-inflection nil t)
+      (defun my-string-inflection-php-style-cycle-function (str)
+        "fooBar => FooBar => FOO_BAR => Foo_Bar => fooBar"
+        (cond
+         ((string-inflection-camelcase-p str)
+          (string-inflection-pascal-case-function str))
+         ((string-inflection-pascal-case-p str)
+          (string-inflection-upcase-function str))
+         ((string-inflection-upcase-p str)
+          (string-inflection-capital-underscore-function str))
+         ((string-inflection-capital-underscore-p str)
+          (string-inflection-camelcase-function str))
+         (t
+          (string-inflection-camelcase-function str))))
+      (defun my-string-inflection-php-style-cycle ()
+        "fooBar => FooBar => FOO_BAR => Foo_Bar => fooBar"
+        (interactive)
+        (string-inflection-insert
+         (my-string-inflection-php-style-cycle-function (string-inflection-get-current-word))))
+      (define-key php-mode-map my-key-of-string-inflection-cycle #'my-string-inflection-php-style-cycle))
+
     (define-key php-mode-map (kbd "M-C-k") #'sp-kill-hybrid-sexp)
 
     (defun my-php-object-arrow ()

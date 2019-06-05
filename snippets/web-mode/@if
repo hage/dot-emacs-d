@@ -1,0 +1,6 @@
+# key: @if
+# name: @if
+# --
+@if($0)
+
+@endif

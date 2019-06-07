@@ -837,8 +837,6 @@ Otherwise indent whole buffer."
   (custom-set-variables '(helm-always-two-windows nil)
                         '(helm-display-buffer-default-height 23))
 
-  (semantic-mode 1)
-
   ;; autoload helm after startup
   (run-with-idle-timer 2 nil (lambda ()
                                (require 'helm)

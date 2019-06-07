@@ -1704,9 +1704,8 @@ Otherwise sends the whole buffer."
 ;;;
 ;;; php-mode
 ;;;
-(when (autoload-if-found 'php-mode "php-mode" "Major mode for PHP files" t)
+(when (package-installed-p 'php-mode)
   (with-eval-after-load 'php-mode
-
     (when (require 'string-inflection nil t)
       (defun my-string-inflection-php-style-cycle-function (str)
         "fooBar => FooBar => FOO_BAR => Foo_Bar => fooBar"

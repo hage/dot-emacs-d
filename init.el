@@ -1703,6 +1703,8 @@ Otherwise sends the whole buffer."
 ;;; php-mode
 ;;;
 (when (package-installed-p 'php-mode)
+  (setq php-mode-lineup-cascaded-calls t)
+
   (with-eval-after-load 'php-mode
     (when (require 'string-inflection nil t)
       (defun my-string-inflection-php-style-cycle-function (str)

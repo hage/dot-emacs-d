@@ -1,0 +1,5 @@
+# key: @section
+# name: @section
+# --
+@section('${0:content}')
+@stop

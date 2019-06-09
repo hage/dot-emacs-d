@@ -556,6 +556,13 @@ Otherwise indent whole buffer."
           (insert ";"))
       (newline-and-indent))))
 
+(defun my-open-newline ()
+  "行末に移動して改行する"
+  (interactive)
+  (move-end-of-line 1)
+  (newline-and-indent))
+(global-set-key (kbd "C-j") #'my-open-newline)
+
 ;; Finder でカレントディレクトリを開く // M-g o にキーバインド
 (defun my-open-current-directory-with-finder ()
   "Open current directory with Finder (macOS)."
@@ -1881,7 +1888,7 @@ Otherwise sends the whole buffer."
       (interactive)
       (insert "<br>")
       (newline-and-indent))
-    (define-key web-mode-map (kbd "M-j") 'my-web-mode-insert-br-and-new-line)
+    (define-key web-mode-map (kbd "M-J") 'my-web-mode-insert-br-and-new-line)
 
     (defun my-web-mode-insert-embed-code ()
       (interactive)

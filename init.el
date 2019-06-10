@@ -2724,46 +2724,45 @@ guessing a default from current buffer file name or default directory. "
                         'vertical-border
                         (make-glyph-code ? ))
 
-(eval-after-load 'em-prompt
-  #'(progn
-      (set-face-foreground 'eshell-prompt "green")))
-(eval-after-load 'em-ls
-  #'(progn
-      (set-face-foreground 'eshell-ls-directory "dodgerblue")))
-(eval-after-load 'popup
-  #'(progn
-      (set-face-background 'popup-scroll-bar-foreground-face "gray40")))
-(eval-after-load 'smerge-mode
-  #'(progn
-      (set-face-foreground 'smerge-markers "#fff")
-      (set-face-foreground 'smerge-base "#000")
-      (set-face-foreground 'smerge-mine nil)
-      (set-face-background 'smerge-mine "#100")
-      (set-face-foreground 'smerge-other nil)
-      (set-face-background 'smerge-other "#001")
-      (set-face-foreground 'smerge-markers "#000")
-      (set-face-foreground 'smerge-refined-added "#000")
-      (set-face-foreground 'smerge-refined-removed "#000")))
-(eval-after-load 'ediff-init
-  #'(progn
-      (set-face-background 'ediff-odd-diff-A "gray10")
-      (set-face-background 'ediff-odd-diff-B "gray10")
-      (set-face-background 'ediff-odd-diff-C "gray10")
-      (set-face-underline  'ediff-odd-diff-A t)
-      (set-face-underline  'ediff-odd-diff-B t)
-      (set-face-underline  'ediff-odd-diff-C t)
+(with-eval-after-load 'em-prompt
+  (set-face-foreground 'eshell-prompt "green"))
 
-      (set-face-foreground 'ediff-fine-diff-A "#000")
-      (set-face-foreground 'ediff-fine-diff-B "#000")
-      (set-face-foreground 'ediff-fine-diff-C "#000")
-      (set-face-foreground 'ediff-fine-diff-Ancestor "#000")
-      (set-face-foreground 'ediff-current-diff-A "#000")
-      (set-face-foreground 'ediff-current-diff-B "#000")
-      (set-face-foreground 'ediff-current-diff-C "#000")
-      (set-face-foreground 'ediff-current-diff-Ancestor "#000")))
-(eval-after-load 'package
-  #'(progn
-      (set-face-foreground 'package-name "aquamarine")))
+(with-eval-after-load 'em-ls
+  (set-face-foreground 'eshell-ls-directory "dodgerblue"))
+
+(with-eval-after-load 'popup
+  (set-face-background 'popup-scroll-bar-foreground-face "gray40"))
+
+(with-eval-after-load 'smerge-mode
+  (set-face-foreground 'smerge-markers "#fff")
+  (set-face-foreground 'smerge-base "#000")
+  (set-face-foreground 'smerge-mine nil)
+  (set-face-background 'smerge-mine "#100")
+  (set-face-foreground 'smerge-other nil)
+  (set-face-background 'smerge-other "#001")
+  (set-face-foreground 'smerge-markers "#000")
+  (set-face-foreground 'smerge-refined-added "#000")
+  (set-face-foreground 'smerge-refined-removed "#000"))
+
+(with-eval-after-load 'ediff-init
+  (set-face-background 'ediff-odd-diff-A "gray10")
+  (set-face-background 'ediff-odd-diff-B "gray10")
+  (set-face-background 'ediff-odd-diff-C "gray10")
+  (set-face-underline  'ediff-odd-diff-A t)
+  (set-face-underline  'ediff-odd-diff-B t)
+  (set-face-underline  'ediff-odd-diff-C t)
+
+  (set-face-foreground 'ediff-fine-diff-A "#000")
+  (set-face-foreground 'ediff-fine-diff-B "#000")
+  (set-face-foreground 'ediff-fine-diff-C "#000")
+  (set-face-foreground 'ediff-fine-diff-Ancestor "#000")
+  (set-face-foreground 'ediff-current-diff-A "#000")
+  (set-face-foreground 'ediff-current-diff-B "#000")
+  (set-face-foreground 'ediff-current-diff-C "#000")
+  (set-face-foreground 'ediff-current-diff-Ancestor "#000"))
+
+(with-eval-after-load 'package
+  (set-face-foreground 'package-name "aquamarine"))
 
 (find-file "~/.emacs.d/init.el")
 

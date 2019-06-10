@@ -2692,6 +2692,8 @@ guessing a default from current buffer file name or default directory. "
 ;;; faces
 ;;;
 (setq frame-background-mode 'dark)
+(set-face-foreground 'default "#d8d8d8")
+(set-face-background 'default "#000")
 (set-face-foreground 'mode-line "chartreuse1")
 (set-face-background 'mode-line "#607360")
 (set-face-underline 'mode-line nil)

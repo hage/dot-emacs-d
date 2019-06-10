@@ -1735,6 +1735,8 @@ Otherwise sends the whole buffer."
       (define-key php-mode-map my-key-of-string-inflection-cycle #'my-string-inflection-php-style-cycle))
 
     (define-key php-mode-map (kbd "M-C-k") #'sp-kill-hybrid-sexp)
+    (define-key php-mode-map (kbd "M-A") #'php-beginning-of-defun)
+    (define-key php-mode-map (kbd "M-E") #'php-end-of-defun)
 
     (defun my-php-object-arrow ()
       (interactive)

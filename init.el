@@ -1080,6 +1080,8 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
              ("*helm list packages*" :position bottom :height .95)
              ("\\*helm " :regexp t :position bottom)
 
+             ("\\*docker.*" :regexp t :position bottom :height 10)
+
              ("\\*eshell\\*" :regexp t :position bottom :height .35 :stick t)
              (direx:direx-mode :position right :width 35 :dedicated t)
              (help-mode :position right :width 82 :dedicated t)
@@ -2564,6 +2566,13 @@ Otherwise sends the current line."
 ;;;
 ;;; Docker
 ;;;
+(when (fboundp 'docker)
+  (global-set-key (kbd "C-q d") #'docker))
+
+(when (fboundp 'docker-compose)
+  (global-set-key (kbd "C-q c") #'docker-compose))
+
+
 (when (fboundp 'docker-compose-mode)
   (add-to-list 'auto-mode-alist '("docker-compose\\.yml\\'" . docker-compose-mode)))
 

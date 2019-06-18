@@ -1805,6 +1805,11 @@ Otherwise sends the whole buffer."
   (add-to-list 'auto-mode-alist '("\\.html\\.[^.]+$" . web-mode))
 
   (with-eval-after-load "web-mode"
+
+    ;; blade の編集で '{{[space]' とタイプすると smartparens との兼ね合いで '{{ | }}}}' になってしまうのでそれを防ぐ
+    (mapc (lambda (x) (setcdr x (replace-regexp-in-string "}+" "" (cdr x))))
+          (cdr (assoc "blade" web-mode-engines-auto-pairs)))
+
     (defun on-hook-for-web-mode ()
       "Hooks for Web mode."
       ;; ターミナルではタグを自動的に閉じる機能が働かないようになっているので強制的に有効にする

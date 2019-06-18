@@ -1,0 +1,6 @@
+# key: @fo
+# name: @foreach
+# --
+@foreach($${1:list} as $${2:item})
+                   $0
+@endforeach

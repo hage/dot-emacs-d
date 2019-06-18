@@ -348,6 +348,7 @@ universal argument が与えられていたら必ずリフレッシュする"
 (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)
 (setq force-load-messages t)
 (setq tags-add-tables nil)
+(setq compilation-ask-about-save nil)   ; save-some-buffers の時にセーブするかと尋ねない
 
 ;; hl-line-modeを有効に
 (when (and

@@ -1831,8 +1831,13 @@ Otherwise sends the whole buffer."
       (when (require 'sgml-mode nil t) (sgml-electric-tag-pair-mode 1)))
 
     (add-hook 'web-mode-hook #'on-hook-for-web-mode)
+
     (set-face-foreground 'web-mode-html-tag-bracket-face "lemonchiffon4")
     (set-face-foreground 'web-mode-html-tag-face "olivedrab3")
+
+    (set-face-bold 'web-mode-current-element-highlight-face t)
+    (set-face-foreground 'web-mode-current-element-highlight-face "ffffaa")
+    (set-face-underline 'web-mode-current-element-highlight-face t)
 
     ;; web-mode 標準のタグ用キーバインド C-c C-t X は tmux の prefix key である C-t と
     ;; バッティングするため C-c t X に換える

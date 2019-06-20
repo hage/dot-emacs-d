@@ -2250,6 +2250,12 @@ Otherwise sends the current line."
 ;;; elscreen
 ;;;
 (when (require 'elscreen nil t)
+
+  (when (require 'elscreen-buffer-group nil t)
+    (setq elscreen-buffer-group-exclusive nil) ; t で buffer は一つのスクリーンにのみ存在できる
+    )
+
+
   (global-unset-key (kbd "M-t"))
   (custom-set-variables'(elscreen-prefix-key (kbd "M-t"))
                        '(elscreen-tab-display-kill-screen nil) ; タブの先頭に[X]を表示しない
@@ -2265,9 +2271,6 @@ Otherwise sends the current line."
   (set-face-bold 'elscreen-tab-current-screen-face t)
 
   (elscreen-start)
-
-  (when (require 'elscreen-separate-buffer-list nil t)
-    (elscreen-separate-buffer-list-mode))
   )
 
 

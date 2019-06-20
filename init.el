@@ -2265,9 +2265,6 @@ Otherwise sends the current line."
   (set-face-bold 'elscreen-tab-current-screen-face t)
 
   (elscreen-start)
-
-  (when (require 'elscreen-separate-buffer-list nil t)
-    (elscreen-separate-buffer-list-mode))
   )
 
 

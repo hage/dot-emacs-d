@@ -42,12 +42,6 @@
 (load custom-file)
 
 
-;; パッケージでインストールしたとき .elc がなんか変なエラーを出すようになるのでそれを消す
-(let ((file ".cask/25.3/elpa/php-eldoc-20140202.1141/php-eldoc.elc"))
-  (when (file-exists-p file)
-    (delete-file file)))
-
-
 ;; 文字コード
 (set-language-environment 'japanese)
 (prefer-coding-system 'utf-8)

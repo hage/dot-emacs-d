@@ -20,20 +20,20 @@
 (defvar my-saved-tmux-window-name nil)
 (let ((case-fold-search nil)            ; case-sensitive
       (tmux-title-of-emacs "Emacs"))
-    (when (and (getenv "TMUX")
-               (not noninteractive)
-               (not (string-match-p
-                     (concat  "^[0-9]+: " tmux-title-of-emacs)
-                     (shell-command-to-string "tmux lsw"))))
-      (setq my-saved-tmux-window-name
-            (let ((line (shell-command-to-string "tmux lsw|grep '(active)'")))
-              (string-match "[0-9]+: \\(.*\\)\\*" line)
-              (match-string 1 line)))
-      (shell-command (format "tmux rename-window '%s'" tmux-title-of-emacs))
-      (add-hook 'kill-emacs-hook
-                (lambda ()
-                  (when my-saved-tmux-window-name
-                    (shell-command (format "tmux rename-window '%s'" my-saved-tmux-window-name)))))))
+  (when (and (getenv "TMUX")
+             (not noninteractive)
+             (not (string-match-p
+                   (concat  "^[0-9]+: " tmux-title-of-emacs)
+                   (shell-command-to-string "tmux lsw"))))
+    (setq my-saved-tmux-window-name
+          (let ((line (shell-command-to-string "tmux lsw|grep '(active)'")))
+            (string-match "[0-9]+: \\(.*\\)\\*" line)
+            (match-string 1 line)))
+    (shell-command (format "tmux rename-window '%s'" tmux-title-of-emacs))
+    (add-hook 'kill-emacs-hook
+              (lambda ()
+                (when my-saved-tmux-window-name
+                  (shell-command (format "tmux rename-window '%s'" my-saved-tmux-window-name)))))))
 
 
 ;; 非常に重要な設定

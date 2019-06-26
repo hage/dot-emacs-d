@@ -14,10 +14,10 @@
 ;; (initchart-record-execution-time-of require feature)
 ;;;;;;;;;;;;;;;;
 
+
 ;;; tmux 内にいる && Emacs がインタラクティブに起動 && "Emacs" が window-name にないとき
 ;;; window-name を設定する。
-;;; また、Emacs 終了時に window-name を起動時のものに戻す。
-(defvar my-saved-tmux-window-name nil)
+;;; また、Emacs 終了時に automatic-rename を有効にする
 (let ((case-fold-search nil)            ; case-sensitive
       (tmux-title-of-emacs "Emacs"))
   (when (and (getenv "TMUX")
@@ -25,15 +25,10 @@
              (not (string-match-p
                    (concat  "^[0-9]+: " tmux-title-of-emacs)
                    (shell-command-to-string "tmux lsw"))))
-    (setq my-saved-tmux-window-name
-          (let ((line (shell-command-to-string "tmux lsw|grep '(active)'")))
-            (string-match "[0-9]+: \\(.*\\)\\*" line)
-            (match-string 1 line)))
     (shell-command (format "tmux rename-window '%s'" tmux-title-of-emacs))
     (add-hook 'kill-emacs-hook
               (lambda ()
-                (when my-saved-tmux-window-name
-                  (shell-command (format "tmux rename-window '%s'" my-saved-tmux-window-name)))))))
+                (shell-command "tmux set-window-option automatic-rename on")))))
 
 
 ;; 非常に重要な設定

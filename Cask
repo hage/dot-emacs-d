@@ -2,6 +2,7 @@
 (source melpa)
 
 (depends-on "ace-jump-mode")
+(depends-on "ace-mc")
 (depends-on "ace-window")
 (depends-on "ag")
 (depends-on "alchemist")

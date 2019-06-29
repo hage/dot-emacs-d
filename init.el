@@ -2449,6 +2449,7 @@ Otherwise sends the current line."
       (set-face-background 'aw-leading-char-face "#fffffff")
       (set-face-bold 'aw-leading-char-face t))))
 
+(when (global-set-key-if-bound (kbd "C-w SPC") 'ace-mc-add-multiple-cursors))
 
 ;;;
 ;;; flycheck

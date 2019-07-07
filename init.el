@@ -1497,7 +1497,12 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 (when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+
   (with-eval-after-load 'ruby-mode
+    (defun on-hook-ruby-mode ()
+      (lsp))
+    (add-hook 'ruby-mode-hook #'on-hook-ruby-mode)
+
     (modify-syntax-entry ?@ "w" ruby-mode-syntax-table)
     (defun ruby-interpreter ()
       (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))

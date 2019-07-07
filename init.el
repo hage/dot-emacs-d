@@ -1497,63 +1497,62 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 (when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
-  (eval-after-load "ruby-mode"
-    #'(progn
-        (modify-syntax-entry ?@ "w" ruby-mode-syntax-table)
-        (defun ruby-interpreter ()
-          (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))
-            (if (file-exists-p shims-ruby)
-                shims-ruby
-              (string-strip (shell-command-to-string "which ruby")))))
-        (defun ruby-mode-insert-braces ()
-          (interactive)
-          (if (inside-string-p)
-              (progn
-                (insert "#{}")
-                (backward-char))
-            (progn
-              (insert "{|| }")
-              (backward-char 3))))
-        (defun eww-open-ruby-reference ()
-          (interactive)
-          (let ((ruby-version
-                 (replace-regexp-in-string "ruby \\([0-9]+\\.[0-9]+\\.\\).*\n" "\\1"
-                                           (shell-command-to-string
-                                            (concat (ruby-interpreter) " --version")))))
-            (eww (concat
-                  "http://docs.ruby-lang.org/ja/"
-                  ruby-version
-                  (cond ((eq ruby-version "1.8") "7")
-                        ((eq ruby-version "1.9") "3")
-                        (t "0"))
-                  "/doc/"))
-            )
-          )
-        (define-key ruby-mode-map (kbd "C-q m") 'eww-open-ruby-reference)
-        (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
-        (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
-        (define-key ruby-mode-map (kbd "C-c C-i") 'run-ruby)
-        (define-key ruby-mode-map (kbd "C-c C-v") 'ruby-send-buffer)
-	(setq ruby-indent-level 2)
-	(setq ruby-indent-tabs-mode nil)
-        (when (functionp 'ruby-test-mode)
-          (add-hook 'ruby-mode-hook 'ruby-test-mode))
-        (eval-after-load "ruby-test-mode"
-          #'(progn
-              (define-key ruby-mode-map (kbd "C-c C-_") 'ruby-test-run)
-              (define-key ruby-mode-map (kbd "C-c C-/") 'ruby-test-run-at-point)))
-	(when (require 'rinari nil t)
-	  (global-rinari-mode t))
+  (with-eval-after-load 'ruby-mode
+    (modify-syntax-entry ?@ "w" ruby-mode-syntax-table)
+    (defun ruby-interpreter ()
+      (let ((shims-ruby (concat (getenv "HOME") "/.rbenv/shims/ruby")))
+        (if (file-exists-p shims-ruby)
+            shims-ruby
+          (string-strip (shell-command-to-string "which ruby")))))
+    (defun ruby-mode-insert-braces ()
+      (interactive)
+      (if (inside-string-p)
+          (progn
+            (insert "#{}")
+            (backward-char))
+        (progn
+          (insert "{|| }")
+          (backward-char 3))))
+    (defun eww-open-ruby-reference ()
+      (interactive)
+      (let ((ruby-version
+             (replace-regexp-in-string "ruby \\([0-9]+\\.[0-9]+\\.\\).*\n" "\\1"
+                                       (shell-command-to-string
+                                        (concat (ruby-interpreter) " --version")))))
+        (eww (concat
+              "http://docs.ruby-lang.org/ja/"
+              ruby-version
+              (cond ((eq ruby-version "1.8") "7")
+                    ((eq ruby-version "1.9") "3")
+                    (t "0"))
+              "/doc/"))
+        )
+      )
+    (define-key ruby-mode-map (kbd "C-q m") 'eww-open-ruby-reference)
+    (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
+    (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)
+    (define-key ruby-mode-map (kbd "C-c C-i") 'run-ruby)
+    (define-key ruby-mode-map (kbd "C-c C-v") 'ruby-send-buffer)
+    (setq ruby-indent-level 2)
+    (setq ruby-indent-tabs-mode nil)
+    (when (functionp 'ruby-test-mode)
+      (add-hook 'ruby-mode-hook 'ruby-test-mode))
+    (eval-after-load "ruby-test-mode"
+      #'(progn
+          (define-key ruby-mode-map (kbd "C-c C-_") 'ruby-test-run)
+          (define-key ruby-mode-map (kbd "C-c C-/") 'ruby-test-run-at-point)))
+    (when (require 'rinari nil t)
+      (global-rinari-mode t))
 
-        (when (package-installed-p 'ruby-tools)
-          (add-hook-if-bound 'ruby-mode-hook #'ruby-tools-mode)
-          (with-eval-after-load "ruby-tools"
-            (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
-            (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
-            (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
-            (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
-            (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate)))
-	))
+    (when (package-installed-p 'ruby-tools)
+      (add-hook-if-bound 'ruby-mode-hook #'ruby-tools-mode)
+      (with-eval-after-load "ruby-tools"
+        (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
+        (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
+        (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
+        (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
+        (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate)))
+    )
 
   ;; rbenv
   (when (and (package-installed-p 'ruby-mode)

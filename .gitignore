@@ -22,3 +22,4 @@ custom.el
 /transient/
 /.lsp-session-v1
 *.cache
+/image-dired/

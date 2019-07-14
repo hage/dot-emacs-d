@@ -8,3 +8,9 @@ elixir-server:
 
 php-server:
 	cd php-ls && make
+
+# for ruby
+#   gem install solargraph
+
+# for javascript
+#   npm i -g javascript-typescript-langserver

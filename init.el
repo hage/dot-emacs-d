@@ -1540,6 +1540,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (define-key ruby-mode-map (kbd "C-c C-v") 'ruby-send-buffer)
     (setq ruby-indent-level 2)
     (setq ruby-indent-tabs-mode nil)
+    (setq ruby-insert-encoding-magic-comment nil)
     (when (functionp 'ruby-test-mode)
       (add-hook 'ruby-mode-hook 'ruby-test-mode))
     (eval-after-load "ruby-test-mode"

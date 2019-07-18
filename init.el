@@ -1082,7 +1082,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
              ("\\*Faces\\*" :regexp t :stick t)
              ("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4)
              ("*Backtrace*")
-             ("*compilation*" :height .3 :position bottom :stick t)
+             ("*compilation*" :height .3 :position bottom :stick nil)
              ("*Diff*")
              ("*xref*")
              ("*Messages*" :position bottom :dedicated t :height .3)

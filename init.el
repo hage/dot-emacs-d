@@ -1360,6 +1360,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 
     (setq git-gutter:disabled-modes '(magit-mode))
     (setq git-gutter:always-show-separator t)
+    (setq git-gutter:update-interval 3)
 
     (with-eval-after-load 'magit
       (add-hook 'git-commit-post-finish-hook #'git-gutter:update-all-windows))

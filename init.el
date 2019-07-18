@@ -791,6 +791,10 @@ Otherwise indent whole buffer."
 ;;; lsp-mode
 ;;;
 (with-eval-after-load 'lsp-mode
+  ;; do not use flymake on lsp-mode
+  (setq lsp-prefer-flymake nil)
+  (add-hook lsp-mode-hook #'flymake-mode-off)
+
   (require 'yasnippet nil t)
   (with-eval-after-load 'lsp-ui
     (set-face-background 'lsp-ui-sideline-global "#134")))

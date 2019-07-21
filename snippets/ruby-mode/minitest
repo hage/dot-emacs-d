@@ -2,23 +2,25 @@
 # name: minitest
 # key: minitest
 # --
+# frozen_string_literal: true
 # coding: utf-8
+
 require 'rubygems'
 require 'minitest/autorun'
+# require File.join(__dir__, '../some_file.rb')
 
 # [documents](https://www.rubydoc.info/gems/minitest)
 
 class $0Test < MiniTest::Test
   def setup
-    @foo = Foo.new
+    # nothing to do
   end
 
-  # teardown はあまり使わない
   def teardown
-    @foo = nil
+    # nothing to do
   end
 
   def test_foo
-    assert_equal "foo", @foo.foo
+    assert_equal "foo", "foo"
   end
 end

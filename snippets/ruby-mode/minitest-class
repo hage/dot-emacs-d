@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: minitest class
+# key: minitestclass
+# --
+class $0Test < MiniTest::Test
+  def setup
+    # nothing to do
+  end
+
+  def teardown
+    # nothing to do
+  end
+
+  def test_foo
+    assert_equal "foo", "foo"
+  end
+end

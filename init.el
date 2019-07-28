@@ -2377,6 +2377,9 @@ Otherwise sends the current line."
   (define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
   (define-key smartparens-mode-map (kbd "M-R") 'sp-raise-sexp)
   (define-key smartparens-mode-map (kbd "M-C") 'sp-clone-sexp)
+  (define-key smartparens-mode-map (kbd "C-M-p") 'sp-beginning-of-previous-sexp)
+  (define-key smartparens-mode-map (kbd "C-M-n") 'sp-beginning-of-next-sexp)
+
 
   (mapc (lambda (mode) (define-key mode (kbd "C-k") 'sp-kill-hybrid-sexp))
         (list lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))

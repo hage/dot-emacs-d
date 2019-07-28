@@ -14,6 +14,7 @@
 (depends-on "cask")
 (depends-on "company")
 (depends-on "company-lsp")
+(depends-on "company-prescient")
 (depends-on "csv-mode")
 (depends-on "dash")
 (depends-on "dimmer")

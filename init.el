@@ -1097,6 +1097,10 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 ;;;     https://qiita.com/syohex/items/8d21d7422f14e9b53b17
 ;;;
 (when (require 'company nil t)
+
+  (when (require 'company-prescient nil t)
+    (company-prescient-mode))
+
   (setq company-idle-delay .2
         company-minimum-prefix-length 3
         company-selection-wrap-around t

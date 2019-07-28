@@ -411,7 +411,6 @@ universal argument が与えられていたら必ずリフレッシュする"
 (global-set-key "\M-/" 'xref-find-definitions-other-window)
 (global-set-key (kbd "M-?") 'find-tag)
 (global-set-key "\C-xj" 'goto-line)
-(global-set-key "\C-j" 'newline-and-indent)
 (global-set-key (kbd "C-q a") 'align)
 (global-set-key (kbd "C-w C-SPC") 'mark-sexp)
 (global-set-key (kbd "C-q DEL") 'just-one-space)
@@ -546,12 +545,6 @@ Otherwise indent whole buffer."
           (insert ";"))
       (newline-and-indent))))
 
-(defun my-open-newline ()
-  "行末に移動して改行する"
-  (interactive)
-  (move-end-of-line 1)
-  (newline-and-indent))
-(global-set-key (kbd "C-j") #'my-open-newline)
 
 ;; Finder でカレントディレクトリを開く // M-g o にキーバインド
 (defun my-open-current-directory-with-finder ()

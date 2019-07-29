@@ -470,7 +470,7 @@ universal argument が与えられていたら必ずリフレッシュする"
   (save-excursion
     (indent-region (point-min) (point-max))))
 
-(defun my-electric-indent ()
+(defun my-indent-dwim ()
   "Indent specified region.
 When resion is active, indent region.
 Otherwise indent whole buffer."
@@ -478,8 +478,7 @@ Otherwise indent whole buffer."
   (if (use-region-p)
       (indent-region (region-beginning) (region-end))
     (my-indent-whole-buffer)))
-
-(global-set-key (kbd "C-M-\\") 'my-electric-indent)
+(global-set-key (kbd "C-M-\\") 'my-indent-dwim)
 
 ;; バッファのファイル名をリネーム
 ;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file

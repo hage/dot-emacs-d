@@ -1574,6 +1574,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
         )
       )
 
+    (autoload-if-found #'rake--root "rake")
     (defun my-ruby-invoke-test ()
       (interactive)
       (if (ignore-errors (rake--root) t)

@@ -58,6 +58,7 @@
 (depends-on "js2-mode")
 (depends-on "json-mode")
 (depends-on "keycast")
+(depends-on "lsp-mode")
 (depends-on "lsp-php")
 (depends-on "lsp-ui")
 (depends-on "magit")

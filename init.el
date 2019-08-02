@@ -1099,6 +1099,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 
              ("*pry*" :height .3 :width .5 :stick t)
              ("*rake*")
+             ("*rake-compilation*" :position bottom :height .3 :tail t :noselect t)
              ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
              ("*helm list packages*" :position bottom :height .95)

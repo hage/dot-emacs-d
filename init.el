@@ -530,6 +530,44 @@ Otherwise indent whole buffer."
                   (local-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)))))
 
 
+
+;;;
+;;; search-file-from-upstream-directory
+;;;
+(defun up-dir (path)
+  "PATH の最後の / 以降を削除した文字列を返す"
+  (replace-regexp-in-string "[^/]*/?\\'" "" path))
+
+(defun* search-file-from-upstream-directory (filename &optional (stop-dir "/") (target-dir default-directory))
+  "returns path of FILENAME from upstream of current directory.
+if not found returns nil."
+  (let* ((stopdir (concat (directory-file-name stop-dir) "/"))
+         (targdir (concat (directory-file-name target-dir) "/"))
+         (filepath (concat targdir filename)))
+    (if (eq stopdir "/")
+        nil
+      (if (file-exists-p filepath)
+          filepath
+        (if (equal targdir stopdir)
+            nil
+          (search-file-from-upstream-directory filename stopdir (up-dir targdir)))))))
+
+;;;
+;;; my-invoke-upstream-make
+;;;
+(defun* my-invoke-upstream-make (make-target &optional (makefile "Makefile"))
+  "カレントディレクトリからディレクトリを遡って最初に見つけた MAKEFILE の
+MAKE-TARGET ターゲットを起動する"
+  (let ((working-directory (up-dir (search-file-from-upstream-directory makefile)))
+        (old-working-directory default-directory))
+    (if (eq working-directory nil)
+        (error "Cannot find Makefile")
+      (progn
+        (print working-directory)
+        (cd working-directory)
+        (compile (format "make -f %s %s" makefile make-target))
+        (cd old-working-directory)))))
+
 ;; 行末に移動して
 ;;   セミコロンだったら → そのまま改行
 ;;   コメントだったら → indent-new-comment-line

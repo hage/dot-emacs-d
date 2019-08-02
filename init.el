@@ -1572,6 +1572,14 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
               "/doc/"))
         )
       )
+
+    (defun my-ruby-invoke-test ()
+      (interactive)
+      (if (ignore-errors (rake--root) t)
+          (rake-compile "test")
+        (my-invoke-upstream-make "test")))
+    (define-key ruby-mode-map (kbd "C-q t") #'my-ruby-invoke-test)
+
     (define-key ruby-mode-map (kbd "C-q m") 'eww-open-ruby-reference)
     (define-key ruby-mode-map (kbd "M-\"") 'ruby-mode-insert-braces)
     (define-key ruby-mode-map (kbd "C-M-q") 'ruby-indent-exp)

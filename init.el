@@ -1093,13 +1093,13 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (setq popwin:special-display-config
           (append
            '(("*alchemist mix*" :position bottom :dedicated t :height .3)
-             ("*Alchemist-IEx*" :height .40 :position bottom :stick t)
+             ("*Alchemist-IEx*" :width .5 :position left :stick t)
              ("*alchemist help*" :width 82 :position right :stick t)
              ("\\*alchemist .*\\*" :regexp t :position bottom :height .35 :stick t)
 
              ("*pry*" :height .3 :width .5 :stick t)
              ("*rake*")
-             ("*rake-compilation*" :position bottom :height .3 :tail t :noselect t)
+             ("*rake-compilation*" :position bottom :height .3 :tail t)
              ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
              ("*helm list packages*" :position bottom :height .95)
@@ -1113,7 +1113,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
              ("\\*Faces\\*" :regexp t :stick t)
              ("\\*eww.*\\*" :regexp t :stick t :position bottom :height .4 :width .4)
              ("*Backtrace*")
-             ("*compilation*" :height .3 :position bottom :stick nil)
+             ("*compilation*" :height .4 :position bottom :stick nil)
              ("*Diff*")
              ("*xref*")
              ("*Messages*" :position bottom :dedicated t :height .3)

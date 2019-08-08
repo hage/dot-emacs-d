@@ -82,7 +82,6 @@
 (depends-on "rainbow-mode")
 (depends-on "rake")
 (depends-on "rbenv")
-(depends-on "realgud-byebug")
 (depends-on "recentf-ext")
 (depends-on "restclient")
 (depends-on "rinari")

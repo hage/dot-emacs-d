@@ -1578,7 +1578,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (defun my-ruby-invoke-test ()
       (interactive)
       (if (ignore-errors (rake--root) t)
-          (rake-compile "test")
+          (rake-compile "-s test")
         (my-invoke-upstream-make "test")))
     (define-key ruby-mode-map (kbd "C-q t") #'my-ruby-invoke-test)
 

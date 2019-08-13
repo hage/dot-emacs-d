@@ -1095,7 +1095,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
            '(("*alchemist mix*" :position bottom :dedicated t :height .3)
              ("*Alchemist-IEx*" :width .5 :position left :stick t)
              ("*alchemist help*" :width 82 :position right :stick t)
-             ("\\*alchemist .*\\*" :regexp t :position bottom :height .35 :stick t)
+             ("\\*alchemist .*\\*" :regexp t :position bottom :height .4 :stick t)
 
              ("*pry*" :height .3 :width .5 :stick t)
              ("*rake*")

@@ -1,0 +1,4 @@
+# key: dbb
+# name: pinspect
+# --
+|> IO.inspect(label: "$0")

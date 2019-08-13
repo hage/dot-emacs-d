@@ -2294,6 +2294,7 @@ Otherwise sends the current line."
 ;;;
 (when (require 'elscreen nil t)
   (when (require 'elscreen-buffer-group nil t)
+    (setq elscreen-buffer-group-exclusive nil)
     (elscreen-buffer-group-global-mode))
   (global-unset-key (kbd "M-t"))
   (custom-set-variables'(elscreen-prefix-key (kbd "M-t"))

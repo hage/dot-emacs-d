@@ -2091,6 +2091,27 @@ Otherwise sends the whole buffer."
     (newline-and-indent))
   (define-key elixir-mode-map (kbd "M-\"") #'my-elixir-heredocument)
 
+  (defun my-elixir-kill-piped-inspect (point-start point-end)
+    "Kill '|> IO.inspect()' between POINT-START and POINT-END."
+    (goto-char point-start)
+    (let* ((regexp " *|> *IO\\.inspect" )
+           (point-pipe (ignore-errors (search-forward-regexp regexp point-end))))
+      (if point-pipe
+          (progn
+            (replace-match "")
+            (if (equal "(" (buffer-substring-no-properties (point) (1+ (point))))
+                (progn
+                  (mark-sexp)
+                  (delete-region (mark) (point))))
+            point-pipe)
+        nil)))
+  (defun my-elixir-kill-piped-inspect-in-current-line ()
+    (interactive)
+    "kill '|> IO.inspect'"
+    (save-excursion
+      (or (my-elixir-kill-piped-inspect (point) (point-at-eol))
+          (my-elixir-kill-piped-inspect (point-at-bol) (point-at-eol)))))
+
 
   ;; lsp
   ;;   elixir-ls のビルドは cd ~/.emacs.d/lsp-servers && make elixir-server

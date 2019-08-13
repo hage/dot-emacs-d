@@ -1083,9 +1083,9 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 ;;; popwin
 ;;; https://github.com/m2ym/popwin-el
 ;;;
+(setq pop-up-windows t)
 (when (require 'popwin nil t)
   (popwin-mode 1)
-  (setq pop-up-windows t)
   (global-set-key (kbd "C-w C-p") popwin:keymap)
   (setq popwin:popup-window-height .43)
   (progn

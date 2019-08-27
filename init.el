@@ -878,91 +878,86 @@ MAKE-TARGET ターゲットを起動する"
                                  (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
                                ))
 
-  (eval-after-load "helm"
-    #'(progn
-        (helm-mode 1)
-        (helm-migemo-mode 1)
-        (global-set-key-if-bound (kbd "M-s g") 'helm-git-grep)
-        (setq helm-window-prefer-horizontal-split t) ; helm-buffer-switch-other-window で縦分割する
-        (if (require 'helm-ls-git nil t)
-            (progn
-              (set-face-foreground 'helm-ff-file "aquamarine1")
-              (set-face-foreground 'helm-buffer-file "limegreen")
-              (set-face-background 'helm-selection-line "gray20")
-              (set-face-underline 'helm-selection-line nil)
+  (with-eval-after-load "helm"
+    (helm-mode 1)
+    (helm-migemo-mode 1)
+    (global-set-key-if-bound (kbd "M-s g") 'helm-git-grep)
+    (setq helm-window-prefer-horizontal-split t) ; helm-buffer-switch-other-window で縦分割する
+    (if (require 'helm-ls-git nil t)
+        (progn
+          (set-face-foreground 'helm-ff-file "aquamarine1")
+          (set-face-foreground 'helm-buffer-file "limegreen")
+          (set-face-background 'helm-selection-line "gray20")
+          (set-face-underline 'helm-selection-line nil)
 
-              (set-face-foreground 'helm-header "#aaa")
-              (set-face-background 'helm-header "#111")
-              (set-face-underline 'helm-header nil)
-              (set-face-background 'helm-source-header "#000")
+          (set-face-foreground 'helm-header "#aaa")
+          (set-face-background 'helm-header "#111")
+          (set-face-underline 'helm-header nil)
+          (set-face-background 'helm-source-header "#000")
 
-              (set-face-foreground 'helm-ls-git-conflict-face "#f77")
-              (set-face-background 'helm-ls-git-conflict-face "red3")
-              (set-face-foreground 'helm-ls-git-untracked-face "plum1")
+          (set-face-foreground 'helm-ls-git-conflict-face "#f77")
+          (set-face-background 'helm-ls-git-conflict-face "red3")
+          (set-face-foreground 'helm-ls-git-untracked-face "plum1")
 
-              (set-face-foreground 'helm-ff-directory "yellow")
-              (set-face-background 'helm-ff-directory nil)
-              (set-face-underline 'helm-ff-directory t)
+          (set-face-foreground 'helm-ff-directory "yellow")
+          (set-face-background 'helm-ff-directory nil)
+          (set-face-underline 'helm-ff-directory t)
 
-              (set-face-foreground 'helm-ff-dotted-directory "yellow")
-              (set-face-background 'helm-ff-dotted-directory nil)
-              (set-face-underline 'helm-ff-dotted-directory t)
+          (set-face-foreground 'helm-ff-dotted-directory "yellow")
+          (set-face-background 'helm-ff-dotted-directory nil)
+          (set-face-underline 'helm-ff-dotted-directory t)
 
-              (set-face-foreground 'helm-ff-dotted-symlink-directory "#f55")
-              (set-face-background 'helm-ff-dotted-symlink-directory "#225")
+          (set-face-foreground 'helm-ff-dotted-symlink-directory "#f55")
+          (set-face-background 'helm-ff-dotted-symlink-directory "#225")
 
-              (set-face-foreground 'helm-visible-mark "#fff")
-              (set-face-background 'helm-visible-mark "palegreen4")
-              )
-          (setq helm-source-ls-git nil))
+          (set-face-foreground 'helm-visible-mark "#fff")
+          (set-face-background 'helm-visible-mark "palegreen4")
+          )
+      (setq helm-source-ls-git nil))
 
-        (set-face-background 'helm-selection "#407")
-	(set-face-foreground 'helm-selection nil)
-	(set-face-underline 'helm-selection nil)
-        (set-face-bold 'helm-selection t)
+    (set-face-background 'helm-selection "#407")
+    (set-face-foreground 'helm-selection nil)
+    (set-face-underline 'helm-selection nil)
+    (set-face-bold 'helm-selection t)
 
-        (set-face-background 'helm-source-header nil)
-        (set-face-foreground 'helm-source-header "hotpink4")
-	(set-face-underline 'helm-source-header t)
-        (set-face-bold 'helm-source-header t)
+    (set-face-background 'helm-source-header nil)
+    (set-face-foreground 'helm-source-header "hotpink4")
+    (set-face-underline 'helm-source-header t)
+    (set-face-bold 'helm-source-header t)
 
-	(set-face-foreground 'helm-match "hotpink1")
-	(set-face-bold 'helm-match t)
-	(set-face-underline 'helm-match t)
-        (setq helm-locate-command
-              (case system-type
-                ('gnu/linux "locate -i -r %s")
-                ('berkeley-unix "locate -i %s")
-                ('windows-nt "es %s")
-                ('darwin "mdfind -name %s %s")
-                (t "locate %s"))
-              )
-        (setq helm-mini-default-sources `(helm-source-buffers-list
-                                          helm-source-ls-git-status
-                                          helm-source-ls-git
-                                          helm-source-recentf
-                                          ,(if (require 'helm-find nil t)
-                                               helm-source-findutils
-                                             nil)
-                                          helm-source-locate
-                                          ))
+    (set-face-foreground 'helm-match "hotpink1")
+    (set-face-bold 'helm-match t)
+    (set-face-underline 'helm-match t)
+    (setq helm-locate-command
+          (case system-type
+            ('gnu/linux "locate -i -r %s")
+            ('berkeley-unix "locate -i %s")
+            ('windows-nt "es %s")
+            ('darwin "mdfind -name %s %s")
+            (t "locate %s"))
+          )
+    (setq helm-mini-default-sources `(helm-source-buffers-list
+                                      helm-source-ls-git-status
+                                      helm-source-ls-git
+                                      helm-source-recentf
+                                      ,(if (require 'helm-find nil t)
+                                           helm-source-findutils
+                                         nil)
+                                      helm-source-locate
+                                      ))
 
-        (define-key helm-map (kbd "C-M-n") 'helm-next-source)
-        (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-        (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-        (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-        (define-key helm-map (kbd "C-M-i") 'helm-select-action)
+    (define-key helm-map (kbd "C-M-n") 'helm-next-source)
+    (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-M-i") 'helm-select-action)
 
-        (let ((keyb (kbd "C-o")))
-          (define-key helm-buffer-map     keyb 'helm-buffer-switch-other-window)
-          (define-key helm-find-files-map keyb 'helm-ff-run-switch-other-window)
-          (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window))
-
-
-	))
-  (eval-after-load "helm-files"
-    #'(progn
-	(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
+    (let ((keyb (kbd "C-o")))
+      (define-key helm-buffer-map     keyb 'helm-buffer-switch-other-window)
+      (define-key helm-find-files-map keyb 'helm-ff-run-switch-other-window)
+      (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window)))
+  (with-eval-after-load "helm-files"
+    (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action))
 
   ;; mode に関係なく dbbrev する
   (setq helm-dabbrev-related-buffer-fn

@@ -1114,7 +1114,9 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
              ("*Messages*" :position bottom :dedicated t :height .3)
              ("\\*Man .*" :regexp t :position right :stick t :width .5)
              ("*Colors*" :position right :stick t :width .5)
-             ("*info*" :position right :stick t :width 80 :dedicated t))
+             ("*info*" :position right :stick t :width 80 :dedicated t)
+             ("*Buffer List*" :position right :width .5)
+             ("*git-gutter:diff*" :position bottom :noselect t))
            popwin:special-display-config))))
 
 

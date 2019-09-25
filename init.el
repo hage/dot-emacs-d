@@ -1765,6 +1765,9 @@ Otherwise sends the whole buffer."
     (define-key php-mode-map (kbd "M-A") #'php-beginning-of-defun)
     (define-key php-mode-map (kbd "M-E") #'php-end-of-defun)
 
+    (set-face-foreground 'php-keyword "skyblue3")
+    (set-face-foreground 'php-constant "palegoldenrod")
+
     (defun my-php-object-arrow ()
       (interactive)
       (yas-expand-snippet (yas-lookup-snippet "objmember")))

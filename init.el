@@ -504,13 +504,18 @@ Otherwise indent whole buffer."
 
 
 (defun my-open-block-or-newline-and-indent ()
-  "カーソル前と上がぞれぞれ括弧のペアだったときはブロックを開き、
+  "カーソル前と上がぞれぞれ括弧のペアだったとき、
+あるいは web-mode の時でタグの間にカーソルがあった時
+はブロックを開き、
 そうじゃないときは次行に新たな行を開いてインデント"
   (interactive)
   (let ((lch (char-to-string (preceding-char)))
         (rch (char-to-string (following-char))))
-    (if (and (string-match "[[({<]" lch)  ; 手抜きをしてペアが同種の括弧かどうかは判定していない
-             (string-match "[])}>]" rch))
+    (if (or (and (string-match "[[({<]" lch)  ; 手抜きをしてペアが同種の括弧かどうかは判定していない
+                 (string-match "[])}>]" rch))
+            (and (eq major-mode 'web-mode)
+                 (string-match ">" lch)
+                 (string-match "<" rch)))
         (progn
           (newline-and-indent)
           (forward-line -1)

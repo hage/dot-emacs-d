@@ -1790,8 +1790,7 @@ Otherwise sends the whole buffer."
           (add-hook 'php-mode-hook #'lsp))))
 
   (defun my-on-hook-php-mode ()
-    (company-mode t)
-    (setq-local c-basic-offset 2))
+    (company-mode t))
   (add-hook 'php-mode-hook #'my-on-hook-php-mode))
 
 

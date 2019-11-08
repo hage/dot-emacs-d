@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: require1
+# key: re
+# --
+const ${1:instance_name} = require('${0:module_name}');

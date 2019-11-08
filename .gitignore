@@ -23,3 +23,5 @@ custom.el
 /.lsp-session-v1
 *.cache
 /image-dired/
+/eshell/
+/recentf

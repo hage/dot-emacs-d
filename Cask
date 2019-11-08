@@ -89,6 +89,7 @@
 (depends-on "robe")
 (depends-on "rspec-mode")
 (depends-on "ruby-compilation")
+(depends-on "ruby-hash-syntax")
 (depends-on "ruby-test-mode")
 (depends-on "ruby-tools")
 (depends-on "s")

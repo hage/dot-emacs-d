@@ -2,4 +2,4 @@
 # name: main (exec if not required)
 # key: main
 # --
-main(ARGV) if __FILE__ == \$0
+main(ARGV) if $PROGRAM_NAME == __FILE__

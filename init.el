@@ -76,6 +76,21 @@ DOCSTRING INTERACTIVE TYPE は 'autoload' に準じる."
          (autoload func file docstring interactive type))
     file-exist))
 
+;; 作ったものの実は使いみちがなくて未テスト
+(defun define-key-with-autoload (file keymap &rest keybinds)
+  "KEYBINDS にリストされたキーと関数のリストを
+FILE の自動読み込み関数として KEYMAP に登録する.
+
+example: (define-key-with-autoload \"helm\" global-map '(kbd \"C-M-o\" helm-mini))"
+  (if (locate-library file)
+      (progn
+        (mapc (lambda (keybind)
+                (let ((key (car  keybind))
+                      (fun (cadr keybind)))
+                  (autoload fun file)
+                  (define-key keymap key fun)))
+                keybinds))))
+
 (defun add-load-path-recurcive-if-found (my-elisp-directory)
   "MY-ELISP-DIRECTORY 以下を再帰的に 'load-path' に加える."
   (interactive)

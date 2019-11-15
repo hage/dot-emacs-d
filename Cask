@@ -49,6 +49,7 @@
 (depends-on "helm-git-grep")
 (depends-on "helm-ls-git")
 (depends-on "helm-projectile")
+(depends-on "helm-robe")
 (depends-on "helm-rubygems-org")
 (depends-on "helm-swoop")
 (depends-on "helm-tramp")

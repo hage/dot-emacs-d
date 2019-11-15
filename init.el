@@ -1703,7 +1703,11 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
                     (inf-ruby-minor-mode)))
         (eval-after-load 'robe
           #'(progn
-              (define-key ruby-mode-map (kbd "C-c C-a") 'robe-ask)))
+              (define-key ruby-mode-map (kbd "C-c C-a") 'robe-ask)
+              (when (functionp 'helm-robe-completing-read)
+                (custom-set-variables
+                 '(robe-completing-read-func 'helm-robe-completing-read)))
+              ))
         (eval-after-load 'inf-ruby
           #'(progn
               (define-key ruby-mode-map (kbd "C-c C-i") 'inf-ruby-console-auto)

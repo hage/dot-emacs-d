@@ -1183,6 +1183,10 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (setq company-search-filtering t))
   (add-hook 'company-after-completion-hook #'my-hook-for-company-after-completion-hook)
 
+  ;; tabnine
+  (when (fboundp 'company-tabnine)
+    (push 'company-tabnine company-backends))
+
   ;; faces
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")

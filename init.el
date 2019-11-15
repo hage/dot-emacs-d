@@ -233,24 +233,24 @@ universal argument が与えられていたら必ずリフレッシュする"
     (eldoc-mode . "")
     (abbrev-mode . "")
     (helm-mode . "")
-    (undo-tree-mode . " Ut")
-    (flymake-mode . " Fm")
+    (undo-tree-mode . "")
+    (flymake-mode . "")
     (magit-auto-revert-mode . "")       ; MRev
     (smooth-scroll-mode . "")           ; SScr
     (volatile-highlights-mode . "")     ; VHl
-    (emmet-mode . " Emt")
+    (emmet-mode . "")
     (robe-mode . " R")
     (company-mode . "")
     (alchemist-mode . "")
     (alchemist-phoenix-mode . " phx")
-    (ruby-test-mode . " rtest")
+    (ruby-test-mode . "")
     (editorconfig-mode . "")
     (helm-migemo-mode . "")             ; Hmio
     (auto-revert-mode . "")             ; ARev
     (auto-highlight-symbol-mode . "")   ; HS
     (which-key-mode . "")               ; WK
     (smartparens-mode . "")             ; SP
-    (projectile-mode . " P")
+    (projectile-mode . "")
     (git-gutter-mode . "")
     (rainbow-mode . "")
 

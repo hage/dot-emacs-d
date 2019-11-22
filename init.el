@@ -1377,10 +1377,19 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
         (set-face-foreground 'magit-diff-context-highlight "white")
         (set-face-background 'magit-diff-context-highlight my-magit-diff-highlight-common-background)
 
-        (set-face-foreground 'magit-diff-hunk-heading "gray10")
-        (set-face-background 'magit-diff-hunk-heading "gray30")
-        (set-face-foreground 'magit-diff-hunk-heading-highlight "white")
-        (set-face-background 'magit-diff-hunk-heading-highlight "gray45")
+        (set-face-foreground 'magit-diff-file-heading "#000")
+        (set-face-background 'magit-diff-file-heading "#bbf")
+        (set-face-bold 'magit-diff-file-heading t)
+        (set-face-underline 'magit-diff-file-heading nil)
+
+        (set-face-foreground 'magit-diff-hunk-heading "#fff")
+        (set-face-background 'magit-diff-hunk-heading "#000")
+        (set-face-underline 'magit-diff-hunk-heading t)
+        (set-face-bold 'magit-diff-hunk-heading nil)
+
+        (set-face-foreground 'magit-diff-hunk-heading-highlight "#fff")
+        (set-face-background 'magit-diff-hunk-heading-highlight "#222")
+        (set-face-underline  'magit-diff-hunk-heading-highlight t)
         (set-face-bold 'magit-diff-hunk-heading-highlight t)
 
         (set-face-foreground 'magit-branch-local "skyblue")

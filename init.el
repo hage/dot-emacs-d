@@ -1354,7 +1354,8 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
         ;; `(yas-choose-value '("[feat]" "[fix]" "[docs][ci skip] Update" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0
         ;;
         (defun git-commit-prefix-select ()
-          (insert ":"))
+          (if (= 10 (following-char))
+              (insert ":")))
         (add-hook 'git-commit-setup-hook 'git-commit-prefix-select)
 
         (set-face-background 'magit-section-highlight "gray20")

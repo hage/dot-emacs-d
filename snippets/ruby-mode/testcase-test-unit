@@ -1,12 +1,7 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: testunit
-# key: testunit
+# -*- mode: snippet -*-
+# name: testcase -- test-unit
+# key: testcase
 # --
-# coding: utf-8
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-require 'test-unit'
 
 class ${1:TestSample} < Test::Unit::TestCase
   class << self

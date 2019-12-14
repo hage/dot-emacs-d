@@ -66,7 +66,6 @@
 (depends-on "lsp-php")
 (depends-on "lsp-ui")
 (depends-on "magit")
-(depends-on "magit-popup")
 (depends-on "markdown-mode")
 (depends-on "migemo")
 (depends-on "mozc-popup")

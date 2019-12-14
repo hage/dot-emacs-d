@@ -93,7 +93,6 @@
 (depends-on "ruby-compilation")
 (depends-on "ruby-hash-syntax")
 (depends-on "ruby-test-mode")
-(depends-on "ruby-tools")
 (depends-on "s")
 (depends-on "show-css")
 (depends-on "smart-compile")

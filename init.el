@@ -1631,14 +1631,16 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (when (require 'rinari nil t)
       (global-rinari-mode t))
 
-    (when (package-installed-p 'ruby-tools)
-      (add-hook-if-bound 'ruby-mode-hook #'ruby-tools-mode)
-      (with-eval-after-load "ruby-tools"
-        (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
-        (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
-        (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
-        (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
-        (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate)))
+    (let ((ruby-tools-install-dir "~/.emacs.d/develop/ruby-tools"))
+      (when (and (add-to-load-path-if-found ruby-tools-install-dir)
+                 (autoload-if-found #'ruby-tools-mode "ruby-tools"))
+        (add-hook-if-bound 'ruby-mode-hook #'ruby-tools-mode)
+        (with-eval-after-load "ruby-tools"
+          (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
+          (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
+          (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
+          (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
+          (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate))))
     )
 
   ;; rbenv

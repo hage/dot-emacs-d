@@ -853,6 +853,7 @@ MAKE-TARGET ターゲットを起動する"
 ;;;
 ;;; Helm
 ;;;
+(require 'helm-lib)
 (when (require 'helm-config nil t)
   (with-eval-after-load 'popwin
     (setq helm-display-function #'display-buffer))

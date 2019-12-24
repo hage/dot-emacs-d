@@ -1827,7 +1827,10 @@ Otherwise sends the whole buffer."
           (add-hook 'php-mode-hook #'lsp))))
 
   (defun my-on-hook-php-mode ()
-    (company-mode t))
+    (company-mode t)
+    (require 'company-php)
+    (make-local-variable 'company-backends)
+    (add-to-list 'company-backends 'company-ac-php-backend))
   (add-hook 'php-mode-hook #'my-on-hook-php-mode))
 
 

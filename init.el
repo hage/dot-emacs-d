@@ -1082,6 +1082,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     #'(progn
         (setq emmet-preview-default t)
         (setq emmet-indentation 2)
+        (setq emmet-self-closing-tag-style "")
         (set-face-foreground 'emmet-preview-input "snow")
         (set-face-background 'emmet-preview-input "yellow4")
         (set-face-foreground 'emmet-preview-output "skyblue")

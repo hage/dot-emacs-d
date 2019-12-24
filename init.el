@@ -1082,6 +1082,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     #'(progn
         (setq emmet-preview-default t)
         (setq emmet-indentation 2)
+        (setq emmet-self-closing-tag-style "")
         (set-face-foreground 'emmet-preview-input "snow")
         (set-face-background 'emmet-preview-input "yellow4")
         (set-face-foreground 'emmet-preview-output "skyblue")
@@ -1631,14 +1632,16 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (when (require 'rinari nil t)
       (global-rinari-mode t))
 
-    (when (package-installed-p 'ruby-tools)
-      (add-hook-if-bound 'ruby-mode-hook #'ruby-tools-mode)
-      (with-eval-after-load "ruby-tools"
-        (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
-        (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
-        (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
-        (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
-        (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate)))
+    (let ((ruby-tools-install-dir "~/.emacs.d/develop/ruby-tools"))
+      (when (and (add-to-load-path-if-found ruby-tools-install-dir)
+                 (autoload-if-found #'ruby-tools-mode "ruby-tools"))
+        (add-hook-if-bound 'ruby-mode-hook #'ruby-tools-mode)
+        (with-eval-after-load "ruby-tools"
+          (define-key ruby-tools-mode-map (kbd "C-q :") 'ruby-tools-to-symbol)
+          (define-key ruby-tools-mode-map (kbd "C-q ;") 'ruby-tools-clear-string)
+          (define-key ruby-tools-mode-map (kbd "C-q '") 'ruby-tools-to-single-quote-string)
+          (define-key ruby-tools-mode-map (kbd "C-q \"") 'ruby-tools-to-double-quote-string)
+          (define-key ruby-tools-mode-map (kbd "#") 'ruby-tools-interpolate))))
     )
 
   ;; rbenv
@@ -1824,7 +1827,10 @@ Otherwise sends the whole buffer."
           (add-hook 'php-mode-hook #'lsp))))
 
   (defun my-on-hook-php-mode ()
-    (company-mode t))
+    (company-mode t)
+    (require 'company-php)
+    (make-local-variable 'company-backends)
+    (add-to-list 'company-backends 'company-ac-php-backend))
   (add-hook 'php-mode-hook #'my-on-hook-php-mode))
 
 

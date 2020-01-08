@@ -1,6 +1,6 @@
 # key: @if
 # name: @if
 # --
-@if($0)
+@if ($0)
 
 @endif

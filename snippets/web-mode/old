@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: old
+# key: old
+# --
+old('${1:column}', $please_replace_datum_var['$1'])

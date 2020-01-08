@@ -1,6 +1,7 @@
-# key: @fo
+# -*- mode: snippet -*-
 # name: @foreach
+# key: @for
 # --
-@foreach($${1:list} as $${2:item})
-                   $0
+@foreach (\$$1 as \$$2)
+         $0
 @endforeach

@@ -2264,6 +2264,7 @@ Otherwise sends the current line."
                     (define-key js2-mode-map (kbd "M-j") 'my-open-block-or-newline-and-indent)
                     (define-key js2-mode-map (kbd "M-J") 'js2-line-break)
                     (define-key js2-mode-map (kbd "C-M-j") 'my-semicolon-or-new-comment-ine)
+                    (lsp)
                     ))
         ))
   )

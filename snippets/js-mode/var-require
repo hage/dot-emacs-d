@@ -2,4 +2,4 @@
 # name: var-require
 # key: vr
 # --
-var ${1:modulename} = require('$1');
+var ${1:modulename} = require('$1')

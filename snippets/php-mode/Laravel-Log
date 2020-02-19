@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Laravel Log
+# key: llog
+# --
+\Log::info($0);

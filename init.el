@@ -632,6 +632,7 @@ MAKE-TARGET ターゲットを起動する"
 (my-set-key-my-yank-and-indent-with-mode-and-map elixir-mode elixir-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map elisp-mode emacs-lisp-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map php-mode php-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map js2-mode js2-mode-map)
 
 
 ;;;

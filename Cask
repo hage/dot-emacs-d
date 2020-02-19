@@ -64,7 +64,6 @@
 (depends-on "keycast")
 (depends-on "let-alist")
 (depends-on "lsp-mode")
-(depends-on "lsp-php")
 (depends-on "lsp-ui")
 (depends-on "magit")
 (depends-on "markdown-mode")

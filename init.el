@@ -841,6 +841,11 @@ MAKE-TARGET ターゲットを起動する"
 ;;;
 ;;; lsp-mode
 ;;;
+
+;; fix for `lsp-request: Method textDocumentRangeFormatting not implemented'
+(setq lsp-enable-indentation nil)
+(setq lsp-javascript-format-enable nil)
+
 (with-eval-after-load 'lsp-mode
   ;; do not use flymake on lsp-mode
   (setq lsp-prefer-flymake :none)

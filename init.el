@@ -2814,7 +2814,7 @@ guessing a default from current buffer file name or default directory. "
 (set-face-underline 'mode-line nil)
 (set-face-foreground 'mode-line-inactive "gray10")
 (set-face-background 'mode-line-inactive "gray50")
-(set-face-foreground 'font-lock-comment-face "#a0a3b5")
+(set-face-foreground 'font-lock-comment-face "#778833")
 (set-face-foreground 'highlight nil)
 (set-face-background 'highlight "palegreen4")
 (set-face-background 'region "lightsteelblue4")

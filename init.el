@@ -255,7 +255,7 @@ universal argument が与えられていたら必ずリフレッシュする"
     (volatile-highlights-mode . "")     ; VHl
     (emmet-mode . "")
     (robe-mode . " R")
-    (company-mode . "")
+    ; (company-mode . "")
     (alchemist-mode . "")
     (alchemist-phoenix-mode . " phx")
     (ruby-test-mode . "")
@@ -1159,7 +1159,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
   (when (require 'company-prescient nil t)
     (company-prescient-mode))
 
-  (setq company-idle-delay .2
+  (setq company-idle-delay .5
         company-minimum-prefix-length 3
         company-selection-wrap-around t
         company-search-filtering t
@@ -1836,7 +1836,11 @@ Otherwise sends the whole buffer."
     (company-mode t)
     (require 'company-php)
     (make-local-variable 'company-backends)
-    (add-to-list 'company-backends 'company-ac-php-backend))
+    (setq company-backends '((company-lsp company-tabnine company-ac-php-backend)
+                             company-bbdb company-eclim company-semantic company-files
+                             (company-dabbrev-code company-gtags company-etags company-keywords)))
+    ;(add-to-list 'company-backends 'company-ac-php-backend)
+    )
   (add-hook 'php-mode-hook #'my-on-hook-php-mode))
 
 

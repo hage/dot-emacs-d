@@ -14,3 +14,4 @@ php-server:
 
 # for javascript
 #   npm i -g javascript-typescript-langserver
+#   npm i -g typescript-language-server; npm i -g typescript

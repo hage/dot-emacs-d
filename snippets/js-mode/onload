@@ -1,0 +1,7 @@
+# key: onload
+# name: onload
+# --
+function ${1:init}(_event) {
+}
+
+window.addEventListener('load', $1)

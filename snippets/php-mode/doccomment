@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: doccomment
+# key: docom
+# --
+
+/**
+ * $0
+ *
+ * @param
+ * @return
+ */

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: target_blank
+# key: targetb
+# --
+target="_blank" rel="noopener noreferrer"

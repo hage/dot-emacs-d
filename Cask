@@ -40,6 +40,7 @@
 (depends-on "flycheck-pos-tip")
 (depends-on "git-commit")
 (depends-on "git-gutter")
+(depends-on "git-messenger")
 (depends-on "github-browse-file")
 (depends-on "google-this")
 (depends-on "goto-chg")

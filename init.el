@@ -1343,6 +1343,8 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
   (global-set-key (kbd "C-q g l") 'magit-log)
   (global-set-key (kbd "C-q g c") 'magit-branch-and-checkout)
   (global-set-key (kbd "C-q g b") 'magit-checkout)
+  (when (autoload-if-found 'git-messenger:popup-message "git-messenger" "" t)
+    (global-set-key (kbd "C-q g p") 'git-messenger:popup-message))
 
   (eval-after-load "magit"
     #'(progn

@@ -549,7 +549,11 @@ Otherwise indent whole buffer."
                 (lambda ()
                   (local-set-key (kbd "C-j") 'my-open-block-or-newline-and-indent)))))
 
-
+(defun print-git-toplevel-dir ()
+  "カレントディレクトリのgitリポジトリのルートを表示"
+  (interactive)
+  (princ (git-toplevel-dir)))
+(global-set-key (kbd "C-q g /") #'print-git-toplevel-dir)
 
 ;;;
 ;;; search-file-from-upstream-directory

@@ -1297,11 +1297,15 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 ;;;
 (when (and (autoload-if-found 'mc/mark-all-dwim "multiple-cursors" nil t)
 	   (autoload-if-found 'mc/edit-lines "multiple-cursors" nil t))
-  (global-set-key (kbd "C-q C-SPC") 'mc/mark-all-dwim)
+  (global-set-key (kbd "C-w C-SPC") 'mc/mark-all-dwim)
   (global-set-key (kbd "C-x r t") 'mc/edit-lines)
 
   (eval-after-load "multiple-cursors"
     (lambda ()
+      (define-key mc/keymap (kbd "C-q k") 'kill-line)
+      (define-key mc/keymap (kbd "M-w") 'kill-ring-save)
+      (define-key mc/keymap (kbd "M-y") 'yank)
+
       ;; cf. https://qiita.com/ShingoFukuyama/items/3ad7e24cb2d8f55b4cc5
       ;; insert specific serial number
       (defvar my/mc/insert-numbers-hist nil)

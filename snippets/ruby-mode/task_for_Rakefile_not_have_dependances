@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: task for Rakefile, not have dependances
+# key: taskk
+# --
+task :$0 do
+end

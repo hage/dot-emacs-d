@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: task for Rakefile
+# key: task
+# --
+task $0: [] do
+end

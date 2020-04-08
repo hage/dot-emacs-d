@@ -660,6 +660,13 @@ MAKE-TARGET ターゲットを起動する"
 
 
 ;;;
+;;; Makefile
+;;;
+(add-hook 'makefile-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)))
+
+;;;
 ;;; tramp
 ;;;
 (eval-after-load 'tramp #'(setenv "SHELL" "/bin/bash")) ; zshだとハングアップすることが多いため

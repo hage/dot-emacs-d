@@ -2119,7 +2119,7 @@ Otherwise sends the whole buffer."
     (insert "->")
     (newline-and-indent))
   (define-key elixir-mode-map (kbd "M-L") 'my-elixir-insert-arrow-and-newline)
-  (define-key elixir-mode-map (kbd "M-u") 'my-string-inflection-elixir-style-cycle)
+  (define-key elixir-mode-map (kbd "M-u") 'string-inflection-ruby-style-cycle)
 
   (defun my-elixir-string-embed-expression ()
     (interactive)
@@ -2607,24 +2607,6 @@ Otherwise sends the current line."
   "Key binding for change case like fooBar => FooBar => FOO_BAR => fooBar")
 (if (fboundp #'string-inflection-all-cycle)
     (progn
-      (defun my-string-inflection-elixir-style-cycle-function (str)
-        "foo-bar => FooBar => foo_bar"
-        (cond
-           ;; foo-bar => FooBar
-           ((string-inflection-kebab-case-p str)
-            (string-inflection-toggle-function
-             (string-inflection-capital-underscore-function str)))
-           ;; FooBar => foo_bar
-           ;; Foo    => foo
-           (t
-            (string-inflection-toggle-function str))))
-      (defun my-string-inflection-elixir-style-cycle ()
-        "foo-bar => FooBar => foo_bar"
-        (interactive)
-        (string-inflection-insert
-         (my-string-inflection-elixir-style-cycle-function
-          (string-inflection-get-current-word))))
-
       (defun my-string-inflection-cycle-auto ()
         "switching by major-mode"
         (interactive)

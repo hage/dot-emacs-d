@@ -637,6 +637,7 @@ MAKE-TARGET ターゲットを起動する"
 (my-set-key-my-yank-and-indent-with-mode-and-map elisp-mode emacs-lisp-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map php-mode php-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map js2-mode js2-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map c-mode c-mode-map)
 
 
 ;;;
@@ -658,7 +659,13 @@ MAKE-TARGET ターゲットを起動する"
                      (nth 1 (nth 1 (current-frame-configuration))))))
      default-directory)))
 
-
+;;;
+;;; c-mode
+;;;
+(add-hook 'c-mode-hook
+          (lambda ()
+            (c-set-style "stroustrup")
+            (setq c-basic-offset 2)))
 ;;;
 ;;; Makefile
 ;;;

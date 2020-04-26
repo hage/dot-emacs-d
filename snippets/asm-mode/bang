@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: bang
+# key: bang
+# --
+.intel_syntax noprefix
+.global main
+
+main:
+        $0

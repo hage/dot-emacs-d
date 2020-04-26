@@ -1309,7 +1309,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 
   (eval-after-load "multiple-cursors"
     (lambda ()
-      (define-key mc/keymap (kbd "C-q k") 'kill-line)
+      (define-key mc/keymap (kbd "C-k") 'kill-line)
       (define-key mc/keymap (kbd "M-w") 'kill-ring-save)
       (define-key mc/keymap (kbd "M-y") 'yank)
 

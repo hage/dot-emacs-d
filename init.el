@@ -1469,7 +1469,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (setq git-gutter:update-interval 3)
 
     (with-eval-after-load 'magit
-      (add-hook 'git-commit-post-finish-hook #'git-gutter:update-all-windows))
+      (add-hook 'magit-refresh-buffer-hook #'git-gutter:update-all-windows))
 
     (global-set-key (kbd "C-q g h") #'global-git-gutter-mode)
     (global-set-key (kbd "C-q g s") #'git-gutter:stage-hunk)

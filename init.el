@@ -637,7 +637,7 @@ MAKE-TARGET ターゲットを起動する"
 (my-set-key-my-yank-and-indent-with-mode-and-map elisp-mode emacs-lisp-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map php-mode php-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map js2-mode js2-mode-map)
-(my-set-key-my-yank-and-indent-with-mode-and-map c-mode c-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map cc-mode c-mode-map)
 
 
 ;;;
@@ -662,10 +662,14 @@ MAKE-TARGET ターゲットを起動する"
 ;;;
 ;;; c-mode
 ;;;
-(add-hook 'c-mode-hook
+(add-hook 'c-mode-common-hook
           (lambda ()
             (c-set-style "stroustrup")
-            (setq c-basic-offset 2)))
+            (setq c-basic-offset 2)
+            (setq comment-style 'multi-line)
+            (setq comment-start "//")
+            (setq comment-end "")
+            ))
 ;;;
 ;;; Makefile
 ;;;

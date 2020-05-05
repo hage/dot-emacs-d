@@ -1232,6 +1232,10 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
   (when (fboundp 'company-tabnine)
     (push 'company-tabnine company-backends))
 
+  ;; yasnippet
+  (when (autoload-if-found 'company-yasnippet "yasnippet" nil t)
+    (push 'company-yasnippet company-backends))
+
   ;; faces
   (set-face-attribute 'company-tooltip nil
                       :foreground "black" :background "lightgrey")

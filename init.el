@@ -1233,7 +1233,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (push 'company-tabnine company-backends))
 
   ;; yasnippet
-  (when (autoload-if-found 'company-yasnippet "yasnippet" nil t)
+  (when (fboundp 'company-yasnippet)
     (push 'company-yasnippet company-backends))
 
   ;; faces

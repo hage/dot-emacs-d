@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
-# name: else
-# key: el
+# name: elseif
+# key: ei
 # --
-else {
-     $0
+else if ($0) {
 }

@@ -83,6 +83,7 @@
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "quick-preview")
+(depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")
 (depends-on "rake")
 (depends-on "rbenv")

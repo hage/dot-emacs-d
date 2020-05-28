@@ -1610,6 +1610,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
   (with-eval-after-load 'ruby-mode
+    (load-safe "~/.emacs.d/silence-the-rubocops.el")
     (defun on-hook-ruby-mode ()
       (lsp))
     (add-hook 'ruby-mode-hook #'on-hook-ruby-mode)

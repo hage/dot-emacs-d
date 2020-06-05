@@ -766,15 +766,15 @@ MAKE-TARGET ターゲットを起動する"
 ;;;
 (eval-after-load 'diff-mode
   #'(progn
-      (set-face-foreground 'diff-added "#ddf")
-      (set-face-background 'diff-added "#001")
-      (set-face-foreground 'diff-indicator-added "#fff")
+      (set-face-foreground 'diff-added "#88f")
+      (set-face-background 'diff-added "#002")
+      (set-face-foreground 'diff-indicator-added "#00f")
       (set-face-background 'diff-indicator-added "#000")
       (set-face-bold 'diff-indicator-added t)
 
-      (set-face-foreground 'diff-removed "#fdd")
-      (set-face-background 'diff-removed "#100")
-      (set-face-foreground 'diff-indicator-removed "#fff")
+      (set-face-foreground 'diff-removed "#f88")
+      (set-face-background 'diff-removed "#200")
+      (set-face-foreground 'diff-indicator-removed "#f00")
       (set-face-background 'diff-indicator-removed "#000")
       (set-face-bold 'diff-indicator-removed t)
 

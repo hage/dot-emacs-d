@@ -11,6 +11,7 @@
 (depends-on "apache-mode")
 (depends-on "async")
 (depends-on "auto-highlight-symbol")
+(depends-on "c-eldoc")
 (depends-on "cask")
 (depends-on "company")
 (depends-on "company-lsp")

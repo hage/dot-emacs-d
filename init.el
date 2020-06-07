@@ -2860,6 +2860,15 @@ guessing a default from current buffer file name or default directory. "
        (cl-callf color-saturate-name (face-foreground face) 30))))
   (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors))
 
+
+;;;
+;;; c-eldoc
+;;;
+(when (functionp 'c-turn-on-eldoc-mode)
+  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+  (setq eldoc-idle-delay 0.15
+        flycheck-display-errors-delay 0.1))
+
 ;;;
 ;;; faces
 ;;;

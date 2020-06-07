@@ -393,6 +393,7 @@ universal argument が与えられていたら必ずリフレッシュする"
 
 ;; ファイルのセーブ前にそのバッファの末尾スペースを取り除く
 (setq-default enable-delete-trailing-whitespace-before-save t)
+(make-variable-buffer-local 'enable-delete-trailing-whitespace-before-save)
 (add-hook 'before-save-hook
           (lambda ()
             (when enable-delete-trailing-whitespace-before-save

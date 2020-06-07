@@ -873,6 +873,9 @@ MAKE-TARGET ターゲットを起動する"
   (setq lsp-prefer-flymake :none)
   (setq lsp-lens-check-interval 0.5)
 
+  (eval-after-load 'flycheck
+    '(flycheck-add-mode 'html-tidy 'web-mode))
+
   (require 'yasnippet nil t)
   (with-eval-after-load 'lsp-ui
     (set-face-background 'lsp-ui-sideline-global "#134")))

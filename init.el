@@ -1008,7 +1008,8 @@ MAKE-TARGET ターゲットを起動する"
     (let ((keyb (kbd "C-o")))
       (define-key helm-buffer-map     keyb 'helm-buffer-switch-other-window)
       (define-key helm-find-files-map keyb 'helm-ff-run-switch-other-window)
-      (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window)))
+      (define-key helm-etags-map      keyb 'helm-etags-run-switch-other-window)
+      (define-key helm-map            keyb 'helm-ff-run-switch-other-window)))
   (with-eval-after-load "helm-files"
     (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action))
 

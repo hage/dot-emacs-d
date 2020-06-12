@@ -2872,8 +2872,8 @@ guessing a default from current buffer file name or default directory. "
 ;;;
 (when (functionp 'c-turn-on-eldoc-mode)
   (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-  (setq eldoc-idle-delay 0.15
-        flycheck-display-errors-delay 0.1))
+  (setq eldoc-idle-delay 2
+        flycheck-display-errors-delay 1))
 
 ;;;
 ;;; faces

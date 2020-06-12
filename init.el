@@ -1612,6 +1612,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 
 (when (autoload-if-found 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
   (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
   (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
   (with-eval-after-load 'ruby-mode

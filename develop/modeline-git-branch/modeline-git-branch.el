@@ -37,7 +37,8 @@
   (when (or (and force (buffer-live-p buffer))
             (eq buffer (current-buffer)))
     (with-current-buffer buffer
-      (unless modeline-git-branch-process
+      (if (and (not modeline-git-branch-process)
+               (file-exists-p default-directory))
         (let ((process-connection-type nil))
           (setq modeline-git-branch-process
                 (start-process "modeline-git-branch" buffer

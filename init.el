@@ -255,11 +255,11 @@ universal argument が与えられていたら必ずリフレッシュする"
     (volatile-highlights-mode . "")     ; VHl
     (emmet-mode . "")
     (robe-mode . " R")
-    ; (company-mode . "")
+    (company-mode . "")
     (alchemist-mode . "")
     (alchemist-phoenix-mode . " phx")
     (ruby-test-mode . "")
-    (editorconfig-mode . "")
+    (editorconfig-mode . " ec")
     (helm-migemo-mode . "")             ; Hmio
     (auto-revert-mode . "")             ; ARev
     (auto-highlight-symbol-mode . "")   ; HS

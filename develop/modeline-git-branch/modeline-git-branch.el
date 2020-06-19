@@ -16,7 +16,7 @@
 ;; non-nilのときは新しいプロセスを実行しない
 (defvar modeline-git-branch-process nil)
 
-(defvar modeline-git-branch-wait-time 0.1
+(defvar modeline-git-branch-wait-time 1
   "idle状態になってからプロセス実行するまでの待機時間
 この値を0にするとcomint等で表示が崩れることがあるので注意")
 
@@ -75,7 +75,7 @@
 
 ;; hook#1 after-change-major-mode-hook, after-save-hook
 (defun modeline-git-branch-update-current ()
-  (unless (minibufferp (current-buffer))
+  (if (buffer-file-name (current-buffer))
     (modeline-git-branch-schedule-update (current-buffer) t)))
 
 (if (eq system-type 'windows-nt)
@@ -83,13 +83,13 @@
       ;; hook#2 select-window-functions for windows
       (defun modeline-git-branch-update-when-select-window
           (before-win after-win)
-        (unless (minibufferp (window-buffer after-win))
+        (if (buffer-file-name (window-buffer after-win))
           (modeline-git-branch-schedule-update (window-buffer after-win))))
 
       ;; hook#3 set-selected-window-buffer-function for windows
       (defun modeline-git-branch-update-when-set-window-buffer
           (before-buf win after-buf)
-        (unless (minibufferp after-buf)
+        (if (buffer-file-name after-buf)
           (modeline-git-branch-schedule-update after-buf))))
   )
 
@@ -111,7 +111,7 @@
              (add-hook 'set-selected-window-buffer-functions
                        'modeline-git-branch-update-when-set-window-buffer))
     ;; for non windows system
-    (add-hook 'buffer-list-update-hook 'modeline-git-branch-update-current)
+    ; (add-hook 'buffer-list-update-hook 'modeline-git-branch-update-current)
     ))
 
 (defun modeline-git-branch-disable ()
@@ -128,7 +128,7 @@
              (remove-hook 'set-selected-window-buffer-functions
                           'modeline-git-branch-update-when-set-window-buffer))
     ;; for non windows system
-    (remove-hook 'buffer-list-update-hook 'modeline-git-branch-update-current)
+    ; (remove-hook 'buffer-list-update-hook 'modeline-git-branch-update-current)
     ))
 
 (define-minor-mode modeline-git-branch-mode

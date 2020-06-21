@@ -2602,9 +2602,9 @@ Otherwise sends the current line."
 ;;;
 (when (fboundp #'global-flycheck-mode)
   (add-hook 'after-init-hook #'global-flycheck-mode)
-  (when (fboundp #'flycheck-pos-tip-mode) ; emacs -nw ではダメっぽいけど将来のために残しておく
-    (with-eval-after-load 'flycheck
-      (flycheck-pos-tip-mode)))
+  ;; (when (fboundp #'flycheck-pos-tip-mode) ; emacs -nw ではダメっぽいけど将来のために残しておく
+  ;;   (with-eval-after-load 'flycheck
+  ;;     (flycheck-pos-tip-mode)))
 
   ;; elisp でコメントのチェックをしない
   ;; cf. https://stackoverflow.com/questions/15552349/hw-to-disable-flycheck-warning-while-editing-emacs-lisp-scripts

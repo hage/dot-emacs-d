@@ -663,14 +663,18 @@ MAKE-TARGET ターゲットを起動する"
 ;;;
 ;;; c-mode
 ;;;
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (c-set-style "stroustrup")
-            (setq c-basic-offset 2)
-            (setq comment-style 'multi-line)
-            (setq comment-start "//")
-            (setq comment-end "")
-            ))
+
+(eval-after-load "cc-mode"
+  #'(progn
+      (define-key c-mode-map (kbd "C-M-j") #'my-semicolon-or-new-comment-ine)
+      (add-hook 'c-mode-common-hook
+                (lambda ()
+                  (c-set-style "stroustrup")
+                  (setq c-basic-offset 2)
+                  (setq comment-style 'multi-line)
+                  (setq comment-start "//")
+                  (setq comment-end "")))))
+
 ;;;
 ;;; Makefile
 ;;;

@@ -2387,7 +2387,11 @@ Otherwise sends the current line."
 ;;; elscreen
 ;;;
 (when (require 'elscreen nil t)
-  (require 'elscreen-buffer-group)
+
+  ;; git-gutterより先にこれをrequireすると警告が発生するのでちょっと遅らせる。
+  ;; ひどいhackではある。
+  (run-with-idle-timer 2.5 nil (lambda () (require 'elscreen-buffer-group)))
+
   (global-unset-key (kbd "M-t"))
   (custom-set-variables'(elscreen-prefix-key (kbd "M-t"))
                        '(elscreen-tab-display-kill-screen nil) ; タブの先頭に[X]を表示しない

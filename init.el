@@ -562,6 +562,15 @@ Otherwise indent whole buffer."
   (princ (git-toplevel-dir)))
 (global-set-key (kbd "C-q g /") #'print-git-toplevel-dir)
 
+(defun save-and-compile-buffer ()
+  "バッファをセーブしてcompileを実行。コマンドはcompile-commandに設定されているもの"
+  (interactive)
+  (when (buffer-file-name)
+    (save-buffer)
+    (compile compile-command)))
+(with-eval-after-load "sh-script"
+  (define-key sh-mode-map (kbd "C-c C-c") #'save-and-compile-buffer))
+
 ;;;
 ;;; search-file-from-upstream-directory
 ;;;
@@ -2447,14 +2456,14 @@ Otherwise sends the current line."
 (when (autoload-if-found 'smart-compile "smart-compile" t)
   (eval-after-load "ruby-mode"
     #'(progn
-        (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
-        (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))))
+        (define-key ruby-mode-map (kbd "C-c c") #'smart-compile)
+        (define-key ruby-mode-map (kbd "C-c C-c") #'save-and-compile-buffer)))
   (with-eval-after-load 'php-mode
     (add-hook 'php-mode-hook
               (lambda ()
                 (setq-local smart-compile-option-string "test")))
-    (define-key php-mode-map (kbd "C-c c") 'smart-compile)
-    (define-key php-mode-map (kbd "C-c C-c") (kbd "C-c c C-m")))
+    (define-key php-mode-map (kbd "C-c c") #'smart-compile)
+    (define-key php-mode-map (kbd "C-c C-c") #'save-and-compile-buffer))
   )
 
 

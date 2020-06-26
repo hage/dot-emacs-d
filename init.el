@@ -327,13 +327,19 @@ universal argument が与えられていたら必ずリフレッシュする"
 (when (functionp 'show-paren-mode)
   (progn
     (setq show-paren-delay 0.2)
-    (setq show-paren-style 'expression)
+    (setq show-paren-style 'mixed)
+
     (set-face-foreground 'show-paren-match nil)
-    (set-face-background 'show-paren-match nil)
-    (set-face-bold 'show-paren-match t)
+    (set-face-background 'show-paren-match "turquoise")
+    (set-face-bold       'show-paren-match t)
+
+    (set-face-background 'show-paren-match-expression "#024")
+    (set-face-foreground 'show-paren-match-expression nil)
+
     (set-face-foreground 'show-paren-mismatch nil)
     (set-face-background 'show-paren-mismatch "#551109")
-    (show-paren-mode t)))
+    (show-paren-mode t)
+    ))
 
 ;; その他
 (setq-default dabbrev-case-fold-search t) ; caseの区別なく探す

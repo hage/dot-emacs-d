@@ -1415,7 +1415,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
         ;; # name: :
         ;; # key: :
         ;; # --
-        ;; `(yas-choose-value '("[feat]" "[fix]" "[docs][ci skip] Update" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0
+        ;; `(yas-choose-value '("[feat]" "[fix]" "[docs]" "[docs][ci skip]" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0
         ;;
         (defun git-commit-prefix-select ()
           (if (= 10 (following-char))

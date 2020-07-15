@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: onload
+# key: onload
+# --
+window.addEventListener('load', (event) => {
+	$0
+})

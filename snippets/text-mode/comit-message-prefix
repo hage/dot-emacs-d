@@ -4,4 +4,4 @@
 # name: :
 # key: :
 # --
-`(yas-choose-value '("[feat]" "[fix]" "[docs][ci skip] Update" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0
+`(yas-choose-value '("[feat]" "[fix]" "[docs]" "[docs][ci skip]" "[style]" "[refactor]" "[perf]" "[test]" "[chore]"))` $0

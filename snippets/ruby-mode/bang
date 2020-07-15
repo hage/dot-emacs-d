@@ -12,3 +12,9 @@ require 'rubygems'
 # bundler でインストールした gem を使うとき
 require 'bundler'
 Bundler.setup(:default, :ci)
+
+$0
+
+# Local Variables:
+# compile-command: "bundle exec ruby `(file-name-nondirectory (buffer-file-name))`"
+# End:

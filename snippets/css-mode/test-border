@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: test border
+# key: bdr
+# --
+border: solid 1px $0red;

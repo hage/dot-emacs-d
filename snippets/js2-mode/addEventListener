@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: addEventListener
+# key: event
+# --
+.addEventListener('${1:click}', () => {
+        $0
+})

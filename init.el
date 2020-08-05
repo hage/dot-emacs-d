@@ -635,6 +635,16 @@ MAKE-TARGET ターゲットを起動する"
     (dired default-directory))))
 (global-set-key (kbd "M-g o") 'my-open-current-directory-with-finder)
 
+;; finderでgitルートを開く // M-g M-o にバインド
+(when osxp
+  (defun my-open-file-with-git-toplevel-directory ()
+    "finderでワークツリーのルートディレクトリを開く。
+ワークツリーにいないときはdefault-directoryを開く"
+    (interactive)
+    (shell-command (concat "open " (or (git-toplevel-dir) default-directory))))
+  (global-set-key (kbd "M-g M-o") #'my-open-file-with-git-toplevel-directory)
+  )
+
 ;; yank 後にインデント
 (defun my-yank-and-indent-it ()
   "Yank and indentat it."

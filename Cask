@@ -29,7 +29,6 @@
 (depends-on "editorconfig")
 (depends-on "elixir-mode")
 (depends-on "elscreen")
-(depends-on "elscreen-buffer-group")
 (depends-on "emmet-mode")
 (depends-on "epl")
 (depends-on "expand-region")

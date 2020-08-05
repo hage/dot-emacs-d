@@ -2,6 +2,6 @@
 # name: onload
 # key: onload
 # --
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
 	$0
 })

@@ -1255,7 +1255,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
      (define-key keymap (kbd "C-p") #'company-select-previous)
      (define-key keymap (kbd "C-i")
        #'company-select-next-if-tooltip-visible-or-complete-selection))
-   (list company-active-map company-search-map company-filter-map))
+   (list company-active-map company-search-map))
 
   ;; 絞り込み指定が補完後に解除されるので、hook で設定し直す
   (defun my-hook-for-company-after-completion-hook (_arg)

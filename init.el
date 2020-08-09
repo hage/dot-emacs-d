@@ -1706,9 +1706,6 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
       #'(progn
           (define-key ruby-mode-map (kbd "C-c C-_") 'ruby-test-run)
           (define-key ruby-mode-map (kbd "C-c C-/") 'ruby-test-run-at-point)))
-    (when (require 'rinari nil t)
-      (global-rinari-mode t))
-
     (let ((ruby-tools-install-dir "~/.emacs.d/develop/ruby-tools"))
       (when (and (add-to-load-path-if-found ruby-tools-install-dir)
                  (autoload-if-found #'ruby-tools-mode "ruby-tools"))

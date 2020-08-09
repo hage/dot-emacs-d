@@ -89,7 +89,6 @@
 (depends-on "rbenv")
 (depends-on "recentf-ext")
 (depends-on "restclient")
-(depends-on "rinari")
 (depends-on "robe")
 (depends-on "rspec-mode")
 (depends-on "ruby-compilation")

@@ -1,7 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: module
+# name: simple-module
 # key: module
 # --
-module ${1:Module}
-       $0
+module ${0:ModuleName}
 end

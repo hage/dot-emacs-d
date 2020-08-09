@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: complex-module
+# key: modulee
+# --
+module ${0:ModuleName}
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  module ClassMethods
+    def class_method
+      puts 'this is class method'
+    end
+  end
+
+  def instance_method
+    puts 'this is instance method'
+  end
+end

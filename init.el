@@ -254,7 +254,6 @@ universal argument が与えられていたら必ずリフレッシュする"
     (smooth-scroll-mode . "")           ; SScr
     (volatile-highlights-mode . "")     ; VHl
     (emmet-mode . "")
-    (robe-mode . " R")
     (company-mode . "")
     (alchemist-mode . "")
     (alchemist-phoenix-mode . " phx")
@@ -1179,7 +1178,6 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
              ("*pry*" :height .3 :width .5 :stick t)
              ("*rake*")
              ("*rake-compilation*" :position bottom :height .3 :tail t)
-             ("*robe-doc*" :stick t :dedicated t :width .5 :height .5)
 
              ("*helm list packages*" :position bottom :height .95)
              ("\\*helm " :regexp t :position bottom)
@@ -1793,54 +1791,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
           (align-rules-setup))
         (align-rules-setup)))
   )
-;;   robeを使うには
-;;     Gemfileに 'pry' と記述しておいて M-x robe-start
-;;   Gemfileがないときは、gem install pry pry-docした後
-;;     M-x inf-ruby
-;;     M-x robe-start
-(when (autoload-if-found 'robe-mode "robe"
-			 "Robe is a code assistance tool that uses a Ruby REPL subprocess" t)
-  (eval-after-load 'ruby-mode
-    #'(progn
-        (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
-        (autoload 'inf-ruby-minor-mode "inf-ruby" "" t)
-        (add-hook 'ruby-mode-hook
-                  (lambda ()
-                    (robe-mode)
-                    (inf-ruby-minor-mode)))
-        (eval-after-load 'robe
-          #'(progn
-              (define-key ruby-mode-map (kbd "C-c C-a") 'robe-ask)
-              (when (functionp 'helm-robe-completing-read)
-                (custom-set-variables
-                 '(robe-completing-read-func 'helm-robe-completing-read)))
-              ))
-        (eval-after-load 'inf-ruby
-          #'(progn
-              (define-key ruby-mode-map (kbd "C-c C-i") 'inf-ruby-console-auto)
-              (defun my-ruby-send-thing-dwim (uarg)
-                "Sends the code fragment to the inferior Ruby process.
-If universal argument (C-u) is given, jump to the inf-ruby buffer.
-when region is active, sends the marked region.
-Otherwise sends the whole buffer."
-                (interactive "P")
-                (cond
-                 ;; regionがアクティブかつC-uが押されている
-                 ((and uarg (use-region-p))
-                  (ruby-send-region-and-go (point) (mark)))
-                 ;; regionがアクティブ
-                 ((and (not uarg) (use-region-p))
-                  (ruby-send-region (point) (mark)))
-                 ;; regionなし、かつC-uが押されている
-                 ((and uarg (not (use-region-p)))
-                  (ruby-send-region-and-go (point-min) (point-max)))
-                 ;; なんにもなし
-                 ((and (not uarg) (not (use-region-p)))
-                  (ruby-send-region (point-min) (point-max)))))
 
-              (define-key inf-ruby-minor-mode-map
-                (kbd "C-c C-r") 'my-ruby-send-thing-dwim)))))
-  )
 (when (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process in a buffer." t)
   (setq inf-ruby-default-implementation "pry")
   (setq inf-ruby-eval-binding "Pry.toplevel_binding")

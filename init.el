@@ -1243,6 +1243,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
           (company-complete-common))))))
 
   (global-set-key (kbd "C-i") #'my-company-indent-or-complete-common)
+  (global-set-key (kbd "C-w C-i") #'company-complete-common)
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
 
   ;; 候補の移動は C-n, C-p で

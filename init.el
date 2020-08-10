@@ -2851,6 +2851,13 @@ guessing a default from current buffer file name or default directory. "
   (setq eldoc-idle-delay 2
         flycheck-display-errors-delay 1))
 
+
+;;;
+;;; lv
+;;;
+(with-eval-after-load 'lv
+  (advice-add 'keyboard-quit :before #'lv-delete-window))
+
 ;;;
 ;;; faces
 ;;;

@@ -1263,11 +1263,7 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
 
   ;; tabnine
   (when (fboundp 'company-tabnine)
-    (push 'company-tabnine company-backends))
-
-  ;; yasnippet
-  (when (fboundp 'company-yasnippet)
-    (push 'company-yasnippet company-backends))
+    (push #'company-tabnine company-backends))
 
   ;; faces
   (set-face-attribute 'company-tooltip nil

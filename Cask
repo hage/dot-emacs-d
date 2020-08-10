@@ -14,7 +14,6 @@
 (depends-on "c-eldoc")
 (depends-on "cask")
 (depends-on "company")
-(depends-on "company-lsp")
 (depends-on "company-php")
 (depends-on "company-prescient")
 (depends-on "company-tabnine")

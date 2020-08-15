@@ -1121,6 +1121,16 @@ git 配下なのに helm-mini が起動するときは C-u C-u を前置する�
     (global-set-key (kbd "C-M-o") 'my-helm-mini-or-projectile)
     (global-set-key (kbd "M-s p") 'helm-projectile-grep)
 
+    (defun my-helm-projectile-buffer-list (uarg)
+      "git 配下のときは helm-projectile-switch-to-buffer を、
+そうでないときは helm-buffers-list を起動する。
+C-u を前置したときはどのような場合でも helm-buffers-list を起動する。"
+      (interactive "p")
+      (if (or (eq uarg 4) (not (projectile-project-p)))
+          (helm-buffers-list)
+        (helm-projectile-switch-to-buffer)))
+    (global-set-key (kbd "C-x b") #'my-helm-projectile-buffer-list)
+
     (with-eval-after-load "helm-projectile"
       (require 'helm-for-files)
       (push ".git/" projectile-globally-ignored-files)

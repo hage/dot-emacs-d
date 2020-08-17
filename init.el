@@ -691,6 +691,9 @@ MAKE-TARGET ターゲットを起動する"
 (eval-after-load "cc-mode"
   #'(progn
       (define-key c-mode-map (kbd "C-M-j") #'my-semicolon-or-new-comment-ine)
+      (define-key c-mode-map (kbd "C-c C-c") #'save-and-compile-buffer)
+      (if (functionp 'lsp)
+          (add-hook 'c-mode-hook #'lsp))
       (add-hook 'c-mode-common-hook
                 (lambda ()
                   (c-set-style "stroustrup")

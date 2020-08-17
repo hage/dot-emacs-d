@@ -1133,6 +1133,7 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
           (helm-buffers-list)
         (helm-projectile-switch-to-buffer)))
     (global-set-key (kbd "C-x b") #'my-helm-projectile-buffer-list)
+    (global-set-key (kbd "C-x C-b") #'helm-buffers-list)
 
     (with-eval-after-load "helm-projectile"
       (require 'helm-for-files)

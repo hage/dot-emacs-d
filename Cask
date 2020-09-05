@@ -13,6 +13,7 @@
 (depends-on "auto-highlight-symbol")
 (depends-on "c-eldoc")
 (depends-on "cask")
+(depends-on "ccls")
 (depends-on "company")
 (depends-on "company-php")
 (depends-on "company-prescient")

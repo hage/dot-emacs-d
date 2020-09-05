@@ -2,6 +2,6 @@
 # name: case
 # key: case
 # --
-case $1:
+case ${1:label}:
      $0
      break;

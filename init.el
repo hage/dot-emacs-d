@@ -899,6 +899,9 @@ MAKE-TARGET ターゲットを起動する"
 ;; fix for `lsp-request: Method textDocumentRangeFormatting not implemented'
 (setq lsp-enable-indentation nil)
 (setq lsp-javascript-format-enable nil)
+(setq lsp-eldoc-enable-hover t)
+(setq lsp-ui-sideline-show-hover t)
+(setq lsp-ui-peek-always-show t)
 
 (with-eval-after-load 'lsp-mode
   ;; do not use flymake on lsp-mode
@@ -1289,7 +1292,7 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
   (set-face-attribute 'company-tooltip-selection nil
                       :foreground "black" :background "steelblue")
   (set-face-attribute 'company-preview-common nil
-                      :background nil :foreground "lightgrey" :underline t)
+                      :background nil :foreground "lightgrey")
   (set-face-attribute 'company-scrollbar-fg nil
                       :background "gold")
   (set-face-attribute 'company-scrollbar-bg nil
@@ -1866,7 +1869,7 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
     (company-mode t)
     (require 'company-php)
     (make-local-variable 'company-backends)
-    (setq company-backends '((company-lsp company-tabnine company-ac-php-backend)
+    (setq company-backends '((company-tabnine company-ac-php-backend)
                              company-bbdb company-eclim company-semantic company-files
                              (company-dabbrev-code company-gtags company-etags company-keywords)))
     ;(add-to-list 'company-backends 'company-ac-php-backend)

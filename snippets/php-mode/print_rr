@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: print_rr
+# key: prr
+# --
+print_rr($0);

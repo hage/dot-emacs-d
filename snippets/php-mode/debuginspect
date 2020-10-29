@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: debuginspect
+# key: di
+# --
+debuginspect($0);

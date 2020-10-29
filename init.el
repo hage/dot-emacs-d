@@ -1944,6 +1944,8 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
 
       (setq web-mode-enable-current-element-highlight t)
 
+      (setq company-backends (delq 'company-tabnine company-backends))
+
       (when (require 'sgml-mode nil t) (sgml-electric-tag-pair-mode 1)))
 
     (add-hook 'web-mode-hook #'on-hook-for-web-mode)

@@ -1192,6 +1192,8 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
              ("*alchemist help*" :width 82 :position right :stick t)
              ("\\*alchemist .*\\*" :regexp t :position bottom :height .4 :stick t)
 
+             ("*Warnings*")
+
              ("*pry*" :height .3 :width .5 :stick t)
              ("*rake*")
              ("*rake-compilation*" :position bottom :height .3 :tail t)

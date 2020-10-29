@@ -36,7 +36,7 @@
 (depends-on "find-temp-file")
 (depends-on "flycheck")
 (depends-on "flycheck-elixir")
-(depends-on "flycheck-mix")
+; (depends-on "flycheck-mix")
 (depends-on "flycheck-pos-tip")
 (depends-on "git-commit")
 (depends-on "git-gutter")

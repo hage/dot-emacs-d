@@ -566,7 +566,8 @@ Otherwise indent whole buffer."
   (interactive)
   (when (buffer-file-name)
     (save-buffer)
-    (compile compile-command)))
+    (compile compile-command)
+    (end-of-buffer)))
 (with-eval-after-load "sh-script"
   (define-key sh-mode-map (kbd "C-c C-c") #'save-and-compile-buffer))
 
@@ -1082,8 +1083,8 @@ MAKE-TARGET ターゲットを起動する"
         (set-face-bold 'helm-swoop-target-word-face t)
 
         (set-face-foreground 'helm-swoop-target-line-face nil)
-        (set-face-background 'helm-swoop-target-line-face "#030")
-        (set-face-underline 'helm-swoop-target-line-face nil)
+        (set-face-background 'helm-swoop-target-line-face "#444")
+        (set-face-underline 'helm-swoop-target-line-face t)
 
         (define-key helm-map my-helm-swoop-trigger-key 'previous-history-element))
       )

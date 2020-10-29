@@ -4,14 +4,10 @@
 # --
 #!/usr/bin/env ruby
 # frozen_string_literal: true
-# coding: utf-8
 
 # Ruby バンドルの gem を使うとき
 require 'rubygems'
-
-# bundler でインストールした gem を使うとき
-require 'bundler'
-Bundler.setup(:default, :ci)
+require 'bundler/setup'
 
 $0
 

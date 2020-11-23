@@ -2120,8 +2120,6 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
 (with-eval-after-load 'elixir-mode
   ;; (require 'flycheck-elixir nil t)
   ;; (add-hook 'elixir-mode-hook 'flycheck-mode)
-  (require 'flycheck-mix)
-  (flycheck-mix-setup)
 
   (push ".elixir_ls" projectile-globally-ignored-directories)
   (push ".beam" projectile-globally-ignored-file-suffixes)

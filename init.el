@@ -1238,7 +1238,8 @@ C-u を前置したときはどのような場合でも helm-buffers-list を起
         company-selection-wrap-around t
         company-search-filtering t
         company-dabbrev-code-ignore-case t
-        company-dabbrev-ignore-case t)
+        company-dabbrev-ignore-case t
+        company-tooltip-limit 30)
 
   (defun my-company-indent-or-complete-common ()
     "Indent the current line or region, or complete the common part."

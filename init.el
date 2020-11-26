@@ -664,6 +664,7 @@ MAKE-TARGET ターゲットを起動する"
 (my-set-key-my-yank-and-indent-with-mode-and-map php-mode php-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map js2-mode js2-mode-map)
 (my-set-key-my-yank-and-indent-with-mode-and-map cc-mode c-mode-map)
+(my-set-key-my-yank-and-indent-with-mode-and-map typescript-mode typescript-mode-map)
 
 
 ;;;
@@ -2322,6 +2323,17 @@ Otherwise sends the current line."
 (when (functionp 'json-mode)
   (setq json-reformat:indent-width 2)
   )
+
+(when (functionp 'typescript-mode)
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+  (with-eval-after-load 'typescript-mode
+    (setq typescript-indent-level 2)
+    (defun typescript-mode-hook-function ()
+      (lsp))
+    (add-hook 'typescript-mode-hook #'typescript-mode-hook-function)
+    )
+)
 ;;;
 ;;; volatile-highlights
 ;;;

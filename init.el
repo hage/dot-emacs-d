@@ -172,10 +172,7 @@ returns nil when;
 ;;;
 (when (and (<= 24 emacs-major-version)
 	   (require 'package))
-  ;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (setq package-hidden-regexps '("\\(evil\\|-theme\\|^ac-\\|auto-complete\\)"))
-  (package-initialize)
   (when (require 'cask nil t)
     (cask-initialize)
     (when (require 'pallet nil t)

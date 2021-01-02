@@ -2266,13 +2266,16 @@ Otherwise sends the current line."
         (alchemist-iex-send-current-line))))
 
     (define-key alchemist-mode-map (kbd "C-M-x") 'my-alchemist-iex-electric-send-thing)
+    (define-key alchemist-mode-map (kbd "C-c C-c") 'save-and-compile-buffer)
 
     (defun my-alchemist-iex-compile-buffer ()
       "Compile the code of current buffer in the inferior IEx process."
       (interactive)
       (alchemist-iex-compile-this-buffer)
       (alchemist-iex-run))
-    (define-key alchemist-mode-map (kbd "C-c C-c") 'my-alchemist-iex-compile-buffer)
+    (define-key alchemist-mode-map (kbd "C-c c") 'my-alchemist-iex-compile-buffer)
+
+
 
     ;; compilation for IEx
     (push '(elixir "\\([-a-zA-Z0-9./_]+\\):\\([0-9]+\\)\\(: warning\\)?" 1 2 nil (3) 1) compilation-error-regexp-alist-alist)

@@ -160,7 +160,7 @@ returns nil when;
 (setq osxp (equal system-type 'darwin))	; osx環境であるかどうか
 
 ;; east-asian-ambiguous
-(require 'east-asian-ambiguous nil t)
+(require 'eaw nil t)
 
 ;;;
 ;;; MELPA & Cask & Pallet

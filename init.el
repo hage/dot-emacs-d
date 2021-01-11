@@ -2906,7 +2906,13 @@ guessing a default from current buffer file name or default directory. "
 ;;; lv
 ;;;
 (with-eval-after-load 'lv
-  (advice-add 'keyboard-quit :before #'lv-delete-window))
+  (defun my-delete-lv-window ()
+    (interactive)
+    (let ((buf (get-buffer " *LV*")))
+      (when buf
+        (delete-windows-on buf)
+        (kill-buffer buf))))
+  (advice-add 'keyboard-quit :before #'my-delete-lv-window))
 
 ;;;
 ;;; faces

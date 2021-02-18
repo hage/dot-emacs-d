@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fnn
+# key: fnn
+# --
+($1) => $0

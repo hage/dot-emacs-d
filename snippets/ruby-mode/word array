@@ -2,4 +2,4 @@
 # name: word array
 # key: wa
 # --
-%w($0)
+%w[$0]

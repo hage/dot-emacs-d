@@ -2916,6 +2916,12 @@ guessing a default from current buffer file name or default directory. "
   (advice-add 'keyboard-quit :before #'my-delete-lv-window))
 
 ;;;
+;;; mermaid
+;;;
+(when (functionp 'mermaid-mode)
+  (add-to-list 'auto-mode-alist '("\\.mmd\\'" . mermaid-mode)))
+
+;;;
 ;;; faces
 ;;;
 (setq frame-background-mode 'dark)

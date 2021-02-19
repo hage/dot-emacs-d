@@ -66,6 +66,7 @@
 (depends-on "lsp-ui")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "mermaid-mode")
 (depends-on "migemo")
 (depends-on "mozc-popup")
 (depends-on "mozc-temp")

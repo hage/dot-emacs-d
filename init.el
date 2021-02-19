@@ -902,6 +902,7 @@ MAKE-TARGET ターゲットを起動する"
 (setq lsp-eldoc-enable-hover t)
 (setq lsp-ui-sideline-show-hover t)
 (setq lsp-ui-peek-always-show t)
+(setq lsp-keymap-prefix "M-l")
 
 (with-eval-after-load 'lsp-mode
   ;; do not use flymake on lsp-mode

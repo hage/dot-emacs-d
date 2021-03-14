@@ -84,5 +84,39 @@
   :ensure t
   :bind (("C-c e" . macrostep-expand)))
 
+(leaf basic-config
+  :init (progn
+          (line-number-mode t)
+          (menu-bar-mode -1)
+          (modify-syntax-entry ?。 ".")
+          (modify-syntax-entry ?、 ".")
+          (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on))
+
+  :custom ((line-number-mode        . t)
+           (inhibit-startup-message . t)
+           (scroll-conservatively   . 2)
+           (scroll-step             . 1)
+           (scroll-margin           . 3)
+           (next-line-add-newlines  . nil)
+           (auto-save-default       . nil)
+           (make-backup-files       . nil)
+           (create-lockfiles        . nil)
+           (vc-make-backup-files    . nil)
+           (dabbrev-case-fold-search . t)
+           (case-replace . nil)
+           (kill-whole-line . t)
+           (completion-ignore-case . t)
+           (auto-coding-functions . nil)
+           (indent-tabs-mode . nil)
+           (recenter-positions . '(top middle bottom))
+           (auto-revert-check-vc-info . t)
+           (force-load-messages . t)
+           (tags-add-tables . nil)
+           (compilation-ask-about-save . nil)
+           (ring-bell-function . (lambda () (princ "[RING] "))))
+
+  :bind (("C-o" . dabbrev-expand)
+	 ("C-x h" . help-command)))
+
 (provide 'init)
 ;;; init.el ends here

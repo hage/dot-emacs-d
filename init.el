@@ -151,5 +151,15 @@
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word))))
 
+(leaf magit
+  :doc "A Git porcelain inside Emacs."
+  :req "emacs-25.1" "dash-20200524" "git-commit-20200516" "transient-20200601" "with-editor-20200522"
+  :tag "vc" "tools" "git" "emacs>=25.1"
+  :added "2021-03-15"
+  :url "https://github.com/magit/magit"
+  :emacs>= 25.1
+  :ensure t
+  :bind (("C-q g g" . magit-status)))
+
 (provide 'init)
 ;;; init.el ends here

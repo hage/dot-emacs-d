@@ -37,6 +37,8 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
+(setq gc-cons-threshold (* gc-cons-threshold 10))
+(setq garbage-collection-messages t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

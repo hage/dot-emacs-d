@@ -151,6 +151,20 @@
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word))))
 
+(leaf simple-bookmark
+  :init
+  (defun simple-bookmark-set ()
+    (interactive)
+    (progn
+      (bookmark-set "simple-bookmark")
+      (princ "bookmark-set simple-bookmark")))
+  (defun simple-bookmark-jump ()
+    (interactive)
+    (bookmark-jump "simple-bookmark"))
+
+  :bind (("C-q SPC" . simple-bookmark-set)
+         ("C-q b"   . simple-bookmark-jump)))
+
 (leaf magit
   :doc "A Git porcelain inside Emacs."
   :req "emacs-25.1" "dash-20200524" "git-commit-20200516" "transient-20200601" "with-editor-20200522"

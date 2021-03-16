@@ -189,8 +189,8 @@
   :added "2021-03-16"
   :url "http://github.com/bbatsov/solarized-emacs"
   :emacs>= 24.1
-  :ensure t
-  :config (load-theme 'solarized-dark t))
+  :ensure t)
+
 ;; すべての設定が終わったあとでcustomizeの設定を適用する
 (load custom-file)
 

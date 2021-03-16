@@ -92,7 +92,11 @@
           (menu-bar-mode -1)
           (modify-syntax-entry ?。 ".")
           (modify-syntax-entry ?、 ".")
-          (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on))
+          (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)
+          (set-face-background 'vertical-border "#334")
+          (set-display-table-slot standard-display-table
+                                  'vertical-border
+                                  (make-glyph-code ? )))
 
   :custom ((line-number-mode           . t)
            (inhibit-startup-message    . t)

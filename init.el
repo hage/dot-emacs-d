@@ -86,8 +86,10 @@
 (leaf macrostep
   :ensure t
   :bind (("C-c e" . macrostep-expand)))
+
 (leaf basic-config
   :init (progn
+          (put 'narrow-to-region 'disabled nil)
           (line-number-mode t)
           (menu-bar-mode -1)
           (modify-syntax-entry ?。 ".")

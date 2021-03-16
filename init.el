@@ -36,7 +36,6 @@
 ;; 非常に重要な設定
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file)
 (setq gc-cons-threshold (* gc-cons-threshold 10))
 (setq garbage-collection-messages t)
 
@@ -186,6 +185,8 @@
   :emacs>= 24.1
   :ensure t
   :config (load-theme 'solarized-dark t))
+;; すべての設定が終わったあとでcustomizeの設定を適用する
+(load custom-file)
 
 (provide 'init)
 ;;; init.el ends here

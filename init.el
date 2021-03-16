@@ -17,9 +17,9 @@
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 
-;;; tmux 内にいる && Emacs がインタラクティブに起動 && "Emacs" が window-name にないとき
-;;; window-name を設定する。
-;;; また、Emacs 終了時に automatic-rename を有効にする
+;; tmux 内にいる && Emacs がインタラクティブに起動 && "Emacs" が window-name にないとき
+;; window-name を設定する。
+;; また、Emacs 終了時に automatic-rename を有効にする
 (let ((case-fold-search nil)            ; case-sensitive
       (tmux-title-of-emacs "Emacs"))
   (when (and (getenv "TMUX")
@@ -40,8 +40,8 @@
 (setq gc-cons-threshold (* gc-cons-threshold 10))
 (setq garbage-collection-messages t)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; this enables this running method
 ;;   emacs -q -l ~/.debug.emacs.d/{{pkg}}/init.el
 (eval-and-compile
@@ -72,6 +72,8 @@
     ;; initialize leaf-keywords.el
     (leaf-keywords-init)))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ここにいっぱい設定を書く
 
 (leaf leaf

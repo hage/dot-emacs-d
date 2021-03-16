@@ -177,5 +177,15 @@
   :ensure t
   :bind (("C-q g g" . magit-status)))
 
+(leaf solarized-theme
+  :doc "The Solarized color theme"
+  :req "emacs-24.1" "dash-2.16"
+  :tag "solarized" "themes" "convenience" "emacs>=24.1"
+  :added "2021-03-16"
+  :url "http://github.com/bbatsov/solarized-emacs"
+  :emacs>= 24.1
+  :ensure t
+  :config (load-theme 'solarized-dark t))
+
 (provide 'init)
 ;;; init.el ends here

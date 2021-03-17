@@ -237,7 +237,8 @@
          ("C-M-z"   . counsel-fzf)
          ("C-M-r"   . counsel-recentf)
          ("C-x C-b" . counsel-ibuffer)
-         ("C-M-f"   . counsel-ag)))
+         ("M-s a"   . counsel-ag)))
+
 
 (provide 'init)
 ;;; init.el ends here

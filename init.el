@@ -193,7 +193,8 @@
   :added "2021-03-16"
   :url "http://github.com/bbatsov/solarized-emacs"
   :emacs>= 24.1
-  :ensure t)
+  :ensure t
+  :config (load-theme 'solarized-wombat-dark t))
 
 (leaf ivy
   :doc "Incremental Vertical completYon"
@@ -237,8 +238,6 @@
          ("C-M-r"   . counsel-recentf)
          ("C-x C-b" . counsel-ibuffer)
          ("C-M-f"   . counsel-ag)))
-;; すべての設定が終わったあとでcustomizeの設定を適用する
-(load custom-file)
 
 (provide 'init)
 ;;; init.el ends here

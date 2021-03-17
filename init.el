@@ -208,7 +208,7 @@
            (enable-recursive-minibuffers   . t)
            (minibuffer-depth-indicate-mode . 1)
            (ivy-truncate-lines             . nil)
-           (ivy-wrap                       . t)
+           (ivy-wrap                       . nil)
            (ivy-mode                       . 1)))
 
 (leaf ivy-hydra

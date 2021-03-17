@@ -172,6 +172,10 @@
   :bind (("C-q SPC" . simple-bookmark-set)
          ("C-q b"   . simple-bookmark-jump)))
 
+(leaf show-paren-mode
+  :custom ((show-paren-style . 'mixed))
+  :config (show-paren-mode t))
+
 (leaf magit
   :doc "A Git porcelain inside Emacs."
   :req "emacs-25.1" "dash-20200524" "git-commit-20200516" "transient-20200601" "with-editor-20200522"

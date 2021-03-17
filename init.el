@@ -204,12 +204,12 @@
   :url "https://github.com/abo-abo/swiper"
   :emacs>= 24.5
   :ensure t
-  :custom ((ivy-use-virtual-buffers . t)
-           (enable-recursive-minibuffers . t)
+  :custom ((ivy-use-virtual-buffers        . t)
+           (enable-recursive-minibuffers   . t)
            (minibuffer-depth-indicate-mode . 1)
-           (ivy-truncate-lines . nil)
-           (ivy-wrap . t)
-           (ivy-mode . 1)))
+           (ivy-truncate-lines             . nil)
+           (ivy-wrap                       . t)
+           (ivy-mode                       . 1)))
 
 (leaf ivy-hydra
   :doc "Additional key bindings for Ivy"

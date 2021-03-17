@@ -176,6 +176,10 @@
   :custom ((show-paren-style . 'mixed))
   :config (show-paren-mode t))
 
+(leaf recentf
+  :custom ((recentf-max-saved-items . 1024)
+           (recentf-auto-cleanup    . 'never)))
+
 (leaf magit
   :doc "A Git porcelain inside Emacs."
   :req "emacs-25.1" "dash-20200524" "git-commit-20200516" "transient-20200601" "with-editor-20200522"

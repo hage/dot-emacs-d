@@ -238,7 +238,9 @@
          ("C-M-r"   . counsel-recentf)
          ("C-x C-b" . counsel-ibuffer)
          ("M-s a"   . counsel-ag)
-         ("M-I"     . counsel-imenu)))
+         ("M-I"     . counsel-imenu)
+         (counsel-find-file-map
+          ("C-l" . counsel-up-directory))))
 
 (leaf swiper
   :doc "Isearch with an overview. Oh, man!"

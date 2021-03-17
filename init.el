@@ -207,19 +207,36 @@
            (enable-recursive-minibuffers . t)
            (minibuffer-depth-indicate-mode . 1)
            (ivy-truncate-lines . nil)
-           (ivy-wrap . t))
-  :config (progn (ivy-mode 1)
-                 (leaf ivy-hydra
-                   :doc "Additional key bindings for Ivy"
-                   :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"
-                   :tag "convenience" "emacs>=24.5"
-                   :added "2021-03-17"
-                   :url "https://github.com/abo-abo/swiper"
-                   :emacs>= 24.5
-                   :ensure t
-                   :after ivy hydra
-                   :custom ((ivy-read-action-function . #'ivy-hydra-read-action)))))
+           (ivy-wrap . t)
+           (ivy-mode . 1)))
 
+(leaf ivy-hydra
+  :doc "Additional key bindings for Ivy"
+  :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"
+  :tag "convenience" "emacs>=24.5"
+  :added "2021-03-17"
+  :url "https://github.com/abo-abo/swiper"
+  :emacs>= 24.5
+  :ensure t
+  :after ivy hydra
+  :custom ((ivy-read-action-function . #'ivy-hydra-read-action)))
+
+(leaf counsel
+  :doc "Various completion functions using Ivy"
+  :req "emacs-24.5" "ivy-0.13.4" "swiper-0.13.4"
+  :tag "tools" "matching" "convenience" "emacs>=24.5"
+  :added "2021-03-17"
+  :url "https://github.com/abo-abo/swiper"
+  :emacs>= 24.5
+  :ensure t
+  :after ivy
+  :init (counsel-mode 1)
+  :bind (("M-x"     . counsel-M-x)
+         ("M-y"     . counsel-yank-pop)
+         ("C-M-z"   . counsel-fzf)
+         ("C-M-r"   . counsel-recentf)
+         ("C-x C-b" . counsel-ibuffer)
+         ("C-M-f"   . counsel-ag)))
 ;; すべての設定が終わったあとでcustomizeの設定を適用する
 (load custom-file)
 

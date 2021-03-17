@@ -239,6 +239,16 @@
          ("C-x C-b" . counsel-ibuffer)
          ("M-s a"   . counsel-ag)))
 
+(leaf swiper
+  :doc "Isearch with an overview. Oh, man!"
+  :req "emacs-24.5" "ivy-0.13.4"
+  :tag "matching" "emacs>=24.5"
+  :added "2021-03-17"
+  :url "https://github.com/abo-abo/swiper"
+  :emacs>= 24.5
+  :ensure t
+  :after ivy
+  :bind (("C-s" . swiper-thing-at-point)))
 
 (provide 'init)
 ;;; init.el ends here

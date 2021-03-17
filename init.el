@@ -195,6 +195,31 @@
   :emacs>= 24.1
   :ensure t)
 
+(leaf ivy
+  :doc "Incremental Vertical completYon"
+  :req "emacs-24.5"
+  :tag "matching" "emacs>=24.5"
+  :added "2021-03-17"
+  :url "https://github.com/abo-abo/swiper"
+  :emacs>= 24.5
+  :ensure t
+  :custom ((ivy-use-virtual-buffers . t)
+           (enable-recursive-minibuffers . t)
+           (minibuffer-depth-indicate-mode . 1)
+           (ivy-truncate-lines . nil)
+           (ivy-wrap . t))
+  :config (progn (ivy-mode 1)
+                 (leaf ivy-hydra
+                   :doc "Additional key bindings for Ivy"
+                   :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"
+                   :tag "convenience" "emacs>=24.5"
+                   :added "2021-03-17"
+                   :url "https://github.com/abo-abo/swiper"
+                   :emacs>= 24.5
+                   :ensure t
+                   :after ivy hydra
+                   :custom ((ivy-read-action-function . #'ivy-hydra-read-action)))))
+
 ;; すべての設定が終わったあとでcustomizeの設定を適用する
 (load custom-file)
 

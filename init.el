@@ -212,6 +212,7 @@
            (enable-recursive-minibuffers   . t)
            (minibuffer-depth-indicate-mode . 1)
            (ivy-truncate-lines             . nil)
+           (ivy-height                     . `,(/ (window-height) 2))
            (ivy-wrap                       . nil)
            (ivy-mode                       . 1)))
 

@@ -214,49 +214,46 @@
            (ivy-truncate-lines             . nil)
            (ivy-height                     . `,(/ (window-height) 2))
            (ivy-wrap                       . nil)
-           (ivy-mode                       . 1)))
-
-(leaf ivy-hydra
-  :doc "Additional key bindings for Ivy"
-  :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"
-  :tag "convenience" "emacs>=24.5"
-  :added "2021-03-17"
-  :url "https://github.com/abo-abo/swiper"
-  :emacs>= 24.5
-  :ensure t
-  :after ivy hydra
-  :custom ((ivy-read-action-function . #'ivy-hydra-read-action)))
-
-(leaf counsel
-  :doc "Various completion functions using Ivy"
-  :req "emacs-24.5" "ivy-0.13.4" "swiper-0.13.4"
-  :tag "tools" "matching" "convenience" "emacs>=24.5"
-  :added "2021-03-17"
-  :url "https://github.com/abo-abo/swiper"
-  :emacs>= 24.5
-  :ensure t
-  :after ivy
-  :init (counsel-mode 1)
-  :bind (("M-x"     . counsel-M-x)
-         ("M-y"     . counsel-yank-pop)
-         ("C-M-z"   . counsel-fzf)
-         ("C-M-r"   . counsel-recentf)
-         ("C-x C-b" . counsel-ibuffer)
-         ("M-s a"   . counsel-ag)
-         ("M-I"     . counsel-imenu)
-         (counsel-find-file-map
-          ("C-l" . counsel-up-directory))))
-
-(leaf swiper
-  :doc "Isearch with an overview. Oh, man!"
-  :req "emacs-24.5" "ivy-0.13.4"
-  :tag "matching" "emacs>=24.5"
-  :added "2021-03-17"
-  :url "https://github.com/abo-abo/swiper"
-  :emacs>= 24.5
-  :ensure t
-  :after ivy
-  :bind (("C-s" . swiper-thing-at-point)))
+           (ivy-mode                       . 1))
+  :config
+  (leaf ivy-hydra
+    :doc "Additional key bindings for Ivy"
+    :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"
+    :tag "convenience" "emacs>=24.5"
+    :added "2021-03-17"
+    :url "https://github.com/abo-abo/swiper"
+    :emacs>= 24.5
+    :ensure t
+    :after ivy hydra
+    :custom ((ivy-read-action-function . #'ivy-hydra-read-action)))
+  (leaf counsel
+    :doc "Various completion functions using Ivy"
+    :req "emacs-24.5" "ivy-0.13.4" "swiper-0.13.4"
+    :tag "tools" "matching" "convenience" "emacs>=24.5"
+    :added "2021-03-17"
+    :url "https://github.com/abo-abo/swiper"
+    :emacs>= 24.5
+    :ensure t
+    :after ivy
+    :init (counsel-mode 1)
+    :bind (("M-x"     . counsel-M-x)
+           ("M-y"     . counsel-yank-pop)
+           ("C-M-z"   . counsel-fzf)
+           ("C-M-r"   . counsel-recentf)
+           ("C-x C-b" . counsel-ibuffer)
+           ("M-s a"   . counsel-ag)
+           ("M-I"     . counsel-imenu)
+           (counsel-find-file-map
+            ("C-l" . counsel-up-directory))))  (leaf swiper
+    :doc "Isearch with an overview. Oh, man!"
+    :req "emacs-24.5" "ivy-0.13.4"
+    :tag "matching" "emacs>=24.5"
+    :added "2021-03-17"
+    :url "https://github.com/abo-abo/swiper"
+    :emacs>= 24.5
+    :ensure t
+    :after ivy
+    :bind (("C-s" . swiper-thing-at-point))))
 
 (provide 'init)
 ;;; init.el ends here

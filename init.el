@@ -190,15 +190,15 @@
   :ensure t
   :bind (("C-q g g" . magit-status)))
 
-(leaf solarized-theme
-  :doc "The Solarized color theme"
-  :req "emacs-24.1" "dash-2.16"
-  :tag "solarized" "themes" "convenience" "emacs>=24.1"
-  :added "2021-03-16"
-  :url "http://github.com/bbatsov/solarized-emacs"
+(leaf color-theme-sanityinc-solarized
+  :doc "A version of Ethan Schoonover's Solarized themes"
+  :req "emacs-24.1" "cl-lib-0.6"
+  :tag "themes" "faces" "emacs>=24.1"
+  :added "2021-03-19"
+  :url "https://github.com/purcell/color-theme-sanityinc-solarized"
   :emacs>= 24.1
   :ensure t
-  :config (load-theme 'solarized-wombat-dark t))
+  :config (load-theme 'sanityinc-solarized-dark t))
 
 (leaf ivy
   :doc "Incremental Vertical completYon"
@@ -276,17 +276,6 @@
   :custom ((company-idle-delay . 0)
            (company-minimum-prefix-length . 1)
            (company-transformers . '(company-sort-by-occurrence)))
-  :custom-face
-  (company-tooltip-common           . '((t (:foreground "black" :background "lightgrey"))))
-  (company-tooltip                  . '((t (:foreground "black" :background "lightgrey"))))
-  (company-tooltip-common-selection . '((t (:foreground "white" :background "steelblue"))))
-  (company-tooltip-selection        . '((t (:foreground "black" :background "steelblue"))))
-  (company-preview-common           . '((t (:foreground "lightgrey" :background nil))))
-  (company-scrollbar-fg             . '((t (:background "gold"))))
-  (company-scrollbar-bg             . '((t (:background "gray40"))))
-  (company-tooltip-search           . '((t (:background "orchid4"))))
-  (company-tooltip-search-selection . '((t (:background "orchid4"))))
-
   :global-minor-mode global-company-mode)
 
 (provide 'init)

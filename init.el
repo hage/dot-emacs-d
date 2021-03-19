@@ -273,9 +273,9 @@
          (company-search-map
           ("C-n" . company-select-next)
           ("C-p" . company-select-previous)))
-  :custom ((company-idle-delay . 0)
-           (company-minimum-prefix-length . 1)
-           (company-transformers . '(company-sort-by-occurrence)))
+  :custom ((company-idle-delay            . .8)
+           (company-minimum-prefix-length . 3)
+           (company-transformers          . '(company-sort-by-occurrence)))
   :global-minor-mode global-company-mode)
 
 (provide 'init)

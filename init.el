@@ -263,7 +263,8 @@
   :url "http://company-mode.github.io/"
   :emacs>= 24.3
   :ensure t
-  :bind ((company-active-map
+  :bind (("C-i" . company-indent-or-complete-common)
+         (company-active-map
           ("M-n" . nil)
           ("M-p" . nil)
           ("C-s" . company-filter-candidates)

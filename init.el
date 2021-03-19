@@ -255,5 +255,39 @@
     :after ivy
     :bind (("C-s" . swiper-thing-at-point))))
 
+(leaf company
+  :doc "Modular text completion framework"
+  :req "emacs-24.3"
+  :tag "matching" "convenience" "abbrev" "emacs>=24.3"
+  :added "2021-03-18"
+  :url "http://company-mode.github.io/"
+  :emacs>= 24.3
+  :ensure t
+  :bind ((company-active-map
+          ("M-n" . nil)
+          ("M-p" . nil)
+          ("C-s" . company-filter-candidates)
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)
+          ("<tab>" . company-complete-selection))
+         (company-search-map
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)))
+  :custom ((company-idle-delay . 0)
+           (company-minimum-prefix-length . 1)
+           (company-transformers . '(company-sort-by-occurrence)))
+  :custom-face
+  (company-tooltip-common           . '((t (:foreground "black" :background "lightgrey"))))
+  (company-tooltip                  . '((t (:foreground "black" :background "lightgrey"))))
+  (company-tooltip-common-selection . '((t (:foreground "white" :background "steelblue"))))
+  (company-tooltip-selection        . '((t (:foreground "black" :background "steelblue"))))
+  (company-preview-common           . '((t (:foreground "lightgrey" :background nil))))
+  (company-scrollbar-fg             . '((t (:background "gold"))))
+  (company-scrollbar-bg             . '((t (:background "gray40"))))
+  (company-tooltip-search           . '((t (:background "orchid4"))))
+  (company-tooltip-search-selection . '((t (:background "orchid4"))))
+
+  :global-minor-mode global-company-mode)
+
 (provide 'init)
 ;;; init.el ends here

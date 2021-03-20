@@ -214,7 +214,9 @@
            (ivy-truncate-lines             . nil)
            (ivy-height                     . `,(/ (window-height) 2))
            (ivy-wrap                       . nil)
-           (ivy-mode                       . 1))
+           (ivy-mode                       . 1)
+           (ivy-initial-inputs-alist       . nil)
+           (ivy-use-selectable-prompt      . t))
   :config
   (leaf ivy-hydra
     :doc "Additional key bindings for Ivy"

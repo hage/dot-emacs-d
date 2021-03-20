@@ -256,7 +256,17 @@
     :emacs>= 24.5
     :ensure t
     :after ivy
-    :bind (("C-s" . swiper-thing-at-point))))
+    :bind (("C-s" . swiper-thing-at-point)))
+  (leaf ivy-rich
+    :doc "More friendly display transformer for ivy"
+    :req "emacs-25.1" "ivy-0.13.0"
+    :tag "ivy" "convenience" "emacs>=25.1"
+    :added "2021-03-21"
+    :url "https://github.com/Yevgnen/ivy-rich"
+    :emacs>= 25.1
+    :ensure t
+    :after ivy
+    :global-minor-mode t))
 
 (leaf company
   :doc "Modular text completion framework"

@@ -244,7 +244,8 @@
            ("M-s a"   . counsel-ag)
            ("M-I"     . counsel-imenu)
            (counsel-find-file-map
-            ("C-l" . counsel-up-directory))))  (leaf swiper
+            ("C-l" . counsel-up-directory))))
+  (leaf swiper
     :doc "Isearch with an overview. Oh, man!"
     :req "emacs-24.5" "ivy-0.13.4"
     :tag "matching" "emacs>=24.5"

@@ -279,5 +279,15 @@
            (company-transformers          . '(company-sort-by-occurrence)))
   :global-minor-mode global-company-mode)
 
+(leaf yasnippet
+  :doc "Yet another snippet extension for Emacs"
+  :req "cl-lib-0.5"
+  :tag "emulation" "convenience"
+  :added "2021-03-21"
+  :url "http://github.com/joaotavora/yasnippet"
+  :ensure t
+  :config
+  (yas-global-mode))
+
 (provide 'init)
 ;;; init.el ends here

@@ -200,6 +200,15 @@
   :ensure t
   :config (load-theme 'sanityinc-solarized-dark t))
 
+(leaf prescient
+  :doc "Better sorting and filtering"
+  :req "emacs-25.1"
+  :tag "extensions" "emacs>=25.1"
+  :added "2021-03-21"
+  :url "https://github.com/raxod502/prescient.el"
+  :emacs>= 25.1
+  :ensure t)
+
 (leaf ivy
   :doc "Incremental Vertical completYon"
   :req "emacs-24.5"
@@ -266,6 +275,16 @@
     :emacs>= 25.1
     :ensure t
     :after ivy
+    :global-minor-mode t)
+  (leaf ivy-prescient
+    :doc "prescient.el + Ivy"
+    :req "emacs-25.1" "prescient-5.1" "ivy-0.11.0"
+    :tag "extensions" "emacs>=25.1"
+    :added "2021-03-21"
+    :url "https://github.com/raxod502/prescient.el"
+    :emacs>= 25.1
+    :ensure t
+    :after prescient ivy
     :global-minor-mode t))
 
 (leaf company
@@ -287,10 +306,21 @@
          (company-search-map
           ("C-n" . company-select-next)
           ("C-p" . company-select-previous)))
+  :global-minor-mode global-company-mode
   :custom ((company-idle-delay            . .8)
            (company-minimum-prefix-length . 3)
            (company-transformers          . '(company-sort-by-occurrence)))
-  :global-minor-mode global-company-mode)
+  :config
+  (leaf company-prescient
+    :doc "prescient.el + Company"
+    :req "emacs-25.1" "prescient-5.1" "company-0.9.6"
+    :tag "extensions" "emacs>=25.1"
+    :added "2021-03-21"
+    :url "https://github.com/raxod502/prescient.el"
+    :emacs>= 25.1
+    :ensure t
+    :after prescient company
+    :global-minor-mode t))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

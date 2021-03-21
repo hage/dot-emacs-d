@@ -188,7 +188,12 @@
   :url "https://github.com/magit/magit"
   :emacs>= 25.1
   :ensure t
-  :bind (("C-q g g" . magit-status)))
+  :bind (("C-q g g" . magit-status))
+  :config
+  (defun git-commit-prefix-select ()
+    (if (= 10 (following-char))
+        (insert ":")))
+  (add-hook 'git-commit-setup-hook 'git-commit-prefix-select))
 
 (leaf color-theme-sanityinc-solarized
   :doc "A version of Ethan Schoonover's Solarized themes"

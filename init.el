@@ -225,7 +225,8 @@
            (ivy-wrap                       . nil)
            (ivy-mode                       . 1)
            (ivy-initial-inputs-alist       . nil)
-           (ivy-use-selectable-prompt      . t))
+           (ivy-use-selectable-prompt      . t)
+           (ivy-re-builders-alist          . '((t . ivy--regex-ignore-order))))
   :config
   (leaf ivy-hydra
     :doc "Additional key bindings for Ivy"

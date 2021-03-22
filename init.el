@@ -380,5 +380,17 @@
   :ensure t
   :bind (("M-SPC" . er/expand-region)))
 
+(leaf popwin
+  :doc "Popup Window Manager"
+  :req "emacs-24.3"
+  :tag "convenience" "emacs>=24.3"
+  :added "2021-03-23"
+  :url "https://github.com/emacsorphanage/popwin"
+  :emacs>= 24.3
+  :ensure t
+  :bind (("C-w C-p" . popwin:keymap))
+  :init (popwin-mode 1))
+
+
 (provide 'init)
 ;;; init.el ends here

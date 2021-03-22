@@ -216,6 +216,18 @@
         (insert ":")))
   (add-hook 'git-commit-setup-hook 'git-commit-prefix-select))
 
+(leaf git-gutter
+  :doc "Port of Sublime Text plugin GitGutter"
+  :req "emacs-24.3"
+  :tag "emacs>=24.3"
+  :added "2021-03-23"
+  :url "https://github.com/emacsorphanage/git-gutter"
+  :emacs>= 24.3
+  :ensure t
+  :init (global-git-gutter-mode)
+  :bind (("M-g M-n" . git-gutter:next-hunk)
+         ("M-g M-p" . git-gutter:previous-hunk)))
+
 (leaf color-theme-sanityinc-solarized
   :doc "A version of Ethan Schoonover's Solarized themes"
   :req "emacs-24.1" "cl-lib-0.6"

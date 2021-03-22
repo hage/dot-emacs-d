@@ -180,6 +180,19 @@
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never)))
 
+(leaf migemo
+  :doc "Japanese incremental search through dynamic pattern expansion"
+  :req "cl-lib-0.5"
+  :added "2021-03-22"
+  :url "https://github.com/emacs-jp/migemo"
+  :ensure t
+  :custom ((migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict")
+           (migemo-coding-system . 'utf-8)
+           (migemo-options . '("-q" "--emacs")))
+  :commands migemo-init
+  :init
+  (migemo-init))
+
 (leaf magit
   :doc "A Git porcelain inside Emacs."
   :req "emacs-25.1" "dash-20200524" "git-commit-20200516" "transient-20200601" "with-editor-20200522"
@@ -232,7 +245,8 @@
            (ivy-mode                       . 1)
            (ivy-initial-inputs-alist       . nil)
            (ivy-use-selectable-prompt      . t)
-           (ivy-re-builders-alist          . '((t . ivy--regex-ignore-order))))
+           (ivy-re-builders-alist . '((swiper . ivy-migemo--regex-plus)
+                                      (t . ivy--regex-ignore-order))))
   :config
   (leaf ivy-hydra
     :doc "Additional key bindings for Ivy"
@@ -292,7 +306,19 @@
     :emacs>= 25.1
     :ensure t
     :after prescient ivy
-    :global-minor-mode t))
+    :global-minor-mode t)
+  (leaf ivy-migemo
+    :doc "Use migemo on ivy"
+    :req "emacs-24.3" "ivy-0.13.0" "migemo-1.9.2"
+    :tag "matching" "emacs>=24.3"
+    :added "2021-03-22"
+    :url "https://github.com/ROCKTAKEY/ivy-migemo"
+    :emacs>= 24.3
+    :ensure t
+    :after ivy migemo
+    :commands ivy-migemo--regex-plus
+    :bind ((ivy-minibuffer-map
+            ("M-M" . ivy-migemo-toggle-migemo)))))
 
 (leaf company
   :doc "Modular text completion framework"

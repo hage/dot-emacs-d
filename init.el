@@ -280,7 +280,7 @@
            ("M-y"     . counsel-yank-pop)
            ("C-M-z"   . counsel-fzf)
            ("C-M-r"   . counsel-recentf)
-           ("C-x C-b" . counsel-ibuffer)
+           ("C-x b"   . counsel-ibuffer)
            ("M-s a"   . counsel-ag)
            ("M-I"     . counsel-imenu)
            (counsel-find-file-map

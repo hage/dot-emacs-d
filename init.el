@@ -212,7 +212,8 @@
   :added "2021-03-21"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :ensure t)
+  :ensure t
+  :global-minor-mode prescient-persist-mode)
 
 (leaf ivy
   :doc "Incremental Vertical completYon"

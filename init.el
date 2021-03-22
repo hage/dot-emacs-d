@@ -180,6 +180,14 @@
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never)))
 
+(leaf pbcopy
+  :doc "Emacs Interface to pbcopy"
+  :tag "pbcopy" "osx" "mac"
+  :added "2021-03-23"
+  :url "https://github.com/jkp/pbcopy.el"
+  :ensure t
+  :init (turn-on-pbcopy))
+
 (leaf duplicate-thing
   :doc "Duplicate current line & selection"
   :tag "selection" "line" "duplicate" "command" "convenience"

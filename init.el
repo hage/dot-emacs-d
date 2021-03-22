@@ -180,6 +180,14 @@
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never)))
 
+(leaf duplicate-thing
+  :doc "Duplicate current line & selection"
+  :tag "selection" "line" "duplicate" "command" "convenience"
+  :added "2021-03-22"
+  :url "https://github.com/ongaeshi/duplicate-thing"
+  :ensure t
+  :bind (("M-c" . duplicate-thing)))
+
 (leaf migemo
   :doc "Japanese incremental search through dynamic pattern expansion"
   :req "cl-lib-0.5"

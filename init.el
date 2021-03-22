@@ -411,6 +411,21 @@
   :bind (("C-w C-p" . popwin:keymap))
   :init (popwin-mode 1))
 
+(leaf smartparens
+  :doc "Automatic insertion, wrapping and paredit-like navigation with user defined pairs."
+  :req "dash-2.13.0" "cl-lib-0.3"
+  :tag "editing" "convenience" "abbrev"
+  :added "2021-03-23"
+  :url "https://github.com/Fuco1/smartparens"
+  :ensure t
+  :hook emacs-lisp-mode-hook
+  :bind ((smartparens-mode-map
+          ("M-R" . sp-raise-sexp)
+          ("M-D" . sp-splice-sexp)
+          ("M-H" . sp-backward-barf-sexp)
+          ("M-J" . sp-backward-slurp-sexp)
+          ("M-K" . sp-forward-slurp-sexp)
+          ("M-L" . sp-forward-barf-sexp))))
 
 (provide 'init)
 ;;; init.el ends here

@@ -373,5 +373,12 @@
   :config
   (yas-global-mode))
 
+(leaf expand-region
+  :doc "Increase selected region by semantic units."
+  :tag "region" "marking"
+  :added "2021-03-22"
+  :ensure t
+  :bind (("M-SPC" . er/expand-region)))
+
 (provide 'init)
 ;;; init.el ends here

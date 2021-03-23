@@ -395,7 +395,17 @@
     :emacs>= 25.1
     :ensure t
     :after prescient company
-    :global-minor-mode t))
+    :global-minor-mode t)
+  (leaf company-tabnine
+    :doc "A company-mode backend for TabNine"
+    :req "emacs-25" "company-0.9.3" "cl-lib-0.5" "dash-2.16.0" "s-1.12.0" "unicode-escape-1.1"
+    :tag "convenience" "emacs>=25"
+    :added "2021-03-23"
+    :url "https://github.com/TommyX12/company-tabnine/"
+    :emacs>= 25
+    :ensure t
+    :after company unicode-escape
+    :init (add-to-list 'company-backends #'company-tabnine)))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

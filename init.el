@@ -289,6 +289,7 @@
            (ivy-use-selectable-prompt      . t)
            (ivy-re-builders-alist . '((swiper . ivy-migemo--regex-plus)
                                       (t . ivy--regex-ignore-order))))
+  :bind (("C-w C-i" . ivy-resume))
   :config
   (leaf ivy-hydra
     :doc "Additional key bindings for Ivy"

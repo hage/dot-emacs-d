@@ -458,6 +458,7 @@
   :url "https://github.com/Fuco1/smartparens"
   :ensure t
   :hook emacs-lisp-mode-hook
+  :defer-config (require 'smartparens-config)
   :bind ((smartparens-mode-map
           ("M-R" . sp-raise-sexp)
           ("M-D" . sp-splice-sexp)

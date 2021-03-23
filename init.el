@@ -210,6 +210,13 @@
   :ensure t
   :bind (("M-c" . duplicate-thing)))
 
+(leaf smart-mark
+  :doc "Restore point after C-g when mark"
+  :tag "restore" "mark"
+  :added "2021-03-23"
+  :ensure t
+  :init (smart-mark-mode 1))
+
 (leaf migemo
   :doc "Japanese incremental search through dynamic pattern expansion"
   :req "cl-lib-0.5"

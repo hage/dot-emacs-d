@@ -87,6 +87,13 @@
   :ensure t
   :bind (("C-c e" . macrostep-expand)))
 
+(leaf basic-functions
+  :init
+  (defun unshift (newelt place)
+    "Destructive append NEWLT into PLACE."
+    (setcdr (last place) `(,newelt . nil))
+    place))
+
 (leaf basic-config
   :init (progn
           (put 'narrow-to-region 'disabled nil)
@@ -412,8 +419,8 @@
     :url "https://github.com/TommyX12/company-tabnine/"
     :emacs>= 25
     :ensure t
-    :after company unicode-escape
-    :init (add-to-list 'company-backends #'company-tabnine)))
+    :after company
+    :init (unshift #'company-tabnine company-backends)))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

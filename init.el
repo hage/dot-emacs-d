@@ -172,6 +172,20 @@
   :bind (("C-q SPC" . simple-bookmark-set)
          ("C-q b"   . simple-bookmark-jump)))
 
+(leaf yank-and-indent
+  :init
+  (defun yank-and-indent ()
+    "Yank and indent it."
+    (interactive)
+    (yank)
+    (save-excursion
+      (exchange-point-and-mark)
+      (indent-region (point) (mark))))
+  :hook
+  ((emacs-lisp-mode-hook) . (lambda ()
+                              (local-set-key (kbd "C-y") #'yank-and-indent)
+                              (local-set-key (kbd "C-M-y") #'yank))))
+
 (leaf show-paren-mode
   :custom ((show-paren-style . 'mixed))
   :config (show-paren-mode t))

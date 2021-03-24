@@ -293,6 +293,7 @@
   :emacs>= 24.5
   :ensure t
   :custom ((ivy-use-virtual-buffers        . t)
+           (ivy-count-format               . "(%d/%d) ")
            (enable-recursive-minibuffers   . t)
            (minibuffer-depth-indicate-mode . 1)
            (ivy-truncate-lines             . nil)

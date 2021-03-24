@@ -520,6 +520,20 @@
     :bind (projectile-mode-map
            ("M-C-o" . counsel-projectile)
            ("M-p M-p" . counsel-projectile-find-file-dwim))))
+
+(leaf multiple-cursors
+  :doc "Multiple cursors for Emacs."
+  :req "cl-lib-0.5"
+  :tag "cursors" "editing"
+  :added "2021-03-25"
+  :url "https://github.com/magnars/multiple-cursors.el"
+  :ensure t
+  :bind (("C-w C-SPC" . mc/mark-all-dwim)
+         ("C-x r t"   . mc/edit-lines)
+         (mc/keymap
+          ("C-k" . kill-line)
+          ("C-y" . yank)
+          ("M-w" . kill-ring-save))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

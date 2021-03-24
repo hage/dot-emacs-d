@@ -498,5 +498,28 @@
           ("C-x b"   . persp-ivy-switch-buffer)
           ("C-x C-b" . counsel-switch-buffer))))
 
+(leaf projectile
+  :doc "Manage and navigate projects in Emacs easily"
+  :req "emacs-25.1" "pkg-info-0.4"
+  :tag "convenience" "project" "emacs>=25.1"
+  :added "2021-03-25"
+  :url "https://github.com/bbatsov/projectile"
+  :emacs>= 25.1
+  :ensure t
+  :init (projectile-mode)
+  :config
+  (leaf counsel-projectile
+    :doc "Ivy integration for Projectile"
+    :req "counsel-0.13.0" "projectile-2.0.0"
+    :tag "convenience" "project"
+    :added "2021-03-25"
+    :url "https://github.com/ericdanan/counsel-projectile"
+    :ensure t
+    :after counsel projectile
+    :init (counsel-projectile-mode)
+    :bind (projectile-mode-map
+           ("M-C-o" . counsel-projectile)
+           ("M-p M-p" . counsel-projectile-find-file-dwim))))
+
 (provide 'init)
 ;;; init.el ends here

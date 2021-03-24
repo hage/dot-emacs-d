@@ -467,5 +467,19 @@
           ("M-K" . sp-forward-slurp-sexp)
           ("M-L" . sp-forward-barf-sexp))))
 
+(leaf which-key
+  :doc "Display available keybindings in popup"
+  :req "emacs-24.4"
+  :tag "emacs>=24.4"
+  :added "2021-03-24"
+  :url "https://github.com/justbur/emacs-which-key"
+  :emacs>= 24.4
+  :ensure t
+  :custom ((which-key-side-window-max-width . 0.35)
+           (which-key-max-display-columns . 1)
+           (which-key-allow-imprecise-window-fit . t)
+           (which-key-max-description-length . 70)
+           (which-key-mode . 1))
+  :config (which-key-setup-side-window-right))
 (provide 'init)
 ;;; init.el ends here

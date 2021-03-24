@@ -520,6 +520,36 @@
     :bind (projectile-mode-map
            ("M-C-o" . counsel-projectile)
            ("M-p M-p" . counsel-projectile-find-file-dwim))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; major modes
+
+(leaf web-mode
+  :doc "major mode for editing web templates"
+  :req "emacs-23.1"
+  :tag "languages" "emacs>=23.1"
+  :added "2021-03-25"
+  :url "https://web-mode.org"
+  :emacs>= 23.1
+  :ensure t
+  :mode "\\.phtml$" "\\.tpl\\.php$" "\\.jsp$" "\\.as[cp]x$" "\\.erb$" "\\.html?$" "\\.html\\.[^.]+$"
+  :custom ((web-mode-auto-close-style                 . 1)
+           (web-mode-enable-auto-closing              . t)
+           (web-mode-enable-auto-pairing              . t)
+           (web-mode-enable-auto-quoting              . t)
+           (indent-tabs-mode                          . nil)
+           (tab-width                                 . 2)
+           (web-mode-markup-indent-offset             . 2)
+           (web-mode-html-offset                      . 2)
+           (web-mode-css-offset                       . 2)
+           (web-mode-script-offset                    . 2)
+           (web-mode-code-indent-offset               . 2)
+           (web-mode-php-offset                       . 2)
+           (web-mode-java-offset                      . 2)
+           (web-mode-asp-offset                       . 2)
+           (web-mode-enable-current-element-highlight . t))
+  :defer-config (require 'sgml-mode nil t)
+  :hook (web-mode-hook . (lambda() (sgml-electric-tag-pair-mode 1))))
 
 (provide 'init)
 ;;; init.el ends here

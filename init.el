@@ -481,5 +481,21 @@
            (which-key-max-description-length . 70)
            (which-key-mode . 1))
   :config (which-key-setup-side-window-right))
+
+(leaf perspective
+  :doc "switch between named \"perspectives\" of the editor"
+  :req "emacs-24.4" "cl-lib-0.5"
+  :tag "frames" "convenience" "workspace" "emacs>=24.4"
+  :added "2021-03-24"
+  :url "http://github.com/nex3/perspective-el"
+  :emacs>= 24.4
+  :ensure t
+  :init (persp-mode)
+  :custom `((persp-mode-prefix-key . ,(kbd "M-t")))
+  :bind ((persp-mode-map
+          ("M-t M-t" . persp-switch-last)
+          ("C-x b"   . persp-ivy-switch-buffer)
+          ("C-x C-b" . counsel-switch-buffer))))
+
 (provide 'init)
 ;;; init.el ends here

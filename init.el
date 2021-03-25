@@ -565,5 +565,18 @@
   :defer-config (require 'sgml-mode nil t)
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1))))
 
+(leaf emmet-mode
+  :doc "Unofficial Emmet's support for emacs"
+  :tag "convenience"
+  :added "2021-03-26"
+  :url "https://github.com/smihica/emmet-mode"
+  :ensure t
+  :custom((emmet-preview-default        . t)
+          (emmet-indentation            . 2)
+          (emmet-self-closing-tag-style . ""))
+  :hook ((web-mode-hook) . (lambda ()
+                            (emmet-mode t)
+                            (local-set-key (kbd "C-M-i") #'emmet-expand-line))))
+
 (provide 'init)
 ;;; init.el ends here

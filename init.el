@@ -563,7 +563,7 @@
            (web-mode-asp-offset                       . 2)
            (web-mode-enable-current-element-highlight . t))
   :defer-config (require 'sgml-mode nil t)
-  :hook (web-mode-hook . (lambda() (sgml-electric-tag-pair-mode 1))))
+  :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1))))
 
 (provide 'init)
 ;;; init.el ends here

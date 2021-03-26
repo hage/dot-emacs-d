@@ -497,6 +497,8 @@
   :custom `((persp-mode-prefix-key . ,(kbd "M-t")))
   :bind ((persp-mode-map
           ("M-t M-t" . persp-switch-last)
+          ("M-t k"   . persp-kill)
+          ("M-t c"   . persp-switch)
           ("C-x b"   . persp-ivy-switch-buffer)
           ("C-x C-b" . counsel-switch-buffer))))
 

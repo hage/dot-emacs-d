@@ -534,6 +534,18 @@
           ("C-k" . kill-line)
           ("C-y" . yank)
           ("M-w" . kill-ring-save))))
+
+(leaf editorconfig
+  :doc "EditorConfig Emacs Plugin"
+  :req "cl-lib-0.5" "nadvice-0.3" "emacs-24"
+  :tag "emacs>=24"
+  :added "2021-03-26"
+  :url "https://github.com/editorconfig/editorconfig-emacs#readme"
+  :emacs>= 24
+  :ensure t
+  :after nadvice
+  :config (editorconfig-mode 1))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

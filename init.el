@@ -594,5 +594,10 @@
                             (emmet-mode t)
                             (local-set-key (kbd "C-M-i") #'emmet-expand-line))))
 
+(leaf ruby-mode
+  :doc "Major mode for editing Ruby files"
+  :tag "builtin"
+  :added "2021-03-26")
+
 (provide 'init)
 ;;; init.el ends here

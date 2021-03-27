@@ -599,5 +599,24 @@
   :tag "builtin"
   :added "2021-03-26")
 
+
+(leaf js2-mode
+  :doc "Improved JavaScript editing mode"
+  :req "emacs-24.1" "cl-lib-0.5"
+  :tag "javascript" "languages" "emacs>=24.1"
+  :added "2021-03-27"
+  :url "https://github.com/mooz/js2-mode/"
+  :emacs>= 24.1
+  :ensure t)
+
+(leaf typescript-mode
+  :doc "Major mode for editing typescript"
+  :req "emacs-24.3"
+  :tag "languages" "typescript" "emacs>=24.3"
+  :added "2021-03-27"
+  :url "http://github.com/ananthakumaran/typescript.el"
+  :emacs>= 24.3
+  :ensure t)
+
 (provide 'init)
 ;;; init.el ends here

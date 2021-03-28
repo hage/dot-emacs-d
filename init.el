@@ -193,6 +193,9 @@
                               (local-set-key (kbd "C-y") #'yank-and-indent)
                               (local-set-key (kbd "C-M-y") #'yank))))
 
+(leaf eldoc
+  :blackout t)
+
 (leaf show-paren-mode
   :custom ((show-paren-style . 'mixed))
   :config (show-paren-mode t))
@@ -260,6 +263,7 @@
   :url "https://github.com/emacsorphanage/git-gutter"
   :emacs>= 24.3
   :ensure t
+  :blackout t
   :init (global-git-gutter-mode)
   :bind (("M-g M-n" . git-gutter:next-hunk)
          ("M-g M-p" . git-gutter:previous-hunk)))
@@ -292,6 +296,7 @@
   :url "https://github.com/abo-abo/swiper"
   :emacs>= 24.5
   :ensure t
+  :blackout t
   :custom ((ivy-use-virtual-buffers        . t)
            (ivy-count-format               . "(%d/%d) ")
            (enable-recursive-minibuffers   . t)
@@ -324,6 +329,7 @@
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
     :ensure t
+    :blackout t
     :after ivy
     :init (counsel-mode 1)
     :bind (("M-x"     . counsel-M-x)
@@ -386,6 +392,7 @@
   :url "http://company-mode.github.io/"
   :emacs>= 24.3
   :ensure t
+  :blackout t
   :bind (("C-i" . company-indent-or-complete-common)
          (company-active-map
           ("M-n" . nil)
@@ -450,6 +457,7 @@
   :added "2021-03-21"
   :url "http://github.com/joaotavora/yasnippet"
   :ensure t
+  :blackout (yas-minor-mode yas-global-mode)
   :init
   (push #'company-yasnippet company-backends)
   :config
@@ -500,6 +508,7 @@
   :url "https://github.com/justbur/emacs-which-key"
   :emacs>= 24.4
   :ensure t
+  :blackout t
   :custom ((which-key-side-window-max-width . 0.35)
            (which-key-max-display-columns . 1)
            (which-key-allow-imprecise-window-fit . t)
@@ -532,6 +541,7 @@
   :url "https://github.com/bbatsov/projectile"
   :emacs>= 25.1
   :ensure t
+  :custom ((projectile-mode-line-prefix . " P"))
   :init (projectile-mode)
   :config
   (leaf counsel-projectile
@@ -569,12 +579,16 @@
   :url "https://github.com/editorconfig/editorconfig-emacs#readme"
   :emacs>= 24
   :ensure t
+  :blackout t
   :after nadvice
   :config (editorconfig-mode 1))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes
+
+(leaf elisp-mode
+  :blackout (emacs-lisp-mode . "elisp"))
 
 (leaf web-mode
   :doc "major mode for editing web templates"

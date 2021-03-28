@@ -421,7 +421,7 @@
     :emacs>= 25
     :ensure t
     :after company
-    :init (unshift #'company-tabnine company-backends)))
+    :init (push #'company-tabnine company-backends)))
 
 (leaf lsp-mode
   :doc "LSP mode"

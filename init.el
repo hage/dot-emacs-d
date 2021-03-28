@@ -450,6 +450,8 @@
   :added "2021-03-21"
   :url "http://github.com/joaotavora/yasnippet"
   :ensure t
+  :init
+  (push #'company-yasnippet company-backends)
   :config
   (yas-global-mode))
 

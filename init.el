@@ -138,7 +138,7 @@
   (leaf basic-key-bindings-bind
     :bind (("M-o"         . other-window)
            ("C-o"         . dabbrev-expand)
-	   ("C-x h"       . help-command)
+	         ("C-x h"       . help-command)
            ("C-q C-q"     . quoted-insert)
            ("C-q C-j"     . join-line)
            ("C-q k"       . kill-region)

@@ -525,13 +525,19 @@
   :emacs>= 24.4
   :ensure t
   :init (persp-mode)
-  :custom `((persp-mode-prefix-key . ,(kbd "M-t")))
+  :custom `((persp-mode-prefix-key . ,(kbd "M-t"))
+            (persp-sort            . 'created))
+  :config
+  (defun my-persp-switch-to-main ()
+    (interactive)
+    (persp-switch "main"))
   :bind ((persp-mode-map
           ("M-t M-t" . persp-switch-last)
           ("M-t k"   . persp-kill)
           ("M-t c"   . persp-switch)
           ("C-x b"   . persp-ivy-switch-buffer)
-          ("C-x C-b" . counsel-switch-buffer))))
+          ("C-x C-b" . counsel-switch-buffer)
+          ("M-t 0"   . my-persp-switch-to-main))))
 
 (leaf projectile
   :doc "Manage and navigate projects in Emacs easily"

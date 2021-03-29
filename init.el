@@ -583,6 +583,21 @@
   :after nadvice
   :config (editorconfig-mode 1))
 
+(leaf eshell
+  :doc "the Emacs command shell"
+  :tag "builtin"
+  :added "2021-03-29"
+  :config
+  (leaf eshell-toggle
+    :doc "Show/hide eshell under active window."
+    :req "emacs-25.1" "dash-2.11.0"
+    :tag "processes" "emacs>=25.1"
+    :added "2021-03-29"
+    :url "https://github.com/4da/eshell-toggle"
+    :emacs>= 25.1
+    :ensure t
+    :bind ("C-w C-w" . eshell-toggle)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

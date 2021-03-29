@@ -439,6 +439,7 @@
   :emacs>= 26.1
   :ensure t
   :after spinner markdown-mode lv
+  :hook ((ruby-mode-hook js2-mode-hook typescript-mode-hook) . lsp)
   :config
   (leaf lsp-ui
     :doc "UI modules for lsp-mode"

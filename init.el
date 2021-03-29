@@ -598,6 +598,20 @@
     :ensure t
     :bind ("C-w C-w" . eshell-toggle)))
 
+(leaf shell-service
+  :require server
+  :config
+  (unless (server-running-p)
+    (server-start))
+  (defun return-current-working-directory-to-shell ()
+    (file-name-directory
+     (expand-file-name
+      (buffer-file-name
+       (with-current-buffer
+           (nth 1
+                (assoc 'buffer-list
+                       (nth 1 (nth 1 (current-frame-configuration)))))))))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

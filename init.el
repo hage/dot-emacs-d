@@ -440,6 +440,16 @@
     :after company
     :init (push #'company-tabnine company-backends)))
 
+(leaf flycheck
+  :doc "On-the-fly syntax checking"
+  :req "dash-2.12.1" "pkg-info-0.4" "let-alist-1.0.4" "seq-1.11" "emacs-24.3"
+  :tag "tools" "languages" "convenience" "emacs>=24.3"
+  :added "2021-03-30"
+  :url "http://www.flycheck.org"
+  :emacs>= 24.3
+  :ensure t
+  :custom (flycheck-disabled-checkers . '(emacs-lisp-checkdoc)))
+
 (leaf lsp-mode
   :doc "LSP mode"
   :req "emacs-26.1" "dash-2.18.0" "f-0.20.0" "ht-2.3" "spinner-1.7.3" "markdown-mode-2.3" "lv-0"
@@ -448,8 +458,7 @@
   :url "https://github.com/emacs-lsp/lsp-mode"
   :emacs>= 26.1
   :ensure t
-  :after spinner markdown-mode lv
-  :hook ((ruby-mode-hook js2-mode-hook typescript-mode-hook) . lsp)
+  :hook ((ruby-mode-hook js2-mode-hook typescript-mode-hook) .lsp)
   :config
   (leaf lsp-ui
     :doc "UI modules for lsp-mode"
@@ -459,7 +468,7 @@
     :url "https://github.com/emacs-lsp/lsp-ui"
     :emacs>= 26.1
     :ensure t
-    :after lsp-mode markdown-mode))
+    :after lsp-mode))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

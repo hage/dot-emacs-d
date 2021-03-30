@@ -382,7 +382,17 @@
     :after ivy migemo
     :commands ivy-migemo--regex-plus
     :bind ((ivy-minibuffer-map
-            ("M-M" . ivy-migemo-toggle-migemo)))))
+            ("M-M" . ivy-migemo-toggle-migemo))))
+  (leaf ivy-yasnippet
+    :doc "Preview yasnippets with ivy"
+    :req "emacs-24.1" "cl-lib-0.6" "ivy-0.10.0" "yasnippet-0.12.2" "dash-2.14.1"
+    :tag "convenience" "emacs>=24.1"
+    :added "2021-03-30"
+    :url "https://github.com/mkcms/ivy-yasnippet"
+    :emacs>= 24.1
+    :ensure t
+    :after ivy yasnippet
+    :bind (("C-w i" . ivy-yasnippet))))
 
 (leaf company
   :doc "Modular text completion framework"

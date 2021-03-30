@@ -704,7 +704,14 @@
 (leaf ruby-mode
   :doc "Major mode for editing Ruby files"
   :tag "builtin"
-  :added "2021-03-26")
+  :added "2021-03-26"
+  :config
+  (leaf ruby-interpolation
+    :doc "Ruby string interpolation helpers"
+    :added "2021-03-30"
+    :url "http://github.com/leoc/ruby-interpolation.el"
+    :ensure t
+    :hook ruby-mode-hook))
 
 
 (leaf js2-mode

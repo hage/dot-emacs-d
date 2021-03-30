@@ -549,7 +549,8 @@
   :ensure t
   :init (persp-mode)
   :custom `((persp-mode-prefix-key . ,(kbd "M-t"))
-            (persp-sort            . 'created))
+            (persp-sort            . 'created)
+            (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el")))
   :config
   (defun my-persp-switch-to-main ()
     (interactive)

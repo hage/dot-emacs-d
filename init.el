@@ -638,6 +638,22 @@
                 (assoc 'buffer-list
                        (nth 1 (nth 1 (current-frame-configuration)))))))))))
 
+(leaf smart-compile
+  :doc "an interface to `compile'"
+  :tag "unix" "tools"
+  :added "2021-03-30"
+  :ensure t
+  :init
+  (defun save-and-compile-buffer ()
+    "バッファをセーブしてcompileを実行。コマンドはcompile-commandに設定されているもの"
+    (interactive)
+    (when (buffer-file-name)
+      (save-buffer)
+      (compile compile-command)))
+  :hook ((ruby-mode-hook) .
+         (lambda ()
+           (local-set-key (kbd "C-c C-c") #'save-and-compile-buffer)
+           (local-set-key (kbd "C-c c") #'smart-compile))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

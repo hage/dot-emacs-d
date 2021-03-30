@@ -508,7 +508,7 @@
   :added "2021-03-23"
   :url "https://github.com/Fuco1/smartparens"
   :ensure t
-  :hook emacs-lisp-mode-hook web-mode-hook
+  :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook
   :defer-config (require 'smartparens-config)
   :bind ((smartparens-mode-map
           ("M-C-k" . kill-line)

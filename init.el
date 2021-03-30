@@ -196,6 +196,9 @@
 (leaf eldoc
   :blackout t)
 
+(leaf autorevert
+  :blackout auto-revert-mode)
+
 (leaf show-paren-mode
   :custom ((show-paren-style . 'mixed))
   :config (show-paren-mode t))

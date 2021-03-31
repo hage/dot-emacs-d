@@ -189,9 +189,10 @@
       (exchange-point-and-mark)
       (indent-region (point) (mark))))
   :hook
-  ((emacs-lisp-mode-hook) . (lambda ()
-                              (local-set-key (kbd "C-y") #'yank-and-indent)
-                              (local-set-key (kbd "C-M-y") #'yank))))
+  ((emacs-lisp-mode-hook ruby-mode-hook web-mode-hook) .
+   (lambda ()
+     (local-set-key (kbd "C-y") #'yank-and-indent)
+     (local-set-key (kbd "C-M-y") #'yank))))
 
 (leaf eldoc
   :blackout t)

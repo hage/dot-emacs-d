@@ -90,7 +90,8 @@
 (leaf basic-functions
   :init
   (defun unshift (newelt place)
-    "Destructive append NEWLT into PLACE."
+    "Destructive append NEWLT into PLACE.
+(unshift 'z '(a b c)) => (a b c z)"
     (setcdr (last place) `(,newelt . nil))
     place))
 

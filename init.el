@@ -738,7 +738,8 @@
     :added "2021-03-30"
     :url "http://github.com/leoc/ruby-interpolation.el"
     :ensure t
-    :hook ruby-mode-hook))
+    :hook ruby-mode-hook
+    :blackout t))
 
 
 (leaf js2-mode

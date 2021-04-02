@@ -165,6 +165,9 @@
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word))))
 
+(leaf keyboard-quit
+  :advice ((:after keyboard-quit redraw-display)))
+
 (leaf simple-bookmark
   :init
   (defun simple-bookmark-set ()

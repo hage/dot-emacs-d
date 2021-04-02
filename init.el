@@ -663,6 +663,19 @@
          (lambda ()
            (local-set-key (kbd "C-c C-c") #'save-and-compile-buffer)
            (local-set-key (kbd "C-c c") #'smart-compile))))
+
+(leaf dimmer
+  :doc "Visually highlight the selected buffer"
+  :req "emacs-25.1"
+  :tag "editing" "faces" "emacs>=25.1"
+  :added "2021-04-02"
+  :url "https://github.com/gonewest818/dimmer.el"
+  :emacs>= 25.1
+  :ensure t
+  :custom ((dimmer-fraction . 0.4)
+           (dimmer-adjustment-mode . :both))
+  :global-minor-mode t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

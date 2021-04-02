@@ -1,5 +1,8 @@
 .PHONY: all info-ja lsp-servers
 
+init.elc: init.el
+	emacs --batch -f batch-byte-compile init.el
+
 all: info-ja lsp-servers
 
 

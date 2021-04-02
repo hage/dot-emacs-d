@@ -3,7 +3,4 @@
 # key: lambda
 # binding: direct-keybinding
 # --
-(add-hook '$1
-        (lambda ()
-                $0
-))
+(lambda ($1) $0)

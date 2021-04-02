@@ -167,7 +167,12 @@
            ("M-B"         . backward-to-word))))
 
 (leaf keyboard-quit
-  :advice ((:after keyboard-quit redraw-display)))
+  :preface
+  (defun keyboard-quit-advice-before ()
+    (run-with-timer 0.2 nil
+                    (lambda ()
+                      (redraw-display))))
+  :advice ((:before keyboard-quit keyboard-quit-advice-before)))
 
 (leaf simple-bookmark
   :init

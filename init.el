@@ -677,7 +677,7 @@
   :url "https://github.com/gonewest818/dimmer.el"
   :emacs>= 25.1
   :ensure t
-  :custom ((dimmer-fraction . 0.4)
+  :custom ((dimmer-fraction . 0.2)
            (dimmer-adjustment-mode . :both))
   :global-minor-mode t)
 

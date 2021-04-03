@@ -481,7 +481,8 @@
     :url "https://github.com/emacs-lsp/lsp-ui"
     :emacs>= 26.1
     :ensure t
-    :after lsp-mode))
+    :after lsp-mode
+    :custom ((lsp-ui-doc-enable . nil))))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

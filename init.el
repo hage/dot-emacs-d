@@ -524,8 +524,7 @@
   :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook
   :defer-config (require 'smartparens-config)
   :bind ((smartparens-mode-map
-          ("M-C-k" . kill-line)
-          ("C-k" . sp-kill-hybrid-sexp)
+          ("M-C-k" . sp-kill-hybrid-sexp)
           ("M-R" . sp-raise-sexp)
           ("M-D" . sp-splice-sexp)
           ("M-H" . sp-backward-barf-sexp)

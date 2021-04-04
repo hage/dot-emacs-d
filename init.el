@@ -493,7 +493,6 @@
   :ensure t
   :blackout (yas-minor-mode yas-global-mode)
   :init
-  (push #'company-yasnippet company-backends)
   :config
   (yas-global-mode))
 

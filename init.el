@@ -451,7 +451,7 @@
     :emacs>= 25
     :ensure t
     :after company
-    :init (push #'company-tabnine company-backends)))
+    :init (add-to-list 'company-backends #'company-tabnine)))
 
 (leaf flycheck
   :doc "On-the-fly syntax checking"

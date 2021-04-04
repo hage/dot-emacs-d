@@ -760,5 +760,13 @@
   :emacs>= 24.3
   :ensure t)
 
+(leaf yaml-mode
+  :doc "Major mode for editing YAML files"
+  :req "emacs-24.1"
+  :tag "yaml" "data" "emacs>=24.1"
+  :added "2021-04-04"
+  :emacs>= 24.1
+  :ensure t)
+
 (provide 'init)
 ;;; init.el ends here

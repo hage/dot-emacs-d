@@ -731,7 +731,8 @@
   :doc "Major mode for editing Ruby files"
   :tag "builtin"
   :added "2021-03-26"
-  :custom ((ruby-insert-encoding-magic-comment . nil))
+  :custom ((ruby-insert-encoding-magic-comment . nil)
+           (ruby-align-chained-calls           . t))
   :config
   (leaf ruby-interpolation
     :doc "Ruby string interpolation helpers"

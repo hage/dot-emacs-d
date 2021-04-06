@@ -166,13 +166,26 @@
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word))))
 
-(leaf keyboard-quit
-  :preface
-  (defun keyboard-quit-advice-before ()
-    (run-with-timer 0.2 nil
-                    (lambda ()
-                      (redraw-display))))
-  :advice ((:before keyboard-quit keyboard-quit-advice-before)))
+(leaf window-system
+  :if (window-system)
+  :init
+  (defun my-emacs-startup-hook-handler ()
+    (toggle-frame-fullscreen)
+    (scroll-bar-mode -1)
+    (tool-bar-mode -1)
+    (global-hl-line-mode 1))
+  :hook (emacs-startup-hook . my-emacs-startup-hook-handler))
+
+(leaf not-window-system
+  :if (not (window-system))
+  :config
+  (leaf keyboard-quit
+    :config
+    (defun keyboard-quit-advice-before ()
+      (run-with-timer 0.2 nil
+                      (lambda ()
+                        (redraw-display))))
+    :advice ((:before keyboard-quit keyboard-quit-advice-before))))
 
 (leaf simple-bookmark
   :init

@@ -569,10 +569,18 @@
   :url "http://github.com/nex3/perspective-el"
   :emacs>= 24.4
   :ensure t
-  :init (persp-mode)
+  :init
+  (persp-mode)
+  (defun emacs-startup-hook-handler-of-perspective ()
+    (persp-state-load persp-state-default-file))
+  (defun kill-emacs-hook-handler-of-perspective ()
+    (persp-state-save persp-state-default-file))
+  :hook ((emacs-startup-hook . emacs-startup-hook-handler-of-perspective)
+         (kill-emacs-hook . kill-emacs-hook-handler-of-perspective))
   :custom `((persp-mode-prefix-key . ,(kbd "M-t"))
             (persp-sort            . 'created)
-            (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el")))
+            (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el"))
+            (persp-modestring-short . t))
   :config
   (defun my-persp-switch-to-main ()
     (interactive)

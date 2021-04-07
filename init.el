@@ -191,7 +191,7 @@
     :url "https://github.com/seagle0128/doom-modeline"
     :emacs>= 25.1
     :ensure t
-    :after all-the-icons shrink-path
+    :after all-the-icons
     :init (doom-modeline-mode 1))
   (leaf font-setting-jetbrains
     :disabled nil

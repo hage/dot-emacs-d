@@ -174,6 +174,15 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (global-hl-line-mode 1))
+  (leaf all-the-icons
+    :doc "A library for inserting Developer icons"
+    :req "emacs-24.3"
+    :tag "lisp" "convenient" "emacs>=24.3"
+    :added "2021-04-08"
+    :url "https://github.com/domtronn/all-the-icons.el"
+    :emacs>= 24.3
+    :ensure t
+    :require t)
   (leaf doom-modeline
     :doc "A minimal and modern mode-line"
     :req "emacs-25.1" "all-the-icons-2.2.0" "shrink-path-0.2.0" "dash-2.11.0"

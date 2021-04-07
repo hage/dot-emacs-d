@@ -174,6 +174,11 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (global-hl-line-mode 1))
+  (leaf font-setting  
+    :init
+    (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=12" nil "JetBrains")
+    (set-fontset-font "fontset-JetBrains" 'unicode "DFPLeiSho-SB-14" nil 'append)
+    (add-to-list 'default-frame-alist '(font . "fontset-JetBrains")))
   :hook (emacs-startup-hook . my-emacs-startup-hook-handler))
 
 (leaf not-window-system
@@ -576,11 +581,11 @@
   (defun kill-emacs-hook-handler-of-perspective ()
     (persp-state-save persp-state-default-file))
   :hook ((emacs-startup-hook . emacs-startup-hook-handler-of-perspective)
-         (kill-emacs-hook . kill-emacs-hook-handler-of-perspective))
-  :custom `((persp-mode-prefix-key . ,(kbd "M-t"))
-            (persp-sort            . 'created)
+         (kill-emacs-hook    . kill-emacs-hook-handler-of-perspective))
+  :custom `((persp-mode-prefix-key    . ,(kbd "M-t"))
+            (persp-sort               . 'created)
             (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el"))
-            (persp-modestring-short . t))
+            (persp-modestring-short   . t))
   :config
   (defun my-persp-switch-to-main ()
     (interactive)

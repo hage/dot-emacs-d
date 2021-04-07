@@ -174,11 +174,18 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (global-hl-line-mode 1))
-  (leaf font-setting  
+  (leaf font-setting-jetbrains
+    :disabled nil
     :init
     (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=12" nil "JetBrains")
     (set-fontset-font "fontset-JetBrains" 'unicode "DFPLeiSho-SB-14" nil 'append)
     (add-to-list 'default-frame-alist '(font . "fontset-JetBrains")))
+  (leaf font-setting-victor
+    :disabled t
+    :init
+    (create-fontset-from-ascii-font "Victor Mono:slant=normal:size=12" nil "Victor")
+    (set-fontset-font "fontset-Victor" 'unicode "DFPLeiSho-SB-14" nil 'append)
+    (add-to-list 'default-frame-alist '(font . "fontset-Victor")))
   :hook (emacs-startup-hook . my-emacs-startup-hook-handler))
 
 (leaf not-window-system

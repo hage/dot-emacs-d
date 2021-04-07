@@ -666,8 +666,7 @@
     :after counsel projectile
     :init (counsel-projectile-mode)
     :bind (projectile-mode-map
-           ("M-C-o" . counsel-projectile)
-           ("M-p M-p" . counsel-projectile-find-file-dwim))))
+           ("M-C-o" . counsel-projectile))))
 
 (leaf multiple-cursors
   :doc "Multiple cursors for Emacs."

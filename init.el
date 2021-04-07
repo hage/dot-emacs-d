@@ -174,6 +174,16 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (global-hl-line-mode 1))
+  (leaf doom-modeline
+    :doc "A minimal and modern mode-line"
+    :req "emacs-25.1" "all-the-icons-2.2.0" "shrink-path-0.2.0" "dash-2.11.0"
+    :tag "mode-line" "faces" "emacs>=25.1"
+    :added "2021-04-08"
+    :url "https://github.com/seagle0128/doom-modeline"
+    :emacs>= 25.1
+    :ensure t
+    :after all-the-icons shrink-path
+    :init (doom-modeline-mode 1))
   (leaf font-setting-jetbrains
     :disabled nil
     :init

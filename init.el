@@ -389,6 +389,15 @@
     :ensure t
     :after ivy
     :bind (("C-s" . swiper-thing-at-point)))
+  (leaf all-the-icons-ivy
+    :doc "Shows icons while using ivy and counsel"
+    :req "emacs-24.4" "all-the-icons-2.4.0" "ivy-0.8.0"
+    :tag "faces" "emacs>=24.4"
+    :added "2021-04-07"
+    :emacs>= 24.4
+    :ensure t
+    :after all-the-icons ivy
+    :init (all-the-icons-ivy-setup))
   (leaf ivy-rich
     :doc "More friendly display transformer for ivy"
     :req "emacs-25.1" "ivy-0.13.0"
@@ -398,7 +407,19 @@
     :emacs>= 25.1
     :ensure t
     :after ivy
-    :global-minor-mode t)
+    :global-minor-mode t
+    :config
+    (leaf all-the-icons-ivy-rich
+      :if (window-system)
+      :doc "Better experience with icons for ivy"
+      :req "emacs-25.1" "ivy-rich-0.1.0" "all-the-icons-2.2.0"
+      :tag "ivy" "icons" "convenience" "emacs>=25.1"
+      :added "2021-04-07"
+      :url "https://github.com/seagle0128/all-the-icons-ivy-rich"
+      :emacs>= 25.1
+      :ensure t
+      :after ivy-rich all-the-icons
+      :init (all-the-icons-ivy-rich-mode 1)))
   (leaf ivy-prescient
     :doc "prescient.el + Ivy"
     :req "emacs-25.1" "prescient-5.1" "ivy-0.11.0"

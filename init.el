@@ -646,12 +646,20 @@
   (persp-selected-face . '((t (:bold t :foreground "#fff"))))
   :init
   (persp-mode)
-  (defun emacs-startup-hook-handler-of-perspective ()
-    (persp-state-load persp-state-default-file))
+
+  (defvar my-persp-loaded-state-p nil "persp-state-load をしたとき t に設定される")
+
+  (defun my-persp-state-load-hook-handler ()
+    (setq my-persp-loaded-state-p t))
+
   (defun kill-emacs-hook-handler-of-perspective ()
-    (persp-state-save persp-state-default-file))
-  :hook ((emacs-startup-hook . emacs-startup-hook-handler-of-perspective)
-         (kill-emacs-hook    . kill-emacs-hook-handler-of-perspective))
+    "persp-state-loadをしたときにのみ終了時に自動的に状態を記録する"
+    (when my-persp-loaded-state-p
+      (persp-state-save persp-state-default-file)))
+
+  :hook ((kill-emacs-hook             . kill-emacs-hook-handler-of-perspective)
+         (persp-state-after-load-hook . my-persp-state-load-hook-handler))
+
   :custom `((persp-mode-prefix-key    . ,(kbd "M-t"))
             (persp-sort               . 'created)
             (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el"))

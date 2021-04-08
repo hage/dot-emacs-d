@@ -630,6 +630,9 @@
   :url "http://github.com/nex3/perspective-el"
   :emacs>= 24.4
   :ensure t
+  :custom-face
+  ;; これが有効になるのは persp-modestring-short が nil のとき
+  (persp-selected-face . '((t (:bold t :foreground "#fff"))))
   :init
   (persp-mode)
   (defun emacs-startup-hook-handler-of-perspective ()

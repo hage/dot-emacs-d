@@ -161,6 +161,7 @@
            ("C-q DEL"     . just-one-space)
            ("M-Q"         . quit-window)
            ("C-x C-m C-m" . mark-defun)
+           ("M-g g"       . goto-line)
            ("M-f"         . forward-word)
            ("M-b"         . backward-word)
            ("M-F"         . forward-to-word)

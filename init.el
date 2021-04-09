@@ -824,9 +824,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes
 
-(leaf elisp-mode
-  :blackout (emacs-lisp-mode . "elisp"))
-
 (leaf web-mode
   :doc "major mode for editing web templates"
   :req "emacs-23.1"

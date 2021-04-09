@@ -815,7 +815,9 @@
     :emacs>= 24
     :ensure t
     :after swiper
-    :bind (("C-s" . isearch-forward))
+    :bind (("C-s" . isearch-forward)
+           (isearch-mode-map
+            ("C-l" . ace-isearch-swiper-from-isearch)))
     :init
     (global-ace-isearch-mode +1)))
 

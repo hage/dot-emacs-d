@@ -379,6 +379,7 @@
                                       (t . ivy--regex-ignore-order))))
   :bind (("C-w C-i" . ivy-resume))
   :config
+  (replace (last ivy-format-functions-alist) '((t . ivy-format-function-arrow)))
   (leaf ivy-hydra
     :doc "Additional key bindings for Ivy"
     :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"

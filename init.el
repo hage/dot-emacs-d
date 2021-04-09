@@ -419,8 +419,7 @@
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
     :ensure t
-    :after ivy
-    :bind (("C-s" . swiper-thing-at-point)))
+    :after ivy)
   (leaf all-the-icons-ivy
     :doc "Shows icons while using ivy and counsel"
     :req "emacs-24.4" "all-the-icons-2.4.0" "ivy-0.8.0"

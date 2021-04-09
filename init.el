@@ -698,6 +698,7 @@
     :ensure t
     :after counsel projectile
     :init (counsel-projectile-mode)
+    :custom ((projectile-completion-system . 'ivy))
     :bind (projectile-mode-map
            ("M-C-o" . counsel-projectile))))
 

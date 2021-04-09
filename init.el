@@ -405,7 +405,7 @@
     :bind (("M-x"     . counsel-M-x)
            ("M-y"     . counsel-yank-pop)
            ("C-M-z"   . counsel-fzf)
-           ("C-M-r"   . counsel-recentf)
+           ("C-x C-r" . counsel-recentf)
            ("C-x b"   . counsel-ibuffer)
            ("M-s a"   . counsel-ag)
            ("M-I"     . counsel-imenu)

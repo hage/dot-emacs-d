@@ -799,6 +799,26 @@
            (dimmer-adjustment-mode . :both))
   :global-minor-mode t)
 
+(leaf ace-jump-mode
+  :doc "a quick cursor location minor mode for emacs"
+  :tag "cursor" "location" "motion"
+  :added "2021-04-10"
+  :url "https://github.com/winterTTr/ace-jump-mode/"
+  :ensure t
+  :config
+  (leaf ace-isearch
+    :doc "A seamless bridge between isearch, ace-jump-mode, avy, helm-swoop and swiper"
+    :req "emacs-24"
+    :tag "emacs>=24"
+    :added "2021-04-10"
+    :url "https://github.com/tam17aki/ace-isearch"
+    :emacs>= 24
+    :ensure t
+    :after swiper
+    :bind (("C-s" . isearch-forward))
+    :init
+    (global-ace-isearch-mode +1)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

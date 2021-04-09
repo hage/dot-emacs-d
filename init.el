@@ -744,6 +744,17 @@
     :emacs>= 25.1
     :ensure t
     :bind ("C-w C-w" . eshell-toggle)))
+(leaf exec-path-from-shell
+  :doc "Get environment variables such as $PATH from the shell"
+  :req "emacs-24.1" "cl-lib-0.6"
+  :tag "environment" "unix" "emacs>=24.1"
+  :added "2021-04-10"
+  :url "https://github.com/purcell/exec-path-from-shell"
+  :emacs>= 24.1
+  :ensure t
+  :if  (memq window-system '(mac ns x))
+  :custom ((exec-path-from-shell-warn-duration-millis . 5000))
+  :init (run-with-idle-timer 1 nil #'exec-path-from-shell-initialize))
 
 (leaf shell-service
   :require server

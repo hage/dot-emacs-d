@@ -598,7 +598,12 @@
   :emacs>= 24.3
   :ensure t
   :bind (("C-w C-p" . popwin:keymap))
-  :init (popwin-mode 1))
+  :init
+  (popwin-mode 1)
+  (customize-set-variable
+   'popwin:special-display-config
+   (append '(("^\\*eshell.*\\*\\'" :position bottom :height .4 :stick t :regexp t))
+            (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens
   :doc "Automatic insertion, wrapping and paredit-like navigation with user defined pairs."
@@ -687,8 +692,17 @@
   :url "https://github.com/bbatsov/projectile"
   :emacs>= 25.1
   :ensure t
+  :bind ((projectile-mode-map
+          ("C-w C-w" . my-run-eshell)))
   :custom ((projectile-mode-line-prefix . " P"))
-  :init (projectile-mode)
+  :init
+  (projectile-mode)
+  (defun my-run-eshell ()
+    "invoke projectile-run-eshell when under git repository, otherwize invoke eshell"
+    (interactive)
+    (if (magit-gitdir)
+        (projectile-run-eshell)
+      (eshell)))
   :config
   (leaf counsel-projectile
     :doc "Ivy integration for Projectile"
@@ -733,16 +747,7 @@
   :doc "the Emacs command shell"
   :tag "builtin"
   :added "2021-03-29"
-  :config
-  (leaf eshell-toggle
-    :doc "Show/hide eshell under active window."
-    :req "emacs-25.1" "dash-2.11.0"
-    :tag "processes" "emacs>=25.1"
-    :added "2021-03-29"
-    :url "https://github.com/4da/eshell-toggle"
-    :emacs>= 25.1
-    :ensure t
-    :bind ("C-w C-w" . eshell-toggle)))
+  :bind ("C-w C-w" . eshell))
 (leaf exec-path-from-shell
   :doc "Get environment variables such as $PATH from the shell"
   :req "emacs-24.1" "cl-lib-0.6"

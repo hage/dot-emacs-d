@@ -825,6 +825,18 @@
     :init
     (global-ace-isearch-mode +1)))
 
+(leaf highlight-indent-guides
+  :doc "Minor mode to highlight indentation"
+  :req "emacs-24.1"
+  :tag "emacs>=24.1"
+  :added "2021-04-11"
+  :url "https://github.com/DarthFennec/highlight-indent-guides"
+  :emacs>= 24.1
+  :ensure t
+  :hook ((ruby-mode-hook js2-mode-hook typescript-mode-hook web-mode-hook yaml-mode-hook) . highlight-indent-guides-mode)
+  :custom `((highlight-indent-guides-method     . ,(if (window-system) ''bitmap ''character))
+            (highlight-indent-guides-responsive . t)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

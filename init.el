@@ -602,7 +602,8 @@
   (popwin-mode 1)
   (customize-set-variable
    'popwin:special-display-config
-   (append '(("^\\*eshell.*\\*\\'" :position bottom :height .4 :stick t :regexp t))
+   (append '((help-mode :position right :width 81)
+             ("^\\*eshell.*\\*\\'" :position bottom :height .4 :stick t :regexp t))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens

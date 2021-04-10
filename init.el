@@ -99,7 +99,6 @@
   :init (progn
           (put 'narrow-to-region 'disabled nil)
           (line-number-mode t)
-          (menu-bar-mode -1)
           (modify-syntax-entry ?。 ".")
           (modify-syntax-entry ?、 ".")
           (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)

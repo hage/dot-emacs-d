@@ -232,6 +232,17 @@
   :bind (("C-q SPC" . simple-bookmark-set)
          ("C-q b"   . simple-bookmark-jump)))
 
+(leaf delete-trailing-whitespace-before-save
+  :doc "セーブ時行末にスペースがあったら消すかどうか聞く"
+  :init
+  (defun before-save-hook-handler-of-delete-trailing-whitespace ()
+    (when (and
+           (buffer-file-name)           ; ファイル付きのバッファで
+           (string-match "[ 	]$" (buffer-string)) ; 行末が空白の行があって
+           (y-or-n-p "detected trailing whitespace. delete it?"))
+      (delete-trailing-whitespace)))
+  :hook (before-save-hook . before-save-hook-handler-of-delete-trailing-whitespace))
+
 (leaf yank-and-indent
   :init
   (defun yank-and-indent ()

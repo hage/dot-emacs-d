@@ -660,7 +660,7 @@
   :ensure t
   :custom-face
   ;; これが有効になるのは persp-modestring-short が nil のとき
-  (persp-selected-face . '((t (:bold t :foreground "#fff"))))
+  (persp-selected-face . '((t (:foreground "#eee" :underline t :bold nil))))
   :init
   (persp-mode)
 
@@ -680,7 +680,7 @@
   :custom `((persp-mode-prefix-key    . ,(kbd "M-t"))
             (persp-sort               . 'created)
             (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el"))
-            (persp-modestring-short   . t))
+            (persp-modestring-short   . nil))
   :config
   (defun my-persp-switch-to-main ()
     (interactive)

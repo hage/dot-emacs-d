@@ -193,6 +193,11 @@
     :ensure t
     :after all-the-icons
     :init (doom-modeline-mode 1))
+  (leaf pos-tip
+    :doc "Show tooltip at point"
+    :tag "tooltip"
+    :added "2021-04-12"
+    :ensure t)
   (leaf font-setting-jetbrains
     :disabled nil
     :init
@@ -547,7 +552,17 @@
     :emacs>= 25
     :ensure t
     :after company
-    :init (add-to-list 'company-backends #'company-tabnine)))
+    :init (add-to-list 'company-backends #'company-tabnine))
+  (leaf company-quickhelp
+    :doc "Popup documentation for completion candidates"
+    :req "emacs-24.3" "company-0.8.9" "pos-tip-0.4.6"
+    :tag "quickhelp" "documentation" "popup" "company" "emacs>=24.3"
+    :added "2021-04-12"
+    :url "https://www.github.com/expez/company-quickhelp"
+    :emacs>= 24.3
+    :ensure t
+    :after company pos-tip
+    :init (company-quickhelp-mode)))
 
 (leaf flycheck
   :doc "On-the-fly syntax checking"

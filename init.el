@@ -671,7 +671,7 @@
 
   (defun kill-emacs-hook-handler-of-perspective ()
     "persp-state-loadをしたときにのみ終了時に自動的に状態を記録する"
-    (when my-persp-loaded-state-p
+    (when (and my-persp-loaded-state-p (y-or-n-p "save a perspective state?"))
       (persp-state-save persp-state-default-file)))
 
   :hook ((kill-emacs-hook             . kill-emacs-hook-handler-of-perspective)

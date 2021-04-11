@@ -915,7 +915,8 @@
   :added "2021-03-27"
   :url "https://github.com/mooz/js2-mode/"
   :emacs>= 24.1
-  :ensure t)
+  :ensure t
+  :mode "\\.js$")
 
 (leaf typescript-mode
   :doc "Major mode for editing typescript"

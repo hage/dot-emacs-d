@@ -867,7 +867,6 @@
 (leaf info-ja
   :custom ((info-ja-directory . `,(concat user-emacs-directory "info")))
   :preface
-  (add-to-list 'Info-directory-list info-ja-directory)
   (defun info-find-node-info-ja (orig-fn filename &rest args)
     (apply orig-fn
            (pcase filename
@@ -875,6 +874,8 @@
              ("elisp" "elisp-ja")
              (t filename))
            args))
+  :init
+  (add-to-list 'Info-directory-list info-ja-directory)
   :advice (:around Info-find-node info-find-node-info-ja))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

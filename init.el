@@ -864,6 +864,19 @@
   :custom `((highlight-indent-guides-method     . ,(if (window-system) ''bitmap ''character))
             (highlight-indent-guides-responsive . t)))
 
+(leaf info-ja
+  :custom ((info-ja-directory . `,(concat user-emacs-directory "info")))
+  :preface
+  (add-to-list 'Info-directory-list info-ja-directory)
+  (defun info-find-node-info-ja (orig-fn filename &rest args)
+    (message filename)
+    (apply orig-fn
+           (pcase filename
+             ("emacs" "emacs-ja")
+             ("elisp" "elisp-ja")
+             (t filename))
+           args))
+  :advice (:around Info-find-node info-find-node-info-ja))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

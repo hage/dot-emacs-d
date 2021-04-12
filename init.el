@@ -321,6 +321,7 @@
   :url "https://github.com/magit/magit"
   :emacs>= 25.1
   :ensure t
+  :commands magit-gitdir
   :bind (("C-q g g" . magit-status))
   :config
   (defun git-commit-prefix-select ()

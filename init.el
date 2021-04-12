@@ -510,12 +510,13 @@
   :blackout t
   :bind (("C-i" . company-indent-or-complete-common)
          (company-active-map
+          ("C-m" . nil)
           ("M-n" . nil)
           ("M-p" . nil)
           ("C-s" . company-filter-candidates)
           ("C-n" . company-select-next)
           ("C-p" . company-select-previous)
-          ("<tab>" . company-complete-selection))
+          ("C-i" . company-complete-selection))
          (company-search-map
           ("C-n" . company-select-next)
           ("C-p" . company-select-previous)))

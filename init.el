@@ -525,6 +525,7 @@
            (company-minimum-prefix-length . 3)
            (company-transformers          . '(company-sort-by-occurrence)))
   :config
+  (add-to-list 'company-backends #'company-elisp)
   (leaf company-box
     :doc "Company front-end with icons"
     :req "emacs-26.0.91" "dash-2.13" "dash-functional-1.2.0" "company-0.9.6" "frame-local-0.0.1"

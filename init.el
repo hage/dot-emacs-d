@@ -419,7 +419,7 @@
     :init (counsel-mode 1)
     :bind (("M-x"     . counsel-M-x)
            ("M-y"     . counsel-yank-pop)
-           ("C-M-z"   . counsel-fzf)
+           ("C-x f"   . counsel-fzf)
            ("C-x C-r" . counsel-recentf)
            ("C-x b"   . counsel-ibuffer)
            ("M-s a"   . counsel-ag)

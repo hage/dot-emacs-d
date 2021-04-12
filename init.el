@@ -435,7 +435,8 @@
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
     :ensure t
-    :after ivy)
+    :after ivy
+    :bind (("C-s" . swiper)))
   (leaf all-the-icons-ivy
     :doc "Shows icons while using ivy and counsel"
     :req "emacs-24.4" "all-the-icons-2.4.0" "ivy-0.8.0"
@@ -838,8 +839,10 @@
   :added "2021-04-10"
   :url "https://github.com/winterTTr/ace-jump-mode/"
   :ensure t
+  :bind (("C-M-s" . ace-jump-mode))
   :config
   (leaf ace-isearch
+    :disabled t
     :doc "A seamless bridge between isearch, ace-jump-mode, avy, helm-swoop and swiper"
     :req "emacs-24"
     :tag "emacs>=24"

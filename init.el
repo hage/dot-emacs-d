@@ -869,7 +869,6 @@
   :preface
   (add-to-list 'Info-directory-list info-ja-directory)
   (defun info-find-node-info-ja (orig-fn filename &rest args)
-    (message filename)
     (apply orig-fn
            (pcase filename
              ("emacs" "emacs-ja")

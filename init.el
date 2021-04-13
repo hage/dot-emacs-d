@@ -169,6 +169,7 @@
 (leaf window-system
   :if (window-system)
   :init
+  (global-unset-key (kbd "C-t"))
   (defun my-emacs-startup-hook-handler ()
     (toggle-frame-fullscreen)
     (scroll-bar-mode -1)
@@ -210,6 +211,13 @@
     (create-fontset-from-ascii-font "Victor Mono:slant=normal:size=12" nil "Victor")
     (set-fontset-font "fontset-Victor" 'unicode "DFPLeiSho-SB-14" nil 'append)
     (add-to-list 'default-frame-alist '(font . "fontset-Victor")))
+  (leaf switch-to-terminal
+    :init
+    (defun my-switch-terminal-emulator()
+      "Switch to terminal emulator (iTerm2 etc.)."
+      (interactive)
+      (make-process :name "iterm" :command '("open" "-a" "iTerm")))
+    :bind (("C-t C-t" . my-switch-terminal-emulator))) ; -nw で tmux の C-t C-t でシェルに切り替えていた代わり
   :hook (emacs-startup-hook . my-emacs-startup-hook-handler))
 
 (leaf not-window-system

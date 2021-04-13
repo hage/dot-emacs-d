@@ -400,6 +400,7 @@
            (ivy-mode                       . 1)
            (ivy-initial-inputs-alist       . nil)
            (ivy-use-selectable-prompt      . t)
+           (ivy-on-del-error-function      . nil) ; BSでivyから抜けないように
            (ivy-re-builders-alist . '((swiper . ivy-migemo--regex-plus)
                                       (t . ivy--regex-ignore-order))))
   :bind (("C-w C-i" . ivy-resume))

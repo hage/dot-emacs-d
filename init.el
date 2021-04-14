@@ -350,26 +350,29 @@
   :bind (("M-g M-n" . git-gutter:next-hunk)
          ("M-g M-p" . git-gutter:previous-hunk)))
 
-(leaf color-theme-sanityinc-solarized
-  :disabled t
-  :doc "A version of Ethan Schoonover's Solarized themes"
-  :req "emacs-24.1" "cl-lib-0.6"
-  :tag "themes" "faces" "emacs>=24.1"
-  :added "2021-03-19"
-  :url "https://github.com/purcell/color-theme-sanityinc-solarized"
-  :emacs>= 24.1
-  :ensure t
-  :config (load-theme 'sanityinc-solarized-dark t))
-
-(leaf doom-themes
-  :doc "an opinionated pack of modern color-themes"
-  :req "emacs-25.1" "cl-lib-0.5"
-  :tag "nova" "faces" "icons" "neotree" "theme" "one" "atom" "blue" "light" "dark" "emacs>=25.1"
-  :added "2021-04-09"
-  :url "https://github.com/hlissner/emacs-doom-theme"
-  :emacs>= 25.1
-  :ensure t
-  :config  (load-theme 'doom-peacock t))
+(leaf themes
+  :custom-face
+  (mode-line . '((t (:box "dark olive green"))))
+  :config
+  (leaf color-theme-sanityinc-solarized
+    :disabled t
+    :doc "A version of Ethan Schoonover's Solarized themes"
+    :req "emacs-24.1" "cl-lib-0.6"
+    :tag "themes" "faces" "emacs>=24.1"
+    :added "2021-03-19"
+    :url "https://github.com/purcell/color-theme-sanityinc-solarized"
+    :emacs>= 24.1
+    :ensure t
+    :config (load-theme 'sanityinc-solarized-dark t))
+  (leaf doom-themes
+    :doc "an opinionated pack of modern color-themes"
+    :req "emacs-25.1" "cl-lib-0.5"
+    :tag "nova" "faces" "icons" "neotree" "theme" "one" "atom" "blue" "light" "dark" "emacs>=25.1"
+    :added "2021-04-09"
+    :url "https://github.com/hlissner/emacs-doom-theme"
+    :emacs>= 25.1
+    :ensure t
+    :config  (load-theme 'doom-peacock t)))
 
 (leaf prescient
   :doc "Better sorting and filtering"

@@ -661,10 +661,10 @@
           ("M-C-k" . sp-kill-hybrid-sexp)
           ("M-R" . sp-raise-sexp)
           ("M-D" . sp-splice-sexp)
-          ("M-H" . sp-backward-barf-sexp)
-          ("M-J" . sp-backward-slurp-sexp)
-          ("M-K" . sp-forward-slurp-sexp)
-          ("M-L" . sp-forward-barf-sexp))))
+          ("M-J" . sp-backward-barf-sexp)
+          ("M-H" . sp-backward-slurp-sexp)
+          ("M-L" . sp-forward-slurp-sexp)
+          ("M-K" . sp-forward-barf-sexp))))
 
 (leaf which-key
   :doc "Display available keybindings in popup"

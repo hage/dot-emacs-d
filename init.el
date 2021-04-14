@@ -891,6 +891,18 @@
   :init
   (add-to-list 'Info-directory-list info-ja-directory)
   :advice (:around Info-find-node info-find-node-info-ja))
+
+(leaf rainbow-mode
+  :doc "Colorize color names in buffers"
+  :tag "faces"
+  :added "2021-04-14"
+  :url "http://elpa.gnu.org/packages/rainbow-mode.html"
+  :ensure t
+  :custom ((rainbow-html-colors  . t)
+           (rainbow-x-colors     . t)
+           (rainbow-latex-colors . t)
+           (rainbow-ansi-colors  . t)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

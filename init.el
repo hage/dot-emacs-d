@@ -903,6 +903,25 @@
            (rainbow-latex-colors . t)
            (rainbow-ansi-colors  . t)))
 
+(leaf docker
+  :doc "Emacs interface to Docker"
+  :req "dash-2.14.1" "docker-tramp-0.1" "emacs-24.5" "json-mode-1.7.0" "s-1.12.0" "tablist-0.70" "transient-0.2.0"
+  :tag "convenience" "filename" "emacs>=24.5"
+  :added "2021-04-14"
+  :url "https://github.com/Silex/docker.el"
+  :emacs>= 24.5
+  :ensure t
+  :after docker-tramp json-mode tablist
+  :config
+  (leaf docker-tramp
+    :doc "TRAMP integration for docker containers"
+    :req "emacs-24" "cl-lib-0.5"
+    :tag "convenience" "docker" "emacs>=24"
+    :added "2021-04-14"
+    :url "https://github.com/emacs-pe/docker-tramp.el"
+    :emacs>= 24
+    :ensure t))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

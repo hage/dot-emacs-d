@@ -811,11 +811,7 @@
   (defun return-current-working-directory-to-shell ()
     (file-name-directory
      (expand-file-name
-      (buffer-file-name
-       (with-current-buffer
-           (nth 1
-                (assoc 'buffer-list
-                       (nth 1 (nth 1 (current-frame-configuration)))))))))))
+      (buffer-file-name (car (buffer-list)))))))
 
 (leaf smart-compile
   :doc "an interface to `compile'"

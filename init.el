@@ -149,7 +149,7 @@
            ("M-~"         . call-last-kbd-macro)
            ("C-q C-r"     . revert-buffer)
            ("M-C-_"       . indent-region)
-           ("M-H"         . backward-kill-word)
+           ("M-h"         . backward-kill-word)
            ("M-/"         . xref-find-definitions-other-window)
            ("M-?"         . xref-find-definitions)
            ("C-x j"       . goto-line)

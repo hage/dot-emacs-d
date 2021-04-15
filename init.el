@@ -353,6 +353,7 @@
 (leaf themes
   :custom-face
   (mode-line . '((t (:box "dark olive green"))))
+  (mode-line-inactive . '((t (:box "#445"))))
   :config
   (leaf color-theme-sanityinc-solarized
     :disabled t

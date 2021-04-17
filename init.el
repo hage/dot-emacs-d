@@ -373,7 +373,7 @@
     :url "https://github.com/hlissner/emacs-doom-theme"
     :emacs>= 25.1
     :ensure t
-    :config  (load-theme 'doom-peacock t)))
+    :config  (load-theme 'doom-one t)))
 
 (leaf prescient
   :doc "Better sorting and filtering"

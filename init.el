@@ -1013,7 +1013,16 @@
     :url "http://github.com/leoc/ruby-interpolation.el"
     :ensure t
     :hook ruby-mode-hook
-    :blackout t))
+    :blackout t)
+  (leaf rubocop
+    :doc "An Emacs interface for RuboCop"
+    :req "emacs-24"
+    :tag "convenience" "project" "emacs>=24"
+    :added "2021-04-21"
+    :url "https://github.com/rubocop/rubocop-emacs"
+    :emacs>= 24
+    :ensure t
+    :hook (ruby-mode-hook . rubocop-mode)))
 
 
 (leaf js2-mode

@@ -198,7 +198,11 @@
     :doc "Show tooltip at point"
     :tag "tooltip"
     :added "2021-04-12"
-    :ensure t)
+    :ensure t
+    :custom ((pos-tip-border-width . 2)
+             (pos-tip-internal-border-width . 5)
+             (pos-tip-foreground-color . "gray20")
+             (pos-tip-background-color . "light cyan")))
   (leaf font-setting-jetbrains
     :disabled nil
     :init

@@ -606,7 +606,21 @@
   :url "http://www.flycheck.org"
   :emacs>= 24.3
   :ensure t
-  :custom (flycheck-disabled-checkers . '(emacs-lisp-checkdoc)))
+  :custom (flycheck-disabled-checkers . '(emacs-lisp-checkdoc))
+  :config
+  (leaf flycheck-pos-tip
+    :doc "Display Flycheck errors in GUI tooltips"
+    :req "emacs-24.1" "flycheck-0.22" "pos-tip-0.4.6"
+    :tag "convenience" "tools" "emacs>=24.1"
+    :added "2021-04-18"
+    :url "https://github.com/flycheck/flycheck-pos-tip"
+    :emacs>= 24.1
+    :ensure t
+    :after flycheck pos-tip
+    :if (window-system)
+    :custom ((flycheck-pos-tip-timeout . 20))
+    :init
+    (flycheck-pos-tip-mode 1)))
 
 (leaf lsp-mode
   :doc "LSP mode"

@@ -296,6 +296,12 @@
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never)))
 
+(leaf ffap
+  :doc "find file (or url) at point"
+  :tag "builtin"
+  :added "2021-04-19"
+  :bind (("M-g M-g" . ffap)))
+
 (leaf pbcopy
   :doc "Emacs Interface to pbcopy"
   :tag "pbcopy" "osx" "mac"

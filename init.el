@@ -310,6 +310,14 @@
   :ensure t
   :init (turn-on-pbcopy))
 
+(leaf transpose-frame
+  :doc "Transpose windows arrangement in a frame"
+  :tag "window"
+  :added "2021-04-22"
+  :ensure t
+  :bind (("C-w '" . transpose-frame)
+         ("C-w \"" . flop-frame)))
+
 (leaf duplicate-thing
   :doc "Duplicate current line & selection"
   :tag "selection" "line" "duplicate" "command" "convenience"

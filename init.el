@@ -973,6 +973,12 @@
     :emacs>= 24
     :ensure t))
 
+(leaf auto-highlight-symbol
+  :doc "Automatic highlighting current symbol minor mode"
+  :tag "convenience" "match" "face" "highlight"
+  :added "2021-04-26"
+  :url "http://github.com/jcs-elpa/auto-highlight-symbol"
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

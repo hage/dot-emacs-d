@@ -203,18 +203,26 @@
              (pos-tip-internal-border-width . 5)
              (pos-tip-foreground-color . "gray20")
              (pos-tip-background-color . "light cyan")))
-  (leaf font-setting-jetbrains
-    :disabled nil
-    :init
-    (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=12" nil "JetBrains")
-    (set-fontset-font "fontset-JetBrains" 'unicode "DFPLeiSho-SB-14" nil 'append)
+  (leaf font-setting
+    :tag "out-of-MELPA"
+    :added "2021-04-27"
+    :config
+    (leaf font-setting-source-han-mono
+      :disabled nil
+      :init
+      (create-fontset-from-ascii-font "Source Han Mono:slant=normal:size=11" nil "SourceHanMono")
+      (set-fontset-font "fontset-SourceHanMono" 'unicode "DFPLeiSho-SB-14" nil 'append))
+    (leaf font-setting-jetbrains
+      :disabled nil
+      :init
+      (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=12" nil "JetBrains")
+      (set-fontset-font "fontset-JetBrains" 'unicode "DFPLeiSho-SB-14" nil 'append))
+    (leaf font-setting-victor
+      :disabled t
+      :init
+      (create-fontset-from-ascii-font "Victor Mono:slant=normal:size=12" nil "Victor")
+      (set-fontset-font "fontset-Victor" 'unicode "DFPLeiSho-SB-14" nil 'append))
     (add-to-list 'default-frame-alist '(font . "fontset-JetBrains")))
-  (leaf font-setting-victor
-    :disabled t
-    :init
-    (create-fontset-from-ascii-font "Victor Mono:slant=normal:size=12" nil "Victor")
-    (set-fontset-font "fontset-Victor" 'unicode "DFPLeiSho-SB-14" nil 'append)
-    (add-to-list 'default-frame-alist '(font . "fontset-Victor")))
   (leaf switch-to-terminal
     :init
     (defun my-switch-terminal-emulator()

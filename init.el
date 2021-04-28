@@ -486,6 +486,7 @@
     :after ivy
     :bind (("C-s" . swiper)))
   (leaf all-the-icons-ivy
+    :if (window-system)
     :doc "Shows icons while using ivy and counsel"
     :req "emacs-24.4" "all-the-icons-2.4.0" "ivy-0.8.0"
     :tag "faces" "emacs>=24.4"

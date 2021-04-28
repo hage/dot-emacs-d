@@ -174,6 +174,7 @@
     (toggle-frame-fullscreen)
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
+    (menu-bar-mode 1)
     (global-hl-line-mode 1))
   (leaf all-the-icons
     :doc "A library for inserting Developer icons"
@@ -235,6 +236,7 @@
 (leaf not-window-system
   :if (not (window-system))
   :config
+  (menu-bar-mode -1)
   (leaf keyboard-quit
     :config
     (defun keyboard-quit-advice-before ()

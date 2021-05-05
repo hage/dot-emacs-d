@@ -982,6 +982,20 @@
   :added "2021-04-26"
   :url "http://github.com/jcs-elpa/auto-highlight-symbol"
   :ensure t)
+
+(leaf zoom-window
+  :doc "Zoom window like tmux"
+  :req "emacs-24.3"
+  :tag "emacs>=24.3"
+  :added "2021-05-04"
+  :url "https://github.com/syohex/emacs-zoom-window"
+  :emacs>= 24.3
+  :ensure t
+  :bind (("C-w 1" . zoom-window-zoom))
+  :custom ((zoom-window-mode-line-color . "#241"))
+  :config
+  (zoom-window-setup))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

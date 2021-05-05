@@ -766,7 +766,7 @@
   :custom `((persp-mode-prefix-key    . ,(kbd "M-t"))
             (persp-sort               . 'created)
             (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el"))
-            (persp-modestring-short   . nil))
+            (persp-modestring-short   . t))
   :config
   (defun my-persp-switch-to-main ()
     (interactive)

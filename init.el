@@ -773,11 +773,10 @@
     (persp-switch "main"))
   :bind ((persp-mode-map
           ("M-t M-t" . persp-switch-last)
+          ("M-t t"   . persp-switch)
           ("M-t l"   . persp-state-load)
           ("M-t s"   . persp-state-save)
           ("M-t k"   . persp-kill)
-          ("M-t c"   . persp-switch)
-          ("M-t M-l" . persp-switch)
           ("C-x b"   . persp-ivy-switch-buffer)
           ("C-x C-b" . counsel-switch-buffer)
           ("M-t 0"   . my-persp-switch-to-main))))

@@ -95,18 +95,38 @@
     (setcdr (last place) `(,newelt . nil))
     place))
 
+(leaf themes
+  :custom-face
+  (mode-line . '((t (:box "dark olive green"))))
+  (mode-line-inactive . '((t (:box "#445"))))
+  :config
+  (leaf color-theme-sanityinc-solarized
+    :disabled t
+    :doc "A version of Ethan Schoonover's Solarized themes"
+    :req "emacs-24.1" "cl-lib-0.6"
+    :tag "themes" "faces" "emacs>=24.1"
+    :added "2021-03-19"
+    :url "https://github.com/purcell/color-theme-sanityinc-solarized"
+    :emacs>= 24.1
+    :ensure t
+    :config (load-theme 'sanityinc-solarized-dark t))
+  (leaf doom-themes
+    :doc "an opinionated pack of modern color-themes"
+    :req "emacs-25.1" "cl-lib-0.5"
+    :tag "nova" "faces" "icons" "neotree" "theme" "one" "atom" "blue" "light" "dark" "emacs>=25.1"
+    :added "2021-04-09"
+    :url "https://github.com/hlissner/emacs-doom-theme"
+    :emacs>= 25.1
+    :ensure t
+    :config  (load-theme 'doom-one t)))
+
 (leaf basic-config
   :init (progn
           (put 'narrow-to-region 'disabled nil)
           (line-number-mode t)
           (modify-syntax-entry ?。 ".")
           (modify-syntax-entry ?、 ".")
-          (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on)
-          (set-face-background 'vertical-border "#334")
-          (set-display-table-slot standard-display-table
-                                  'vertical-border
-                                  (make-glyph-code ? )))
-
+          (add-hook 'comint-mode-hook 'ansi-color-for-comint-mode-on))
   :custom ((line-number-mode           . t)
            (inhibit-startup-message    . t)
            (scroll-conservatively      . 2)
@@ -170,6 +190,7 @@
   :if (window-system)
   :init
   (global-unset-key (kbd "C-t"))
+  (set-face-foreground 'vertical-border "#555")
   (defun my-emacs-startup-hook-handler ()
     (toggle-frame-fullscreen)
     (scroll-bar-mode -1)
@@ -237,6 +258,10 @@
   :if (not (window-system))
   :config
   (menu-bar-mode -1)
+  (set-face-background 'vertical-border "#334")
+  (set-display-table-slot standard-display-table
+                          'vertical-border
+                          (make-glyph-code ? ))
   (leaf keyboard-quit
     :config
     (defun keyboard-quit-advice-before ()
@@ -384,31 +409,6 @@
   :init (global-git-gutter-mode)
   :bind (("M-g M-n" . git-gutter:next-hunk)
          ("M-g M-p" . git-gutter:previous-hunk)))
-
-(leaf themes
-  :custom-face
-  (mode-line . '((t (:box "dark olive green"))))
-  (mode-line-inactive . '((t (:box "#445"))))
-  :config
-  (leaf color-theme-sanityinc-solarized
-    :disabled t
-    :doc "A version of Ethan Schoonover's Solarized themes"
-    :req "emacs-24.1" "cl-lib-0.6"
-    :tag "themes" "faces" "emacs>=24.1"
-    :added "2021-03-19"
-    :url "https://github.com/purcell/color-theme-sanityinc-solarized"
-    :emacs>= 24.1
-    :ensure t
-    :config (load-theme 'sanityinc-solarized-dark t))
-  (leaf doom-themes
-    :doc "an opinionated pack of modern color-themes"
-    :req "emacs-25.1" "cl-lib-0.5"
-    :tag "nova" "faces" "icons" "neotree" "theme" "one" "atom" "blue" "light" "dark" "emacs>=25.1"
-    :added "2021-04-09"
-    :url "https://github.com/hlissner/emacs-doom-theme"
-    :emacs>= 25.1
-    :ensure t
-    :config  (load-theme 'doom-one t)))
 
 (leaf prescient
   :doc "Better sorting and filtering"

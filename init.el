@@ -995,6 +995,15 @@
   :config
   (zoom-window-setup))
 
+(leaf string-inflection
+  :doc "underscore -> UPCASE -> CamelCase -> lowerCamelCase conversion of names"
+  :tag "elisp"
+  :added "2021-05-12"
+  :ensure t
+  :bind (("M-u" . string-inflection-all-cycle))
+  :hook
+  (ruby-mode-hook . (lambda () (local-set-key (kbd "M-u") #'string-inflection-ruby-style-cycle))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

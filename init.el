@@ -709,7 +709,7 @@
   :added "2021-03-23"
   :url "https://github.com/Fuco1/smartparens"
   :ensure t
-  :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook
+  :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook elixir-mode-hook
   :defer-config (require 'smartparens-config)
   :bind ((smartparens-mode-map
           ("M-C-k" . sp-kill-hybrid-sexp)
@@ -1098,6 +1098,15 @@
   :tag "yaml" "data" "emacs>=24.1"
   :added "2021-04-04"
   :emacs>= 24.1
+  :ensure t)
+
+(leaf elixir-mode
+  :doc "Major mode for editing Elixir files"
+  :req "emacs-25" "pkg-info-0.6"
+  :tag "elixir" "languages" "emacs>=25"
+  :added "2021-05-14"
+  :url "https://github.com/elixir-editors/emacs-elixir"
+  :emacs>= 25
   :ensure t)
 
 (provide 'init)

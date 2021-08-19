@@ -697,9 +697,11 @@
   (customize-set-variable
    'popwin:special-display-config
    (append '((help-mode :position right :width 81)
+             ("*compilation" :nonselect nil)
              ("^\\*eshell.*\\*\\'" :position bottom :height .4 :stick t :regexp t)
              ("*Backtrace*" :noselect t)
-             ("*xref*"))
+             ("*xref*")
+             ("*Messages*"))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens

@@ -3,11 +3,10 @@
 # key: minitest
 # --
 # frozen_string_literal: true
-# coding: utf-8
 
 require 'rubygems'
 require 'minitest/autorun'
-# require File.join(__dir__, '../some_file.rb')
+# require_relative '../some_file'
 
 # [documents](https://www.rubydoc.info/gems/minitest)
 
@@ -21,6 +20,6 @@ class $0Test < MiniTest::Test
   end
 
   def test_foo
-    assert_equal "foo", "foo"
+    assert_equal 'foo', 'foo'
   end
 end

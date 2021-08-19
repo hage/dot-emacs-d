@@ -1062,6 +1062,14 @@
     :ensure t
     :hook ruby-mode-hook
     :blackout t)
+  (leaf inf-ruby
+    :doc "Run a Ruby process in a buffer"
+    :req "emacs-24.3"
+    :tag "ruby" "languages" "emacs>=24.3"
+    :url "http://github.com/nonsequitur/inf-ruby"
+    :added "2021-08-19"
+    :emacs>= 24.3
+    :ensure t)
   (leaf rubocop
     :doc "An Emacs interface for RuboCop"
     :req "emacs-24"

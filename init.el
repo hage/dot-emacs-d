@@ -1059,6 +1059,13 @@
                             (emmet-mode t)
                             (local-set-key (kbd "C-M-i") #'emmet-expand-line))))
 
+(leaf rbenv
+  :doc "Emacs integration for rbenv"
+  :tag "rbenv" "ruby"
+  :url "https://github.com/senny/rbenv.el"
+  :added "2021-08-21"
+  :ensure t
+  :init (global-rbenv-mode))
 (leaf ruby-mode
   :doc "Major mode for editing Ruby files"
   :tag "builtin"

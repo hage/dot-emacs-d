@@ -801,7 +801,8 @@
   :emacs>= 25.1
   :ensure t
   :bind ((projectile-mode-map
-          ("C-w C-w" . my-run-eshell)))
+          ("C-w C-w" . my-run-eshell)
+          ("C-x b"   . counsel-projectile-switch-to-buffer)))
   :custom ((projectile-mode-line-prefix . " P"))
   :init
   (projectile-mode)

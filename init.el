@@ -1016,6 +1016,16 @@
   :hook
   (ruby-mode-hook . (lambda () (local-set-key (kbd "M-u") #'string-inflection-ruby-style-cycle))))
 
+(leaf emr
+  :doc "Emacs refactoring system."
+  :req "s-1.3.1" "dash-1.2.0" "cl-lib-0.2" "popup-0.5.0" "emacs-24.1" "list-utils-0.3.0" "paredit-24.0.0" "projectile-0.9.1" "clang-format-0.0.1" "iedit-0.97"
+  :tag "refactoring" "convenience" "tools" "emacs>=24.1"
+  :url "https://github.com/Wilfred/emacs-refactor"
+  :added "2021-08-23"
+  :emacs>= 24.1
+  :ensure t
+  :after list-utils paredit projectile clang-format iedit)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

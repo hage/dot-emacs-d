@@ -1082,6 +1082,9 @@
   :url "https://github.com/senny/rbenv.el"
   :added "2021-08-21"
   :ensure t
+  :hook (global-rbenv-mode-hook . (lambda ()
+                                    (setf rbenv-modeline-function (lambda ()))
+                                    (setq rbenv--modestring "")))
   :init (global-rbenv-mode))
 (leaf ruby-mode
   :doc "Major mode for editing Ruby files"

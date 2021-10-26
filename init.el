@@ -827,10 +827,13 @@
     :url "https://github.com/ericdanan/counsel-projectile"
     :ensure t
     :after counsel projectile
-    :init (counsel-projectile-mode)
-    :custom ((projectile-completion-system . 'ivy))
-    :bind (projectile-mode-map
-           ("M-C-o" . counsel-projectile))))
+    :bind ((projectile-mode-map
+            ("M-C-o" . counsel-projectile-find-file-dwim)))
+    :init (progn (counsel-projectile-mode)
+                 (push "vendor" projectile-globally-ignored-directories)
+                 (push 'counsel-projectile-find-file-dwim all-the-icons-ivy-buffer-commands)
+                 (all-the-icons-ivy-setup))
+    :custom ((projectile-completion-system . 'ivy))))
 
 (leaf multiple-cursors
   :doc "Multiple cursors for Emacs."

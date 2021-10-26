@@ -156,6 +156,11 @@
   (global-unset-key (kbd "C-w"))
   (global-unset-key (kbd "C-x DEL"))
   (leaf basic-key-bindings-bind
+    :init
+    (defun switch-to-used-buffer ()
+      (interactive)
+      (switch-to-buffer nil))
+
     :bind (("M-o"         . other-window)
            ("C-o"         . dabbrev-expand)
 	         ("C-x h"       . help-command)
@@ -184,7 +189,8 @@
            ("M-f"         . forward-word)
            ("M-b"         . backward-word)
            ("M-F"         . forward-to-word)
-           ("M-B"         . backward-to-word))))
+           ("M-B"         . backward-to-word)
+           ("M-O"         . switch-to-used-buffer))))
 
 (leaf window-system
   :if (window-system)

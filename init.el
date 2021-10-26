@@ -1158,5 +1158,15 @@
   :emacs>= 25
   :ensure t)
 
+(leaf howm
+  :doc "Wiki-like note-taking tool"
+  :req "cl-lib-0.5"
+  :url "https://howm.osdn.jp"
+  :added "2021-10-26"
+  :ensure t
+  :custom ((howm-directory . "~/Documents/howm"))
+  :bind (("C-q , ," . howm-menu)
+         ("C-q , s" . howm-list-grep)))
+
 (provide 'init)
 ;;; init.el ends here

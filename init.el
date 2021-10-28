@@ -1165,9 +1165,17 @@
   :url "https://howm.osdn.jp"
   :added "2021-10-26"
   :ensure t
-  :custom ((howm-directory . "~/Documents/howm"))
+  :config
+  (defun my-howm-save-and-kill-buffer ()
+    (interactive)
+    (howm-save-buffer)
+    (kill-buffer nil))
+  :custom ((howm-directory . "~/Documents/howm")
+           (howm-view-summary-persistent . nil))
   :bind (("C-q , ," . howm-menu)
-         ("C-q , s" . howm-list-grep)))
+         ("C-q , s" . howm-list-grep)
+         ("C-q , c" . howm-create)
+         (howm-mode-map ("C-c C-c" . my-howm-save-and-kill-buffer))))
 
 (provide 'init)
 ;;; init.el ends here

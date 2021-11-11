@@ -1177,5 +1177,10 @@
          ("C-q , c" . howm-create)
          (howm-mode-map ("C-c C-c" . my-howm-save-and-kill-buffer))))
 
+;;;;;;;;;;;;;;;;
+
+(leaf load-custom-file
+  :init (load-library custom-file))
+
 (provide 'init)
 ;;; init.el ends here

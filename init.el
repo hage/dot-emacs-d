@@ -198,7 +198,7 @@
   (global-unset-key (kbd "C-t"))
   (set-face-foreground 'vertical-border "#555")
   (defun my-emacs-startup-hook-handler ()
-    (toggle-frame-fullscreen)
+    ;; (toggle-frame-fullscreen)
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (menu-bar-mode 1)
@@ -1182,6 +1182,8 @@
 
 (leaf load-custom-file
   :init (load-library custom-file))
+
+(toggle-frame-maximized)
 
 (provide 'init)
 ;;; init.el ends here

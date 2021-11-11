@@ -380,7 +380,8 @@
   :added "2021-03-22"
   :url "https://github.com/emacs-jp/migemo"
   :ensure t
-  :custom ((migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict")
+  :custom ((migemo-command . "/usr/local/bin/cmigemo")
+           (migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict")
            (migemo-coding-system . 'utf-8)
            (migemo-options . '("-q" "--emacs")))
   :commands migemo-init

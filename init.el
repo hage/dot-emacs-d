@@ -198,7 +198,7 @@
   (global-unset-key (kbd "C-t"))
   (set-face-foreground 'vertical-border "#555")
   (defun my-emacs-startup-hook-handler ()
-    ;; (toggle-frame-fullscreen)
+    (toggle-frame-fullscreen)
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (menu-bar-mode 1)
@@ -593,15 +593,6 @@
            (company-transformers          . '(company-sort-by-occurrence)))
   :config
   (add-to-list 'company-backends #'company-elisp)
-  (leaf company-box
-    :doc "Company front-end with icons"
-    :req "emacs-26.0.91" "dash-2.13" "dash-functional-1.2.0" "company-0.9.6" "frame-local-0.0.1"
-    :tag "convenience" "front-end" "completion" "company" "emacs>=26.0.91"
-    :added "2021-04-08"
-    :url "https://github.com/sebastiencs/company-box"
-    :emacs>= 26.0
-    :ensure t
-    :hook (company-mode-hook . company-box-mode))
   (leaf company-prescient
     :doc "prescient.el + Company"
     :req "emacs-25.1" "prescient-5.1" "company-0.9.6"
@@ -1182,8 +1173,6 @@
 
 (leaf load-custom-file
   :init (load-library custom-file))
-
-(toggle-frame-maximized)
 
 (provide 'init)
 ;;; init.el ends here

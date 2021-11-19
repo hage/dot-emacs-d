@@ -836,6 +836,7 @@
   :url "https://github.com/magnars/multiple-cursors.el"
   :ensure t
   :bind (("C-w C-SPC" . mc/mark-all-dwim)
+         ("C-w C-n"   . mc/mark-next-word-like-this)
          ("C-x r t"   . mc/edit-lines)
          (mc/keymap
           ("C-k" . kill-line)

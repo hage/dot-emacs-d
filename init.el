@@ -1170,6 +1170,15 @@
          ("C-q , c" . howm-create)
          (howm-mode-map ("C-c C-c" . my-howm-save-and-kill-buffer))))
 
+(leaf dockerfile-mode
+  :doc "Major mode for editing Docker's Dockerfiles"
+  :req "emacs-24"
+  :tag "docker" "emacs>=24"
+  :url "https://github.com/spotify/dockerfile-mode"
+  :added "2021-11-22"
+  :emacs>= 24
+  :ensure t)
+
 ;;;;;;;;;;;;;;;;
 
 (leaf load-custom-file

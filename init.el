@@ -1179,6 +1179,16 @@
   :emacs>= 24
   :ensure t)
 
+(leaf php-mode
+  :doc "Major mode for editing PHP code"
+  :req "emacs-25.2"
+  :tag "php" "languages" "emacs>=25.2"
+  :url "https://github.com/emacs-php/php-mode"
+  :added "2021-11-22"
+  :emacs>= 25.2
+  :ensure t
+  :mode (("\\.inc\\'" . php-mode)))
+
 ;;;;;;;;;;;;;;;;
 
 (leaf load-custom-file

@@ -191,7 +191,8 @@
            ("M-b"         . backward-word)
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word)
-           ("M-O"         . switch-to-used-buffer))))
+           ("M-O"         . switch-to-used-buffer)
+           ("M-N"         . down-list))))
 
 (leaf window-system
   :if (window-system)

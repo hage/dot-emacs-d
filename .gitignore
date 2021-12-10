@@ -28,3 +28,4 @@ custom.el
 /var/
 /.persp-save.el
 /el-get/
+.yas-compiled-snippets.el

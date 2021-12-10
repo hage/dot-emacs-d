@@ -878,6 +878,7 @@
   :require server
   :config
   (unless (server-running-p)
+    ;; (setq server-socket-dir "~/.emacs.d/emacsserver")
     (server-start))
   (defun return-current-working-directory-to-shell ()
     (file-name-directory

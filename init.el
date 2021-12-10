@@ -1032,6 +1032,13 @@
   :ensure t
   :after list-utils paredit projectile clang-format iedit)
 
+(leaf wgrep
+  :doc "Writable grep buffer and apply the changes to files"
+  :tag "extensions" "edit" "grep"
+  :url "http://github.com/mhayashi1120/Emacs-wgrep/raw/master/wgrep.el"
+  :added "2021-11-24"
+  :ensure t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

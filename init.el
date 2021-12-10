@@ -945,9 +945,8 @@
   :url "https://github.com/DarthFennec/highlight-indent-guides"
   :emacs>= 24.1
   :ensure t
-  :hook ((ruby-mode-hook js2-mode-hook typescript-mode-hook web-mode-hook yaml-mode-hook emacs-lisp-mode-hook) . highlight-indent-guides-mode)
-  :custom `((highlight-indent-guides-method     . ,(if (window-system) ''bitmap ''character))
-            (highlight-indent-guides-responsive . t)))
+  :custom ((highlight-indent-guides-method     . 'character)
+           (highlight-indent-guides-responsive . t)))
 
 (leaf info-ja
   :custom ((info-ja-directory . `,(concat user-emacs-directory "info")))

@@ -14,6 +14,8 @@
 ;; (initchart-record-execution-time-of require feature)
 ;;;;;;;;;;;;;;;;
 
+(custom-set-variables `(gc-cons-threshold ,(* gc-cons-threshold 20)))
+
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 
@@ -36,7 +38,6 @@
 ;; 非常に重要な設定
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
-(setq gc-cons-threshold (* gc-cons-threshold 10))
 (setq garbage-collection-messages t)
 
 

@@ -1135,7 +1135,9 @@
   :url "https://github.com/mooz/js2-mode/"
   :emacs>= 24.1
   :ensure t
-  :mode "\\.js$")
+  :mode "\\.js$"
+  :custom ((js2-strict-missing-semi-warning . nil)
+           (js2-missing-semi-one-line-override . nil)))
 
 (leaf typescript-mode
   :doc "Major mode for editing typescript"

@@ -460,7 +460,9 @@
            (ivy-on-del-error-function      . nil) ; BSでivyから抜けないように
            (ivy-re-builders-alist . '((swiper . ivy-migemo--regex-plus)
                                       (t . ivy--regex-ignore-order))))
-  :bind (("C-w C-i" . ivy-resume))
+  :bind (("C-w C-i" . ivy-resume)
+         (ivy-minibuffer-map
+          ("C-SPC" . ivy-mark)))
   :config
   (setcar (last ivy-format-functions-alist) '(t . ivy-format-function-arrow))
   (leaf ivy-hydra

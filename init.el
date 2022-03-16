@@ -1081,9 +1081,9 @@
   :custom((emmet-preview-default        . t)
           (emmet-indentation            . 2)
           (emmet-self-closing-tag-style . ""))
-  :hook ((web-mode-hook) . (lambda ()
-                            (emmet-mode t)
-                            (local-set-key (kbd "C-M-i") #'emmet-expand-line))))
+  :hook ((web-mode-hook css-mode-hook) . (lambda ()
+                                           (emmet-mode t)
+                                           (local-set-key (kbd "C-M-i") #'emmet-expand-line))))
 
 (leaf rbenv
   :doc "Emacs integration for rbenv"

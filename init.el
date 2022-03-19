@@ -1041,6 +1041,14 @@
   :added "2021-11-24"
   :ensure t)
 
+(leaf cycle-quotes
+  :doc "Cycle between quote styles"
+  :tag "convenience"
+  :url "http://elpa.gnu.org/packages/cycle-quotes.html"
+  :added "2022-03-16"
+  :ensure t
+  :bind (("M-\"" . cycle-quotes)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes
@@ -1101,6 +1109,7 @@
   :added "2021-03-26"
   :custom ((ruby-insert-encoding-magic-comment . nil)
            (ruby-align-chained-calls           . t))
+  :bind (("M-\"" . ruby-toggle-string-quotes))
   :config
   (leaf ruby-interpolation
     :doc "Ruby string interpolation helpers"

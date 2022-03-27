@@ -271,6 +271,7 @@
                           'vertical-border
                           (make-glyph-code ? ))
   (leaf pbcopy
+    :if (string-equal system-type "darwin")
     :doc "Emacs Interface to pbcopy"
     :tag "pbcopy" "osx" "mac"
     :added "2021-03-23"

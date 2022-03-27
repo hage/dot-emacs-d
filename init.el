@@ -270,6 +270,13 @@
   (set-display-table-slot standard-display-table
                           'vertical-border
                           (make-glyph-code ? ))
+  (leaf pbcopy
+    :doc "Emacs Interface to pbcopy"
+    :tag "pbcopy" "osx" "mac"
+    :added "2021-03-23"
+    :url "https://github.com/jkp/pbcopy.el"
+    :ensure t
+    :init (turn-on-pbcopy))
   (leaf keyboard-quit
     :config
     (defun keyboard-quit-advice-before ()
@@ -344,14 +351,6 @@
   :tag "builtin"
   :added "2021-04-19"
   :bind (("M-g M-g" . ffap)))
-
-(leaf pbcopy
-  :doc "Emacs Interface to pbcopy"
-  :tag "pbcopy" "osx" "mac"
-  :added "2021-03-23"
-  :url "https://github.com/jkp/pbcopy.el"
-  :ensure t
-  :init (turn-on-pbcopy))
 
 (leaf transpose-frame
   :doc "Transpose windows arrangement in a frame"

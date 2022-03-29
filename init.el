@@ -447,6 +447,15 @@
   :emacs>= 27.1
   :ensure t
   :config (vertico-mode))
+(leaf orderless
+  :doc "Completion style for matching regexps in any order"
+  :req "emacs-26.1"
+  :tag "extensions" "emacs>=26.1"
+  :url "https://github.com/oantolin/orderless"
+  :added "2022-03-29"
+  :emacs>= 26.1
+  :ensure t
+  :custom ((completion-styles . '(orderless))))
 
 (leaf company
   :doc "Modular text completion framework"

@@ -670,8 +670,6 @@
           ("M-t l"   . persp-state-load)
           ("M-t s"   . persp-state-save)
           ("M-t k"   . persp-kill)
-          ("C-x b"   . persp-ivy-switch-buffer)
-          ("C-x C-b" . counsel-switch-buffer)
           ("M-t 0"   . my-persp-switch-to-main))))
 
 (leaf projectile
@@ -683,8 +681,7 @@
   :emacs>= 25.1
   :ensure t
   :bind ((projectile-mode-map
-          ("C-w C-w" . my-run-eshell)
-          ("C-x b"   . counsel-projectile-switch-to-buffer)))
+          ("C-w C-w" . my-run-eshell)))
   :custom ((projectile-mode-line-prefix . " P"))
   :init
   (projectile-mode)
@@ -693,23 +690,7 @@
     (interactive)
     (if (magit-gitdir)
         (projectile-run-eshell)
-      (eshell)))
-  :config
-  (leaf counsel-projectile
-    :doc "Ivy integration for Projectile"
-    :req "counsel-0.13.0" "projectile-2.0.0"
-    :tag "convenience" "project"
-    :added "2021-03-25"
-    :url "https://github.com/ericdanan/counsel-projectile"
-    :ensure t
-    :after counsel projectile
-    :bind ((projectile-mode-map
-            ("M-C-o" . counsel-projectile-find-file-dwim)))
-    :init (progn (counsel-projectile-mode)
-                 (push "vendor" projectile-globally-ignored-directories)
-                 (push 'counsel-projectile-find-file-dwim all-the-icons-ivy-buffer-commands)
-                 (all-the-icons-ivy-setup))
-    :custom ((projectile-completion-system . 'ivy))))
+      (eshell))))
 
 (leaf multiple-cursors
   :doc "Multiple cursors for Emacs."

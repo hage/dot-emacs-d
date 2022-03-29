@@ -428,16 +428,6 @@
   :bind (("M-g M-n" . git-gutter:next-hunk)
          ("M-g M-p" . git-gutter:previous-hunk)))
 
-(leaf prescient
-  :doc "Better sorting and filtering"
-  :req "emacs-25.1"
-  :tag "extensions" "emacs>=25.1"
-  :added "2021-03-21"
-  :url "https://github.com/raxod502/prescient.el"
-  :emacs>= 25.1
-  :ensure t
-  :global-minor-mode prescient-persist-mode)
-
 (leaf vertico
   :doc "VERTical Interactive COmpletion"
   :req "emacs-27.1"

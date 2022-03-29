@@ -438,6 +438,15 @@
   :ensure t
   :global-minor-mode prescient-persist-mode)
 
+(leaf vertico
+  :doc "VERTical Interactive COmpletion"
+  :req "emacs-27.1"
+  :tag "emacs>=27.1"
+  :url "https://github.com/minad/vertico"
+  :added "2022-03-29"
+  :emacs>= 27.1
+  :ensure t
+  :config (vertico-mode))
 
 (leaf company
   :doc "Modular text completion framework"

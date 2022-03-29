@@ -448,6 +448,11 @@
   :emacs>= 26.1
   :ensure t
   :custom ((completion-styles . '(orderless))))
+(leaf savehist
+  :doc "Save minibuffer history"
+  :tag "builtin"
+  :added "2022-03-29"
+  :config (savehist-mode))
 
 (leaf company
   :doc "Modular text completion framework"

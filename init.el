@@ -453,6 +453,25 @@
   :tag "builtin"
   :added "2022-03-29"
   :config (savehist-mode))
+(leaf consult
+  :doc "Consulting completing-read"
+  :req "emacs-26.1"
+  :tag "emacs>=26.1"
+  :url "https://github.com/minad/consult"
+  :added "2022-03-29"
+  :emacs>= 26.1
+  :ensure t
+  :config (progn
+            (recentf-mode)
+            (define-key consult-narrow-map
+              (vconcat consult-narrow-key "?") #'consult-narrow-help))
+  :bind (("M-I"     . consult-imenu-multi)
+         ("C-s"     . consult-line-multi)
+         ("M-g g"   . consult-goto-line)
+         ("M-s M-s" . consult-grep)
+         ("M-C-o"   . consult-buffer)
+         ("C-x b"   . consult-project-buffer)
+         ("C-h a"   . consult-apropos)))
 
 (leaf company
   :doc "Modular text completion framework"

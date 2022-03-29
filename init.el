@@ -192,7 +192,8 @@
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word)
            ("M-O"         . switch-to-used-buffer)
-           ("M-N"         . down-list))))
+           ("M-N"         . down-list)
+           ("M-I"         . imenu))))
 
 (leaf window-system
   :if (window-system)

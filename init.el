@@ -438,7 +438,7 @@
   :emacs>= 27.1
   :ensure t
   :config (vertico-mode)
-  :custom ((vertico-count . 20)))
+  :custom ((vertico-count . 25)))
 (leaf orderless
   :doc "Completion style for matching regexps in any order"
   :req "emacs-26.1"

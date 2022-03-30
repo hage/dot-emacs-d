@@ -453,6 +453,15 @@
   :tag "builtin"
   :added "2022-03-29"
   :config (savehist-mode))
+(leaf marginalia
+  :doc "Enrich existing commands with completion annotations"
+  :req "emacs-26.1"
+  :tag "emacs>=26.1"
+  :url "https://github.com/minad/marginalia"
+  :added "2022-03-30"
+  :emacs>= 26.1
+  :ensure t
+  :config (marginalia-mode))
 (leaf consult
   :doc "Consulting completing-read"
   :req "emacs-26.1"

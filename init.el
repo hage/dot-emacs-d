@@ -481,6 +481,15 @@
          ("M-C-o"   . consult-buffer)
          ("C-x b"   . consult-project-buffer)
          ("C-h a"   . consult-apropos)))
+(leaf my-consult-buffer
+  :after consult magit
+  :init
+  (defun my-consult-project-buffer (uarg)
+    (interactive "P")
+    (if (or uarg (not (magit-git-dir)))
+        (consult-buffer)
+      (consult-project-buffer)))
+  :bind (("M-C-o" . my-consult-project-buffer)))
 
 (leaf company
   :doc "Modular text completion framework"

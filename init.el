@@ -475,7 +475,7 @@
             (define-key consult-narrow-map
               (vconcat consult-narrow-key "?") #'consult-narrow-help))
   :bind (("M-I"     . consult-imenu-multi)
-         ("C-s"     . consult-line-multi)
+         ("C-s"     . consult-line)
          ("M-g g"   . consult-goto-line)
          ("M-s M-s" . consult-grep)
          ("M-C-o"   . consult-buffer)

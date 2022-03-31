@@ -474,6 +474,7 @@
             (recentf-mode)
             (define-key consult-narrow-map
               (vconcat consult-narrow-key "?") #'consult-narrow-help))
+  :custom ((consult-preview-key . nil))
   :bind (("M-I"     . consult-imenu-multi)
          ("C-s"     . consult-line)
          ("M-g g"   . consult-goto-line)

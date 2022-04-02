@@ -437,7 +437,26 @@
   :added "2022-03-29"
   :emacs>= 27.1
   :ensure t
-  :config (vertico-mode)
+  :config
+  (vertico-mode 1)
+  ;; C-lでディレクトリを遡る
+  ;; cf. https://scrapbox.io/emacs/find-file%E3%81%A7Helm%E3%81%BF%E3%81%9F%E3%81%84%E3%81%ABC-l%E3%81%A7%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%82%92%E9%81%A1%E3%82%8B
+  (defun my-dir-upto-parent ()
+    "Move to parent directory like \"cd ..\" in find-file."
+    (interactive)
+    (let ((sep (eval-when-compile (regexp-opt '("/" "\\")))))
+      (save-excursion
+        (left-char 1)
+        (when (looking-at-p sep)
+          (delete-char 1)))
+      (save-match-data
+        (when (search-backward-regexp sep nil t)
+          (right-char 1)
+          (filter-buffer-substring (point)
+                                   (save-excursion (end-of-line) (point))
+                                   #'delete)))))
+  ;; :bindで割り当てる(vertico-mode起動前に割り当てる)となぜかverticoの動作がおかしくなるのでここでやる
+  (define-key vertico-map (kbd "C-l") #'my-dir-upto-parent)
   :custom ((vertico-count . 25)))
 (leaf orderless
   :doc "Completion style for matching regexps in any order"

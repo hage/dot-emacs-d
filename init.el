@@ -502,10 +502,13 @@
   :bind (("M-I"     . consult-imenu-multi)
          ("C-s"     . consult-line)
          ("M-g g"   . consult-goto-line)
-         ("M-s M-s" . consult-grep)
          ("M-C-o"   . consult-buffer)
          ("C-x b"   . consult-project-buffer)
          ("C-h a"   . consult-apropos)
+         ("M-s M-s" . consult-grep)
+         ("M-s s"   . consult-line-multi)
+         ("M-s F"   . consult-find)
+         ("M-s o"   . consult-outline)
          ("M-y"     . consult-yank-pop)))
 (leaf embark
   :doc "Conveniently act on minibuffer completions"

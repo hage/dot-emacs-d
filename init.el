@@ -192,7 +192,8 @@
            ("M-F"         . forward-to-word)
            ("M-B"         . backward-to-word)
            ("M-O"         . switch-to-used-buffer)
-           ("M-N"         . down-list))))
+           ("M-N"         . down-list)
+           ("M-I"         . imenu))))
 
 (leaf window-system
   :if (window-system)
@@ -428,147 +429,146 @@
   :bind (("M-g M-n" . git-gutter:next-hunk)
          ("M-g M-p" . git-gutter:previous-hunk)))
 
-(leaf prescient
-  :doc "Better sorting and filtering"
-  :req "emacs-25.1"
-  :tag "extensions" "emacs>=25.1"
-  :added "2021-03-21"
-  :url "https://github.com/raxod502/prescient.el"
-  :emacs>= 25.1
+(leaf vertico
+  :doc "VERTical Interactive COmpletion"
+  :req "emacs-27.1"
+  :tag "emacs>=27.1"
+  :url "https://github.com/minad/vertico"
+  :added "2022-03-29"
+  :emacs>= 27.1
   :ensure t
-  :global-minor-mode prescient-persist-mode)
-
-(leaf ivy
-  :doc "Incremental Vertical completYon"
-  :req "emacs-24.5"
-  :tag "matching" "emacs>=24.5"
-  :added "2021-03-17"
-  :url "https://github.com/abo-abo/swiper"
-  :emacs>= 24.5
-  :ensure t
-  :blackout t
-  :custom ((ivy-use-virtual-buffers        . t)
-           (ivy-count-format               . "(%d/%d) ")
-           (enable-recursive-minibuffers   . t)
-           (minibuffer-depth-indicate-mode . 1)
-           (ivy-truncate-lines             . nil)
-           (ivy-height                     . `,(/ (window-height) 2))
-           (ivy-wrap                       . nil)
-           (ivy-mode                       . 1)
-           (ivy-initial-inputs-alist       . nil)
-           (ivy-use-selectable-prompt      . t)
-           (ivy-on-del-error-function      . nil) ; BSでivyから抜けないように
-           (ivy-re-builders-alist . '((swiper . ivy-migemo--regex-plus)
-                                      (t . ivy--regex-ignore-order))))
-  :bind (("C-w C-i" . ivy-resume)
-         (ivy-minibuffer-map
-          ("C-SPC" . ivy-mark)))
   :config
-  (setcar (last ivy-format-functions-alist) '(t . ivy-format-function-arrow))
-  (leaf ivy-hydra
-    :doc "Additional key bindings for Ivy"
-    :req "emacs-24.5" "ivy-0.13.4" "hydra-0.14.0"
-    :tag "convenience" "emacs>=24.5"
-    :added "2021-03-17"
-    :url "https://github.com/abo-abo/swiper"
-    :emacs>= 24.5
-    :ensure t
-    :after ivy hydra
-    :custom ((ivy-read-action-function . #'ivy-hydra-read-action)))
-  (leaf counsel
-    :doc "Various completion functions using Ivy"
-    :req "emacs-24.5" "ivy-0.13.4" "swiper-0.13.4"
-    :tag "tools" "matching" "convenience" "emacs>=24.5"
-    :added "2021-03-17"
-    :url "https://github.com/abo-abo/swiper"
-    :emacs>= 24.5
-    :ensure t
-    :blackout t
-    :after ivy
-    :init (counsel-mode 1)
-    :bind (("M-x"     . counsel-M-x)
-           ("M-y"     . counsel-yank-pop)
-           ("C-x f"   . counsel-fzf)
-           ("C-x C-r" . counsel-recentf)
-           ("C-x b"   . counsel-ibuffer)
-           ("M-s a"   . counsel-ag)
-           ("M-I"     . counsel-imenu)
-           (counsel-find-file-map
-            ("C-l" . counsel-up-directory))))
-  (leaf swiper
-    :doc "Isearch with an overview. Oh, man!"
-    :req "emacs-24.5" "ivy-0.13.4"
-    :tag "matching" "emacs>=24.5"
-    :added "2021-03-17"
-    :url "https://github.com/abo-abo/swiper"
-    :emacs>= 24.5
-    :ensure t
-    :after ivy
-    :bind (("C-s" . swiper)))
-  (leaf all-the-icons-ivy
-    :if (window-system)
-    :doc "Shows icons while using ivy and counsel"
-    :req "emacs-24.4" "all-the-icons-2.4.0" "ivy-0.8.0"
-    :tag "faces" "emacs>=24.4"
-    :added "2021-04-07"
-    :emacs>= 24.4
-    :ensure t
-    :after all-the-icons ivy
-    :init (all-the-icons-ivy-setup))
-  (leaf ivy-rich
-    :doc "More friendly display transformer for ivy"
-    :req "emacs-25.1" "ivy-0.13.0"
-    :tag "ivy" "convenience" "emacs>=25.1"
-    :added "2021-03-21"
-    :url "https://github.com/Yevgnen/ivy-rich"
-    :emacs>= 25.1
-    :ensure t
-    :after ivy
-    :global-minor-mode t
-    :config
-    (leaf all-the-icons-ivy-rich
-      :if (window-system)
-      :doc "Better experience with icons for ivy"
-      :req "emacs-25.1" "ivy-rich-0.1.0" "all-the-icons-2.2.0"
-      :tag "ivy" "icons" "convenience" "emacs>=25.1"
-      :added "2021-04-07"
-      :url "https://github.com/seagle0128/all-the-icons-ivy-rich"
-      :emacs>= 25.1
-      :ensure t
-      :after ivy-rich all-the-icons
-      :init (all-the-icons-ivy-rich-mode 1)))
-  (leaf ivy-prescient
-    :doc "prescient.el + Ivy"
-    :req "emacs-25.1" "prescient-5.1" "ivy-0.11.0"
-    :tag "extensions" "emacs>=25.1"
-    :added "2021-03-21"
-    :url "https://github.com/raxod502/prescient.el"
-    :emacs>= 25.1
-    :ensure t
-    :after prescient ivy
-    :global-minor-mode t)
-  (leaf ivy-migemo
-    :doc "Use migemo on ivy"
-    :req "emacs-24.3" "ivy-0.13.0" "migemo-1.9.2"
-    :tag "matching" "emacs>=24.3"
-    :added "2021-03-22"
-    :url "https://github.com/ROCKTAKEY/ivy-migemo"
-    :emacs>= 24.3
-    :ensure t
-    :after ivy migemo
-    :commands ivy-migemo--regex-plus
-    :bind ((ivy-minibuffer-map
-            ("M-M" . ivy-migemo-toggle-migemo))))
-  (leaf ivy-yasnippet
-    :doc "Preview yasnippets with ivy"
-    :req "emacs-24.1" "cl-lib-0.6" "ivy-0.10.0" "yasnippet-0.12.2" "dash-2.14.1"
-    :tag "convenience" "emacs>=24.1"
-    :added "2021-03-30"
-    :url "https://github.com/mkcms/ivy-yasnippet"
-    :emacs>= 24.1
-    :ensure t
-    :after ivy yasnippet
-    :bind (("C-w i" . ivy-yasnippet))))
+  (vertico-mode 1)
+  ;; C-lでディレクトリを遡る
+  ;; cf. https://scrapbox.io/emacs/find-file%E3%81%A7Helm%E3%81%BF%E3%81%9F%E3%81%84%E3%81%ABC-l%E3%81%A7%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%82%92%E9%81%A1%E3%82%8B
+  (defun my-dir-upto-parent ()
+    "Move to parent directory like \"cd ..\" in find-file."
+    (interactive)
+    (let ((sep (eval-when-compile (regexp-opt '("/" "\\")))))
+      (save-excursion
+        (left-char 1)
+        (when (looking-at-p sep)
+          (delete-char 1)))
+      (save-match-data
+        (when (search-backward-regexp sep nil t)
+          (right-char 1)
+          (filter-buffer-substring (point)
+                                   (save-excursion (end-of-line) (point))
+                                   #'delete)))))
+  ;; :bindで割り当てる(vertico-mode起動前に割り当てる)となぜかverticoの動作がおかしくなるのでここでやる
+  (define-key vertico-map (kbd "C-l") #'my-dir-upto-parent)
+  :custom ((vertico-count . 25)))
+(leaf orderless
+  :doc "Completion style for matching regexps in any order"
+  :req "emacs-26.1"
+  :tag "extensions" "emacs>=26.1"
+  :url "https://github.com/oantolin/orderless"
+  :added "2022-03-29"
+  :emacs>= 26.1
+  :ensure t
+  :custom ((completion-styles . '(orderless))))
+(leaf savehist
+  :doc "Save minibuffer history"
+  :tag "builtin"
+  :added "2022-03-29"
+  :config (savehist-mode))
+(leaf marginalia
+  :doc "Enrich existing commands with completion annotations"
+  :req "emacs-26.1"
+  :tag "emacs>=26.1"
+  :url "https://github.com/minad/marginalia"
+  :added "2022-03-30"
+  :emacs>= 26.1
+  :ensure t
+  :config (marginalia-mode))
+(leaf consult
+  :doc "Consulting completing-read"
+  :req "emacs-26.1"
+  :tag "emacs>=26.1"
+  :url "https://github.com/minad/consult"
+  :added "2022-03-29"
+  :emacs>= 26.1
+  :ensure t
+  :config (progn
+            (recentf-mode)
+            (define-key consult-narrow-map
+              (vconcat consult-narrow-key "?") #'consult-narrow-help)
+            (consult-customize
+             consult--source-recent-file
+             consult--source-project-recent-file
+             :preview-key (list
+                           (kbd "C-o")
+                           :debounce 0.5 'any)))
+  :bind (("M-I"     . consult-imenu-multi)
+         ("C-s"     . consult-line)
+         ("M-g g"   . consult-goto-line)
+         ("M-C-o"   . consult-buffer)
+         ("C-x b"   . consult-project-buffer)
+         ("C-h a"   . consult-apropos)
+         ("M-s M-s" . consult-grep)
+         ("M-s s"   . consult-line-multi)
+         ("M-s F"   . consult-find)
+         ("M-s o"   . consult-outline)
+         ("M-y"     . consult-yank-pop)))
+(leaf embark
+  :doc "Conveniently act on minibuffer completions"
+  :req "emacs-26.1"
+  :tag "convenience" "emacs>=26.1"
+  :url "https://github.com/oantolin/embark"
+  :added "2022-04-04"
+  :emacs>= 26.1
+  :ensure t
+  :bind (("C-M-m" . embark-act)
+         (vertico-map ("C-M-m" . embark-act))))
+(leaf embark-consult
+  :doc "Consult integration for Embark"
+  :req "emacs-26.1" "embark-0.12" "consult-0.10"
+  :tag "convenience" "emacs>=26.1"
+  :url "https://github.com/oantolin/embark"
+  :added "2022-04-03"
+  :emacs>= 26.1
+  :ensure t
+  :after embark consult)
+(leaf my-consult-buffer
+  :after consult magit
+  :init
+  (defun my-consult-project-buffer (uarg)
+    (interactive "P")
+    (if (or uarg (not (magit-git-dir)))
+        (consult-buffer)
+      (consult-project-buffer)))
+  :bind (("M-C-o" . my-consult-project-buffer)))
+(leaf orderless-migemo
+  :doc "consultをmigemoizeしたい (未完→だいたいできた)"
+  :url "https://nyoho.jp/diary/?date=20210615"
+  :after orderless marginalia migemo
+  :init
+  (defun orderless-migemo (component)
+    (let ((pattern (migemo-get-pattern component)))
+      (condition-case nil
+          (progn (string-match-p pattern "") pattern)
+        (invalid-regexp nil))))
+  (orderless-define-completion-style orderless-default-style
+    (orderless-matching-styles '(orderless-literal
+                                 orderless-regexp)))
+
+  (orderless-define-completion-style orderless-migemo-style
+    (orderless-matching-styles '(orderless-literal
+                                 orderless-regexp
+                                 orderless-migemo)))
+  (setq completion-category-overrides
+        '((command (styles orderless-default-style))
+          (file (styles orderless-migemo-style))
+          (buffer (styles orderless-migemo-style))
+          (symbol (styles orderless-default-style))
+          (consult-location (styles orderless-migemo-style)) ; category `consult-location' は `consult-line' などに使われる
+          (consult-multi (styles orderless-migemo-style)) ; category `consult-multi' は `consult-buffer' などに使われる
+          (org-roam-node (styles orderless-migemo-style)) ; category `org-roam-node' は `org-roam-node-find' で使われる
+          (unicode-name (styles orderless-migemo-style))
+          (variable (styles orderless-default-style))))
+  :config
+  (add-to-list 'marginalia-prompt-categories
+               '("\\<File\\>" . file)))
 
 (leaf company
   :doc "Modular text completion framework"
@@ -791,8 +791,6 @@
           ("M-t l"   . persp-state-load)
           ("M-t s"   . persp-state-save)
           ("M-t k"   . persp-kill)
-          ("C-x b"   . persp-ivy-switch-buffer)
-          ("C-x C-b" . counsel-switch-buffer)
           ("M-t 0"   . my-persp-switch-to-main))))
 
 (leaf projectile
@@ -804,8 +802,7 @@
   :emacs>= 25.1
   :ensure t
   :bind ((projectile-mode-map
-          ("C-w C-w" . my-run-eshell)
-          ("C-x b"   . counsel-projectile-switch-to-buffer)))
+          ("C-w C-w" . my-run-eshell)))
   :custom ((projectile-mode-line-prefix . " P"))
   :init
   (projectile-mode)
@@ -814,23 +811,7 @@
     (interactive)
     (if (magit-gitdir)
         (projectile-run-eshell)
-      (eshell)))
-  :config
-  (leaf counsel-projectile
-    :doc "Ivy integration for Projectile"
-    :req "counsel-0.13.0" "projectile-2.0.0"
-    :tag "convenience" "project"
-    :added "2021-03-25"
-    :url "https://github.com/ericdanan/counsel-projectile"
-    :ensure t
-    :after counsel projectile
-    :bind ((projectile-mode-map
-            ("M-C-o" . counsel-projectile-find-file-dwim)))
-    :init (progn (counsel-projectile-mode)
-                 (push "vendor" projectile-globally-ignored-directories)
-                 (push 'counsel-projectile-find-file-dwim all-the-icons-ivy-buffer-commands)
-                 (all-the-icons-ivy-setup))
-    :custom ((projectile-completion-system . 'ivy))))
+      (eshell))))
 
 (leaf multiple-cursors
   :doc "Multiple cursors for Emacs."

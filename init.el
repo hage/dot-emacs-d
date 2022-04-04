@@ -506,6 +506,25 @@
          ("M-C-o"   . consult-buffer)
          ("C-x b"   . consult-project-buffer)
          ("C-h a"   . consult-apropos)))
+(leaf embark
+  :doc "Conveniently act on minibuffer completions"
+  :req "emacs-26.1"
+  :tag "convenience" "emacs>=26.1"
+  :url "https://github.com/oantolin/embark"
+  :added "2022-04-04"
+  :emacs>= 26.1
+  :ensure t
+  :bind (("C-M-m" . embark-act)
+         (vertico-map ("C-M-m" . embark-act))))
+(leaf embark-consult
+  :doc "Consult integration for Embark"
+  :req "emacs-26.1" "embark-0.12" "consult-0.10"
+  :tag "convenience" "emacs>=26.1"
+  :url "https://github.com/oantolin/embark"
+  :added "2022-04-03"
+  :emacs>= 26.1
+  :ensure t
+  :after embark consult)
 (leaf my-consult-buffer
   :after consult magit
   :init

@@ -627,7 +627,17 @@
     :emacs>= 24.3
     :ensure t
     :after company pos-tip
-    :init (company-quickhelp-mode)))
+    :init (company-quickhelp-mode))
+  (leaf company-box
+    :if (window-system)
+    :doc "Company front-end with icons"
+    :req "emacs-26.0.91" "dash-2.19.0" "company-0.9.6" "frame-local-0.0.1"
+    :tag "convenience" "front-end" "completion" "company" "emacs>=26.0.91"
+    :url "https://github.com/sebastiencs/company-box"
+    :added "2022-04-05"
+    :emacs>= 26.0
+    :ensure t
+    :hook ((company-mode-hook . company-box-mode))))
 
 (leaf flycheck
   :doc "On-the-fly syntax checking"

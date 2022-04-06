@@ -491,6 +491,7 @@
   :ensure t
   :config (progn
             (recentf-mode)
+            (add-to-list 'consult-buffer-filter "*lsp-log*")
             (define-key consult-narrow-map
               (vconcat consult-narrow-key "?") #'consult-narrow-help)
             (consult-customize

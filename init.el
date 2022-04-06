@@ -429,6 +429,29 @@
   :bind (("M-g M-n" . git-gutter:next-hunk)
          ("M-g M-p" . git-gutter:previous-hunk)))
 
+(leaf treemacs
+  :doc "A tree style file explorer package"
+  :req "emacs-26.1" "cl-lib-0.5" "dash-2.11.0" "s-1.12.0" "ace-window-0.9.0" "pfuture-1.7" "hydra-0.13.2" "ht-2.2" "cfrs-1.3.2"
+  :tag "emacs>=26.1"
+  :url "https://github.com/Alexander-Miller/treemacs"
+  :added "2022-04-06"
+  :emacs>= 26.1
+  :ensure t
+  :bind (("C-c C-d" . treemacs)))
+(leaf treemacs-all-the-icons
+  :doc "all-the-icons integration for treemacs"
+  :req "emacs-26.1" "all-the-icons-4.0.1" "treemacs-0.0"
+  :tag "emacs>=26.1"
+  :url "https://github.com/Alexander-Miller/treemacs"
+  :added "2022-04-06"
+  :emacs>= 26.1
+  :ensure t
+  :after all-the-icons treemacs
+  :config
+  (require 'treemacs-all-the-icons)
+  (treemacs-load-theme "all-the-icons")
+  (treemacs-refresh))
+
 (leaf vertico
   :doc "VERTical Interactive COmpletion"
   :req "emacs-27.1"

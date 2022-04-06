@@ -29,3 +29,4 @@ custom.el
 /.persp-save.el
 /el-get/
 .yas-compiled-snippets.el
+/projects

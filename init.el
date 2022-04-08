@@ -149,6 +149,7 @@
            (force-load-messages        . t)
            (tags-add-tables            . nil)
            (compilation-ask-about-save . nil)
+           (blink-cursor-blinks        . 0)
            (ring-bell-function         . (lambda () (princ "[RING] ")))))
 
 (leaf basic-key-bindings

@@ -438,7 +438,7 @@
   :added "2022-04-06"
   :emacs>= 26.1
   :ensure t
-  :bind (("C-c C-d" . treemacs)))
+  :bind (("C-x d" . treemacs)))
 (leaf treemacs-perspective
   :doc "Perspective integration for treemacs"
   :req "emacs-26.1" "treemacs-0.0" "perspective-2.8" "dash-2.11.0"
@@ -565,7 +565,7 @@
   :emacs>= 26.1
   :ensure t
   :after vertico consult
-  :config (define-key vertico-map (kbd "C-M-m") #'embark-act))
+  :config (define-key vertico-map (kbd "M-o") #'embark-act))
 (leaf my-consult-buffer
   :after consult magit
   :init
@@ -770,7 +770,7 @@
   :added "2021-03-23"
   :url "https://github.com/Fuco1/smartparens"
   :ensure t
-  :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook elixir-mode-hook php-mode-hook css-mode-hook
+  :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook elixir-mode-hook php-mode-hook css-mode-hook yaml-mode-hook
   :defer-config (require 'smartparens-config)
   :bind ((smartparens-mode-map
           ("M-C-k" . sp-kill-hybrid-sexp)
@@ -1077,6 +1077,11 @@
   :ensure t
   :bind (("M-\"" . cycle-quotes)))
 
+(leaf restclient
+  :doc "An interactive HTTP client for Emacs"
+  :tag "http"
+  :added "2022-04-09"
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes

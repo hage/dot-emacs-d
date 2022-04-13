@@ -527,7 +527,14 @@
   :ensure t
   :config (progn
             (recentf-mode)
-            (add-to-list 'consult-buffer-filter "*lsp-log*")
+
+            (setq consult-buffer-filter
+                  (append consult-buffer-filter
+                          '("\\`\\*lsp-log*"
+                            "\\`magit-"
+                            "\\`\\*ruby-ls")))
+            (delete-dups consult-buffer-filter)
+
             (define-key consult-narrow-map
               (vconcat consult-narrow-key "?") #'consult-narrow-help)
             (consult-customize

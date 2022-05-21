@@ -1187,7 +1187,8 @@
   :ensure t
   :mode "\\.js$"
   :custom ((js2-strict-missing-semi-warning . nil)
-           (js2-missing-semi-one-line-override . nil)))
+           (js2-missing-semi-one-line-override . nil)
+           (js-indent-level . 2)))
 
 (leaf typescript-mode
   :doc "Major mode for editing typescript"

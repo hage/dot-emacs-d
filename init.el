@@ -150,7 +150,8 @@
            (tags-add-tables            . nil)
            (compilation-ask-about-save . nil)
            (blink-cursor-blinks        . 0)
-           (ring-bell-function         . (lambda () (princ "[RING] ")))))
+           (ring-bell-function         . (lambda () (princ "[RING] ")))
+           (package-hidden-regexps     . '("^\\(ac\\|helm\\|ivy\\|counsel\\|auto-complete\\)-"))))
 
 (leaf basic-key-bindings
   :init

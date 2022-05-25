@@ -217,6 +217,20 @@
     :emacs>= 24.3
     :ensure t
     :require t)
+  (leaf all-the-icons-completion
+    :doc "Add icons to completion candidates"
+    :req "emacs-26.1" "all-the-icons-5.0"
+    :tag "lisp" "convenient" "emacs>=26.1"
+    :url "https://github.com/iyefrat/all-the-icons-completion"
+    :added "2022-05-25"
+    :emacs>= 26.1
+    :ensure t
+    :after all-the-icons
+    :config
+    (all-the-icons-completion-mode)
+    (leaf all-the-icons-completion-magnalia-mode
+      :after marginalia
+      :hook (marginalia-mode-hook . all-the-icons-completion-marginalia-setup)))
   (leaf doom-modeline
     :doc "A minimal and modern mode-line"
     :req "emacs-25.1" "all-the-icons-2.2.0" "shrink-path-0.2.0" "dash-2.11.0"

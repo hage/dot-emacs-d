@@ -453,7 +453,8 @@
   :added "2022-04-06"
   :emacs>= 26.1
   :ensure t
-  :bind (("C-x d" . treemacs)))
+  :bind (("C-x d" . treemacs))
+  :config (treemacs-project-follow-mode 1))
 (leaf treemacs-perspective
   :doc "Perspective integration for treemacs"
   :req "emacs-26.1" "treemacs-0.0" "perspective-2.8" "dash-2.11.0"

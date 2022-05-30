@@ -1206,6 +1206,17 @@
            (js2-missing-semi-one-line-override . nil)
            (js-indent-level . 2)))
 
+(leaf rjsx-mode
+  :doc "Real support for JSX"
+  :req "emacs-24.4" "js2-mode-20170504"
+  :tag "languages" "emacs>=24.4"
+  :url "https://github.com/felipeochoa/rjsx-mode/"
+  :added "2022-05-30"
+  :emacs>= 24.4
+  :ensure t
+  :mode "\\.jsx$"
+  :after js2-mode)
+
 (leaf typescript-mode
   :doc "Major mode for editing typescript"
   :req "emacs-24.3"

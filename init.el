@@ -1202,9 +1202,7 @@
   :emacs>= 24.1
   :ensure t
   :mode "\\.js$"
-  :custom ((js2-strict-missing-semi-warning . nil)
-           (js2-missing-semi-one-line-override . nil)
-           (js-indent-level . 2)))
+  :custom ((js-indent-level . 2)))
 
 (leaf rjsx-mode
   :doc "Real support for JSX"

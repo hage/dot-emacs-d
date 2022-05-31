@@ -793,8 +793,8 @@
   :added "2021-03-23"
   :url "https://github.com/Fuco1/smartparens"
   :ensure t
-  :hook emacs-lisp-mode-hook web-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook elixir-mode-hook php-mode-hook css-mode-hook yaml-mode-hook
   :defer-config (require 'smartparens-config)
+  :init (smartparens-global-mode)
   :bind ((smartparens-mode-map
           ("M-C-k" . sp-kill-hybrid-sexp)
           ("M-R" . sp-raise-sexp)

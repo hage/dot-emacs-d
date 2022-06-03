@@ -364,6 +364,27 @@
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never)))
 
+(leaf auto-insert-mode
+  :url "https://higepon.hatenablog.com/entry/20080731/1217491155"
+  :custom `((auto-insert-directory . "~/.emacs.d/template"))
+  :init
+  (auto-insert-mode 1)
+  (setq auto-insert-alist (append '(("\\.jsx$" . ["template.jsx" my-template])) auto-insert-alist))
+  (defvar template-replacements-alists
+    '(("%file%"             . (lambda () (file-name-nondirectory (buffer-file-name))))
+      ("%file-without-ext%" . (lambda () (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))))
+      ("%include-guard%"    . (lambda () (format "__SCHEME_%s__" (upcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))))))
+  (defun my-template ()
+    (time-stamp)
+    (mapc #'(lambda(c)
+              (progn
+                (goto-char (point-min))
+                (replace-string (car c) (funcall (cdr c)) nil)))
+          template-replacements-alists)
+    (goto-char (point-max))
+    (message "done."))
+  :hook ((find-file-not-found-hooks . auto-insert)))
+
 (leaf ffap
   :doc "find file (or url) at point"
   :tag "builtin"

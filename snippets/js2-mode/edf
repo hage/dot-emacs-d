@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: edf
+# key: edf
+# --
+export default function $1($2) {
+	$0
+}

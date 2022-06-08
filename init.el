@@ -1243,7 +1243,8 @@
   :added "2021-03-27"
   :url "http://github.com/ananthakumaran/typescript.el"
   :emacs>= 24.3
-  :ensure t)
+  :ensure t
+  :custom ((typescript-indent-level . 2)))
 
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"

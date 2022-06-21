@@ -1214,6 +1214,34 @@
     :ensure t
     :hook (ruby-mode-hook . rubocop-mode)))
 
+(leaf javascript-helpers
+  :init
+  (defun my-js-open-brace ()
+    "`{' を入力されたときいい感じに展開する"
+    (interactive)
+    (let ((current-face (let ((old-hl-line-mode hl-line-mode)
+                              (old-global-hl-line-mode global-hl-line-mode)
+                              (curr-face nil))
+                          (hl-line-mode -1)
+                          (global-hl-line-mode -1)
+                          (setq curr-face (face-at-point))
+                          (hl-line-mode (if old-hl-line-mode 1 -1))
+                          (global-hl-line-mode (if old-global-hl-line-mode 1 -1))
+                          curr-face))
+          (current-line (if (and (eolp) (bolp)) ; thing-at-pointを空行に適用すると前の行を取ってきて誤動作するので
+                            ""                  ; 空行のときは強制的に空文字列にする
+                          (thing-at-point 'line))))
+      (if (or (string-equal current-face "font-lock-string-face")
+              (and (not (bolp))         ; 空文字列のときは font-lock-string-face が設定されないため
+                   (not (eolp))         ; ここで判別する
+                   (string-match-p "\\(\"\"\\|''\\|``\\)" (buffer-substring-no-properties (- (point) 1) (+ (point) 1))))
+              (and (string-match-p "^\\(import\\|export\\) " current-line)
+                   (not (string-match-p "\\(\\bfunction\\b\\|=>\\)" current-line))))
+          (progn (insert "{}")
+                 (move-point-visually -1))
+        (progn (insert "{\n\n}")
+               (forward-line -1)
+               (js-indent-line))))))
 
 (leaf js2-mode
   :doc "Improved JavaScript editing mode"
@@ -1224,7 +1252,8 @@
   :emacs>= 24.1
   :ensure t
   :mode "\\.js$"
-  :custom ((js-indent-level . 2)))
+  :custom ((js-indent-level . 2))
+  :bind (js2-mode-map ("{" . my-js-open-brace)))
 
 (leaf rjsx-mode
   :doc "Real support for JSX"
@@ -1245,7 +1274,8 @@
   :url "http://github.com/ananthakumaran/typescript.el"
   :emacs>= 24.3
   :ensure t
-  :custom ((typescript-indent-level . 2)))
+  :custom ((typescript-indent-level . 2))
+  :bind (typescript-mode-map ("{" . my-js-open-brace)))
 
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"

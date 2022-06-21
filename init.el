@@ -1155,6 +1155,7 @@
            (web-mode-asp-offset                       . 2)
            (web-mode-enable-current-element-highlight . t))
   :defer-config (require 'sgml-mode nil t)
+  :bind (("M-SPC" . web-mode-mark-and-expand))
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1))))
 
 (leaf emmet-mode

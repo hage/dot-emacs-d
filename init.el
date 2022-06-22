@@ -1234,7 +1234,7 @@
                  (move-point-visually -1))
         (progn (insert "{\n\n}")
                (forward-line -1)
-               (js-indent-line))))))
+               (indent-relative))))))
 
 (leaf js2-mode
   :doc "Improved JavaScript editing mode"

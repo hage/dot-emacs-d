@@ -766,7 +766,8 @@
     :after lsp-mode
     :custom ((lsp-ui-doc-enable . t)
              (lsp-ui-doc-use-webkit . t)
-             (lsp-ui-sideline-show-hover . t))))
+             (lsp-ui-sideline-show-hover . t)
+             (lsp-ui-sideline-delay . 1))))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

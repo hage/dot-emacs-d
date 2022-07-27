@@ -585,6 +585,7 @@
          ("M-g g"   . consult-goto-line)
          ("M-C-o"   . consult-buffer)
          ("C-x b"   . consult-project-buffer)
+         ("C-x C-b" . consult-buffer)
          ("C-h a"   . consult-apropos)
          ("M-s M-s" . consult-grep)
          ("M-s s"   . consult-line-multi)

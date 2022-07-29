@@ -612,11 +612,10 @@
   :after vertico consult
   :config (define-key vertico-map (kbd "M-o") #'embark-act))
 (leaf my-consult-buffer
-  :after consult magit
   :init
   (defun my-consult-project-buffer (uarg)
     (interactive "P")
-    (if (or uarg (string-prefix-p "*scratch*" (buffer-name)) (not (magit-git-dir)))
+    (if (or uarg (string-prefix-p "*scratch*" (buffer-name)) (not (magit-gitdir)))
         (consult-buffer)
       (consult-project-buffer)))
   :bind (("M-C-o" . my-consult-project-buffer)))

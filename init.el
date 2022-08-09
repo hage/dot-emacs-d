@@ -437,7 +437,8 @@
   :emacs>= 25.1
   :ensure t
   :commands magit-gitdir
-  :bind (("C-q g g" . magit-status))
+  :bind (("C-q g g" . magit-status)
+         ("C-q g l" . magit-log-all))
   :config
   (defun git-commit-prefix-select ()
     (if (= 10 (following-char))

@@ -6,8 +6,8 @@ init.elc: init.el
 all: info-ja lsp-servers
 
 
-INFO_JA_MAN_URL=https://ayatakesi.github.io/emacs/27.2/emacs-ja.info
-INFO_JA_ELISP_URL=https://ayatakesi.github.io/lispref/27.2/elisp-ja.info
+INFO_JA_MAN_URL=https://ayatakesi.github.io/emacs/28.1/emacs-ja.info
+INFO_JA_ELISP_URL=https://ayatakesi.github.io/lispref/28.1/elisp-ja.info
 INFO_JA_PATH=~/.emacs.d/info
 
 info-ja:

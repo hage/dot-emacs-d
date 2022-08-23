@@ -581,6 +581,29 @@
              :preview-key (list
                            (kbd "C-o")
                            :debounce 0.5 'any)))
+  (leaf my-consult-project-file
+    :after consult project
+    :config
+    (defvar my-consult--source-project-file
+      `(:name "Project Whole File"
+              :narrow   (?p . "Project")
+              :category file
+              :face     consult-file
+              :history  file-name-history
+              :state    ,#'consult--file-state
+              :new      ,#'consult--file-action
+              :items
+              ,(lambda ()
+                 (let ((current-project (project-current)))
+                   (if current-project
+                       (project-files current-project)
+                     nil))))
+      "Project file candidate source for `project-files'.")
+    (add-to-list 'consult-buffer-sources 'my-consult--source-project-file t)
+    (setq consult-project-buffer-sources
+          (list
+           `(:hidden nil :narrow ?b ,@consult--source-project-buffer)
+           `(:hidden nil :narrow ?f ,@my-consult--source-project-file))))
   :bind (("M-I"     . consult-imenu-multi)
          ("C-s"     . consult-line)
          ("M-g g"   . consult-goto-line)

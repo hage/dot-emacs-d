@@ -1250,6 +1250,7 @@
                             ""                  ; 空行のときは強制的に空文字列にする
                           (thing-at-point 'line))))
       (if (or (my-is-face-at-point 'font-lock-string-face)
+              (string-match-p "<.*>" current-line)
               (and (not (bolp))         ; 空文字列のときは font-lock-string-face が設定されないため
                    (not (eolp))         ; ここで判別する
                    (string-match-p "\\(\"\"\\|''\\|``\\)" (buffer-substring-no-properties (- (point) 1) (+ (point) 1))))

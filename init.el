@@ -1255,7 +1255,9 @@
                    (not (eolp))         ; ここで判別する
                    (string-match-p "\\(\"\"\\|''\\|``\\)" (buffer-substring-no-properties (- (point) 1) (+ (point) 1))))
               (and (string-match-p "^\\(import\\|export\\) " current-line)
-                   (not (string-match-p "\\(\\bfunction\\b\\|=>\\)" current-line))))
+                   (not (string-match-p "\\(\\bfunction\\b\\|=>\\)" current-line)))
+              ;; jsx属性値用 カーソル直前に=があったときは{}に展開
+              (string-match-p "=\\s-*$" current-line))
           (progn (insert "{}")
                  (move-point-visually -1))
         (progn (insert "{\n\n}")

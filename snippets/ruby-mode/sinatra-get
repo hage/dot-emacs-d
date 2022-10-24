@@ -1,0 +1,6 @@
+# key: get
+# name: sinatra-get
+# --
+get '$0' do
+	
+end

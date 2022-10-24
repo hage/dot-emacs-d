@@ -764,7 +764,8 @@
     :ensure t
     :after flycheck pos-tip
     :if (window-system)
-    :custom ((flycheck-pos-tip-timeout . 20))
+    :custom ((flycheck-pos-tip-timeout . 20)
+             (flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
     :init
     (flycheck-pos-tip-mode 1)))
 

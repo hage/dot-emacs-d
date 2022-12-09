@@ -1182,8 +1182,16 @@
            (web-mode-asp-offset                       . 2)
            (web-mode-enable-current-element-highlight . t))
   :defer-config (require 'sgml-mode nil t)
-  :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand))
-  :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1))))
+  :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand)
+                      ("C-q C-y" . my-web-mode-element-content-replace-by-yank))
+  :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1)))
+  :config
+  (defun my-web-mode-element-content-replace-by-yank ()
+    (interactive)
+    (web-mode-element-content-select)
+    (delete-region (mark) (point))
+    (yank-and-indent))
+  )
 
 (leaf emmet-mode
   :doc "Unofficial Emmet's support for emacs"

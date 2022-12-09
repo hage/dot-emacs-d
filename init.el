@@ -150,6 +150,7 @@
            (tags-add-tables            . nil)
            (compilation-ask-about-save . nil)
            (blink-cursor-blinks        . 0)
+           (confirm-kill-emacs         . #'yes-or-no-p)
            (ring-bell-function         . (lambda () (princ "[RING] ")))
            (package-hidden-regexps     . '("^\\(ac\\|helm\\|ivy\\|counsel\\|auto-complete\\)-"))))
 

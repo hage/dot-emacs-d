@@ -1187,7 +1187,8 @@
   :defer-config (require 'sgml-mode nil t)
   :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand)
                       ("C-q C-y" . my-web-mode-element-content-replace-by-yank)
-                      ("M-C-u" . web-mode-element-parent))
+                      ("M-C-u" . web-mode-element-parent)
+                      ("C-M-k" . web-mode-element-kill))
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1)))
   :config
   (defun my-web-mode-element-content-replace-by-yank ()

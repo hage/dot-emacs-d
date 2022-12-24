@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: erbprint
+# key: pp
+# --
+<%= $0 %>

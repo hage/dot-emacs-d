@@ -359,7 +359,10 @@
 
 (leaf show-paren-mode
   :custom ((show-paren-style . 'mixed))
-  :config (show-paren-mode t))
+  :config
+  (show-paren-mode t)
+  (set-face-foreground 'show-paren-match "chartreuse1")
+  (set-face-bold 'show-paren-match-expression nil))
 
 (leaf recentf
   :custom ((recentf-max-saved-items . 1024)

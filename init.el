@@ -1292,17 +1292,6 @@
   :custom ((js-indent-level . 2))
   :bind (js2-mode-map ("{" . my-js-open-brace)))
 
-(leaf rjsx-mode
-  :doc "Real support for JSX"
-  :req "emacs-24.4" "js2-mode-20170504"
-  :tag "languages" "emacs>=24.4"
-  :url "https://github.com/felipeochoa/rjsx-mode/"
-  :added "2022-05-30"
-  :emacs>= 24.4
-  :ensure t
-  :mode "\\.jsx$"
-  :after js2-mode)
-
 (leaf typescript-mode
   :doc "Major mode for editing typescript"
   :req "emacs-24.3"
@@ -1367,6 +1356,63 @@
   :emacs>= 25.2
   :ensure t
   :mode (("\\.inc\\'" . php-mode)))
+
+(leaf tsx-mode
+ :doc "a batteries-included Emacs major mode for TSX/JSX files"
+ :req "emacs-27"
+ :el-get "orzechowskid/tsx-mode.el"
+ :emacs>= 27
+ :mode (("\\.jsx\\'" . tsx-mode)
+        ("\\.tsx\\'" . tsx-mode))
+ :init
+ (progn
+   (leaf tree-sitter
+     :doc "Incremental parsing system"
+     :req "emacs-25.1" "tsc-0.18.0"
+     :tag "tree-sitter" "parsers" "tools" "languages" "emacs>=25.1"
+     :url "https://github.com/emacs-tree-sitter/elisp-tree-sitter"
+     :added "2022-11-27"
+     :emacs>= 25.1
+     :ensure t
+     :after tsc)
+   (leaf tree-sitter-langs
+     :doc "Grammar bundle for tree-sitter"
+     :req "emacs-25.1" "tree-sitter-0.15.0"
+     :tag "tree-sitter" "parsers" "tools" "languages" "emacs>=25.1"
+     :url "https://github.com/emacs-tree-sitter/tree-sitter-langs"
+     :added "2022-11-27"
+     :emacs>= 25.1
+     :ensure t
+     :after tree-sitter)
+   (leaf tsi-el
+     :doc "tree-sitter indentation minor mode for Emacs"
+     :el-get "orzechowskid/tsi.el"
+     )
+   (leaf coverlay
+     :doc "Test coverage overlays"
+     :req "emacs-24.1" "cl-lib-0.5"
+     :tag "overlay" "coverage" "emacs>=24.1"
+     :url "https://github.com/twada/coverlay.el"
+     :added "2022-11-27"
+     :emacs>= 24.1
+     :ensure t)
+   (leaf origami
+     :doc "Flexible text folding"
+     :req "s-1.9.0" "dash-2.5.0" "emacs-24" "cl-lib-0.5"
+     :tag "folding" "emacs>=24"
+     :url "https://github.com/gregsexton/origami.el"
+     :added "2022-11-27"
+     :emacs>= 24
+     :ensure t)
+   (leaf graphql-mode
+     :doc "Major mode for editing GraphQL schemas"
+     :req "emacs-24.3"
+     :tag "languages" "emacs>=24.3"
+     :url "https://github.com/davazp/graphql-mode"
+     :added "2022-11-27"
+     :emacs>= 24.3
+     :ensure t))
+ )
 
 ;;;;;;;;;;;;;;;;
 

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: constructor
+# key: init
+# --
+constructor($0) {
+	$1
+}

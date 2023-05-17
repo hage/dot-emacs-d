@@ -834,7 +834,8 @@
              ("^\\*eshell.*\\*\\'" :position bottom :height .4 :stick t :regexp t)
              ("*Backtrace*" :noselect t)
              ("*xref*")
-             ("*Messages*"))
+             ("*Messages*")
+             ("*Compile-Log*"))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens

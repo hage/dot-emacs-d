@@ -1416,6 +1416,9 @@
  )
 
 ;;;;;;;;;;;;;;;;
+(defun key-valid-p (key)
+  t)
+;;;;;;;;;;;;;;;;
 
 (leaf load-custom-file
   :init (load-library custom-file))

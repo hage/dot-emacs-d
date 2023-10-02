@@ -204,6 +204,7 @@
   (global-unset-key (kbd "C-t"))
   (set-face-foreground 'vertical-border "#555")
   (defun my-emacs-startup-hook-handler ()
+    (setq ns-use-native-fullscreen t)
     (toggle-frame-fullscreen)
     (scroll-bar-mode -1)
     (tool-bar-mode -1)

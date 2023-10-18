@@ -1416,6 +1416,10 @@
      :ensure t))
  )
 
+(leaf sql
+  :init
+  (push "/usr/local/opt/mysql-client@5.7/bin" exec-path))
+
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)
   t)

@@ -482,18 +482,16 @@
   :ensure t
   :bind (("C-x d" . treemacs))
   :config (treemacs-project-follow-mode 1))
-(leaf treemacs-perspective
-  :doc "Perspective integration for treemacs"
-  :req "emacs-26.1" "treemacs-0.0" "perspective-2.8" "dash-2.11.0"
+(leaf treemacs-persp
+  :doc "Persp-mode integration for treemacs"
+  :req "emacs-26.1" "treemacs-0.0" "persp-mode-2.9.7" "dash-2.11.0"
   :tag "emacs>=26.1"
   :url "https://github.com/Alexander-Miller/treemacs"
-  :added "2022-04-06"
+  :added "2023-10-25"
   :emacs>= 26.1
   :ensure t
-  :after treemacs perspective
-  :config
-  (require 'treemacs-perspective)
-  (treemacs-set-scope-type 'Perspectives))
+  :after treemacs persp-mode
+  :config (treemacs-set-scope-type 'Perspectives))
 (leaf treemacs-all-the-icons
   :doc "all-the-icons integration for treemacs"
   :req "emacs-26.1" "all-the-icons-4.0.1" "treemacs-0.0"

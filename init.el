@@ -806,7 +806,25 @@
   :blackout (yas-minor-mode yas-global-mode)
   :init
   :config
-  (yas-global-mode))
+  (yas-global-mode)
+  (defun yas--modes-to-activate (&optional mode)
+    "Compute list of mode symbols that are active for `yas-expand' and friends."
+    (defvar yas--dfs)        ;We rely on dynbind.  We could use `letrec' instead!
+    (let* ((explored (if mode (list mode) ; Building up list in reverse.
+                       (cons major-mode (reverse yas--extra-modes))))
+           (yas--dfs
+            (lambda (mode)
+              (cl-loop for neighbour
+                       in (cl-list* 'fundamental-mode
+                                    (and (fboundp mode) (symbol-function mode))
+                                    (gethash mode yas--parents))
+                       when (and neighbour
+                                 (not (memq neighbour explored))
+                                 (symbolp neighbour))
+                       do (push neighbour explored)
+                       (funcall yas--dfs neighbour)))))
+      (mapc yas--dfs explored)
+      (nreverse explored))))
 
 (leaf expand-region
   :doc "Increase selected region by semantic units."

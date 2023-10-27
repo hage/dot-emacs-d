@@ -1188,6 +1188,12 @@
   :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand)
                       ("C-q C-y" . my-web-mode-element-content-replace-by-yank)
                       ("M-C-u" . web-mode-element-parent)
+                      ("M-C-d" . web-mode-element-child)
+                      ("M-C-n" . web-mode-element-sibling-next)
+                      ("M-C-p" . web-mode-element-sibling-previous)
+                      ("M-C-e" . web-mode-element-end)
+                      ("M-C-a" . web-mode-element-beginning)
+                      ("M-C-h" . web-mode-element-content-select)
                       ("C-M-k" . web-mode-element-kill))
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1)))
   :config

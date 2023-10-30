@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: env
+# key: env
+# --
+$_ENV[$0]

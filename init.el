@@ -338,10 +338,15 @@
 (leaf delete-trailing-whitespace-before-save
   :doc "セーブ時行末にスペースがあったら消すかどうか聞く"
   :init
+  (setq delete-trailing-lines nil)
+  (defvar my-delete-trailing-whitespace-enable-mode
+    '(text-mode markdown-mode)
+    "セーブ時行末スペースを削除するかどうか聞くモードの指定")
   (defun before-save-hook-handler-of-delete-trailing-whitespace ()
     (when (and
            (buffer-file-name)           ; ファイル付きのバッファで
            (string-match "[ 	]$" (buffer-string)) ; 行末が空白の行があって
+           (memq major-mode my-delete-trailing-whitespace-enable-mode) ;指定のモードで
            (y-or-n-p "detected trailing whitespace. delete it?"))
       (delete-trailing-whitespace)))
   :hook (before-save-hook . before-save-hook-handler-of-delete-trailing-whitespace))

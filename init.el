@@ -250,6 +250,7 @@
     :emacs>= 25.1
     :ensure t
     :after all-the-icons
+    :custom ((doom-modeline-buffer-file-name-style . 'relative-from-project))
     :init (doom-modeline-mode 1))
   (leaf pos-tip
     :doc "Show tooltip at point"

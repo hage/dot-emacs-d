@@ -155,10 +155,18 @@
            (package-hidden-regexps     . '("^\\(ac\\|helm\\|ivy\\|counsel\\|auto-complete\\)-"))))
 
 (leaf basic-key-bindings
+  :bind (("M-n" . indent-and-next-line))
   :init
   (global-unset-key (kbd "C-q"))
   (global-unset-key (kbd "C-w"))
   (global-unset-key (kbd "C-x DEL"))
+  ;; インデントして次の行に移動する
+  (defun indent-and-next-line ()
+    (interactive)
+    (indent-according-to-mode)
+    (forward-line 1))
+  (define-key global-map "\M-n" 'indent-and-next-line)
+
   (leaf basic-key-bindings-bind
     :init
     (defun switch-to-used-buffer ()

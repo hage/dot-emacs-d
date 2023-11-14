@@ -346,8 +346,8 @@
     (when (and
            (buffer-file-name)           ; ファイル付きのバッファで
            (string-match "[ 	]$" (buffer-string)) ; 行末が空白の行があって
-           (memq major-mode my-delete-trailing-whitespace-enable-mode) ;指定のモードで
-           (y-or-n-p "detected trailing whitespace. delete it?"))
+           (or (not (memq major-mode my-delete-trailing-whitespace-enable-mode))
+               (y-or-n-p "detected trailing whitespace. delete it?")))
       (delete-trailing-whitespace)))
   :hook (before-save-hook . before-save-hook-handler-of-delete-trailing-whitespace))
 

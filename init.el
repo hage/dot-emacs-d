@@ -770,6 +770,7 @@
   :emacs>= 24.3
   :ensure t
   :custom (flycheck-disabled-checkers . '(emacs-lisp-checkdoc))
+  :bind (("C-q C-e" . flycheck-list-errors))
   :config
   (leaf flycheck-pos-tip
     :doc "Display Flycheck errors in GUI tooltips"

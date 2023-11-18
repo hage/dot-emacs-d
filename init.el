@@ -1036,7 +1036,7 @@
     (when (buffer-file-name)
       (save-buffer)
       (compile compile-command)))
-  :hook ((ruby-mode-hook) .
+  :hook ((ruby-mode-hook php-mode-hook) .
          (lambda ()
            (local-set-key (kbd "C-c C-c") #'save-and-compile-buffer)
            (local-set-key (kbd "C-c c") #'smart-compile))))

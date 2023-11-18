@@ -14,7 +14,7 @@
 ;; (initchart-record-execution-time-of require feature)
 ;;;;;;;;;;;;;;;;
 
-(custom-set-variables `(gc-cons-threshold ,(* gc-cons-threshold 20)))
+(custom-set-variables `(gc-cons-threshold ,(* gc-cons-threshold 50)))
 
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))

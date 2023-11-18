@@ -1222,7 +1222,7 @@
   :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand)
                       ("C-q C-y" . my-web-mode-element-content-replace-by-yank)
                       ("M-C-u" . web-mode-element-parent)
-                      ("M-C-d" . web-mode-element-child)
+                      ("M-C-d" . sp-down-sexp)
                       ("M-C-n" . web-mode-element-sibling-next)
                       ("M-C-p" . web-mode-element-sibling-previous)
                       ("M-C-e" . web-mode-element-end)

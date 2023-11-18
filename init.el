@@ -358,8 +358,7 @@
     (interactive)
     (yank)
     (save-excursion
-      (exchange-point-and-mark)
-      (indent-region (point) (mark))))
+      (indent-region (mark) (point))))
   :hook
   ((emacs-lisp-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook web-mode-hook css-mode-hook php-mode-hook) .
    (lambda ()

@@ -494,7 +494,8 @@
   :emacs>= 26.1
   :ensure t
   :bind (("C-x d" . treemacs))
-  :config (treemacs-project-follow-mode 1))
+  :config (progn (treemacs-project-follow-mode 1)
+                 (set-face-background 'treemacs-hl-line-face "#443")))
 (leaf treemacs-persp
   :doc "Persp-mode integration for treemacs"
   :req "emacs-26.1" "treemacs-0.0" "persp-mode-2.9.7" "dash-2.11.0"

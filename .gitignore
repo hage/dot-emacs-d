@@ -30,3 +30,4 @@ custom.el
 /el-get/
 .yas-compiled-snippets.el
 /projects
+/lsp-cache/

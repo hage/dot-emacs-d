@@ -217,7 +217,8 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     (menu-bar-mode 1)
-    (global-hl-line-mode 1))
+    (global-hl-line-mode 1)
+    (global-so-long-mode))
   (leaf all-the-icons
     :doc "A library for inserting Developer icons"
     :req "emacs-24.3"

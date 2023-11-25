@@ -1398,7 +1398,9 @@
   :added "2021-11-22"
   :emacs>= 25.2
   :ensure t
-  :mode (("\\.inc\\'" . php-mode)))
+  :mode (("\\.inc\\'" . php-mode))
+  :hook (php-mode-hook . php-align-setup)
+  :bind (php-mode-map ("C-q C-m" . php-search-web-documentation)))
 
 (leaf tsx-mode
  :doc "a batteries-included Emacs major mode for TSX/JSX files"

@@ -459,6 +459,8 @@
   :bind (("C-q g g" . magit-status)
          ("C-q g l" . magit-log-all))
   :config
+  (set-face-foreground 'magit-branch-current "#33E9FF")
+  (set-face-bold 'magit-branch-current t)
   (defun git-commit-prefix-select ()
     (if (= 10 (following-char))
         (insert ":")))

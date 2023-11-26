@@ -341,7 +341,7 @@
   :init
   (setq delete-trailing-lines nil)
   (defvar my-delete-trailing-whitespace-enable-mode
-    '(text-mode markdown-mode html-mode scss-mode)
+    '(text-mode markdown-mode html-mode scss-mode web-mode)
     "セーブ時行末スペースを削除するかどうか聞くモードの指定")
   (defun before-save-hook-handler-of-delete-trailing-whitespace ()
     (when (and

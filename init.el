@@ -152,6 +152,7 @@
            (blink-cursor-blinks        . 0)
            (confirm-kill-emacs         . #'yes-or-no-p)
            (ring-bell-function         . (lambda () (princ "[RING] ")))
+           (shell-file-name            . "/bin/sh")
            (package-hidden-regexps     . '("^\\(ac\\|helm\\|ivy\\|counsel\\|auto-complete\\)-"))))
 
 (leaf basic-key-bindings

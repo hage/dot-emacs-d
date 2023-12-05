@@ -1015,7 +1015,7 @@
   :ensure t
   :if  (memq window-system '(mac ns x))
   :custom ((exec-path-from-shell-warn-duration-millis . 5000))
-  :init (run-with-idle-timer 1 nil #'exec-path-from-shell-initialize))
+  :init (exec-path-from-shell-initialize))
 
 (leaf shell-service
   :require server

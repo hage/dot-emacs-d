@@ -479,7 +479,8 @@
   :blackout t
   :init (global-git-gutter-mode)
   :bind (("M-g M-n" . git-gutter:next-hunk)
-         ("M-g M-p" . git-gutter:previous-hunk)))
+         ("M-g M-p" . git-gutter:previous-hunk)
+         ("C-q g r" . git-gutter:revert-hunk)))
 
 (leaf git-gutter-fringe
   :if (window-system)

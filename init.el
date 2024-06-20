@@ -367,6 +367,15 @@
      (local-set-key (kbd "C-y") #'yank-and-indent)
      (local-set-key (kbd "C-M-y") #'yank))))
 
+(leaf zenkaku-hankaku-translate
+  :init
+  (defun my-zenkaku-to-hankaku-region
+      (interactive)
+		(japanese-hankaku-region (region-beginning) (region-end) t))
+  :bind
+  (("C-q h" . my-zenkaku-to-hankaku-region)
+   ("C-q z" . japanese-zenkaku-region)))
+
 (leaf eldoc
   :blackout t)
 

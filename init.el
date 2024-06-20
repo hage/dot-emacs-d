@@ -1150,6 +1150,14 @@
   :tag "convenience" "match" "face" "highlight"
   :added "2021-04-26"
   :url "http://github.com/jcs-elpa/auto-highlight-symbol"
+  :config (progn
+            (set-face-foreground 'ahs-plugin-default-face "#fff")
+            (set-face-background 'ahs-plugin-default-face "DarkOliveGreen4")
+            (set-face-foreground 'ahs-plugin-default-face-unfocused "gray")
+            (set-face-background 'ahs-plugin-default-face-unfocused "DarkOliveGreen4")
+            (set-face-foreground 'ahs-face "#333")
+            (set-face-background 'ahs-face "#888")
+            (global-auto-highlight-symbol-mode))
   :ensure t)
 
 (leaf zoom-window

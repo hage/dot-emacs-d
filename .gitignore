@@ -31,3 +31,4 @@ custom.el
 .yas-compiled-snippets.el
 /projects
 /lsp-cache/
+/persp-confs/

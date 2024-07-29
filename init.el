@@ -161,6 +161,8 @@
   (global-unset-key (kbd "C-q"))
   (global-unset-key (kbd "C-w"))
   (global-unset-key (kbd "C-x DEL"))
+  (global-unset-key (kbd "C-<wheel-down>"))
+  (global-unset-key (kbd "C-<wheel-up>"))
   ;; インデントして次の行に移動する
   (defun indent-and-next-line ()
     (interactive)

@@ -744,7 +744,7 @@
     :after prescient company
     :global-minor-mode t)
   (leaf company-tabnine
-    :disabled t
+    :disabled nil
     :doc "A company-mode backend for TabNine"
     :req "emacs-25" "company-0.9.3" "cl-lib-0.5" "dash-2.16.0" "s-1.12.0" "unicode-escape-1.1"
     :tag "convenience" "emacs>=25"

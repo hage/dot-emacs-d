@@ -801,7 +801,8 @@
     :custom ((flycheck-pos-tip-timeout . 20)
              (flycheck-display-errors-function . #'flycheck-pos-tip-error-messages))
     :config
-    (flycheck-pos-tip-mode 1)))
+    (with-eval-after-load 'flycheck
+      (flycheck-pos-tip-mode))))
 
 (leaf lsp-mode
   :doc "LSP mode"

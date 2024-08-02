@@ -824,7 +824,10 @@
     :emacs>= 26.1
     :ensure t
     :after lsp-mode
-    :custom ((lsp-ui-doc-enable . t)
+    :config (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+    :custom ((lsp-ui-doc-enable . nil)
+             (lsp-ui-doc-use-childframe . nil)
+             (lsp-ui-doc-position . 'at-point)
              (lsp-ui-doc-use-webkit . t)
              (lsp-ui-sideline-show-hover . t)
              (lsp-ui-sideline-delay . 1))))

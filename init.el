@@ -642,7 +642,7 @@
          ("M-g g"   . consult-goto-line)
          ("C-x b"   . consult-project-buffer)
          ("C-x C-b" . consult-buffer)
-         ("C-h a"   . consult-apropos)
+         ("C-h a"   . describe-symbol)
          ("M-s M-s" . consult-git-grep)
          ("M-s g"   . consult-grep)
          ("M-s s"   . consult-line-multi)

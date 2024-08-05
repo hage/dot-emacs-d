@@ -1496,5 +1496,8 @@
 (leaf load-custom-file
   :init (load-library custom-file))
 
+(leaf find-file-init-el
+  :init (find-file "~/.emacs.d/init.el"))
+
 (provide 'init)
 ;;; init.el ends here

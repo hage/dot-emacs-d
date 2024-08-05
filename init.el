@@ -188,7 +188,7 @@
            ("M-_"         . next-error)
            ("M-~"         . call-last-kbd-macro)
            ("C-q C-r"     . revert-buffer)
-           ("M-C-_"       . indent-region)
+           ("C-M-_"       . indent-region)
            ("M-h"         . backward-kill-word)
            ("M-/"         . xref-find-definitions-other-window)
            ("M-?"         . xref-find-definitions)
@@ -675,7 +675,7 @@
     (if (or uarg (string-prefix-p "*scratch*" (buffer-name)) (not (project-current)))
         (consult-buffer)
       (consult-project-buffer)))
-  :bind (("M-C-o" . my-consult-project-buffer)))
+  :bind (("C-M-o" . my-consult-project-buffer)))
 (leaf orderless-migemo
   :doc "consultをmigemoizeしたい (未完→だいたいできた)"
   :url "https://nyoho.jp/diary/?date=20210615"
@@ -901,7 +901,7 @@
   :defer-config (require 'smartparens-config)
   :init (smartparens-global-mode)
   :bind ((smartparens-mode-map
-          ("M-C-k" . sp-kill-hybrid-sexp)
+          ("C-M-k" . sp-kill-hybrid-sexp)
           ("M-R" . sp-raise-sexp)
           ("M-D" . sp-splice-sexp)
           ("M-J" . sp-backward-barf-sexp)
@@ -1249,13 +1249,13 @@
   :defer-config (require 'sgml-mode nil t)
   :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand)
                       ("C-q C-y" . my-web-mode-element-content-replace-by-yank)
-                      ("M-C-u" . web-mode-element-parent)
-                      ("M-C-d" . sp-down-sexp)
-                      ("M-C-n" . web-mode-element-sibling-next)
-                      ("M-C-p" . web-mode-element-sibling-previous)
-                      ("M-C-e" . web-mode-element-end)
-                      ("M-C-a" . web-mode-element-beginning)
-                      ("M-C-h" . web-mode-element-content-select)
+                      ("C-M-u" . web-mode-element-parent)
+                      ("C-M-d" . sp-down-sexp)
+                      ("C-M-n" . web-mode-element-sibling-next)
+                      ("C-M-p" . web-mode-element-sibling-previous)
+                      ("C-M-e" . web-mode-element-end)
+                      ("C-M-a" . web-mode-element-beginning)
+                      ("C-M-h" . web-mode-element-content-select)
                       ("C-M-k" . web-mode-element-kill))
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1)))
   :config

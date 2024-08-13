@@ -816,8 +816,10 @@
   :url "https://github.com/emacs-lsp/lsp-mode"
   :emacs>= 26.1
   :ensure t
-  :hook (((ruby-mode-hook js2-mode-hook typescript-mode-hook php-mode-hook) . lsp))
-  :custom ((lsp-prefer-capf . t))
+  :init (setq lsp-keymap-prefix "C-q l")
+  :hook (((ruby-mode-hook js2-mode-hook typescript-mode-hook php-mode-hook) . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :custom ((lsp-signature-function . #'eldoc-message))
   :config
   (leaf lsp-ui
     :doc "UI modules for lsp-mode"

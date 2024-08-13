@@ -1183,6 +1183,13 @@
   :config
   (zoom-window-setup))
 
+(leaf winner-mode
+  :bind (("C-w w b" . winner-undo)
+         ("C-w w f" . winner-redo)
+         ("C-w w s" . window-configuration-to-register)
+         ("C-w w l" . jump-to-register))
+  :config (winner-mode 1))
+
 (leaf string-inflection
   :doc "underscore -> UPCASE -> CamelCase -> lowerCamelCase conversion of names"
   :tag "elisp"

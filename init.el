@@ -737,8 +737,14 @@
   :custom ((company-idle-delay            . .8)
            (company-minimum-prefix-length . 3)
            (company-transformers          . '(company-sort-by-occurrence)))
+
+  :hook (((ruby-mode-hook js2-mode-hook) .
+          (lambda ()
+            (setq company-backends
+                  '((company-capf company-tabnine company-dabbrev company-yasnippet)
+                    company-files company-semantic company-keywords)))))
+
   :config
-  (add-to-list 'company-backends #'company-elisp)
   (leaf company-prescient
     :doc "prescient.el + Company"
     :req "emacs-25.1" "prescient-5.1" "company-0.9.6"
@@ -758,8 +764,7 @@
     :url "https://github.com/TommyX12/company-tabnine/"
     :emacs>= 25
     :ensure t
-    :after company
-    :init (add-to-list 'company-backends #'company-tabnine))
+    :after company)
   (leaf company-quickhelp
     :doc "Popup documentation for completion candidates"
     :req "emacs-24.3" "company-0.8.9" "pos-tip-0.4.6"

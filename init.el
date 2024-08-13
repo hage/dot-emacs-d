@@ -395,6 +395,10 @@
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never)))
 
+(leaf save-place
+  :init
+  (save-place-mode 1))
+
 (leaf auto-insert-mode
   :url "https://higepon.hatenablog.com/entry/20080731/1217491155"
   :custom `((auto-insert-directory . "~/.emacs.d/template"))

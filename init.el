@@ -1492,6 +1492,9 @@
   :init
   (push "/usr/local/opt/mysql-client@5.7/bin" exec-path))
 
+(leaf csv-mode
+  :ensure t)
+
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)
   t)

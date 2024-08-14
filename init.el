@@ -399,6 +399,10 @@
   :init
   (save-place-mode 1))
 
+(leaf repeat-mode
+  :config (repeat-mode 1)
+  :custom ((repeat-exit-timeout . 2)))
+
 (leaf auto-insert-mode
   :url "https://higepon.hatenablog.com/entry/20080731/1217491155"
   :custom `((auto-insert-directory . "~/.emacs.d/template"))

@@ -368,6 +368,16 @@
      (local-set-key (kbd "C-y") #'yank-and-indent)
      (local-set-key (kbd "C-M-y") #'yank))))
 
+(leaf my-comment-sexp
+  :init
+  (defun my-comment-sexp ()
+    "Comment out the sexp region"
+    (interactive)
+    (save-excursion
+      (sp-mark-sexp)
+      (comment-region (point) (mark))))
+  :bind (("M-C-;" . my-comment-sexp)))
+
 (leaf zenkaku-hankaku-translate
   :init
   (defun my-zenkaku-to-hankaku-region

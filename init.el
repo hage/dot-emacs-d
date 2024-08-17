@@ -240,10 +240,9 @@
     :emacs>= 26.1
     :ensure t
     :after all-the-icons
-    :config
-    (all-the-icons-completion-mode)
+    :init (all-the-icons-completion-mode +1)
     (leaf all-the-icons-completion-magnalia-mode
-      :after marginalia
+      :after marginalia all-the-icons
       :hook (marginalia-mode-hook . all-the-icons-completion-marginalia-setup)))
   (leaf doom-modeline
     :doc "A minimal and modern mode-line"
@@ -552,6 +551,7 @@
   :added "2022-03-29"
   :emacs>= 27.1
   :ensure t
+  :after all-the-icons
   :config
   (vertico-mode 1)
   ;; C-lでディレクトリを遡る
@@ -595,6 +595,7 @@
   :added "2022-03-30"
   :emacs>= 26.1
   :ensure t
+  :after all-the-icons
   :config (marginalia-mode))
 (leaf consult
   :doc "Consulting completing-read"

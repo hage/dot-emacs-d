@@ -213,7 +213,7 @@
   :if (window-system)
   :init
   (global-unset-key (kbd "C-t"))
-  (set-face-foreground 'vertical-border "#555")
+  (set-face-foreground 'vertical-border "#685")
   (defun my-emacs-startup-hook-handler ()
     (setq ns-use-native-fullscreen t)
     (toggle-frame-fullscreen)

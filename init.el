@@ -588,8 +588,9 @@
   :added "2022-03-30"
   :emacs>= 26.1
   :ensure t
-  :after all-the-icons
-  :config (marginalia-mode))
+  :after vertico
+  :config (marginalia-mode)
+  :custom ((marginalia-align . 'right)))
 (leaf consult
   :doc "Consulting completing-read"
   :req "emacs-26.1"

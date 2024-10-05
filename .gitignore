@@ -32,3 +32,4 @@ custom.el
 /projects
 /lsp-cache/
 /persp-confs/
+/.secret.el

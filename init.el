@@ -40,6 +40,9 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (setq garbage-collection-messages t)
 
+;; 秘密の値をロード
+(load "~/.emacs.d/.secret.el")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; this enables this running method
@@ -1507,6 +1510,29 @@
 
 (leaf csv-mode
   :ensure t)
+
+(leaf c3po
+  :ensure t
+  :vc (:url "https://github.com/d1egoaz/c3po.el")
+  :init
+  (require 'c3po)
+  :config
+  (defun c3po-explain-code-ja ()
+    "日本語によるリージョンのコードを説明、あるいは入力を求める"
+    (interactive)
+    (c3po-new-chat 'developer)
+    (let ((prompt (if (use-region-p)
+                      (buffer-substring-no-properties (region-beginning) (region-end))
+                    (c3po--make-input-buffer (format "(%s)> Enter the code " (symbol-name 'developer)) nil nil))))
+      (c3po-send-conversation
+       'developer
+       (format "以下のコードを簡潔に説明してください:\n```%s\n%s```" (c3po--get-buffer-mode-as-tag) prompt)
+       nil)))
+
+  :custom ((c3po-api-key . secret-openai-api-key)
+           (c3po-model   . "gpt-4o-mini-2024-07-18"))
+  :bind (("C-w g g" . c3po-reply)
+         ("C-w g e" . c3po-explain-code-ja)))
 
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)

@@ -901,7 +901,8 @@
              ("*Backtrace*" :noselect t)
              ("*xref*")
              ("*Messages*")
-             ("*Compile-Log*"))
+             ("*Compile-Log*")
+             ("*osx-dictionary*"))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens
@@ -1533,6 +1534,16 @@
            (c3po-model   . "gpt-4o-mini-2024-07-18"))
   :bind (("C-w g g" . c3po-reply)
          ("C-w g e" . c3po-explain-code-ja)))
+
+(leaf osx-dictionary
+  :doc "Interface for OSX Dictionary.app"
+  :req "cl-lib-0.5"
+  :tag "dictionary" "mac"
+  :url "https://github.com/xuchunyang/osx-dictionary.el"
+  :added "2024-10-22"
+  :ensure t
+  :bind (("M-s M-d" . osx-dictionary-search-word-at-point)
+         ("M-s d"   . osx-dictionary-search-input)))
 
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)

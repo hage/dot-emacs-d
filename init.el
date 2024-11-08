@@ -99,6 +99,24 @@
     (setcdr (last place) `(,newelt . nil))
     place))
 
+(leaf language-environment
+  ;; cf. https://apribase.net/2024/07/26/emacs-language-environment-mac/
+  :config
+  ;; 言語環境を UTF-8 にします。coding system と input method のデフォルト設定が決まります。
+  (set-language-environment 'utf-8)
+  ;; coding system のデフォルト言語を指定します。
+  (set-default-coding-systems 'utf-8-unix)
+  ;; 自動認識テキストエンコーディングのリストを並び替えます。セットした言語がリストの先頭になります。
+  (prefer-coding-system 'japanese-shift-jis)
+  (prefer-coding-system 'utf-8)
+
+  (when (and (memq window-system '(ns nil))
+             (fboundp 'mac-get-current-input-source))
+    (when (version< "27.0" emacs-version) ;; 27.0 以上だったら
+      ;; Required for some cases when auto detection is failed or the locale is "en".
+      (setq mac-default-input-source "jp.monokakido.inputmethod.Kawasemi4.Japanes"))
+    (mac-input-method-mode 1)))
+
 (leaf themes
   :custom-face
   (mode-line . '((t (:box "dark olive green"))))

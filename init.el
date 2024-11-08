@@ -711,10 +711,12 @@
           (progn (string-match-p pattern "") pattern)
         (invalid-regexp nil))))
   (orderless-define-completion-style orderless-default-style
+    "An orderless completion style with literals."
     (orderless-matching-styles '(orderless-literal
                                  orderless-regexp)))
 
   (orderless-define-completion-style orderless-migemo-style
+    "An orderless completion style with migemo."
     (orderless-matching-styles '(orderless-literal
                                  orderless-regexp
                                  orderless-migemo)))

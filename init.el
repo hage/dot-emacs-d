@@ -1542,6 +1542,22 @@
   :bind (("M-s M-d" . osx-dictionary-search-word-at-point)
          ("M-s d"   . osx-dictionary-search-input)))
 
+(leaf gptel
+  :doc "Interact with ChatGPT or other LLMs"
+  :req "emacs-27.1" "transient-0.4.0" "compat-29.1.4.1"
+  :tag "convenience" "emacs>=27.1"
+  :url "https://github.com/karthink/gptel"
+  :added "2024-10-27"
+  :emacs>= 27.1
+  :ensure t
+  :after compat
+  :config
+  (defun my-gptel-after-reply-hook ()
+    (run-at-time "0.1 sec" nil (lambda ()
+                                 (goto-char (point-max)))))
+  (add-hook 'gptel-post-stream-hook 'my-gptel-after-reply-hook)
+  :custom ((gptel-api-model . "gpt-4o-mini")))
+
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)
   t)

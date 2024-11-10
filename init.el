@@ -1065,8 +1065,10 @@
   :emacs>= 24.1
   :ensure t
   :if  (memq window-system '(mac ns x))
-  :custom ((exec-path-from-shell-warn-duration-millis . 5000))
-  :init (exec-path-from-shell-initialize))
+  :custom ((exec-path-from-shell-warn-duration-millis . 5000)
+           (exec-path-from-shell-shell-name . "/opt/homebrew/bin/zsh"))
+  :config
+  (exec-path-from-shell-initialize))
 
 (leaf shell-service
   :require server

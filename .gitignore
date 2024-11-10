@@ -33,3 +33,5 @@ custom.el
 /lsp-cache/
 /persp-confs/
 /.secret.el
+/bin/gcc
+/eln-cache/

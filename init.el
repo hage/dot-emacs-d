@@ -39,6 +39,7 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (setq garbage-collection-messages t)
+(setq native-comp-async-report-warnings-errors nil)
 
 ;; 秘密の値をロード
 (load "~/.emacs.d/.secret.el")

@@ -1248,7 +1248,8 @@
   :tag "extensions" "edit" "grep"
   :url "http://github.com/mhayashi1120/Emacs-wgrep/raw/master/wgrep.el"
   :added "2021-11-24"
-  :ensure t)
+  :ensure t
+  :init (setq wgrep-enable-key (kbd "M-e")))
 
 (leaf cycle-quotes
   :doc "Cycle between quote styles"

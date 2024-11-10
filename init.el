@@ -922,7 +922,8 @@
              ("*xref*")
              ("*Messages*")
              ("*Compile-Log*")
-             ("*osx-dictionary*"))
+             ("*osx-dictionary*")
+             ("*Embark Export: .*" :position bottom :height .6 :regexp t :dedicated t :stick t))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens

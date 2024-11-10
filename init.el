@@ -1532,6 +1532,14 @@
 (leaf csv-mode
   :ensure t)
 
+(leaf emacs-lisp-mode
+  :hook ((emacs-lisp-mode-hook . paredit-mode)))
+
+(leaf paredit
+  :after paredit
+  :config
+  (keymap-unset paredit-mode-map "M-s"))
+
 (leaf osx-dictionary
   :doc "Interface for OSX Dictionary.app"
   :req "cl-lib-0.5"

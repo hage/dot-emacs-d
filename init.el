@@ -626,8 +626,7 @@
 
             (setq consult-buffer-filter
                   (append consult-buffer-filter
-                          '("\\`\\*lsp-log*"
-                            "\\`magit-"
+                          '("\\`magit-"
                             "\\`\\*ruby-ls")))
             (delete-dups consult-buffer-filter)
 
@@ -835,36 +834,6 @@
     :config
     (with-eval-after-load 'flycheck
       (flycheck-pos-tip-mode))))
-
-(leaf lsp-mode
-  :doc "LSP mode"
-  :req "emacs-26.1" "dash-2.18.0" "f-0.20.0" "ht-2.3" "spinner-1.7.3" "markdown-mode-2.3" "lv-0"
-  :tag "languages" "emacs>=26.1"
-  :added "2021-03-27"
-  :url "https://github.com/emacs-lsp/lsp-mode"
-  :emacs>= 26.1
-  :ensure t
-  :init (setq lsp-keymap-prefix "C-q l")
-  :hook (((ruby-mode-hook js2-mode-hook typescript-mode-hook php-mode-hook) . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :custom ((lsp-signature-function . #'eldoc-message))
-  :config
-  (leaf lsp-ui
-    :doc "UI modules for lsp-mode"
-    :req "emacs-26.1" "dash-2.18.0" "lsp-mode-6.0" "markdown-mode-2.3"
-    :tag "tools" "languages" "emacs>=26.1"
-    :added "2021-03-27"
-    :url "https://github.com/emacs-lsp/lsp-ui"
-    :emacs>= 26.1
-    :ensure t
-    :after lsp-mode
-    :config (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-    :custom ((lsp-ui-doc-enable . nil)
-             (lsp-ui-doc-use-childframe . nil)
-             (lsp-ui-doc-position . 'at-point)
-             (lsp-ui-doc-use-webkit . t)
-             (lsp-ui-sideline-show-hover . t)
-             (lsp-ui-sideline-delay . 1))))
 
 (leaf yasnippet
   :doc "Yet another snippet extension for Emacs"

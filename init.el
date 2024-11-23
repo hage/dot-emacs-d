@@ -400,6 +400,24 @@
       (comment-region (point) (mark))))
   :bind (("M-C-;" . my-comment-sexp)))
 
+(leaf copy-buffer-file-name-to-kill-ring
+  :init
+  (defun copy-buffer-file-name-to-kill-ring (prefix)
+    "Copy the current buffer's file name to the kill ring.
+If called with a universal argument, copy the full file name (directory + name) and show a message."
+    (interactive "P")
+    (if (buffer-file-name)
+        (let ((file-name (buffer-file-name)))
+          (if prefix
+              (progn
+                (kill-new file-name)
+                (message "Copied buffer full file name: %s" file-name))
+            (let ((base-name (file-name-nondirectory file-name)))
+              (kill-new base-name)
+              (message "Copied buffer file name: %s" base-name))))
+      (message "This buffer is not visiting a file.")))
+  :bind (("C-q C-f" . copy-buffer-file-name-to-kill-ring)))
+
 (leaf zenkaku-hankaku-translate
   :init
   (defun my-zenkaku-to-hankaku-region

@@ -1237,6 +1237,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; major modes
 
+(leaf markdown-mode
+  :doc "Major mode for Markdown-formatted text"
+  :req "emacs-27.1"
+  :tag "itex" "github flavored markdown" "markdown" "emacs>=27.1"
+  :url "https://github.com/jrblevin/markdown-mode"
+  :added "2024-11-19"
+  :emacs>= 27.1
+  :ensure t)
+
 (leaf web-mode
   :doc "major mode for editing web templates"
   :req "emacs-23.1"

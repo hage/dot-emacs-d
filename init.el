@@ -1549,6 +1549,11 @@
   (add-hook 'gptel-post-stream-hook 'my-gptel-after-reply-hook)
   :custom ((gptel-api-model . "gpt-4o-mini")))
 
+(leaf eglot
+  :hook
+  (ruby-mode . eglot-ensure)
+  (js2-mode  . eglot-ensure))
+
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)
   t)

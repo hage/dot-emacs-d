@@ -930,6 +930,7 @@ If a file with the same name already exists, prompt for confirmation."
              ("*Messages*")
              ("*Compile-Log*")
              ("*osx-dictionary*")
+             ("*GPTel Suggestion*" :position bottom :height .3)
              ("*Embark Export: .*" :position bottom :height .6 :regexp t :dedicated t :stick t))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
@@ -1281,7 +1282,10 @@ If a file with the same name already exists, prompt for confirmation."
   :url "https://github.com/jrblevin/markdown-mode"
   :added "2024-11-19"
   :emacs>= 27.1
-  :ensure t)
+  :ensure t
+  :config
+  (define-key markdown-mode-map (kbd "C-c c") markdown-mode-command-map)
+  (define-key markdown-mode-map (kbd "C-c C-c") nil))
 
 (leaf web-mode
   :doc "major mode for editing web templates"
@@ -1580,12 +1584,27 @@ If a file with the same name already exists, prompt for confirmation."
   :emacs>= 27.1
   :ensure t
   :after compat
+  :custom ((gptel-api-model . "gpt-4o-mini"))
+  :bind (("C-w g f" . my-gptel-suggest-filename)
+         ("C-w g g" . gptel)
+         ("C-c C-c" . gptel-send))
   :config
   (defun my-gptel-after-reply-hook ()
     (run-at-time "0.1 sec" nil (lambda ()
                                  (goto-char (point-max)))))
   (add-hook 'gptel-post-stream-hook 'my-gptel-after-reply-hook)
-  :custom ((gptel-api-model . "gpt-4o-mini")))
+
+  (defun my-gptel-suggest-filename (user-input)
+    "英語のファイル名の候補をいくつか挙げる"
+    (interactive "sファイル名のトピックを入力してください: ")
+    (let ((formatted-input (format "「%s」について記述した文書のファイル名をいくつか考えてください。ファイル名は英語のkebab-caseでお願いします。応答のタイトルには鍵括弧内をそのまま含めたものを出してください" user-input)))
+      (gptel-request formatted-input
+        :callback (lambda (response &optional error)
+                    (let ((output-buffer (get-buffer-create "*GPTel Suggestion*")))
+                      (with-current-buffer output-buffer
+                        (erase-buffer)
+                        (insert response)
+                        (display-buffer output-buffer))))))))
 
 (leaf eglot
   :hook

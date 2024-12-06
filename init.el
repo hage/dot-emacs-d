@@ -418,6 +418,25 @@ If called with a universal argument, copy the full file name (directory + name) 
       (message "This buffer is not visiting a file.")))
   :bind (("C-q C-f" . copy-buffer-file-name-to-kill-ring)))
 
+(leaf my-move-file-current-buffer
+  :init
+  (defun my-move-file-current-buffer (new-name)
+    "Rename the current buffer's file to NEW-NAME and delete the original file.
+If a file with the same name already exists, prompt for confirmation."
+    (interactive "FNew file name: ")
+    (let ((current-file (buffer-file-name)))
+      (when current-file
+        (if (file-exists-p new-name)
+            (if (y-or-n-p (format "File %s already exists. Overwrite? " new-name))
+                (progn
+                  (rename-file current-file new-name t) ; force is t
+                  (set-visited-file-name new-name)
+                  (set-buffer-modified-p nil))
+              (message "Rename canceled."))
+          (rename-file current-file new-name nil) ; normal rename
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
+
 (leaf zenkaku-hankaku-translate
   :init
   (defun my-zenkaku-to-hankaku-region

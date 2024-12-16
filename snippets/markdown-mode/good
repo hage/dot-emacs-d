@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: good
+# key: good
+# --
+#*: × 悪い例
+
+$0
+
+#*: ○ 良い例

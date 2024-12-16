@@ -1322,7 +1322,9 @@ If a file with the same name already exists, prompt for confirmation."
                       ("C-M-e" . web-mode-element-end)
                       ("C-M-a" . web-mode-element-beginning)
                       ("C-M-h" . web-mode-element-content-select)
-                      ("C-M-k" . web-mode-element-kill))
+                      ("C-M-k" . web-mode-element-kill)
+                      ("M-N"   . my-web-mode-forward-content-of-element)
+                      ("M-P"   . my-web-mode-backward-content-of-element))
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1)))
   :config
   (defun my-web-mode-element-content-replace-by-yank ()
@@ -1330,6 +1332,14 @@ If a file with the same name already exists, prompt for confirmation."
     (web-mode-element-content-select)
     (delete-region (mark) (point))
     (yank-and-indent))
+  (defun my-web-mode-forward-content-of-element ()
+    (interactive)
+    (web-mode-element-sibling-next)
+    (sp-down-sexp))
+  (defun my-web-mode-backward-content-of-element ()
+    (interactive)
+    (web-mode-element-sibling-previous)
+    (sp-down-sexp))
   )
 
 (leaf emmet-mode

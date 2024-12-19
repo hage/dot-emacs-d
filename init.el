@@ -1596,7 +1596,8 @@ If a file with the same name already exists, prompt for confirmation."
   :custom ((gptel-api-model . "gpt-4o-mini"))
   :bind (("C-w g f" . my-gptel-suggest-filename)
          ("C-w g g" . gptel)
-         ("C-c C-c" . gptel-send))
+         (gptel-mode-map
+          ("C-c C-c" . gptel-send)))
   :config
   (defun my-gptel-after-reply-hook ()
     (run-at-time "0.1 sec" nil (lambda ()

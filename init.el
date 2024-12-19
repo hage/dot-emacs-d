@@ -1601,7 +1601,7 @@ If a file with the same name already exists, prompt for confirmation."
   (defun my-gptel-after-reply-hook ()
     (run-at-time "0.1 sec" nil (lambda ()
                                  (goto-char (point-max)))))
-  (add-hook 'gptel-post-stream-hook 'my-gptel-after-reply-hook)
+  ;; (add-hook 'gptel-post-stream-hook 'my-gptel-after-reply-hook)
 
   (defun my-gptel-suggest-filename (user-input)
     "英語のファイル名の候補をいくつか挙げる"

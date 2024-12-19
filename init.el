@@ -1339,8 +1339,7 @@ If a file with the same name already exists, prompt for confirmation."
   (defun my-web-mode-backward-content-of-element ()
     (interactive)
     (web-mode-element-sibling-previous)
-    (sp-down-sexp))
-  )
+    (sp-down-sexp)))
 
 (leaf emmet-mode
   :doc "Unofficial Emmet's support for emacs"

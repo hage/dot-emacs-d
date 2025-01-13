@@ -1593,9 +1593,10 @@ If a file with the same name already exists, prompt for confirmation."
   :emacs>= 27.1
   :ensure t
   :after compat
-  :custom ((gptel-api-model . "gpt-4o-mini"))
+  :custom ((gptel-model . 'gpt-4o-mini))
   :bind (("C-w g f" . my-gptel-suggest-filename)
          ("C-w g g" . gptel)
+         ("C-w g c" . gptel-send)
          (gptel-mode-map
           ("C-c C-c" . gptel-send)))
   :config

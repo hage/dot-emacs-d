@@ -1622,6 +1622,19 @@ If a file with the same name already exists, prompt for confirmation."
   (ruby-mode . eglot-ensure)
   (js2-mode  . eglot-ensure))
 
+(leaf ellama
+  :doc "Tool for interacting with LLMs"
+  :req "emacs-28.1" "llm-0.6.0" "spinner-1.7.4" "transient-0.7" "compat-29.1"
+  :tag "tools" "local" "help" "emacs>=28.1"
+  :url "https://github.com/s-kostyaev/ellama"
+  :added "2024-12-29"
+  :emacs>= 28.1
+  :ensure t
+  :after llm spinner compat
+  :init (require 'llm-ollama)
+  :config
+  (setopt ellama-language "日本語"))
+
 ;;;;;;;;;;;;;;;;
 (defun key-valid-p (key)
   t)

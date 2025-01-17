@@ -35,3 +35,4 @@ custom.el
 /.secret.el
 /bin/gcc
 /eln-cache/
+/ellama-sessions/

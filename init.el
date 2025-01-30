@@ -1597,6 +1597,8 @@ If a file with the same name already exists, prompt for confirmation."
   :bind (("C-w g f" . my-gptel-suggest-filename)
          ("C-w g g" . gptel)
          ("C-w g c" . gptel-send)
+         ("C-w g m" . gptel-menu)
+         ("C-w g a" . gptel-add)
          (gptel-mode-map
           ("C-c C-c" . gptel-send)))
   :config

@@ -545,7 +545,8 @@ If a file with the same name already exists, prompt for confirmation."
   :ensure t
   :commands magit-gitdir
   :bind (("C-q g g" . magit-status)
-         ("C-q g l" . magit-log-all))
+         ("C-q g l" . magit-log-all)
+         ("C-q g d" . magit-diff-buffer-file))
   :config
   (set-face-foreground 'magit-branch-current "#33E9FF")
   (set-face-bold 'magit-branch-current t)

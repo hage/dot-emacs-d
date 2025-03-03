@@ -622,10 +622,11 @@ If a file with the same name already exists, prompt for confirmation."
   :emacs>= 27.1
   :ensure t
   :after all-the-icons
-  :config
+  :init
   (vertico-mode 1)
-  (define-key vertico-map (kbd "C-l") #'vertico-directory-up)
-  :custom ((vertico-count . 25)))
+  :custom ((vertico-count . 25))
+  :bind ((vertico-map
+          ("C-l" . vertico-directory-up))))
 (leaf orderless
   :doc "Completion style for matching regexps in any order"
   :req "emacs-26.1"

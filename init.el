@@ -339,6 +339,110 @@
                         (redraw-display))))
     :advice ((:before keyboard-quit keyboard-quit-advice-before))))
 
+(leaf my-preview
+  ;; `my-preview-commands`は、メジャーモードごとにファイルをプレビュー
+  ;; するために実行されるシェルコマンドを定義するための変数です。この
+  ;; 変数は、各メジャーモードとそれに対応するシェルコマンドのペアを含
+  ;; むアリストとして構成されています。
+
+  ;; ### 変数の構造:
+  ;; - **形式**: `((モード名 . "コマンド") ...)`
+  ;; - **例**:
+  ;; - `(ruby-mode . "ruby '{file}'")`: Rubyモードの場合、`ruby`コマンドを使用してファイルをプレビュー。
+  ;; - `(python-mode . "python '{file}'")`: Pythonモードの場合、`python`コマンドを使用。
+
+  ;; ### .dir-locals.elでの設定
+  ;; `.dir-locals.el`ファイルを利用することで、特定のプロジェクトやディ
+  ;; レクトリ内で使用する設定を指定できます。このファイルに
+  ;; `my-preview-commands`を設定することで、プロジェクトに特有のプレ
+  ;; ビューコマンドを簡単に適用できます。
+
+  ;; ### 設定例:
+  ;; 以下のように`.dir-locals.el`ファイルを作成または編集して、プロジェ
+  ;; クトごとのプレビューコマンドを指定します。
+
+  ;; ```elisp
+  ;; ((nil
+  ;;   (my-preview-commands . ((ruby-mode . "ruby -c '{file}'")  ; Rubyメジャーモードのコマンド
+  ;;                           (python-mode . "python '{file}'") ; Pythonメジャーモードのコマンド
+  ;;                           (javascript-mode . "node '{file}'") ; JavaScriptメジャーモードのコマンド
+  ;;                           ;; 他のメジャーモードに合わせてコマンドを追加
+  ;;                           (t . "less '{file}'")))))
+  ;; ```
+
+  ;; `my-preview-commands`は、各メジャーモードに応じて特定のシェルコマ
+  ;; ンドを定義する変数です。この変数内のコマンド文字列に含まれるプレー
+  ;; スホルダー`{file}`と`{project-root}`は、実行時にそれぞれ現在のファ
+  ;; イル名とプロジェクトのルートパスに置き換えられ、具体的なファイル
+  ;; 操作を可能にします。`{file}`はバッファのファイルを指し、
+  ;; `{project-root}`はそのファイルが属するプロジェクトのルートディレ
+  ;; クトリを指します。これにより、ユーザーは柔軟に異なる環境に合わせ
+  ;; たコマンドを設定できます。
+
+  ;; ### まとめ:
+  ;; `my-preview-commands`変数は、メジャーモードに応じたファイルプレ
+  ;; ビューコマンドを柔軟に設定するために使用されます。
+  ;; `.dir-locals.el`を利用することで、プロジェクト毎にこの設定を変更
+  ;; できるため、様々な開発環境に応じたカスタマイズが可能です。
+
+
+  :init
+  (defvar my-preview-commands
+    '((ruby-mode . "ruby -c '{file}'")  ; Rubyメジャーモードのコマンド
+      (python-mode . "python '{file}'") ; Pythonメジャーモードのコマンド
+      (javascript-mode . "node '{file}'") ; JavaScriptメジャーモードのコマンド
+      ;; 他のメジャーモードに合わせてコマンドを追加
+      (t . "less '{file}'"))            ; デフォルトコマンド
+    "Alist of preview commands based on major modes.
+
+Each entry is of the form (MODE . COMMAND), where MODE is a major mode
+symbol and COMMAND is a shell command. The placeholders '{file}' and
+'{project-root}' can be used within COMMAND and will be replaced
+with the current buffer's file name and the project root directory,
+respectively.")
+
+  ;; .dir-locals.el で `my-preview-commands' を設定時の警告を抑止
+  (put 'my-preview-commands 'safe-local-variable (lambda (_) t))
+
+  (defun my-project-root ()
+    "Return the project root directory using VC Mode."
+    (let ((root (or (vc-root-dir) default-directory))) ; VC-Mode (Git, Mercurialなど)を使用している場合
+      (expand-file-name root)))         ; チルダをフルパスに展開
+
+  (defun my-preview ()
+    "Preview the current buffer's file using the command based on the major mode."
+    (interactive)
+    (let* ((file-name (buffer-file-name))
+           (project-root (my-project-root))
+           (my-preview-command (or (cdr (assoc major-mode my-preview-commands))
+                                   "less '{file}'"))) ; デフォルト値
+      (if file-name
+          (let* ((command (replace-regexp-in-string
+                           "{file}" (shell-quote-argument file-name)
+                           (replace-regexp-in-string
+                            "{project-root}" (shell-quote-argument project-root)
+                            my-preview-command)))
+                 ;; rbenv_versionをクリアしてコマンドを実行
+                 (process (start-process "my-preview" "*my-preview-output*" "zsh" "-c"
+                                         (format "unset RBENV_VERSION; %s" command))))
+            ;; プロセスの出力を表示するためのフック
+            (set-process-sentinel process
+                                  (lambda (proc _)
+                                    (when (eq (process-status proc) 'exit) ; プロセスが終了したとき
+                                      (with-current-buffer "*my-preview-output*"
+                                        (goto-char (point-max)) ; 出力の最後にカーソルを移動
+                                        (insert "Preview finished.\n")))))
+            ;; バッファをクリアし、モードを設定する
+            (with-current-buffer "*my-preview-output*"
+              (erase-buffer)            ; バッファをクリア
+              (fundamental-mode)        ; 基本モードを設定
+              (local-set-key (kbd "C-c C-c") 'revert-buffer) ; リロード用のキーを設定
+              (insert "Preview Output:\n\n"))       ; ヘッダーを追加
+            (display-buffer "*my-preview-output*")) ; バッファを表示
+        (message "This buffer is not visiting a file."))))
+  :bind
+  (("C-q C-v" . my-preview)))
+
 (leaf ansi-color
   :config
   (defun my-colorize-compilation-buffer ()
@@ -933,7 +1037,8 @@ If a file with the same name already exists, prompt for confirmation."
              ("*Compile-Log*")
              ("*osx-dictionary*")
              ("*GPTel Suggestion*" :position bottom :height .3)
-             ("*Embark Export: .*" :position bottom :height .6 :regexp t :dedicated t :stick t))
+             ("*Embark Export: .*" :position bottom :height .6 :regexp t :dedicated t :stick t)
+             ("*my-preview-output*" :position bottom :height .4 :dedicated t :noselect t :stick t))
             (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens

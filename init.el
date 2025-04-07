@@ -464,6 +464,20 @@ respectively.")
   :bind (("C-q SPC" . simple-bookmark-set)
          ("C-q b"   . simple-bookmark-jump)))
 
+(leaf my-google-search
+  :init
+  (defun my-google-search ()
+    "Perform a Google search using the selected region, cursor's word, or prompt for a search term."
+    (interactive)
+    (let ((search-term (if (use-region-p)
+                           (buffer-substring-no-properties (region-beginning) (region-end))
+                         (thing-at-point 'word))))
+      (if (or (null search-term) (string-blank-p search-term)) ;; nilまたは空の場合
+          (setq search-term (read-string "Google search for: ")))
+      (browse-url (concat "https://www.google.com/search?q=" (url-encode-url search-term)))))
+  (global-set-key (kbd "M-s M-g") 'my-google-search) ;; キーリバインド (C-c g で実行)
+  )
+
 (leaf delete-trailing-whitespace-before-save
   :doc "セーブ時行末にスペースがあったら消すかどうか聞く"
   :init

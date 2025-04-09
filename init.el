@@ -1706,6 +1706,16 @@ If a file with the same name already exists, prompt for confirmation."
   :bind (("M-s M-d" . osx-dictionary-search-word-at-point)
          ("M-s d"   . osx-dictionary-search-input)))
 
+(leaf eglot
+  :hook
+  (ruby-mode . eglot-ensure)
+  (js2-mode  . eglot-ensure))
+
+
+;;;
+;;; LLMs section
+;;;
+
 (leaf gptel
   :doc "Interact with ChatGPT or other LLMs"
   :req "emacs-27.1" "transient-0.4.0" "compat-29.1.4.1"
@@ -1740,11 +1750,6 @@ If a file with the same name already exists, prompt for confirmation."
                         (erase-buffer)
                         (insert response)
                         (display-buffer output-buffer))))))))
-
-(leaf eglot
-  :hook
-  (ruby-mode . eglot-ensure)
-  (js2-mode  . eglot-ensure))
 
 (leaf ellama
   :doc "Tool for interacting with LLMs"

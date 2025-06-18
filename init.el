@@ -557,9 +557,14 @@ If a file with the same name already exists, prompt for confirmation."
 
 (leaf zenkaku-hankaku-translate
   :init
-  (defun my-zenkaku-to-hankaku-region
-      (interactive)
-		(japanese-hankaku-region (region-beginning) (region-end) t))
+  (defun my-zenkaku-to-hankaku-region ()
+    (interactive)
+		(japanese-hankaku-region (region-beginning) (region-end) t)
+    (replace-regexp-in-region " *(" " (" (region-beginning) (region-end))
+    (replace-regexp-in-region "^ +(" "(" (region-beginning) (region-end))
+    (replace-regexp-in-region "( +(" "((" (region-beginning) (region-end))
+    (replace-regexp-in-region ") *" ") " (region-beginning) (region-end))
+    (replace-regexp-in-region ") +\\([!?。.)]\\)" ")\\1") (region-beginning) (region-end))
   :bind
   (("C-q h" . my-zenkaku-to-hankaku-region)
    ("C-q z" . japanese-zenkaku-region)))

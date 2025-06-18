@@ -503,7 +503,7 @@ respectively.")
     (save-excursion
       (indent-region (mark) (point))))
   :hook
-  ((emacs-lisp-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook web-mode-hook css-mode-hook php-mode-hook) .
+  ((emacs-lisp-mode-hook ruby-mode-hook js2-mode-hook typescript-mode-hook web-mode-hook css-mode-hook php-mode-hook lua-mode-hook) .
    (lambda ()
      (local-set-key (kbd "C-y") #'yank-and-indent)
      (local-set-key (kbd "C-M-y") #'yank))))
@@ -1685,6 +1685,15 @@ If a file with the same name already exists, prompt for confirmation."
      :emacs>= 24.3
      :ensure t))
  )
+
+(leaf lua-mode
+  :doc "A major-mode for editing Lua scripts"
+  :req "emacs-24.3"
+  :tag "tools" "processes" "languages" "emacs>=24.3"
+  :url "https://immerrr.github.io/lua-mode"
+  :added "2025-06-16"
+  :emacs>= 24.3
+  :ensure t)
 
 (leaf sql
   :init

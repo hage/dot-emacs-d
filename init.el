@@ -1150,6 +1150,20 @@ If a file with the same name already exists, prompt for confirmation."
   :bind ((projectile-mode-map
           ("C-w C-w" . my-run-eshell)))
   :custom ((projectile-mode-line-prefix . " P"))
+  :config
+
+  ;; Ruby + Minitest
+  ;; これを使うには .dir-locals.elに
+  ;; `((ruby-mode . ((projectile-project-type . ruby-minitest)))'
+  ;; と書いておくこと
+  ;; `implement.rb'のテストは`implement-test.rb'にすること
+  (projectile-register-project-type 'ruby-minitest '("Gemfile" "lib" "test")
+                                    :project-file "Gemfile"
+                                    :compile "bundle exec rake"
+                                    :src-dir "bin/"
+                                    :test "bundle exec rake test"
+                                    :test-suffix "_test")
+  :bind (("M-T" . projectile-find-implementation-or-test-other-window))
   :init
   (projectile-mode)
   (defun my-run-eshell ()

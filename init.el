@@ -1459,10 +1459,10 @@ If a file with the same name already exists, prompt for confirmation."
    '(markdown-header-face-6 ((t (:foreground "#bbccbb")))))
   ;; # .*: のような形式の見出しのface
   (defface my-custom-markdown-header-face
-    '((t :foreground "#aabbaa"
+    '((t :foreground "#bbbbbb"
+         :background "#404040"
          :underline nil
-         :weight bold
-         :background nil))
+         :weight bold))
     "Custom face for markdown headers matching pattern #keyword:content"
     :group 'markdown-faces)
   ;; markdown-modeに正規表現とfaceのマッピングを追加
@@ -1566,6 +1566,11 @@ If a file with the same name already exists, prompt for confirmation."
            (ruby-align-chained-calls           . t))
   :bind (("M-\"" . ruby-toggle-string-quotes))
   :config
+  (progn
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 '(minitest-bracket "\\[\\([^:]+\\.rb\\):\\([0-9]+\\)\\]" 1 2))
+    (add-to-list 'compilation-error-regexp-alist 'minitest-bracket))
+
   (leaf ruby-interpolation
     :doc "Ruby string interpolation helpers"
     :added "2021-03-30"

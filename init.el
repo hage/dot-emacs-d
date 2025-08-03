@@ -474,6 +474,17 @@ respectively.")
   :bind (("C-q SPC" . simple-bookmark-set)
          ("C-q b"   . simple-bookmark-jump)))
 
+(leaf my-describe-face-at-point
+  :init
+  (defun my-describe-face-at-point ()
+    "Display the face name at the cursor position in the echo area."
+    (interactive)
+    (let ((face (get-text-property (point) 'face)))
+      (if face
+          (message "Face: %s" (if (listp face)
+                                  (mapconcat 'symbol-name face ", ") (symbol-name face)))
+        (message "No face at point.")))))
+
 (leaf my-google-search
   :init
   (defun my-google-search ()

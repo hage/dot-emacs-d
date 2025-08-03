@@ -451,6 +451,15 @@ respectively.")
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   :hook (compilation-filter-hook . my-colorize-compilation-buffer))
 
+(leaf align
+  :init
+  ;; align-rules-listにコロンの後で揃えるルールを追加
+  (add-to-list 'align-rules-list
+               '(colon-after-general
+                 (regexp . ":\\(\\s-*\\)")
+                 (group . 1)
+                 (repeat . t))))
+
 (leaf simple-bookmark
   :init
   (defun simple-bookmark-set ()

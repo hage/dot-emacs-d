@@ -200,7 +200,7 @@
 
     :bind (("M-o"         . other-window)
            ("C-o"         . dabbrev-expand)
-           ("C-j"         . align-newline-and-indent)
+           ("C-j"         . newline-and-indent)
 	         ("C-x h"       . help-command)
            ("C-q C-q"     . quoted-insert)
            ("C-q C-j"     . join-line)

@@ -1447,7 +1447,39 @@ If a file with the same name already exists, prompt for confirmation."
   :ensure t
   :config
   (define-key markdown-mode-map (kbd "C-c c") markdown-mode-command-map)
-  (define-key markdown-mode-map (kbd "C-c C-c") nil))
+  (define-key markdown-mode-map (kbd "C-c C-c") nil)
+  ;; Markdown-modeの見出しのfaceを変更
+  (custom-set-faces
+   '(markdown-header-delimiter-face ((t (:foreground "#5555ff"))))
+   '(markdown-header-face-1 ((t (:foreground "#77dd77" :weight bold :underline t))))
+   '(markdown-header-face-2 ((t (:foreground "#77dd77" :weight bold))))
+   '(markdown-header-face-3 ((t (:foreground "#bbccbb" :weight bold))))
+   '(markdown-header-face-4 ((t (:foreground "#bbccbb"))))
+   '(markdown-header-face-5 ((t (:foreground "#bbccbb"))))
+   '(markdown-header-face-6 ((t (:foreground "#bbccbb")))))
+  ;; # .*: のような形式の見出しのface
+  (defface my-custom-markdown-header-face
+    '((t :foreground "#aabbaa"
+         :underline nil
+         :weight bold
+         :background nil))
+    "Custom face for markdown headers matching pattern #keyword:content"
+    :group 'markdown-faces)
+  ;; markdown-modeに正規表現とfaceのマッピングを追加
+  (defun my-markdown-mode-hook-handler ()
+    "Setup custom face for markdown headers matching #keyword:content pattern"
+    (font-lock-add-keywords
+     nil
+     '(("^#\\s-*\\([*a-zA-Z0-9_]+\\):\\(.*\\)$"
+        (0 'my-custom-markdown-header-face prepend))) ; 'prepend'を追加
+     t)
+    ;; font-lockを再適用
+    (when (fboundp 'font-lock-flush)
+      (font-lock-flush)))
+
+  :hook
+  ;; markdown-modeに対してキーワードを追加
+  (markdown-mode-hook . my-markdown-mode-hook-handler))
 
 (leaf web-mode
   :doc "major mode for editing web templates"

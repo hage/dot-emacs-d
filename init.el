@@ -1460,7 +1460,7 @@ If a file with the same name already exists, prompt for confirmation."
   ;; # .*: のような形式の見出しのface
   (defface my-custom-markdown-header-face
     '((t :foreground "#bbbbbb"
-         :background "#404040"
+         :background "#30484f"
          :underline nil
          :weight bold))
     "Custom face for markdown headers matching pattern #keyword:content"

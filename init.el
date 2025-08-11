@@ -1276,8 +1276,8 @@ If a file with the same name already exists, prompt for confirmation."
   :url "https://github.com/gonewest818/dimmer.el"
   :emacs>= 25.1
   :ensure t
-  :custom ((dimmer-fraction . 0.2)
-           (dimmer-adjustment-mode . :both))
+  :custom ((dimmer-fraction . 0.3)
+           (dimmer-adjustment-mode . :foreground))
   :global-minor-mode t)
 
 (leaf ace-jump-mode

@@ -1183,7 +1183,7 @@ If a file with the same name already exists, prompt for confirmation."
                                     :src-dir "bin/"
                                     :test "bundle exec rake test"
                                     :test-suffix "_test")
-  :bind (("M-T" . projectile-find-implementation-or-test-other-window))
+  :bind (("C-w C-t" . projectile-find-implementation-or-test-other-window))
   :init
   (projectile-mode)
   (defun my-run-eshell ()

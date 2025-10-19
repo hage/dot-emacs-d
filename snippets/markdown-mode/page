@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: page
+# key: page
+# --
+@[Page: $0]

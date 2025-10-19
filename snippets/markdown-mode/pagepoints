@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pagepoints
+# key: pp
+# --
+@[pagepoints: $0]

@@ -1797,6 +1797,11 @@ If a file with the same name already exists, prompt for confirmation."
   (ruby-mode . eglot-ensure)
   (js2-mode  . eglot-ensure))
 
+(leaf flymake
+  :bind ((flymake-mode-map
+          ("M-g n" . flymake-goto-next-error)
+          ("M-g p" . flymake-goto-prev-error))))
+
 (leaf foreign-regexp
   :doc "Search and replace by foreign regexp"
   :tag "wp" "unix" "tools" "matching" "emulations" "convenience"

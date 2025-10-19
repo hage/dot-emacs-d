@@ -332,13 +332,7 @@
     :url "https://github.com/jkp/pbcopy.el"
     :ensure t
     :init (turn-on-pbcopy))
-  (leaf keyboard-quit
-    :config
-    (defun keyboard-quit-advice-before ()
-      (run-with-timer 0.2 nil
-                      (lambda ()
-                        (redraw-display))))
-    :advice ((:before keyboard-quit keyboard-quit-advice-before))))
+  )
 
 (leaf my-preview
   ;; `my-preview-commands`は、メジャーモードごとにファイルをプレビュー

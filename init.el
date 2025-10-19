@@ -1797,6 +1797,15 @@ If a file with the same name already exists, prompt for confirmation."
   (ruby-mode . eglot-ensure)
   (js2-mode  . eglot-ensure))
 
+(leaf foreign-regexp
+  :doc "Search and replace by foreign regexp"
+  :tag "wp" "unix" "tools" "matching" "emulations" "convenience"
+  :url "https://github.com/k-talo/foreign-regexp.el"
+  :added "2025-08-26"
+  :ensure t
+  :custom ((foreign-regexp/regexp-type . 'ruby)
+           (reb-re-syntax . 'foreign-regexp)))
+
 
 ;;;
 ;;; LLMs section

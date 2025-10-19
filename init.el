@@ -1662,6 +1662,10 @@ If a file with the same name already exists, prompt for confirmation."
   :emacs>= 25
   :ensure t)
 
+(leaf latex-mode
+  :custom ((tex-fontify-script . nil) ;; LaTeX で下付き・上付き文字のフォント変更を無効にする
+           ))
+
 (leaf howm
   :doc "Wiki-like note-taking tool"
   :req "cl-lib-0.5"

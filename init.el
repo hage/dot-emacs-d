@@ -299,7 +299,7 @@
     (leaf font-setting-jetbrains
       :disabled nil
       :init
-      (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=12" nil "JetBrains")
+      (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=13" nil "JetBrains")
       (set-fontset-font "fontset-JetBrains" 'unicode "DFPLeiSho-SB-14" nil 'append))
     (leaf font-setting-victor
       :disabled t

@@ -631,6 +631,17 @@ If a file with the same name already exists, prompt for confirmation."
     (message "done."))
   :hook ((find-file-not-found-hooks . auto-insert)))
 
+(leaf lisp-interaction-mode
+  :init
+  (with-eval-after-load 'paredit
+    (defun my/lisp-interaction-cj-override ()
+      (when (eq major-mode 'lisp-interaction-mode)
+        ;; paredit の C-j バインドを無効化
+        (define-key paredit-mode-map (kbd "C-j") nil)
+        ;; Major モードのデフォルトに割り当て直す
+        (local-set-key (kbd "C-j") #'eval-print-last-sexp)))
+    (add-hook 'paredit-mode-hook #'my/lisp-interaction-cj-override)))
+
 (leaf ffap
   :doc "find file (or url) at point"
   :tag "builtin"

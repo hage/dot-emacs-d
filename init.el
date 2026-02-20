@@ -386,6 +386,7 @@
     '((ruby-mode . "ruby -c '{file}'")  ; Rubyメジャーモードのコマンド
       (python-mode . "python '{file}'") ; Pythonメジャーモードのコマンド
       (javascript-mode . "node '{file}'") ; JavaScriptメジャーモードのコマンド
+      (markdown-mode . "open -a repla '{file}'")
       ;; 他のメジャーモードに合わせてコマンドを追加
       (t . "less '{file}'"))            ; デフォルトコマンド
     "Alist of preview commands based on major modes.

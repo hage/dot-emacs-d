@@ -334,6 +334,20 @@
     :init (turn-on-pbcopy))
   )
 
+
+;;; コマンド定義
+
+(leaf my-toggle-comment-line
+  :init
+  (defun my-toggle-comment-line ()
+    "Toggle comment on the current line."
+    (interactive)
+    (let ((beg (line-beginning-position))
+          (end (line-end-position)))
+      (comment-or-uncomment-region beg end)))
+  :bind (("C-;" . my-toggle-comment-line)))
+
+
 (leaf my-preview
   ;; `my-preview-commands`は、メジャーモードごとにファイルをプレビュー
   ;; するために実行されるシェルコマンドを定義するための変数です。この

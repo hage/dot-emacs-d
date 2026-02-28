@@ -2,5 +2,6 @@
 # name: simple-module
 # key: module
 # --
-module ${0:ModuleName}
+module ${1:ModuleName}
+  $0
 end

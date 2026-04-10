@@ -1099,6 +1099,7 @@ If a file with the same name already exists, prompt for confirmation."
              ("*compilation*" :height .4 :stick t)
              ("^\\*eshell.*\\*\\'" :position bottom :height .4 :stick t :regexp t)
              ("*Backtrace*" :noselect t)
+             ("*eldoc*" :width .4 :position right :noselect t)
              ("*xref*")
              ("*Messages*")
              ("*Compile-Log*")

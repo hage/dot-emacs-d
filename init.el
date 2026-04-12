@@ -628,8 +628,7 @@ If a file with the same name already exists, prompt for confirmation."
   :config
   (defun my-recentf-maintenance ()
     (recentf-cleanup)
-    (recentf-save-list)
-    (message "my-recentf-maintenance done."))
+    (recentf-save-list))
   (run-with-idle-timer 60 t #'my-recentf-maintenance))
 
 (leaf save-place

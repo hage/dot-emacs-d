@@ -287,6 +287,16 @@
              (pos-tip-internal-border-width . 5)
              (pos-tip-foreground-color . "gray20")
              (pos-tip-background-color . "light cyan")))
+  (leaf my-frame-refresh
+    :init
+    (defun my-frame-refresh ()
+      "マルチディスプレイでディスプレイ間を移動したときに周囲にゴミが出るのを解消"
+      (interactive)
+      (toggle-frame-fullscreen)
+      (run-at-time 1 nil
+                   (lambda ()
+                     (unless (eq (frame-parameter (selected-frame) 'fullscreen) 'fullboth)
+                       (toggle-frame-fullscreen))))))
   (leaf font-setting
     :tag "out-of-MELPA"
     :added "2021-04-27"

@@ -626,9 +626,11 @@ If a file with the same name already exists, prompt for confirmation."
   :custom ((recentf-max-saved-items . 1024)
            (recentf-auto-cleanup    . 'never))
   :config
+  (recentf-mode 1)
   (defun my-recentf-maintenance ()
-    (recentf-cleanup)
-    (recentf-save-list))
+    (let ((inhibit-message t))
+      (recentf-cleanup)
+      (recentf-save-list)))
   (run-with-idle-timer 60 t #'my-recentf-maintenance))
 
 (leaf save-place

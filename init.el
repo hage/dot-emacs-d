@@ -854,8 +854,8 @@ If a file with the same name already exists, prompt for confirmation."
             (define-key consult-narrow-map
               (vconcat consult-narrow-key "?") #'consult-narrow-help)
             (consult-customize
-             consult--source-recent-file
-             consult--source-project-recent-file
+             consult-source-recent-file
+             consult-source-project-recent-file
              :preview-key (list
                            (kbd "C-o")
                            :debounce 0.5 'any)))

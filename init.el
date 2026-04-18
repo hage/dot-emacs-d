@@ -1163,12 +1163,12 @@ If a file with the same name already exists, prompt for confirmation."
   :url "http://github.com/nex3/perspective-el"
   :emacs>= 24.4
   :ensure t
+  :init
+  (persp-mode 1)
   :custom-face
   ;; これが有効になるのは persp-modestring-short が nil のとき
   (persp-selected-face . '((t (:foreground "#eee" :underline t :bold nil))))
-  :init
-  (persp-mode)
-
+  :config
   (defvar my-persp-loaded-state-p nil "persp-state-load をしたとき t に設定される")
 
   (defun my-persp-state-load-hook-handler ()
@@ -1179,6 +1179,10 @@ If a file with the same name already exists, prompt for confirmation."
     (when (and my-persp-loaded-state-p (y-or-n-p "save a perspective state?"))
       (persp-state-save persp-state-default-file)))
 
+  (defun my-persp-switch-to-main ()
+    (interactive)
+    (persp-switch "main"))
+
   :hook ((kill-emacs-hook             . kill-emacs-hook-handler-of-perspective)
          (persp-state-after-load-hook . my-persp-state-load-hook-handler))
 
@@ -1186,10 +1190,6 @@ If a file with the same name already exists, prompt for confirmation."
             (persp-sort               . 'created)
             (persp-state-default-file . ,(concat user-emacs-directory ".persp-save.el"))
             (persp-modestring-short   . t))
-  :config
-  (defun my-persp-switch-to-main ()
-    (interactive)
-    (persp-switch "main"))
   :bind ((persp-mode-map
           ("M-t M-t" . persp-switch-last)
           ("M-t t"   . persp-switch)

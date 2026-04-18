@@ -528,6 +528,7 @@ respectively.")
   (defun before-save-hook-handler-of-delete-trailing-whitespace ()
     (when (and
            (buffer-file-name)           ; ファイル付きのバッファで
+           (not (string-suffix-p "COMMIT_EDITMSG" (buffer-file-name)))
            (string-match "[ 	]$" (buffer-string)) ; 行末が空白の行があって
            (or (not (memq major-mode my-delete-trailing-whitespace-enable-mode))
                (y-or-n-p "detected trailing whitespace. delete it?")))

@@ -1145,7 +1145,6 @@ If a file with the same name already exists, prompt for confirmation."
   :added "2021-03-24"
   :url "https://github.com/justbur/emacs-which-key"
   :emacs>= 24.4
-  :ensure t
   :blackout t
   :custom ((which-key-side-window-max-width . 0.35)
            (which-key-max-display-columns . 1)
@@ -1254,10 +1253,9 @@ If a file with the same name already exists, prompt for confirmation."
   :added "2021-03-26"
   :url "https://github.com/editorconfig/editorconfig-emacs#readme"
   :emacs>= 24
-  :ensure t
   :blackout t
   :after nadvice
-  :config (editorconfig-mode 1))
+  :global-minor-mode t)
 
 (leaf eshell
   :doc "the Emacs command shell"

@@ -1025,6 +1025,7 @@ If a file with the same name already exists, prompt for confirmation."
     :tag "convenience" "front-end" "completion" "company" "emacs>=26.0.91"
     :url "https://github.com/sebastiencs/company-box"
     :added "2022-04-05"
+    :blackout t
     :emacs>= 26.0
     :ensure t
     :hook ((company-mode-hook . company-box-mode))))
@@ -1127,6 +1128,7 @@ If a file with the same name already exists, prompt for confirmation."
   :added "2021-03-23"
   :url "https://github.com/Fuco1/smartparens"
   :ensure t
+  :blackout t
   :defer-config (require 'smartparens-config)
   :init (smartparens-global-mode)
   :bind ((smartparens-mode-map
@@ -1762,6 +1764,7 @@ If a file with the same name already exists, prompt for confirmation."
 
 (leaf paredit
   :after paredit
+  :blackout t
   :config
   (keymap-unset paredit-mode-map "M-s"))
 

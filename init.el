@@ -1830,6 +1830,7 @@ If a file with the same name already exists, prompt for confirmation."
          ("C-w g c" . gptel-send)
          ("C-w g m" . gptel-menu)
          ("C-w g a" . gptel-add)
+         ("C-w g r" . gptel-context-remove-all)
          (gptel-mode-map
           ("C-c C-c" . gptel-send)))
   :config

@@ -1219,12 +1219,31 @@ If a file with the same name already exists, prompt for confirmation."
   :bind (("C-w C-t" . projectile-find-implementation-or-test-other-window))
   :init
   (projectile-mode)
-  (defun my-run-eshell ()
-    "invoke projectile-run-eshell when under git repository, otherwize invoke eshell"
-    (interactive)
-    (if (magit-gitdir)
-        (projectile-run-eshell)
+  (defun my-run-eshell (arg)
+    "C-uをつけたら現在のファイルのディレクトリでeshellを開く。
+それ以外は、Git管理下ならprojectile-run-eshell、そうでなければ通常のeshellを開く。"
+    (interactive "P")
+    (cond
+     ;; C-u が押された場合
+     (arg
+      (let ((dir (if buffer-file-name
+                     (file-name-directory buffer-file-name)
+                   default-directory)))
+        (let ((default-directory dir))
+          (eshell))))
+     ;; 通常の起動（Git管理下の場合）
+     ((and (fboundp 'magit-gitdir) (magit-gitdir))
+      (projectile-run-eshell))
+     ;; 通常の起動（Git管理外の場合）
+     (t
       (eshell))))
+  ;; (defun my-run-eshell ()
+  ;;   "invoke projectile-run-eshell when under git repository, otherwize invoke eshell"
+  ;;   (interactive)
+  ;;   (if (magit-gitdir)
+  ;;       (projectile-run-eshell)
+  ;;     (eshell)))
+  )
 
 (leaf multiple-cursors
   :doc "Multiple cursors for Emacs."

@@ -298,25 +298,18 @@
                      (unless (eq (frame-parameter (selected-frame) 'fullscreen) 'fullboth)
                        (toggle-frame-fullscreen))))))
   (leaf font-setting
-    :tag "out-of-MELPA"
-    :added "2021-04-27"
-    :config
-    (leaf font-setting-source-han-mono
-      :disabled nil
-      :init
-      (create-fontset-from-ascii-font "Source Han Mono:slant=normal:size=11" nil "SourceHanMono")
-      (set-fontset-font "fontset-SourceHanMono" 'unicode "DFPLeiSho-SB-14" nil 'append))
-    (leaf font-setting-jetbrains
-      :disabled nil
-      :init
-      (create-fontset-from-ascii-font "JetBrains Mono:slant=normal:size=13" nil "JetBrains")
-      (set-fontset-font "fontset-JetBrains" 'unicode "DFPLeiSho-SB-14" nil 'append))
-    (leaf font-setting-victor
-      :disabled t
-      :init
-      (create-fontset-from-ascii-font "Victor Mono:slant=normal:size=12" nil "Victor")
-      (set-fontset-font "fontset-Victor" 'unicode "DFPLeiSho-SB-14" nil 'append))
-    (add-to-list 'default-frame-alist '(font . "fontset-JetBrains")))
+    ;; 1122334455667788990011|
+    ;; １２３４５６７８９０あ|
+    :disabled nil
+    :init
+    (set-face-attribute 'default nil
+                        :family "JetBrains Mono"
+                        :height 130)
+    (set-fontset-font nil 'japanese-jisx0208
+                      (font-spec :family "DFPLeiSho-SB"))
+    ;; 冒頭のコメントを見ながら値を調整した
+    (add-to-list 'face-font-rescale-alist '(".*DFPLeiSho-SB.*" . 1.3)))
+
   (leaf switch-to-terminal
     :init
     (defun my-switch-terminal-emulator()

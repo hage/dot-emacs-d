@@ -853,29 +853,6 @@ If a file with the same name already exists, prompt for confirmation."
              :preview-key (list
                            (kbd "C-o")
                            :debounce 0.5 'any)))
-  (leaf my-consult-project-file
-    :after consult project
-    :config
-    (defvar my-consult--source-project-file
-      `(:name "Project Whole File"
-              :narrow   (?p . "Project")
-              :category file
-              :face     consult-file
-              :history  file-name-history
-              :state    ,#'consult--file-state
-              :new      ,#'consult--file-action
-              :items
-              ,(lambda ()
-                 (let ((current-project (project-current)))
-                   (if current-project
-                       (project-files current-project)
-                     nil))))
-      "Project file candidate source for `project-files'.")
-    (add-to-list 'consult-buffer-sources 'my-consult--source-project-file t)
-    (setq consult-project-buffer-sources
-          (list
-           `(:hidden nil :narrow ?b ,@consult--source-project-buffer)
-           `(:hidden nil :narrow ?f ,@my-consult--source-project-file))))
   :bind (("M-I"     . consult-imenu-multi)
          ("C-s"     . consult-line)
          ("M-g g"   . consult-goto-line)
@@ -888,6 +865,18 @@ If a file with the same name already exists, prompt for confirmation."
          ("M-s F"   . consult-find)
          ("M-s o"   . consult-outline)
          ("M-y"     . consult-yank-pop)))
+
+(leaf consult-project-extra
+  :doc "Consult integration for project.el"
+  :req "emacs-28.1" "consult-0.17" "project-0.8.1"
+  :tag "management" "project" "convenience" "emacs>=28.1"
+  :url "https://github.com/Qkessler/consult-project-extra"
+  :added "2026-05-25"
+  :emacs>= 28.1
+  :ensure t
+  :after consult project
+  :bind (("M-C-o" . consult-project-extra-find)))
+
 (leaf embark
   :doc "Conveniently act on minibuffer completions"
   :req "emacs-26.1"
@@ -907,14 +896,7 @@ If a file with the same name already exists, prompt for confirmation."
   :ensure t
   :after vertico consult
   :config (define-key vertico-map (kbd "M-o") #'embark-act))
-(leaf my-consult-buffer
-  :init
-  (defun my-consult-project-buffer (uarg)
-    (interactive "P")
-    (if (or uarg (string-prefix-p "*scratch*" (buffer-name)) (not (project-current)))
-        (consult-buffer)
-      (consult-project-buffer)))
-  :bind (("C-M-o" . my-consult-project-buffer)))
+
 (leaf orderless-migemo
   :doc "consultをmigemoizeしたい (未完→だいたいできた)"
   :url "https://nyoho.jp/diary/?date=20210615"

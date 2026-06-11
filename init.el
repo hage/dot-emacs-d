@@ -244,6 +244,7 @@
     (tool-bar-mode -1)
     (menu-bar-mode 1)
     (global-hl-line-mode 1)
+    (set-face-attribute 'hl-line nil :underline '(:color "#607030" :style line))
     (global-so-long-mode))
   (leaf all-the-icons
     :doc "A library for inserting Developer icons"

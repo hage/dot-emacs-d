@@ -297,7 +297,10 @@
       (run-at-time 1 nil
                    (lambda ()
                      (unless (eq (frame-parameter (selected-frame) 'fullscreen) 'fullboth)
-                       (toggle-frame-fullscreen))))))
+                       (toggle-frame-fullscreen)))))
+    :bind
+    (("C-w l" . my-frame-refresh)))
+
   (leaf font-setting
     ;; 1122334455667788990011|
     ;; １２３４５６７８９０あ|

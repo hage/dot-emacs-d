@@ -1803,6 +1803,14 @@ If a file with the same name already exists, prompt for confirmation."
   :custom ((foreign-regexp/regexp-type . 'ruby)
            (reb-re-syntax . 'foreign-regexp)))
 
+(leaf tramp
+  :custom ((tramp-use-ssh-controlmaster-options . nil)
+           (process-connection-type . nil)
+           (tramp-auto-save-directory . "~/tmp/tramp-auto-save")
+           (enable-remote-dir-locals . nil)
+           (tramp-connection-timeout . 30)
+           (remote-file-name-inhibit-cache . nil)
+           (tramp-completion-use-cache . t)))
 
 ;;;
 ;;; LLMs section

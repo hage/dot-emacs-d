@@ -1546,8 +1546,7 @@ If a file with the same name already exists, prompt for confirmation."
            (web-mode-asp-offset                       . 2)
            (web-mode-enable-current-element-highlight . t))
   :defer-config (require 'sgml-mode nil t)
-  :bind (web-mode-map ("M-SPC" . web-mode-mark-and-expand)
-                      ("C-q C-y" . my-web-mode-element-content-replace-by-yank)
+  :bind (web-mode-map ("C-q C-y" . my-web-mode-element-content-replace-by-yank)
                       ("C-M-u" . web-mode-element-parent)
                       ("C-M-d" . sp-down-sexp)
                       ("C-M-n" . web-mode-element-sibling-next)
@@ -1573,6 +1572,10 @@ If a file with the same name already exists, prompt for confirmation."
     (interactive)
     (web-mode-element-sibling-previous)
     (sp-down-sexp)))
+(leaf web-mode-expand-region
+  :after web-mode expand-region
+  :bind (web-mode-map ("M-SPC" . er/expand-region))
+  :config (require 'web-mode-expansions))
 
 (leaf emmet-mode
   :doc "Unofficial Emmet's support for emacs"

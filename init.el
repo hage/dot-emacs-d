@@ -850,8 +850,9 @@ If a file with the same name already exists, prompt for confirmation."
                             "\\`\\*ruby-ls")))
             (delete-dups consult-buffer-filter)
 
-            (define-key consult-narrow-map
-              (vconcat consult-narrow-key "?") #'consult-narrow-help)
+            (define-key
+             consult-narrow-map
+             (vconcat consult-narrow-key "?") #'consult-narrow-help)
             (consult-customize
              consult-source-recent-file
              consult-source-project-recent-file
@@ -1100,7 +1101,7 @@ If a file with the same name already exists, prompt for confirmation."
              ("*GPTel Suggestion*" :position bottom :height .3)
              ("*Embark Export: .*" :position bottom :height .6 :regexp t :dedicated t :stick t)
              ("*my-preview-output*" :position bottom :height .4 :dedicated t :noselect t :stick t))
-            (cadar (get 'popwin:special-display-config 'standard-value)))))
+           (cadar (get 'popwin:special-display-config 'standard-value)))))
 
 (leaf smartparens
   :doc "Automatic insertion, wrapping and paredit-like navigation with user defined pairs."

@@ -1559,6 +1559,7 @@ If a file with the same name already exists, prompt for confirmation."
                       ("M-P"   . my-web-mode-backward-content-of-element))
   :hook (web-mode-hook . (lambda () (sgml-electric-tag-pair-mode 1)))
   :config
+  (set-face-foreground 'web-mode-comment-face "#99a")
   (defun my-web-mode-element-content-replace-by-yank ()
     (interactive)
     (web-mode-element-content-select)

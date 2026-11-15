@@ -36,3 +36,4 @@ custom.el
 /bin/gcc
 /eln-cache/
 /ellama-sessions/
+/projectile-frecency.eld

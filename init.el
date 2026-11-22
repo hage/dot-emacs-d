@@ -141,7 +141,8 @@
     :url "https://github.com/hlissner/emacs-doom-theme"
     :emacs>= 25.1
     :ensure t
-    :config  (load-theme 'doom-one t)))
+    :config  (load-theme 'doom-one t))
+  (set-face-foreground 'font-lock-comment-face "#788"))
 
 (leaf basic-config
   :init (progn

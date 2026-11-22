@@ -4,6 +4,12 @@
 ;;; Commentary:
 ;;; Code:
 
+;;; パッケージアップデートの手順
+;;; 1. M-x package-refresh-contents RET
+;;; 2. M-x list-packages RET
+;;; 3. S-u (大文字のU) で更新マーク ([u]) がつく
+;;; 4. x
+
 ;;;;;;;;;;;;;;;;
 ;; init.elのロード時間を視覚化する
 ;; http://qiita.com/yuttie/items/0f38870817c11b2166bd
